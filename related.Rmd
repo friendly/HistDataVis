@@ -1,0 +1,46 @@
+---
+title: "Related publications"
+description: |
+  Publications related to our book
+author:
+  - name: Michael Friendly 
+    url: https://www.datavis.ca
+    affiliation: York University
+date: "`r Sys.Date()`"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Related publications
+
+This page gives references to publications on the topics and themes of our book.
+Some of these were written as the book was being developed; others reflect topics
+or aspects that fell to the cutting room floor in editing.
+
+* Friendly, M. and Les Chevaliers (2020). [Raiders of the Lost Tombs: The Search for Some Heroes of the History of Data Visualization.](https://medium.com/nightingale/raiders-of-the-lost-tombs-the-search-for-some-heroes-of-the-history-of-data-visualization-c4a4b4690d24)
+
+* Friendly, M. (2021). [Minard Day 2021: Resources, Research, and Inspirations.](https://medium.com/nightingale/minard-day-2021-resources-research-and-inspirations-5588e4e6dbe9)  
+
+* Friendly, M. (2021). [A Gleam in the Mind’s Eye: Stories and Lessons from the History of Data Visualization.](https://www.datavis.ca/papers/SSC2021-talk.pdf) Invited presentation, Statistical Society of Canada, June 2021.
+
+* Friendly, M & Wainer, H. (2019). [Visual Thinking and Graphic Discoveries.](https://medium.com/@michael.friendly/visual-thinking-graphic-discoveries-128468677592)
+
+* Friendly, M & Wainer, H. (2020). [Galton’s Gleam: Visual Thinking & Graphic Discoveries, _Significance_, **17**(3), 28-33, June 2020.](https://rss.onlinelibrary.wiley.com/doi/abs/10.1111/1740-9713.01403)
+
+* Wainer, H. (2017). [The Birth of Statistical Graphics and their European Childhood: On the historical development of W.E.B. Du Bois’ graphical narrative of a people, _Chance_, **30**(3), 61-67.](https://www.tandfonline.com/doi/full/10.1080/09332480.2017.1383117)
+
+* Wainer, H. & Andrews, RJ (2017). [The Great Migration: A Graphics Novel Featuring the Contributions of W. E. B.  Du Bois and C. J. Minard. _Significance_, **14*(3), 14-19.](https://www.significancemagazine.com/culture/564-the-great-migration-a-graphics-novel). See also:  http://infowetrust.com/picturing-the-great-migration/)
+
+* Wainer, H., Friendly, M. & P. Millán-Martinez (2015). [Graphs ‘R Us: A discussion of Antony Unwin’s Graphical Data Analysis with R. _Journal of Educational and Behavioral Statistics_, **40**(6), 665-670](https://www.jstor.org/stable/43966405) 
+
+* Wainer, H. & Friendly, M. (2018). [Ancient Visualizations, _Chance_, **31**(2), 62-64.](https://www.tandfonline.com/doi/full/10.1080/09332480.2018.1467645)
+
+* Wainer, H. & Friendly, M. (2019). [Visual Answers to Scientific Questions. _The American Scientist_, **107** (July-August), 210-213](https://www.americanscientist.org/article/visual-answers-to-scientific-questions)
+
+* Wainer, H. & Friendly, M. (2020). [The graphical birth of plate tectonics.  Chance, **33**(1), 44-47.](https://chance.amstat.org/2020/02/plate-tectonics/)
+
+
+

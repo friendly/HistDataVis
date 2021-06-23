@@ -1,0 +1,12 @@
+---
+title: "History of Data Visualization"
+output:
+    distill::distill_article:
+      includes:
+        in_header: header.html
+---
+
+Placeholder for home page content.
+
+
+

@@ -1,0 +1,30 @@
+# Introduction
+
+> *The only new thing in the world is the history you don’t know.*
+>
+> Harry S. Truman, quoted by DavidMcCulloch
+
+
+```{block, type="chapterprelude"}
+#### Synopsis {-}
+
+This book recounts a long history, a broad overview of how, where, and why the
+methods of data visualization, so common today, were conceived and developed.
+You can think of it as a guided tour of this history, focusing on social and
+scientific questions and a developing language of graphics that provided
+insights, for both discovery and communication. 
+```
+
+
+```{block, type="chaptercontents"}
+
+* A Long History
+
+* Overview
+
+	+ Re-Visions 
+	+ Chronology versus Theme
+
+```
+
+## Selected Figures

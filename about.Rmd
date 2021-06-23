@@ -1,0 +1,18 @@
+---
+title: "About This Website"
+---
+
+
+These web pages are meant as a supplement to our book, in particular to reproduce here more color figures
+than could be accommodated in the print edition.
+
+## Who needs this book?
+
+The book is aimed at an educated, lay audience: in general anyone who must either convey or receive quantitative information, which at one time or another includes all of us. This includes, but is not limited to, 
+graphic designers, statisticians, and people in the media. Typical audiences would be readers of the 
+*NY Times*, *The New Yorker*, *Scientific American*, the *New Republic*,  *National Review* and related
+publications in other venues.
+
+A more specific market segment is the large community of professionals in the history of science, cartography, data journalism, graphic design, and information visualization, visualization software.
+
+

@@ -1,0 +1,340 @@
+/* Whole document: */
+@import url('https://fonts.googleapis.com/css?family=PT+Sans|PT+Serif|Lato:300|Inconsolata|Source+Sans+Pro|Work+Sans:200,300,400,500|Karla:400,400i,700,700i');
+/********************************/
+/* controls general properties of site*/
+/********************************/
+
+body {
+  color: #414141;
+/*  line-height: 1.7;
+  font-size: 17px; */
+  background-color: #FEFEFE;
+}
+
+d-title h1{
+font-size: 2.1em;
+font-family: 'Work Sans';
+font-weight: 300;
+}
+
+d-article h1 {
+  font-size: 1.8em;
+  font-family: 'Work Sans', 'Source Sans Pro', 'PT Sans';
+  font-weight: 300;
+}
+
+d-article h2 {
+  font-size: 1.65em;
+  font-family: 'Work Sans', 'Source Sans Pro', 'PT Sans';
+  font-weight: 500;
+}
+
+d-article h3 {
+  margin-top: 1em;
+}
+d-byline .authors-affiliations {
+  grid-column-end: span 3;
+  grid-column-gap: 8px;
+}
+
+img.orcid-id {
+  margin: 0;
+}
+
+a.name:-webkit-any-link {
+  text-decoration: underline;
+  text-decoration-style: dotted;
+}
+
+a.affiliation:-webkit-any-link {
+  text-decoration: underline;
+  text-decoration-style: dotted;
+}
+
+blockquote p {
+	font-size: 1.1em;
+	font-family: 'Work Sans';
+  font-style: normal;
+  margin: 0.5em 0 0.5em;
+}
+
+d-article li {
+  margin: 0px 0px 4px;
+}
+
+/********************************/
+/* controls CODE*/
+/********************************/
+
+/** pre.sourceCode controls code block without lang **/
+
+/** Controls r code  **/
+
+pre.sourceCode.r {
+  margin-top: 0px;
+   color: #333333;
+   background-color: #E8E8E8;
+   border-radius: 3px;
+   font-size: 0.80em;
+   font-family: 'Monaco', 'PT Mono', monospace;
+   overflow-x: scroll !important;
+   border-left: 6px solid #006ddb;
+   border-top: 1px solid #B7B7B7;
+   border-right: 1px solid #B7B7B7;
+   border-bottom: 1px solid #B7B7B7;
+   padding: 18px 0px 18px 20px;
+ }
+
+ pre.sourceCode.bash {
+   margin-top: 0px;
+    color: #333333;
+    background-color: #E8E8E8;
+    border-radius: 3px;
+    font-size: 0.80em;
+    font-family: 'Monaco', 'PT Mono', monospace;
+    overflow-x: scroll !important;
+    border-left: 6px solid #D55E00;
+    border-top: 1px solid #B7B7B7;
+    border-right: 1px solid #B7B7B7;
+    border-bottom: 1px solid #B7B7B7;
+    padding: 18px 0px 18px 20px;
+  }
+/** Controls code output **/
+
+d-article pre {
+   margin-top: 0px;
+    color: #333333;
+    background-color: #FAFAFA;
+    font-size: 0.8em;
+    border: 1px solid #ccc;
+    overflow-x: scroll !important;
+    padding:  10px 10px 10px 18px;
+    border-radius: 5px;
+
+  }
+
+/** Controls inline code  **/
+
+p code {
+  background-color: #E8E8E8;
+  border-radius: 3px;
+  font-size: 0.8em;
+  font-family: 'Monaco', 'PT Mono', monospace;
+  overflow-x: scroll !important;
+  margin-bottom: 20px;
+  color: #BF2727;
+}
+
+d-article aside code {
+  background-color: #E8E8E8;
+  border-radius: 3px;
+  font-family: 'Monaco', 'PT Mono', monospace;
+  color: #BF2727;
+}
+
+/********************************/
+/* controls NAV BAR and HEADERS*/
+/********************************/
+
+.nav-dropdown-content .nav-dropdown-header {
+  text-transform: uppercase;
+  color: #686868;
+}
+
+.nav-dropdown-content a {
+  font-family: 'Work Sans'
+}
+.nav-dropdown .nav-dropbtn {
+  color: #FEFEFE;
+  font-weight: 400;
+}
+
+.distill-site-header .logo img {
+  margin-top: 10px;
+  max-height: 30px;
+  margin-bottom: auto;
+}
+
+.distill-site-nav {
+    color: #FEFEFE;
+    background-color: #143D59;
+    font-size: 0.95em;
+    font-weight: 400;
+    min-width: 165px;
+    position: absolute;
+    font-family: 'Karla';
+    letter-spacing: .1em;
+
+}
+
+.article-banner {
+  width: auto;
+  height: auto;
+  border: 0;
+}
+
+img[src="assets/banner.png"] {
+  border: 0;
+  padding: 0;
+  width: 100%;
+  margin: 100px 10px 0px 25px;
+}
+
+/*************************************************
+*  code for side by side krona plot
+**************************************************/
+
+.column {
+  float: left;
+  width: 48%;
+  padding: 5px;
+}
+
+/* Clear floats after image containers */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+div.krona {
+  width: 100%;
+	height: 90%;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 25px;
+	margin-top: 5px;
+}
+
+div.container-krona {
+  text-align: center;
+  padding: 1px 10px;
+	color: #414141;
+	font-size: 1.48em;
+	line-height: 0.8em;
+	font-family: 'Inconsolata';
+}
+
+div.container-krona p {
+  margin: 20px;
+}
+
+div.krona img {
+  border:1px solid white;
+  margin: 25px;
+}
+
+img {
+  margin: 25px;
+}
+
+/*************************************************
+*  code for LIGHTBOX MARKUP
+**************************************************/
+
+.thumbnail {
+  max-width: 100%;
+  position: relative;
+}
+
+.lightbox {
+	/** Default lightbox to hidden */
+	display: none;
+
+	/** Position and style */
+	position: fixed;
+	z-index: 999;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	top: 0;
+	left: 0;
+	background: rgba(0,0,0,0.8);
+}
+
+.lightbox img {
+	/** Pad the lightbox image */
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	max-width: 0%;
+	max-height: 0%;
+	margin: auto;
+	box-sizing: border-box;
+}
+
+.lightbox:target {
+	/** Remove default browser outline */
+	outline: none;
+
+	/** Unhide lightbox **/
+	display: block;
+}
+
+.lightbox:target img {
+	max-height: 100%;
+	max-width: 100%;
+}
+
+/*************************************************
+*  code for DETAILS fold down
+**************************************************/
+
+details {
+  background-color: #ccd7df;
+  cursor: pointer;
+  color: #282828;
+  margin-bottom:1vh;
+  padding: 1em;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-family: 'Karla'
+}
+
+.active, details:hover {
+  transition: max-height 0.2s ease-out;
+  outline: none;
+
+  /* background-color: #acc2c2; */
+}
+
+details {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  border-radius: 4px;
+  outline: none;
+
+}
+
+details.active {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  outline: none;
+
+}
+
+summary::-webkit-details-marker {
+  display: none;
+  outline: none;
+
+}
+
+summary:focus {
+  outline: none;
+}
+
+summary::after {
+  float: right;
+  font-family: "Font Awesome 5 Free";
+  content: "\f0fe";
+}
+
+details[open] summary::after {
+  float: right;
+  font-family: "Font Awesome 5 Free";
+  content: "\f146";
+}

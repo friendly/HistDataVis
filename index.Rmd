@@ -1,12 +1,53 @@
 ---
 title: "History of Data Visualization"
+author: "Michael Friendly and Howard Wainer"
+description: |
+  The web site for our book, A History of Data Visualization and Graphic Communication (2021)
+date: "`r Sys.Date()`"
 output:
     distill::distill_article:
       includes:
         in_header: header.html
 ---
 
-Placeholder for home page content.
+## Welcome
+<img src="images/FriendlyWainer-thumb.jpg">
+
+This is the web site associated with our book,
+[A History of Data Visualization and Graphic Communication](https://www.hup.harvard.edu/catalog.php?isbn=9780674975231).
+It's main purpose is to provide high-res color images of figures from the book, because the print edition was limited
+to 20 color plates.
+
+As well, it serves as a place to collect related articles or topics that could not be included in the print edition.
+
+For those who found their way here, the book can be ordered from 
+[Amazon.com](https://www.amazon.com/History-Data-Visualization-Graphic-Communication/dp/0674975235/) or affiliates, such as [Amazon.ca](https://www.amazon.ca/History-Data-Visualization-Graphic-Communication/dp/0674975235).
+
+## What it is about
+
+To function in modern society we must absorb and understand complex data at a
+breakneck pace. The most efficient way to comprehend and convey complex
+information is through data-based graphics. This book is an exploration and
+celebration of the origins and, to some extent, future of graphical methods of
+data presentation.
+
+It aims to give a comprehensive history of data visualization with an emphasis
+on the questions: 
+* How did the graphic depictions of numbers arise? Why? 
+* What factors led to the key innovations in graphs and diagrams that are commonplace today? 
+* How did graphic inventions make a difference in understanding natural and social phenomena and communicating results?
+
+Two major themes connect the topics and and chronology of this account. 
+
+* First, we take the view that the principal innovations over the last 400 years arose in
+conjunction with a cognitive revolution we call "visual thinking," the idea that
+some problems and their solutions could be so much more clearly addressed and
+communicated in visual displays, rather than just words or tables of numbers.
+
+* Second, we try to show how the intellectual, scientific and graphical questions
+behind these innovations can be better understood by trying to reproduce them
+today.
+
 
 
 

@@ -1,0 +1,27 @@
+.article-banner {
+  width: auto;
+  height: auto;
+  border: 0;
+}
+
+img[src="images/banner.png"] {
+  border: 0;
+  padding: 0;
+  width: 100%;
+  margin: 100px 25px 0px 0px;
+}
+
+.zoomDiv {
+  opacity: 0;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 50;
+  transform: translate(-50%, -50%);
+  box-shadow: 10px 10px 50px #888888;
+  max-height:100%;
+}
+
+.zoomImg {
+  width: 100%;
+}

@@ -11,26 +11,26 @@ navbar:
       href: about.html
     - text: "Chapters"
       menu:
-        - text: 'In the Beginning'
+        - text: '1. In the Beginning'
           href: ch01-beginning.html
-        - text: 'The First Graph Got it Right'
+        - text: '2. The First Graph Got it Right'
           href: ch02-langren.html
-        - text: 'The Birth of Data'
+        - text: '3. The Birth of Data'
           href: ch03-data.html
-        - text: 'Vital Statistics: William Farr, John Snow and Cholera'
+        - text: '4. Vital Statistics: William Farr, John Snow and Cholera'
           href: ch04-vital.html
-        - text: 'The Big Bang: William Playfair, the Father of Modern Graphics'
+        - text: '5. The Big Bang: William Playfair, the Father of Modern Graphics'
           href: ch05-playfair.html
-        - text: 'The Origin and Development of the Scatterplot'
+        - text: '6. The Origin and Development of the Scatterplot'
           href: ch06-scat.html
-        - text: 'The Golden Age of Statistical Graphics'
+        - text: '7. The Golden Age of Statistical Graphics'
           href: ch07-golden.html
-        - text: 'Escaping Flatland'
+        - text: '8. Escaping Flatland'
           href: ch08-flatland.html
-        - text: 'Visualizing Time and Space'
+        - text: '9. Visualizing Time and Space'
           href: ch09-motion.html
-        - text: 'Graphs as Poetry'
+        - text: '10. Graphs as Poetry'
           href: ch10-poetry.html
 output: 
   distill::distill_article:
-    css: styles.css
+    css: "css/styles.css"

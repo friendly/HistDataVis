@@ -8,7 +8,7 @@ img[src="images/banner.png"] {
   border: 0;
   padding: 0;
   width: 100%;
-  margin: 100px 25px 0px 0px;
+  margin: 100px 25px 0 0;
 }
 
 .zoomDiv {

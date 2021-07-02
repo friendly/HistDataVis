@@ -1,0 +1,85 @@
+---
+title: Chapter 1
+output: distill::distill_article
+---
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<style>
+.zoomDiv {
+  opacity: 0;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 50;
+  transform: translate(-50%, -50%);
+  box-shadow: 10px 10px 50px #888888;
+  max-height:100%;
+}
+
+.zoomImg {
+  width: 100%;
+}
+</style>
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('body').prepend("<div class=\"zoomDiv\"><img src=\"\" class=\"zoomImg\"></div>");
+    // onClick function for all plots (img's)
+    $('img:not(.zoomImg)').click(function() {
+      $('.zoomImg').attr('src', $(this).attr('src'));
+      $('.zoomDiv').css({opacity: '1', width: '55%'});
+    });
+    // onClick function for zoomImg
+    $('img.zoomImg').click(function() {
+      $('.zoomDiv').css({opacity: '0', width: '0%'});
+    });
+  });
+</script>
+
+```{r setup, echo=FALSE, warning=FALSE, message=FALSE}
+knitr::opts_chunk$set(R.options = list(width = 150))
+
+library(knitr)
+source("R/chapter_figs.R")
+```
+# In the Beginning... {#ch01-intro}
+
+> *If you would understand anything, observe its beginning and its development.*
+>
+> Aristotle, *Metaphysics*
+
+```{block, type="chapterprelude"}
+#### Synopsis {-}
+This chapter is an overview of the larger questions and themes that
+provide a context for the book. We consider the relations among numerical data, evidence for an argument and graphs,
+and then describe some of the pre-history of the visual representation of numbers and the early rise of 
+visualization itself. The story continues to the rise of empirical thinking in philosophy and
+science around the 16th Century and the concomitant
+remarkable development of the visual representation of numbers to communicate quantitative phenomena.
+```
+
+
+```{block, type="chaptercontents"}
+
+* Introduction
+	+ The Evolution of Pictures
+	+ Connecting Data with Pictures
+
+* Seeing the Unexpected
+
+* The Rise of the Graphic Method and Visual Thinking 
+
+* A Golden Age
+
+```
+
+## Selected Figures
+
+
+## Selected Figures
+
+```{r results="asis", echo=FALSE, message=FALSE, warning=FALSE}
+ do_chapter(1)
+```

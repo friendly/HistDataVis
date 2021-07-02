@@ -1,0 +1,70 @@
+---
+title: Chapter 8
+output: distill::distill_article
+---
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<style>
+.zoomDiv {
+  opacity: 0;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 50;
+  transform: translate(-50%, -50%);
+  box-shadow: 10px 10px 50px #888888;
+  max-height:100%;
+}
+
+.zoomImg {
+  width: 100%;
+}
+</style>
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('body').prepend("<div class=\"zoomDiv\"><img src=\"\" class=\"zoomImg\"></div>");
+    // onClick function for all plots (img's)
+    $('img:not(.zoomImg)').click(function() {
+      $('.zoomImg').attr('src', $(this).attr('src'));
+      $('.zoomDiv').css({opacity: '1', width: '55%'});
+    });
+    // onClick function for zoomImg
+    $('img.zoomImg').click(function() {
+      $('.zoomDiv').css({opacity: '0', width: '0%'});
+    });
+  });
+</script>
+
+```{r setup, echo=FALSE, warning=FALSE, message=FALSE}
+knitr::opts_chunk$set(R.options = list(width = 150))
+
+library(knitr)
+source("R/chapter_figs.R")
+```
+# Escaping Flatland {#ch08-flatland}
+
+```{block, type="chapterprelude"}
+#### Synopsis {-}
+Displays of data are necessarily produced on a two-dimensional surface-- paper or screen. Yet 
+these are often at worst, misleading, or at best, incomplete. The representation of multidimensional phenomena on a two-dimensional surface was, and remains, graphics greatest challenge. In this chapter we discuss and illustrate some of the approaches that were used to communicate multidimensional phenomena within the practical limitations that we are always faced with.
+```
+
+```{block, type="chaptercontents"}
+
+* Contour Maps 
+
+* Three-Dimensional Plots
+
+* Going Forward 
+
+```
+
+
+## Selected Figures
+
+```{r results="asis", echo=FALSE, message=FALSE, warning=FALSE}
+ do_chapter(8)
+```

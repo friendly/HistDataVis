@@ -1,0 +1,102 @@
+---
+title: Chapter 9
+output: distill::distill_article
+---
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<style>
+.zoomDiv {
+  opacity: 0;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 50;
+  transform: translate(-50%, -50%);
+  box-shadow: 10px 10px 50px #888888;
+  max-height:100%;
+}
+
+.zoomImg {
+  width: 100%;
+}
+</style>
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('body').prepend("<div class=\"zoomDiv\"><img src=\"\" class=\"zoomImg\"></div>");
+    // onClick function for all plots (img's)
+    $('img:not(.zoomImg)').click(function() {
+      $('.zoomImg').attr('src', $(this).attr('src'));
+      $('.zoomDiv').css({opacity: '1', width: '55%'});
+    });
+    // onClick function for zoomImg
+    $('img.zoomImg').click(function() {
+      $('.zoomDiv').css({opacity: '0', width: '0%'});
+    });
+  });
+</script>
+
+```{r setup, echo=FALSE, warning=FALSE, message=FALSE}
+knitr::opts_chunk$set(R.options = list(width = 150))
+
+library(knitr)
+source("R/chapter_figs.R")
+```
+# Visualizing Time and Space {#ch09-motion}
+
+```{block, type="chapterprelude"}
+#### Synopsis {-}
+The recent history of data visualization is much harder to characterize because
+innovations have been so varied, and have occurred at an accelerated pace and
+have appeared across a wider range of disciplines.
+Among the many threads that could be traced, two general categories stand out; these have made
+data graphics far more powerful and accessible than ever before.
+First, graphical methods have become increasingly dynamic and interactive,
+capable of showing changes over time by animation and changing the nature of a graph
+from a static image to one that a viewer can directly manipulate, zoom or query.
+Second, the escape from flatland has been continued, with a variety of new approaches to 
+understanding data in ever higher dimensions.
+```
+
+```{block, type="chaptercontents"}
+* The Laws of Motion 
+
+* The Horse in Motion 
+	+ A Trick of the Eye
+
+* 'Etienne-Jules Marey and a Science of Visualizing Time and Motion
+
+	+ La M'ethode Graphique
+	+ Chronophotography 
+
+	+ Falling cats
+
+* Computer Graphics Animation 
+
+* Animated Algorithms 
+
+	+ The MDS movie
+	+ Color similarity
+	+ The Monte Carlo Method
+	+ RANDU
+
+* Travels in High-D Space 
+
+	+ Diabetes classification
+
+* Hardware and Software
+
+	+ Software
+
+* Telling stories with Animated Graphics 
+
+```
+
+
+## Selected Figures
+
+```{r results="asis", echo=FALSE, message=FALSE, warning=FALSE}
+ do_chapter(9)
+```

@@ -1,0 +1,90 @@
+---
+title: Chapter 10
+output: distill::distill_article
+---
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<style>
+.zoomDiv {
+  opacity: 0;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 50;
+  transform: translate(-50%, -50%);
+  box-shadow: 10px 10px 50px #888888;
+  max-height:100%;
+}
+
+.zoomImg {
+  width: 100%;
+}
+</style>
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('body').prepend("<div class=\"zoomDiv\"><img src=\"\" class=\"zoomImg\"></div>");
+    // onClick function for all plots (img's)
+    $('img:not(.zoomImg)').click(function() {
+      $('.zoomImg').attr('src', $(this).attr('src'));
+      $('.zoomDiv').css({opacity: '1', width: '55%'});
+    });
+    // onClick function for zoomImg
+    $('img.zoomImg').click(function() {
+      $('.zoomDiv').css({opacity: '0', width: '0%'});
+    });
+  });
+</script>
+
+```{r setup, echo=FALSE, warning=FALSE, message=FALSE}
+knitr::opts_chunk$set(R.options = list(width = 150))
+
+library(knitr)
+source("R/chapter_figs.R")
+```
+# Graphs as Poetry {#ch10-poetry}
+
+```{block, type="chapterprelude"}
+#### Synopsis {-}
+Graphs are justly celebrated for their ability to accurately present phenomena
+in a compact way while simultaneously provide their context. If this were all
+that they did, their place in scientific history would be secure. But with
+suitable data and the right design, they can also convey emotion. Indeed, in
+some instances graphs provide an emotional impact that can be likened to that of
+poetry. In this chapter we imagine a collaboration between the civil rights
+activist W.E.B. DuBois and the canonized graphic designer C. J. Minard to show
+The Great Migration of six million African-Americans fleeing the racism and
+terror in the post-Confederacy South to the industrial North. The result of this
+*gedanken* collaboration provides a vivid example of how we can profit from
+studying the past to help solve the problems of the future.
+```
+
+```{block, type="chaptercontents"}
+
+* Two Plain Graphical Poems
+
+	+ Young Men and Fire
+	+ The Kovno Ghetto
+
+* The Graphic Poetry of Charles Joseph Minard
+
+* Using Graphs in a Narrative Argument
+
+* W. E. B. Du Bois
+
+* The Great Migration
+
+	+ A Gedanken Collaboration
+
+* Conclusion 
+
+```
+
+
+## Selected Figures
+
+```{r results="asis", echo=FALSE, message=FALSE, warning=FALSE}
+ do_chapter(10)
+```

@@ -1,0 +1,97 @@
+---
+title: Chapter 6
+output: distill::distill_article
+---
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<style>
+.zoomDiv {
+  opacity: 0;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 50;
+  transform: translate(-50%, -50%);
+  box-shadow: 10px 10px 50px #888888;
+  max-height:100%;
+}
+
+.zoomImg {
+  width: 100%;
+}
+</style>
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('body').prepend("<div class=\"zoomDiv\"><img src=\"\" class=\"zoomImg\"></div>");
+    // onClick function for all plots (img's)
+    $('img:not(.zoomImg)').click(function() {
+      $('.zoomImg').attr('src', $(this).attr('src'));
+      $('.zoomDiv').css({opacity: '1', width: '55%'});
+    });
+    // onClick function for zoomImg
+    $('img.zoomImg').click(function() {
+      $('.zoomDiv').css({opacity: '0', width: '0%'});
+    });
+  });
+</script>
+
+```{r setup, echo=FALSE, warning=FALSE, message=FALSE}
+knitr::opts_chunk$set(R.options = list(width = 150))
+
+library(knitr)
+source("R/chapter_figs.R")
+```
+# The Origin and Development of the Scatterplot {#ch06-scat}
+
+```{block, type="chapterprelude"}
+#### Synopsis {-}
+Among all the moderns forms of statistical graphics,
+the scatterplot may be considered the most versatile,
+and generally useful invention in the entire history of statistical
+graphics. It is also notable because William Playfair didn't invent it.
+This chapter considers why Playfair was unable to think about such things,
+and it traces the invention of the scatterplot to the eminent astronomer John F. W. Herschel.
+Scatterplots achieved great importance in the work
+of Francis Galton [1822--1911] on the heritability of traits.
+Galton's work, visualized through statistical diagrams,
+became the source of the statistical ideas of correlation and regression and thus most of
+modern statistical methods.
+```
+
+```{block, type="chaptercontents"}
+
+* Early Displays That Were Not Scatterplots
+
+	+ Johann Lambert
+	+ Why Not Playfair?
+
+* John F. W. Herschel and the Orbits Of Twin Stars
+
+	+ Herschel's Graphical Impact Factor
+
+* Francis Galton and the Idea Of Correlation
+
+	+ Galton's Elliptical Insight
+	+ Another Asymmetry
+
+* Some Remarkable Scatterplots
+
+	+ The Hertzsprung-Russell Diagram
+	+ The Phillips Curve
+
+* Spurious Correlations and Causation
+
+* Scatterplot Thinking 
+```
+
+
+
+
+## Selected Figures
+
+```{r results="asis", echo=FALSE, message=FALSE, warning=FALSE}
+ do_chapter(6)
+```

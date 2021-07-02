@@ -1,0 +1,87 @@
+---
+title: Chapter 5
+output: distill::distill_article
+---
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<style>
+.zoomDiv {
+  opacity: 0;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 50;
+  transform: translate(-50%, -50%);
+  box-shadow: 10px 10px 50px #888888;
+  max-height:100%;
+}
+
+.zoomImg {
+  width: 100%;
+}
+</style>
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('body').prepend("<div class=\"zoomDiv\"><img src=\"\" class=\"zoomImg\"></div>");
+    // onClick function for all plots (img's)
+    $('img:not(.zoomImg)').click(function() {
+      $('.zoomImg').attr('src', $(this).attr('src'));
+      $('.zoomDiv').css({opacity: '1', width: '55%'});
+    });
+    // onClick function for zoomImg
+    $('img.zoomImg').click(function() {
+      $('.zoomDiv').css({opacity: '0', width: '0%'});
+    });
+  });
+</script>
+
+```{r setup, echo=FALSE, warning=FALSE, message=FALSE}
+knitr::opts_chunk$set(R.options = list(width = 150))
+
+library(knitr)
+source("R/chapter_figs.R")
+```
+# The Big Bang: William Playfair, the Father of Modern Graphics {#ch05-playfair}
+
+```{block, type="chapterprelude"}
+#### Synopsis {-}
+
+At the beginning of the 19th Century, nearly all of the modern forms of data graphics--- the pie chart, the line graph of a time series, and the bar chart--- were invented. These key developments were all due to a wily Scot named William Playfair. He can rightly be called the father of modern graphical methods, and it is only a slight stretch to consider his contributions to be the Big Bang of data graphics. 
+```
+
+```{block, type="chaptercontents"}
+
+* Playfair's Life 
+
+* Playfair's Graphic Contributions
+
+* The First Pie
+
+#* Humble Pie
+
+* Time-Series Line Graphs
+	+ Import and Exports	
+	+ Playfair's Failure: Problems With Curve-Difference Charts	
+	+ England's National Debt
+
+* Bar Charts
+	+ Earlier Bar Charts
+
+* Charts Of History
+
+* Ridgeline Plots
+
+* Why Playfair?
+
+* Playfair's legacy
+```
+
+
+## Selected Figures
+
+```{r results="asis", echo=FALSE, message=FALSE, warning=FALSE}
+ do_chapter(5)
+```

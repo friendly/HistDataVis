@@ -1,0 +1,87 @@
+---
+title: Chapter 4
+output: distill::distill_article
+---
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<style>
+.zoomDiv {
+  opacity: 0;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 50;
+  transform: translate(-50%, -50%);
+  box-shadow: 10px 10px 50px #888888;
+  max-height:100%;
+}
+
+.zoomImg {
+  width: 100%;
+}
+</style>
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('body').prepend("<div class=\"zoomDiv\"><img src=\"\" class=\"zoomImg\"></div>");
+    // onClick function for all plots (img's)
+    $('img:not(.zoomImg)').click(function() {
+      $('.zoomImg').attr('src', $(this).attr('src'));
+      $('.zoomDiv').css({opacity: '1', width: '55%'});
+    });
+    // onClick function for zoomImg
+    $('img.zoomImg').click(function() {
+      $('.zoomDiv').css({opacity: '0', width: '0%'});
+    });
+  });
+</script>
+
+```{r setup, echo=FALSE, warning=FALSE, message=FALSE}
+knitr::opts_chunk$set(R.options = list(width = 150))
+
+library(knitr)
+source("R/chapter_figs.R")
+```
+# Vital Statistics: William Farr, John Snow and Cholera {#ch04-vital}
+
+```{block, type="chapterprelude"}
+#### Synopsis {-}
+
+A short time later, analogous widespread data collection was begun in the United Kingdom, but this
+was in the context of social welfare, poverty, public health and sanitation.
+From these efforts emerged two new heroes of
+data visualization, William Farr and John Snow, who worked independently trying to
+understand the causes of several epidemics of cholera and how the disease could
+be mitigated.
+```
+
+```{block, type="chaptercontents"}
+
+* Cholera 
+
+	+ Farr's Diagrams 
+	+ Farr's Natural Law of Cholera
+	+ The Transcendent Effect of Water
+
+* John Snow on Cholera
+
+	+ The Broad Street Pump
+	+ The Neighborhoods Map
+
+* Re-visioning the Broad Street Pump
+
+* Graphical Successes and Failures
+
+	+ The Answer: A Bug
+	+ Florence Nightingale's Graphical Success
+```
+
+
+
+## Selected Figures
+
+```{r results="asis", echo=FALSE, message=FALSE, warning=FALSE}
+ do_chapter(4)
+```

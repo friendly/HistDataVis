@@ -3,8 +3,12 @@ title: "About This Website"
 ---
 
 
-These web pages are meant as a supplement to our book, in particular to reproduce here more color figures
-than could be accommodated in the print edition.
+These web pages are meant as a supplement to our book, 
+[A History of Data Visualization and Graphic Communication](https://www.hup.harvard.edu/catalog.php?isbn=9780674975231).
+The main goals are to:
+
+* reproduce here more color figures than could be accommodated in the print edition.
+* provide links to related papers and topics that expand on the themes in our book.
 
 ## Who needs this book?
 

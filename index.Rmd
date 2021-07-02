@@ -11,7 +11,12 @@ output:
 ---
 
 ## Welcome
-<img src="images/FriendlyWainer-thumb.jpg">
+
+![](images/FriendlyWainer-thumb.jpg){width=30%, height=30%}
+
+<!-- <img src="images/FriendlyWainer-thumb.jpg" width=300> -->
+
+
 
 This is the web site associated with our book,
 [A History of Data Visualization and Graphic Communication](https://www.hup.harvard.edu/catalog.php?isbn=9780674975231).

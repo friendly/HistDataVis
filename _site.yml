@@ -2,16 +2,15 @@ name: "datavishist"
 title: "History of Data Visualization"
 output_dir: "_site"
 navbar:
-  right:
+  left:
     - text: "Home"
       href: index.html
       icon: fa-home fa-2x   # handy way to use FontAwesome icons in nav!
+  right:
     - text: "Authors"
       href: authors.html
-      icon: fa-user-tie  fa-2x
     - text: "About"
       href: about.html
-      icon: fa-info-circle  fa-2x
     - text: "Chapters"
       menu:
         - text: '1. In the Beginning'

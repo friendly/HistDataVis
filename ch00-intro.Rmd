@@ -46,7 +46,7 @@ source("R/chapter_figs.R")
 ```
 # Introduction
 
-> *The only new thing in the world is the history you don’t know.*
+> *The only new thing in the world is the history you don?t know.*
 >
 > Harry S. Truman, quoted by DavidMcCulloch
 
@@ -63,11 +63,10 @@ insights, for both discovery and communication.
 
 
 ```{block, type="chaptercontents"}
+#### Chapter topics
 
 * A Long History
-
 * Overview
-
 	+ Re-Visions 
 	+ Chronology versus Theme
 

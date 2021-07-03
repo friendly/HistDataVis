@@ -62,15 +62,13 @@ remarkable development of the visual representation of numbers to communicate qu
 
 
 ```{block, type="chaptercontents"}
+#### Chapter topics
 
 * Introduction
 	+ The Evolution of Pictures
 	+ Connecting Data with Pictures
-
 * Seeing the Unexpected
-
 * The Rise of the Graphic Method and Visual Thinking 
-
 * A Golden Age
 
 ```

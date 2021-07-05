@@ -11,6 +11,10 @@ navbar:
       href: authors.html
     - text: "About"
       href: about.html
+    - text: "Reviews"
+      href: reviews.html
+    - text: "Related pubs"
+      href: related.html
     - text: "Chapters"
       menu:
         - text: '1. In the Beginning'

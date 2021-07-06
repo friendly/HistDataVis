@@ -40,3 +40,6 @@ navbar:
 output: 
   distill::distill_article:
     css: "css/styles.css"
+    includes:
+      in_header: header.html
+      after_body: footer.html

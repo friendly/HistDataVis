@@ -1,32 +1,31 @@
 ---
 title: "History of Data Visualization"
-author: "Michael Friendly and Howard Wainer"
-description: |
-  The web site for our book, A History of Data Visualization and Graphic Communication (2021)
-date: "`r Sys.Date()`"
-output:
-    distill::distill_article:
-      includes:
-        in_header: header.html
-        after_body: footer.html
 ---
 
 ## Welcome
 
-![](images/FriendlyWainer-thumb.jpg){width=30%, height=30%}
-
 <!-- <img src="images/FriendlyWainer-thumb.jpg" width=300> -->
 
-
-
+<table>
+<tr>
+  <td>
+  <img src="images/FriendlyWainer-thumb.jpg" width=200 alt="Book cover">
+  </td>
+  <td>
 This is the web site associated with our book,
-[A History of Data Visualization and Graphic Communication](https://www.hup.harvard.edu/catalog.php?isbn=9780674975231).
+[A History of Data Visualization and Graphic Communication, Harvard University Press, 2021](https://www.hup.harvard.edu/catalog.php?isbn=9780674975231).
 It's main purpose is to provide high-res color images of figures from the book, because the print edition was limited
 to 20 color plates.
 
 As well, it serves as a place to collect related articles or topics that could not be included in the print edition.
+</td>
+</tr>
+</table>
+
+
 
 The book can be ordered from:
+[Harvard University Press](https://www.hup.harvard.edu/catalog.php?isbn=9780674975231),
 [Amazon.com](https://www.amazon.com/History-Data-Visualization-Graphic-Communication/dp/0674975235/) or affiliates, such as [Amazon.ca](https://www.amazon.ca/History-Data-Visualization-Graphic-Communication/dp/0674975235).
 
 ## What it is about
@@ -39,6 +38,7 @@ data presentation.
 
 It aims to give a comprehensive history of data visualization with an emphasis
 on the questions: 
+
 * How did the graphic depictions of numbers arise? Why? 
 * What factors led to the key innovations in graphs and diagrams that are commonplace today? 
 * How did graphic inventions make a difference in understanding natural and social phenomena and communicating results?

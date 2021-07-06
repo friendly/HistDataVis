@@ -1,12 +1,5 @@
 ---
 title: "Related publications"
-description: |
-  Publications related to our book
-author:
-  - name: Michael Friendly 
-    url: https://www.datavis.ca
-    affiliation: York University
-date: "`r Sys.Date()`"
 output: distill::distill_article
 ---
 
@@ -14,13 +7,12 @@ output: distill::distill_article
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-# Related publications
 
 This page gives references to publications on the topics and themes of our book.
 Some of these were written as the book was being developed; others reflect topics
 or aspects that fell to the cutting room floor in editing.
 
-Friendly, M. and Andrews, RJ (2021). [The radiant diagrams of Florence Nightingale.](https://raco.cat/index.php/SORT/article/view/388809).
+* Friendly, M. and Andrews, RJ (2021). [The radiant diagrams of Florence Nightingale.](https://raco.cat/index.php/SORT/article/view/388809).
 SORT 45 (1) January-June 2021, 3-18. DOI: 10.2436/20.8080.02.106.  
 
 * Friendly, M. and Les Chevaliers (2020). [Raiders of the Lost Tombs: The Search for Some Heroes of the History of Data Visualization.](https://medium.com/nightingale/raiders-of-the-lost-tombs-the-search-for-some-heroes-of-the-history-of-data-visualization-c4a4b4690d24)

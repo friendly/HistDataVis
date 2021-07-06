@@ -8,7 +8,7 @@ These web pages are meant as a supplement to our book,
 The main goals are to:
 
 * reproduce here more color figures than could be accommodated in the print edition.
-* provide links to related papers and topics that expand on the themes in our book.
+* provide links to [related papers](related.html) and topics that expand on the themes in our book.
 
 ## Who needs this book?
 

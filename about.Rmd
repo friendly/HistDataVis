@@ -20,3 +20,47 @@ publications in other venues.
 A more specific market segment is the large community of professionals in the history of science, cartography, data journalism, graphic design, and information visualization, visualization software.
 
 
+## Front cover
+
+```{r  out.width="90%", fig.align='center', echo=FALSE}
+knitr::include_graphics("figs-web/P_08-playfair1805-inquiry-crop.jpg")
+```
+
+
+The design of the front cover is based on William Playfair's (1805)
+marvelous
+_Chart of Universal Commercial History_. In it, he asks: 
+
+* How and when did civilizations rise and fall from 1500 BCE to 1800 AD?
+
+He shows ancient and modern civilizations in the form of small graphs
+over time, representing some indication of strength of an empire
+or civilization, in a way that then can be visually compared to
+ask further questions: 
+
+* Why were some so long-lived? 
+* When and why did some of them fail?
+
+Another implicit question is: 
+
+* How to visualize a history and tell its story?
+
+This chart, like our book, takes a long view of history, with the necessity
+of some degree of abstraction. These questions also provide a structure
+for discussing the history of data visualization.
+
+
+Playfair's chart uses what at the time was a brilliant and
+novel graphic form: using compressed little distributions showing the "relative" strength
+of each civilization over time in a way thay they could be easily compared. 
+The colored bands reflect: 
+
+* ancient states (pink)
+* modern states (green)
+* America (yellow)
+
+This graphic form was recently re-invented
+and called a ``ridgeline'' plot because it resembles a set of
+mountain ridges. This figure appears as Plate 8 in the book
+and is discussed in Chapter 5, "Charts of History".
+

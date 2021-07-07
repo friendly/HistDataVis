@@ -1,13 +1,8 @@
 ---
 title: "Reviews"
-description: |
-  Reviews of our book.
 output: distill::distill_article
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-```
 
 ## Capsule reviews of our book
 

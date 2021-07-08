@@ -3,7 +3,7 @@ library(stringr)
 library(glue)
 library(rmarkdown)
 
-source("utils.R")
+source("R/utils.R")
 
 togs = as.data.table(
   openxlsx::read.xlsx("figureinfo/TOGS-lof5.xlsx")

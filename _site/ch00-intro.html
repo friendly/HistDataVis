@@ -2057,6 +2057,27 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   
   
   <style type="text/css">
+  /* import fonts */
+  /* nag note says 'use link instead' */
+  
+  /*
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Signika:wght@500&display=swap" rel="stylesheet">
+  
+  in CSS rules:
+  font-family: 'Signika', sans-serif;
+  
+  */
+  
+  /* titles */
+  @import url('https://fonts.googleapis.com/css2?family=Signika:wght@500&display=swap');
+  
+  /* other headings */
+  @import url('https://fonts.googleapis.com/css?family=Work+Sans&display=swap');
+  
+  
   .article-banner {
     width: auto;
     height: auto;
@@ -2085,6 +2106,23 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     width: 100%;
   }
   
+  /* divs for chapters */
+  
+  .chapterprelude {
+    background-color: lightblue;
+  }
+  
+  .chaptercontents {
+    background-color: lightblue;
+  }
+  
+  .chaptercontents li {
+    line-height: 5px;
+  }
+  
+  
+  
+  
   </style>
   <!--/radix_placeholder_site_in_header-->
 
@@ -2105,6 +2143,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <header class="header header--fixed" role="banner">
 <nav class="distill-site-nav distill-site-header">
 <div class="nav-left">
+<a class="logo">
+<img src="images/favicon_io/favicon-32x32.png" alt="Logo"/>
+</a>
 <a href="index.html" class="title">History of Data Visualization</a>
 <a href="index.html" aria-label="Home">
 <i class="fa fa-home fa-2x" aria-hidden="true"></i>
@@ -2187,44 +2228,31 @@ Chapters
 </div>
 <h1 id="introduction">Introduction</h1>
 <blockquote>
-<p><em>The only new thing in the world is the history you don?t know.</em></p>
-<p>Harry S. Truman, quoted by DavidMcCulloch</p>
+<p><em>The only new thing in the world is the history you don’t know.</em> — <strong>Harry S. Truman, quoted by David McCulloch</strong></p>
 </blockquote>
-<div class="layout-chunk" data-layout="l-body">
 <div class="chapterprelude">
-<h4 id="synopsis" class="unnumbered">
-Synopsis
-</h4>
-<p>
-This book recounts a long history, a broad overview of how, where, and why the methods of data visualization, so common today, were conceived and developed. You can think of it as a guided tour of this history, focusing on social and scientific questions and a developing language of graphics that provided insights, for both discovery and communication.
-</p>
+<h4 id="synopsis" class="unnumbered">Synopsis</h4>
+<p>This book recounts a long history, a broad overview of how, where, and why the methods of data visualization, so common today, were conceived and developed. You can think of it as a guided tour of this history, focusing on social and scientific questions and a developing language of graphics that provided insights, for both discovery and communication.</p>
 </div>
-</div>
-<div class="layout-chunk" data-layout="l-body">
 <div class="chaptercontents">
-<h4 id="chapter-topics">
-Chapter topics
-</h4>
+<h4 id="chapter-topics">Chapter topics</h4>
 <ul>
-<li>
-A Long History
-</li>
-<li>
-Overview
+<li>A Long History</li>
+<li>Overview
 <ul>
-<li>
-Re-Visions
-</li>
-<li>
-Chronology versus Theme
-</li>
-</ul>
-</li>
+<li>Re-Visions</li>
+<li>Chronology versus Theme</li>
+</ul></li>
 </ul>
 </div>
-</div>
+<!-- ```{block, type="chaptercontents"} -->
+<!-- #### Chapter topics -->
+<!-- * A Long History -->
+<!-- * Overview -->
+<!--    + Re-Visions  -->
+<!--    + Chronology versus Theme -->
+<!-- ``` -->
 <h2 id="selected-figures">Selected Figures</h2>
-<h2 id="selected-figures-1">Selected Figures</h2>
 <div class="layout-chunk" data-layout="l-body">
 <table class="chap-fig">
 <tr>

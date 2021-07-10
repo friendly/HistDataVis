@@ -1,3 +1,24 @@
+/* import fonts */
+/* nag note says 'use link instead' */
+
+/*
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Signika:wght@500&display=swap" rel="stylesheet">
+
+in CSS rules:
+font-family: 'Signika', sans-serif;
+
+*/
+
+/* titles */
+@import url('https://fonts.googleapis.com/css2?family=Signika:wght@500&display=swap');
+
+/* other headings */
+@import url('https://fonts.googleapis.com/css?family=Work+Sans&display=swap');
+
+
 .article-banner {
   width: auto;
   height: auto;
@@ -25,3 +46,20 @@ img[src="images/banner.png"] {
 .zoomImg {
   width: 100%;
 }
+
+/* divs for chapters */
+
+.chapterprelude {
+  background-color: lightblue;
+}
+
+.chaptercontents {
+  background-color: lightblue;
+}
+
+.chaptercontents li {
+  line-height: 5px;
+}
+
+
+

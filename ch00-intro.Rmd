@@ -1,5 +1,5 @@
 ---
-title: Chapter 0
+title: Introduction
 output: distill::distill_article
 ---
 
@@ -44,14 +44,10 @@ knitr::opts_chunk$set(R.options = list(width = 150))
 library(knitr)
 source("R/chapter_figs.R")
 ```
-# Introduction
-
-> *The only new thing in the world is the history you don?t know.*
->
-> Harry S. Truman, quoted by DavidMcCulloch
+> *The only new thing in the world is the history you don't know.* --- **Harry S. Truman, quoted by David McCulloch**
 
 
-```{block, type="chapterprelude"}
+<div class="chapterprelude">
 #### Synopsis {-}
 
 This book recounts a long history, a broad overview of how, where, and why the
@@ -59,20 +55,27 @@ methods of data visualization, so common today, were conceived and developed.
 You can think of it as a guided tour of this history, focusing on social and
 scientific questions and a developing language of graphics that provided
 insights, for both discovery and communication. 
-```
+</div>
 
-
-```{block, type="chaptercontents"}
+<div class="chaptercontents">
 #### Chapter topics
 
 * A Long History
 * Overview
 	+ Re-Visions 
 	+ Chronology versus Theme
+</div>
 
-```
 
-## Selected Figures
+<!-- ```{block, type="chaptercontents"} -->
+<!-- #### Chapter topics -->
+
+<!-- * A Long History -->
+<!-- * Overview -->
+<!-- 	+ Re-Visions  -->
+<!-- 	+ Chronology versus Theme -->
+
+<!-- ``` -->
 
 
 ## Selected Figures

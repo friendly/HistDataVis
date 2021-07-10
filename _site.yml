@@ -2,6 +2,8 @@ name: "datavishist"
 title: "History of Data Visualization"
 output_dir: "_site"
 navbar:
+  logo:
+    image: images/favicon_io/favicon-32x32.png
   left:
     - text: "Home"
       href: index.html

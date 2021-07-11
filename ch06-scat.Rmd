@@ -62,7 +62,7 @@ modern statistical methods.
 </div>
 
 <div class="chaptercontents">
-
+#### Chapter contents {-}
 * Early Displays That Were Not Scatterplots
 	+ Johann Lambert
 	+ Why Not Playfair?

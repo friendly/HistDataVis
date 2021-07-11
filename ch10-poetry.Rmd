@@ -62,6 +62,7 @@ studying the past to help solve the problems of the future.
 </div>
 
 <div class="chaptercontents">
+#### Chapter contents {-}
 * Two Plain Graphical Poems
 	+ Young Men and Fire
 	+ The Kovno Ghetto

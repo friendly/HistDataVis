@@ -2057,6 +2057,27 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   
   
   <style type="text/css">
+  /* import fonts */
+  /* nag note says 'use link instead' */
+  
+  /*
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Signika:wght@500&display=swap" rel="stylesheet">
+  
+  in CSS rules:
+  font-family: 'Signika', sans-serif;
+  
+  */
+  
+  /* titles */
+  @import url('https://fonts.googleapis.com/css2?family=Signika:wght@500&display=swap');
+  
+  /* other headings */
+  @import url('https://fonts.googleapis.com/css?family=Work+Sans&display=swap');
+  
+  
   .article-banner {
     width: auto;
     height: auto;
@@ -2085,6 +2106,23 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     width: 100%;
   }
   
+  /* divs for chapters */
+  
+  .chapterprelude {
+    background-color: #daeff0;
+  }
+  
+  .chaptercontents {
+    background-color: #daeff0;
+  }
+  
+  .chaptercontents li {
+    line-height: 6px;
+  }
+  
+  
+  
+  
   </style>
   <!--/radix_placeholder_site_in_header-->
 
@@ -2105,6 +2143,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <header class="header header--fixed" role="banner">
 <nav class="distill-site-nav distill-site-header">
 <div class="nav-left">
+<a class="logo">
+<img src="images/favicon_io/favicon-32x32.png" alt="Logo"/>
+</a>
 <a href="index.html" class="title">History of Data Visualization</a>
 <a href="index.html" aria-label="Home">
 <i class="fa fa-home fa-2x" aria-hidden="true"></i>

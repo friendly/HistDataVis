@@ -2057,6 +2057,27 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   
   
   <style type="text/css">
+  /* import fonts */
+  /* nag note says 'use link instead' */
+  
+  /*
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Signika:wght@500&display=swap" rel="stylesheet">
+  
+  in CSS rules:
+  font-family: 'Signika', sans-serif;
+  
+  */
+  
+  /* titles */
+  @import url('https://fonts.googleapis.com/css2?family=Signika:wght@500&display=swap');
+  
+  /* other headings */
+  @import url('https://fonts.googleapis.com/css?family=Work+Sans&display=swap');
+  
+  
   .article-banner {
     width: auto;
     height: auto;
@@ -2085,6 +2106,23 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     width: 100%;
   }
   
+  /* divs for chapters */
+  
+  .chapterprelude {
+    background-color: #daeff0;
+  }
+  
+  .chaptercontents {
+    background-color: #daeff0;
+  }
+  
+  .chaptercontents li {
+    line-height: 6px;
+  }
+  
+  
+  
+  
   </style>
   <!--/radix_placeholder_site_in_header-->
 
@@ -2105,6 +2143,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <header class="header header--fixed" role="banner">
 <nav class="distill-site-nav distill-site-header">
 <div class="nav-left">
+<a class="logo">
+<img src="images/favicon_io/favicon-32x32.png" alt="Logo"/>
+</a>
 <a href="index.html" class="title">History of Data Visualization</a>
 <a href="index.html" aria-label="Home">
 <i class="fa fa-home fa-2x" aria-hidden="true"></i>
@@ -2186,87 +2227,32 @@ Chapters
 
 </div>
 <h1 id="ch05-playfair">The Big Bang: William Playfair, the Father of Modern Graphics</h1>
-<div class="layout-chunk" data-layout="l-body">
 <div class="chapterprelude">
-<h4 id="synopsis" class="unnumbered">
-Synopsis
-</h4>
-<p>
-At the beginning of the 19th Century, nearly all of the modern forms of data graphics— the pie chart, the line graph of a time series, and the bar chart— were invented. These key developments were all due to a wily Scot named William Playfair. He can rightly be called the father of modern graphical methods, and it is only a slight stretch to consider his contributions to be the Big Bang of data graphics.
-</p>
+<h4 id="synopsis" class="unnumbered">Synopsis</h4>
+<p>At the beginning of the 19th Century, nearly all of the modern forms of data graphics— the pie chart, the line graph of a time series, and the bar chart— were invented. These key developments were all due to a wily Scot named William Playfair. He can rightly be called the father of modern graphical methods, and it is only a slight stretch to consider his contributions to be the Big Bang of data graphics.</p>
 </div>
-</div>
-<div class="layout-chunk" data-layout="l-body">
 <div class="chaptercontents">
+<h4 id="chapter-contents" class="unnumbered">Chapter contents</h4>
 <ul>
-<li>
-<p>
-Playfair’s Life
-</p>
-</li>
-<li>
-<p>
-Playfair’s Graphic Contributions
-</p>
-</li>
-<li>
-<p>
-The First Pie
-</p>
-</li>
-</ul>
-<p>
-#* Humble Pie
-</p>
+<li>Playfair’s Life</li>
+<li>Playfair’s Graphic Contributions</li>
+<li>The First Pie</li>
+<li>Time-Series Line Graphs
 <ul>
-<li>
-<p>
-Time-Series Line Graphs
-</p>
+<li>Import and Exports<br />
+</li>
+<li>Playfair’s Failure: Problems With Curve-Difference Charts</li>
+<li>England’s National Debt</li>
+</ul></li>
+<li>Bar Charts
 <ul>
-<li>
-Import and Exports<br />
-</li>
-<li>
-Playfair’s Failure: Problems With Curve-Difference Charts
-</li>
-<li>
-England’s National Debt
-</li>
+<li>Earlier Bar Charts</li>
+</ul></li>
+<li>Charts Of History</li>
+<li>Ridgeline Plots</li>
+<li>Why Playfair?</li>
+<li>Playfair’s legacy</li>
 </ul>
-</li>
-<li>
-<p>
-Bar Charts
-</p>
-<ul>
-<li>
-Earlier Bar Charts
-</li>
-</ul>
-</li>
-<li>
-<p>
-Charts Of History
-</p>
-</li>
-<li>
-<p>
-Ridgeline Plots
-</p>
-</li>
-<li>
-<p>
-Why Playfair?
-</p>
-</li>
-<li>
-<p>
-Playfair’s legacy
-</p>
-</li>
-</ul>
-</div>
 </div>
 <h2 id="selected-figures">Selected Figures</h2>
 <div class="layout-chunk" data-layout="l-body">

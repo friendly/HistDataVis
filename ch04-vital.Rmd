@@ -58,7 +58,7 @@ be mitigated.
 </div>
 
 <div class="chaptercontents">
-
+#### Chapter contents {-}
 * Cholera 
 	+ Farr's Diagrams 
 	+ Farr's Natural Law of Cholera

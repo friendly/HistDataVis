@@ -103,7 +103,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output"]}},"value":[{"type":"character","attributes":{},"value":["Authors"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["includes"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["in_header","after_body"]}},"value":[{"type":"character","attributes":{},"value":["header.html"]},{"type":"character","attributes":{},"value":["footer.html"]}]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output"]}},"value":[{"type":"character","attributes":{},"value":["Authors"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2057,6 +2057,27 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   
   
   <style type="text/css">
+  /* import fonts */
+  /* nag note says 'use link instead' */
+  
+  /*
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Signika:wght@500&display=swap" rel="stylesheet">
+  
+  in CSS rules:
+  font-family: 'Signika', sans-serif;
+  
+  */
+  
+  /* titles */
+  @import url('https://fonts.googleapis.com/css2?family=Signika:wght@500&display=swap');
+  
+  /* other headings */
+  @import url('https://fonts.googleapis.com/css?family=Work+Sans&display=swap');
+  
+  
   .article-banner {
     width: auto;
     height: auto;
@@ -2085,25 +2106,25 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     width: 100%;
   }
   
+  /* divs for chapters */
+  
+  .chapterprelude {
+    background-color: #daeff0;
+  }
+  
+  .chaptercontents {
+    background-color: #daeff0;
+  }
+  
+  .chaptercontents li {
+    line-height: 6px;
+  }
+  
+  
+  
+  
   </style>
   <!--/radix_placeholder_site_in_header-->
-  <!DOCTYPE html>
-  <html lang="en" dir="ltr">
-    <head>
-      <meta charset="utf-8">
-      <title></title>
-      <link rel="shortcut icon" href="images/favicon_io/favicon.ico">
-      <link rel="icon" type="image/png" sizes="32x32" href="images/favicon_io/favicon-32x32.png">
-      <link rel="icon" type="image/png" sizes="16x16" href="images/favicon_io/favicon-16x16.png">
-      <link rel="apple-touch-icon" sizes="180x180" href="images/favicon_io/apple-touch-icon.png">
-    </head>
-    <body>
-      <div class="article-header">
-        <img src="images/banner.png" class="article-banner" alt="">
-      </div>
-      <script language="JavaScript" src="css/zoom.js"></script>
-    </body>
-  </html>
 
   <link rel="stylesheet" href="css\styles.css" type="text/css"/>
 
@@ -2122,6 +2143,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <header class="header header--fixed" role="banner">
 <nav class="distill-site-nav distill-site-header">
 <div class="nav-left">
+<a class="logo">
+<img src="images/favicon_io/favicon-32x32.png" alt="Logo"/>
+</a>
 <a href="index.html" class="title">History of Data Visualization</a>
 <a href="index.html" aria-label="Home">
 <i class="fa fa-home fa-2x" aria-hidden="true"></i>
@@ -2234,18 +2258,6 @@ Think like a Data Scientist</cite> (2016).
 </div>
 
 
-&nbsp;
-<hr />
-<p style="text-align: center;">Copyright &copy; 2021 Michael Friendly. All rights reserved.</p>
-<p style="text-align: center;"><span style="color: #808080;"><em>friendly AT yorku DOT ca</em></span></p>
-
-<!-- Add font awesome icons -->
-<p style="text-align: center;">
-    <a href="http://www.datavis.ca" class="fa fa-firefox"></a>&nbsp; &nbsp; &nbsp;
-    <a href="https://twitter.com/datavisFriendly?lang=en" class="fa fa-twitter"></a>&nbsp; &nbsp; &nbsp;
-    <a href="https://github.com/friendly/" class="fa fa-github"></a>&nbsp; &nbsp; &nbsp;
-    <a itemprop="sameAs" content="https://orcid.org/0000-0002-3237-0941" href="https://orcid.org/0000-0002-3237-0941" target="orcid.widget" rel="noopener noreferrer" style="vertical-align:top;"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="width:1em;margin-right:.5em;" alt="ORCID iD icon">orcid.org/0000-0002-3237-0941</a>
-</p>
 <!--radix_placeholder_site_after_body-->
 &nbsp;
 <hr />

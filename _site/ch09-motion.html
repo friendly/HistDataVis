@@ -2057,6 +2057,27 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   
   
   <style type="text/css">
+  /* import fonts */
+  /* nag note says 'use link instead' */
+  
+  /*
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Signika:wght@500&display=swap" rel="stylesheet">
+  
+  in CSS rules:
+  font-family: 'Signika', sans-serif;
+  
+  */
+  
+  /* titles */
+  @import url('https://fonts.googleapis.com/css2?family=Signika:wght@500&display=swap');
+  
+  /* other headings */
+  @import url('https://fonts.googleapis.com/css?family=Work+Sans&display=swap');
+  
+  
   .article-banner {
     width: auto;
     height: auto;
@@ -2085,6 +2106,23 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     width: 100%;
   }
   
+  /* divs for chapters */
+  
+  .chapterprelude {
+    background-color: #daeff0;
+  }
+  
+  .chaptercontents {
+    background-color: #daeff0;
+  }
+  
+  .chaptercontents li {
+    line-height: 6px;
+  }
+  
+  
+  
+  
   </style>
   <!--/radix_placeholder_site_in_header-->
 
@@ -2105,6 +2143,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <header class="header header--fixed" role="banner">
 <nav class="distill-site-nav distill-site-header">
 <div class="nav-left">
+<a class="logo">
+<img src="images/favicon_io/favicon-32x32.png" alt="Logo"/>
+</a>
 <a href="index.html" class="title">History of Data Visualization</a>
 <a href="index.html" aria-label="Home">
 <i class="fa fa-home fa-2x" aria-hidden="true"></i>
@@ -2186,107 +2227,42 @@ Chapters
 
 </div>
 <h1 id="ch09-motion">Visualizing Time and Space</h1>
-<div class="layout-chunk" data-layout="l-body">
 <div class="chapterprelude">
-<h4 id="synopsis" class="unnumbered">
-Synopsis
-</h4>
-<p>
-The recent history of data visualization is much harder to characterize because innovations have been so varied, and have occurred at an accelerated pace and have appeared across a wider range of disciplines. Among the many threads that could be traced, two general categories stand out; these have made data graphics far more powerful and accessible than ever before. First, graphical methods have become increasingly dynamic and interactive, capable of showing changes over time by animation and changing the nature of a graph from a static image to one that a viewer can directly manipulate, zoom or query. Second, the escape from flatland has been continued, with a variety of new approaches to understanding data in ever higher dimensions.
-</p>
+<h4 id="synopsis" class="unnumbered">Synopsis</h4>
+<p>The recent history of data visualization is much harder to characterize because innovations have been so varied, and have occurred at an accelerated pace and have appeared across a wider range of disciplines. Among the many threads that could be traced, two general categories stand out; these have made data graphics far more powerful and accessible than ever before. First, graphical methods have become increasingly dynamic and interactive, capable of showing changes over time by animation and changing the nature of a graph from a static image to one that a viewer can directly manipulate, zoom or query. Second, the escape from flatland has been continued, with a variety of new approaches to understanding data in ever higher dimensions.</p>
 </div>
-</div>
-<div class="layout-chunk" data-layout="l-body">
 <div class="chaptercontents">
+<h4 id="chapter-contents" class="unnumbered">Chapter contents</h4>
 <ul>
-<li>
-<p>
-The Laws of Motion
-</p>
-</li>
-<li>
-<p>
-The Horse in Motion
-</p>
+<li>The Laws of Motion</li>
+<li>The Horse in Motion
 <ul>
-<li>
-A Trick of the Eye
-</li>
-</ul>
-</li>
-<li>
-<p>
-’Etienne-Jules Marey and a Science of Visualizing Time and Motion
-</p>
+<li>A Trick of the Eye</li>
+</ul></li>
+<li>Étienne-Jules Marey and a Science of Visualizing Time and Motion
 <ul>
-<li>
-<p>
-La M’ethode Graphique
-</p>
-</li>
-<li>
-<p>
-Chronophotography
-</p>
-</li>
-<li>
-<p>
-Falling cats
-</p>
-</li>
-</ul>
-</li>
-<li>
-<p>
-Computer Graphics Animation
-</p>
-</li>
-<li>
-<p>
-Animated Algorithms
-</p>
+<li>La Méthode Graphique</li>
+<li>Chronophotography</li>
+<li>Falling cats</li>
+</ul></li>
+<li>Computer Graphics Animation</li>
+<li>Animated Algorithms
 <ul>
-<li>
-The MDS movie
-</li>
-<li>
-Color similarity
-</li>
-<li>
-The Monte Carlo Method
-</li>
-<li>
-RANDU
-</li>
-</ul>
-</li>
-<li>
-<p>
-Travels in High-D Space
-</p>
+<li>The MDS movie</li>
+<li>Color similarity</li>
+<li>The Monte Carlo Method</li>
+<li>RANDU</li>
+</ul></li>
+<li>Travels in High-D Space
 <ul>
-<li>
-Diabetes classification
-</li>
-</ul>
-</li>
-<li>
-<p>
-Hardware and Software
-</p>
+<li>Diabetes classification</li>
+</ul></li>
+<li>Hardware and Software
 <ul>
-<li>
-Software
-</li>
+<li>Software</li>
+</ul></li>
+<li>Telling stories with Animated Graphics</li>
 </ul>
-</li>
-<li>
-<p>
-Telling stories with Animated Graphics
-</p>
-</li>
-</ul>
-</div>
 </div>
 <h2 id="selected-figures">Selected Figures</h2>
 <div class="layout-chunk" data-layout="l-body">

@@ -2057,6 +2057,27 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   
   
   <style type="text/css">
+  /* import fonts */
+  /* nag note says 'use link instead' */
+  
+  /*
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Signika:wght@500&display=swap" rel="stylesheet">
+  
+  in CSS rules:
+  font-family: 'Signika', sans-serif;
+  
+  */
+  
+  /* titles */
+  @import url('https://fonts.googleapis.com/css2?family=Signika:wght@500&display=swap');
+  
+  /* other headings */
+  @import url('https://fonts.googleapis.com/css?family=Work+Sans&display=swap');
+  
+  
   .article-banner {
     width: auto;
     height: auto;
@@ -2085,6 +2106,23 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     width: 100%;
   }
   
+  /* divs for chapters */
+  
+  .chapterprelude {
+    background-color: #daeff0;
+  }
+  
+  .chaptercontents {
+    background-color: #daeff0;
+  }
+  
+  .chaptercontents li {
+    line-height: 6px;
+  }
+  
+  
+  
+  
   </style>
   <!--/radix_placeholder_site_in_header-->
 
@@ -2105,6 +2143,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <header class="header header--fixed" role="banner">
 <nav class="distill-site-nav distill-site-header">
 <div class="nav-left">
+<a class="logo">
+<img src="images/favicon_io/favicon-32x32.png" alt="Logo"/>
+</a>
 <a href="index.html" class="title">History of Data Visualization</a>
 <a href="index.html" aria-label="Home">
 <i class="fa fa-home fa-2x" aria-hidden="true"></i>
@@ -2186,77 +2227,32 @@ Chapters
 
 </div>
 <h1 id="ch03-data">The Birth of Data</h1>
-<div class="layout-chunk" data-layout="l-body">
 <div class="chapterprelude">
-<h4 id="synopsis" class="unnumbered">
-Synopsis
-</h4>
-<p>
-This chapter traces the role of data in the initial rise of graphical methods around the early 1800s. We start with the very idea of numbers used for some wider purpose, and considered what what we now call “data”. We focus attention on one important participant in this story: Andr’e-Michel Guerry [1802–1866], who used an “avalanche of data” and graphical methods to help invent modern social science.
-</p>
+<h4 id="synopsis" class="unnumbered">Synopsis</h4>
+<p>This chapter traces the role of data in the initial rise of graphical methods around the early 1800s. We start with the very idea of numbers used for some wider purpose, and considered what what we now call “data”. We focus attention on one important participant in this story: André-Michel Guerry [1802–1866], who used an “avalanche of data” and graphical methods to help invent modern social science.</p>
 </div>
-</div>
-<div class="layout-chunk" data-layout="l-body">
 <div class="chaptercontents">
+<h4 id="chapter-contents" class="unnumbered">Chapter contents</h4>
 <ul>
-<li>
-<p>
-Early Numerical Recordings
-</p>
+<li>Early Numerical Recordings
 <ul>
-<li>
-Flooding of the Nile
-</li>
-<li>
-Ephemeris tables
-</li>
-</ul>
-</li>
-<li>
-<p>
-Political Arithmetic
-</p>
-</li>
-<li>
-<p>
-The Human Sex Ratio
-</p>
-</li>
-<li>
-<p>
-An Avalanche of Numbers
-</p>
-</li>
-<li>
-<p>
-Mapping Social Data
-</p>
+<li>Flooding of the Nile</li>
+<li>Ephemeris tables</li>
+</ul></li>
+<li>Political Arithmetic</li>
+<li>The Human Sex Ratio</li>
+<li>An Avalanche of Numbers</li>
+<li>Mapping Social Data
 <ul>
-<li>
-Graphic details matter
-</li>
-</ul>
-</li>
-<li>
-<p>
-Stability and Variation
-</p>
+<li>Graphic details matter</li>
+</ul></li>
+<li>Stability and Variation
 <ul>
-<li>
-Seeking Explanations, Causes and Relationships
-</li>
-<li>
-Analytical Statistics
-</li>
+<li>Seeking Explanations, Causes and Relationships</li>
+<li>Analytical Statistics</li>
+</ul></li>
+<li>Re-Visions: Consulting for Guerry</li>
 </ul>
-</li>
-<li>
-<p>
-Re-Visions: Consulting for Guerry
-</p>
-</li>
-</ul>
-</div>
 </div>
 <h2 id="selected-figures">Selected Figures</h2>
 <div class="layout-chunk" data-layout="l-body">

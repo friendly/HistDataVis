@@ -2057,6 +2057,27 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   
   
   <style type="text/css">
+  /* import fonts */
+  /* nag note says 'use link instead' */
+  
+  /*
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Signika:wght@500&display=swap" rel="stylesheet">
+  
+  in CSS rules:
+  font-family: 'Signika', sans-serif;
+  
+  */
+  
+  /* titles */
+  @import url('https://fonts.googleapis.com/css2?family=Signika:wght@500&display=swap');
+  
+  /* other headings */
+  @import url('https://fonts.googleapis.com/css?family=Work+Sans&display=swap');
+  
+  
   .article-banner {
     width: auto;
     height: auto;
@@ -2085,6 +2106,23 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     width: 100%;
   }
   
+  /* divs for chapters */
+  
+  .chapterprelude {
+    background-color: #daeff0;
+  }
+  
+  .chaptercontents {
+    background-color: #daeff0;
+  }
+  
+  .chaptercontents li {
+    line-height: 6px;
+  }
+  
+  
+  
+  
   </style>
   <!--/radix_placeholder_site_in_header-->
 
@@ -2105,6 +2143,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <header class="header header--fixed" role="banner">
 <nav class="distill-site-nav distill-site-header">
 <div class="nav-left">
+<a class="logo">
+<img src="images/favicon_io/favicon-32x32.png" alt="Logo"/>
+</a>
 <a href="index.html" class="title">History of Data Visualization</a>
 <a href="index.html" aria-label="Home">
 <i class="fa fa-home fa-2x" aria-hidden="true"></i>
@@ -2186,68 +2227,31 @@ Chapters
 
 </div>
 <h1 id="ch04-vital">Vital Statistics: William Farr, John Snow and Cholera</h1>
-<div class="layout-chunk" data-layout="l-body">
 <div class="chapterprelude">
-<h4 id="synopsis" class="unnumbered">
-Synopsis
-</h4>
-<p>
-A short time later, analogous widespread data collection was begun in the United Kingdom, but this was in the context of social welfare, poverty, public health and sanitation. From these efforts emerged two new heroes of data visualization, William Farr and John Snow, who worked independently trying to understand the causes of several epidemics of cholera and how the disease could be mitigated.
-</p>
+<h4 id="synopsis" class="unnumbered">Synopsis</h4>
+<p>A short time later, analogous widespread data collection was begun in the United Kingdom, but this was in the context of social welfare, poverty, public health and sanitation. From these efforts emerged two new heroes of data visualization, William Farr and John Snow, who worked independently trying to understand the causes of several epidemics of cholera and how the disease could be mitigated.</p>
 </div>
-</div>
-<div class="layout-chunk" data-layout="l-body">
 <div class="chaptercontents">
+<h4 id="chapter-contents" class="unnumbered">Chapter contents</h4>
 <ul>
-<li>
-<p>
-Cholera
-</p>
+<li>Cholera
 <ul>
-<li>
-Farr’s Diagrams
-</li>
-<li>
-Farr’s Natural Law of Cholera
-</li>
-<li>
-The Transcendent Effect of Water
-</li>
-</ul>
-</li>
-<li>
-<p>
-John Snow on Cholera
-</p>
+<li>Farr’s Diagrams</li>
+<li>Farr’s Natural Law of Cholera</li>
+<li>The Transcendent Effect of Water</li>
+</ul></li>
+<li>John Snow on Cholera
 <ul>
-<li>
-The Broad Street Pump
-</li>
-<li>
-The Neighborhoods Map
-</li>
-</ul>
-</li>
-<li>
-<p>
-Re-visioning the Broad Street Pump
-</p>
-</li>
-<li>
-<p>
-Graphical Successes and Failures
-</p>
+<li>The Broad Street Pump</li>
+<li>The Neighborhoods Map</li>
+</ul></li>
+<li>Re-visioning the Broad Street Pump</li>
+<li>Graphical Successes and Failures
 <ul>
-<li>
-The Answer: A Bug
-</li>
-<li>
-Florence Nightingale’s Graphical Success
-</li>
+<li>The Answer: A Bug</li>
+<li>Florence Nightingale’s Graphical Success</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</div>
 </div>
 <h2 id="selected-figures">Selected Figures</h2>
 <div class="layout-chunk" data-layout="l-body">

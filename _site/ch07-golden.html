@@ -2057,6 +2057,27 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   
   
   <style type="text/css">
+  /* import fonts */
+  /* nag note says 'use link instead' */
+  
+  /*
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Signika:wght@500&display=swap" rel="stylesheet">
+  
+  in CSS rules:
+  font-family: 'Signika', sans-serif;
+  
+  */
+  
+  /* titles */
+  @import url('https://fonts.googleapis.com/css2?family=Signika:wght@500&display=swap');
+  
+  /* other headings */
+  @import url('https://fonts.googleapis.com/css?family=Work+Sans&display=swap');
+  
+  
   .article-banner {
     width: auto;
     height: auto;
@@ -2085,6 +2106,23 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     width: 100%;
   }
   
+  /* divs for chapters */
+  
+  .chapterprelude {
+    background-color: #daeff0;
+  }
+  
+  .chaptercontents {
+    background-color: #daeff0;
+  }
+  
+  .chaptercontents li {
+    line-height: 6px;
+  }
+  
+  
+  
+  
   </style>
   <!--/radix_placeholder_site_in_header-->
 
@@ -2105,6 +2143,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <header class="header header--fixed" role="banner">
 <nav class="distill-site-nav distill-site-header">
 <div class="nav-left">
+<a class="logo">
+<img src="images/favicon_io/favicon-32x32.png" alt="Logo"/>
+</a>
 <a href="index.html" class="title">History of Data Visualization</a>
 <a href="index.html" aria-label="Home">
 <i class="fa fa-home fa-2x" aria-hidden="true"></i>
@@ -2186,75 +2227,32 @@ Chapters
 
 </div>
 <h1 id="ch07-golden">The Golden Age of Statistical Graphics</h1>
-<div class="layout-chunk" data-layout="l-body">
 <div class="chapterprelude">
-<h4 id="synopsis" class="unnumbered">
-Synopsis
-</h4>
-<p>
-In the latter half of the 19th Century, enthusiasm for graphical methods matured, and a variety of developments in statistics, data collection and technology combined to produce a “perfect storm” for data graphics. The result was a qualitatively distinct period that produced works of unparalleled beauty and scope, the likes of which would be hard to duplicate today. We argue that this period deserves to be recognized as the “Golden Age of Statistical Graphics.”
-</p>
+<h4 id="synopsis" class="unnumbered">Synopsis</h4>
+<p>In the latter half of the 19th Century, enthusiasm for graphical methods matured, and a variety of developments in statistics, data collection and technology combined to produce a “perfect storm” for data graphics. The result was a qualitatively distinct period that produced works of unparalleled beauty and scope, the likes of which would be hard to duplicate today. We argue that this period deserves to be recognized as the “Golden Age of Statistical Graphics.”</p>
 </div>
-</div>
-<div class="layout-chunk" data-layout="l-body">
 <div class="chaptercontents">
+<h4 id="chapter-contents" class="unnumbered">Chapter contents</h4>
 <ul>
-<li>
-<p>
-Ages in the History of Graphics
-</p>
-</li>
-<li>
-<p>
-Some Golden Ages
-</p>
-</li>
-<li>
-<p>
-Prerequisites for the Golden Age
-</p>
+<li>Ages in the History of Graphics</li>
+<li>Some Golden Ages</li>
+<li>Prerequisites for the Golden Age
 <ul>
-<li>
-Lithography and Color Printing<br />
+<li>Lithography and Color Printing<br />
 </li>
-<li>
-Automatic Recording<br />
+<li>Automatic Recording<br />
 </li>
-<li>
-Calculation
-</li>
-</ul>
-</li>
-<li>
-<p>
-The Graphic Vision of Charles Joseph Minard
-</p>
-</li>
-<li>
-<p>
-Francis Galton’s Greatest Graphical Discovery
-</p>
-</li>
-<li>
-<p>
-Statistical Albums
-</p>
+<li>Calculation</li>
+</ul></li>
+<li>The Graphic Vision of Charles Joseph Minard</li>
+<li>Francis Galton’s Greatest Graphical Discovery</li>
+<li>Statistical Albums
 <ul>
-<li>
-The Album de Statistique Graphique
-</li>
-<li>
-US Census Albums
-</li>
+<li>The Album de Statistique Graphique</li>
+<li>US Census Albums</li>
+</ul></li>
+<li>The Modern Dark Ages</li>
 </ul>
-</li>
-<li>
-<p>
-The Modern Dark Ages
-</p>
-</li>
-</ul>
-</div>
 </div>
 <h2 id="selected-figures">Selected Figures</h2>
 <div class="layout-chunk" data-layout="l-body">

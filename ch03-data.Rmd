@@ -55,7 +55,7 @@ We focus attention on one important participant in this story: André-Michel Gue
 </div>
 
 <div class="chaptercontents">
-
+#### Chapter contents {-}
 * Early Numerical Recordings 
 	+ Flooding of the Nile 
 	+ Ephemeris tables 

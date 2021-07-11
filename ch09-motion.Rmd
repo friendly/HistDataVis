@@ -61,6 +61,7 @@ understanding data in ever higher dimensions.
 </div>
 
 <div class="chaptercontents">
+#### Chapter contents {-}
 * The Laws of Motion 
 * The Horse in Motion 
 	+ A Trick of the Eye

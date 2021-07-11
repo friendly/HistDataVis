@@ -2057,6 +2057,27 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   
   
   <style type="text/css">
+  /* import fonts */
+  /* nag note says 'use link instead' */
+  
+  /*
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Signika:wght@500&display=swap" rel="stylesheet">
+  
+  in CSS rules:
+  font-family: 'Signika', sans-serif;
+  
+  */
+  
+  /* titles */
+  @import url('https://fonts.googleapis.com/css2?family=Signika:wght@500&display=swap');
+  
+  /* other headings */
+  @import url('https://fonts.googleapis.com/css?family=Work+Sans&display=swap');
+  
+  
   .article-banner {
     width: auto;
     height: auto;
@@ -2085,6 +2106,23 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     width: 100%;
   }
   
+  /* divs for chapters */
+  
+  .chapterprelude {
+    background-color: #daeff0;
+  }
+  
+  .chaptercontents {
+    background-color: #daeff0;
+  }
+  
+  .chaptercontents li {
+    line-height: 6px;
+  }
+  
+  
+  
+  
   </style>
   <!--/radix_placeholder_site_in_header-->
 
@@ -2105,6 +2143,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <header class="header header--fixed" role="banner">
 <nav class="distill-site-nav distill-site-header">
 <div class="nav-left">
+<a class="logo">
+<img src="images/favicon_io/favicon-32x32.png" alt="Logo"/>
+</a>
 <a href="index.html" class="title">History of Data Visualization</a>
 <a href="index.html" aria-label="Home">
 <i class="fa fa-home fa-2x" aria-hidden="true"></i>
@@ -2186,64 +2227,27 @@ Chapters
 
 </div>
 <h1 id="ch10-poetry">Graphs as Poetry</h1>
-<div class="layout-chunk" data-layout="l-body">
 <div class="chapterprelude">
-<h4 id="synopsis" class="unnumbered">
-Synopsis
-</h4>
-<p>
-Graphs are justly celebrated for their ability to accurately present phenomena in a compact way while simultaneously provide their context. If this were all that they did, their place in scientific history would be secure. But with suitable data and the right design, they can also convey emotion. Indeed, in some instances graphs provide an emotional impact that can be likened to that of poetry. In this chapter we imagine a collaboration between the civil rights activist W.E.B. DuBois and the canonized graphic designer C. J. Minard to show The Great Migration of six million African-Americans fleeing the racism and terror in the post-Confederacy South to the industrial North. The result of this <em>gedanken</em> collaboration provides a vivid example of how we can profit from studying the past to help solve the problems of the future.
-</p>
+<h4 id="synopsis" class="unnumbered">Synopsis</h4>
+<p>Graphs are justly celebrated for their ability to accurately present phenomena in a compact way while simultaneously provide their context. If this were all that they did, their place in scientific history would be secure. But with suitable data and the right design, they can also convey emotion. Indeed, in some instances graphs provide an emotional impact that can be likened to that of poetry. In this chapter we imagine a collaboration between the civil rights activist W.E.B. DuBois and the canonized graphic designer C. J. Minard to show The Great Migration of six million African-Americans fleeing the racism and terror in the post-Confederacy South to the industrial North. The result of this <em>gedanken</em> collaboration provides a vivid example of how we can profit from studying the past to help solve the problems of the future.</p>
 </div>
-</div>
-<div class="layout-chunk" data-layout="l-body">
 <div class="chaptercontents">
+<h4 id="chapter-contents" class="unnumbered">Chapter contents</h4>
 <ul>
-<li>
-<p>
-Two Plain Graphical Poems
-</p>
+<li>Two Plain Graphical Poems
 <ul>
-<li>
-Young Men and Fire
-</li>
-<li>
-The Kovno Ghetto
-</li>
-</ul>
-</li>
-<li>
-<p>
-The Graphic Poetry of Charles Joseph Minard
-</p>
-</li>
-<li>
-<p>
-Using Graphs in a Narrative Argument
-</p>
-</li>
-<li>
-<p>
-W. E. B. Du Bois
-</p>
-</li>
-<li>
-<p>
-The Great Migration
-</p>
+<li>Young Men and Fire</li>
+<li>The Kovno Ghetto</li>
+</ul></li>
+<li>The Graphic Poetry of Charles Joseph Minard</li>
+<li>Using Graphs in a Narrative Argument</li>
+<li>W. E. B. Du Bois</li>
+<li>The Great Migration
 <ul>
-<li>
-A Gedanken Collaboration
-</li>
+<li>A Gedanken Collaboration</li>
+</ul></li>
+<li>Conclusion</li>
 </ul>
-</li>
-<li>
-<p>
-Conclusion
-</p>
-</li>
-</ul>
-</div>
 </div>
 <h2 id="selected-figures">Selected Figures</h2>
 <div class="layout-chunk" data-layout="l-body">

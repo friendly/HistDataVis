@@ -53,6 +53,7 @@ these are often at worst, misleading, or at best, incomplete. The representation
 </div>
 
 <div class="chaptercontents">
+#### Chapter contents {-}
 * Contour Maps 
 * Three-Dimensional Plots
 * Going Forward 

@@ -50,15 +50,15 @@ img[src="images/banner.png"] {
 /* divs for chapters */
 
 .chapterprelude {
-  background-color: lightblue;
+  background-color: #daeff0;
 }
 
 .chaptercontents {
-  background-color: lightblue;
+  background-color: #daeff0;
 }
 
 .chaptercontents li {
-  line-height: 5px;
+  line-height: 6px;
 }
 
 

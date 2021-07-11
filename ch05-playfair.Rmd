@@ -54,6 +54,7 @@ At the beginning of the 19th Century, nearly all of the modern forms of data gra
 </div>
 
 <div class="chaptercontents">
+#### Chapter contents {-}
 
 * Playfair's Life 
 * Playfair's Graphic Contributions

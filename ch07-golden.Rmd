@@ -59,6 +59,7 @@ Graphics."
 </div>
 
 <div class="chaptercontents">
+#### Chapter contents {-}
 * Ages in the History of Graphics
 * Some Golden Ages 
 * Prerequisites for the Golden Age 

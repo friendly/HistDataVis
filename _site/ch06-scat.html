@@ -2057,6 +2057,27 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   
   
   <style type="text/css">
+  /* import fonts */
+  /* nag note says 'use link instead' */
+  
+  /*
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Signika:wght@500&display=swap" rel="stylesheet">
+  
+  in CSS rules:
+  font-family: 'Signika', sans-serif;
+  
+  */
+  
+  /* titles */
+  @import url('https://fonts.googleapis.com/css2?family=Signika:wght@500&display=swap');
+  
+  /* other headings */
+  @import url('https://fonts.googleapis.com/css?family=Work+Sans&display=swap');
+  
+  
   .article-banner {
     width: auto;
     height: auto;
@@ -2085,6 +2106,23 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     width: 100%;
   }
   
+  /* divs for chapters */
+  
+  .chapterprelude {
+    background-color: #daeff0;
+  }
+  
+  .chaptercontents {
+    background-color: #daeff0;
+  }
+  
+  .chaptercontents li {
+    line-height: 6px;
+  }
+  
+  
+  
+  
   </style>
   <!--/radix_placeholder_site_in_header-->
 
@@ -2105,6 +2143,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <header class="header header--fixed" role="banner">
 <nav class="distill-site-nav distill-site-header">
 <div class="nav-left">
+<a class="logo">
+<img src="images/favicon_io/favicon-32x32.png" alt="Logo"/>
+</a>
 <a href="index.html" class="title">History of Data Visualization</a>
 <a href="index.html" aria-label="Home">
 <i class="fa fa-home fa-2x" aria-hidden="true"></i>
@@ -2186,80 +2227,35 @@ Chapters
 
 </div>
 <h1 id="ch06-scat">The Origin and Development of the Scatterplot</h1>
-<div class="layout-chunk" data-layout="l-body">
 <div class="chapterprelude">
-<h4 id="synopsis" class="unnumbered">
-Synopsis
-</h4>
-<p>
-Among all the moderns forms of statistical graphics, the scatterplot may be considered the most versatile, and generally useful invention in the entire history of statistical graphics. It is also notable because William Playfair didn’t invent it. This chapter considers why Playfair was unable to think about such things, and it traces the invention of the scatterplot to the eminent astronomer John F. W. Herschel. Scatterplots achieved great importance in the work of Francis Galton [1822–1911] on the heritability of traits. Galton’s work, visualized through statistical diagrams, became the source of the statistical ideas of correlation and regression and thus most of modern statistical methods.
-</p>
+<h4 id="synopsis" class="unnumbered">Synopsis</h4>
+<p>Among all the moderns forms of statistical graphics, the scatterplot may be considered the most versatile, and generally useful invention in the entire history of statistical graphics. It is also notable because William Playfair didn’t invent it. This chapter considers why Playfair was unable to think about such things, and it traces the invention of the scatterplot to the eminent astronomer John F. W. Herschel. Scatterplots achieved great importance in the work of Francis Galton [1822–1911] on the heritability of traits. Galton’s work, visualized through statistical diagrams, became the source of the statistical ideas of correlation and regression and thus most of modern statistical methods.</p>
 </div>
-</div>
-<div class="layout-chunk" data-layout="l-body">
 <div class="chaptercontents">
+<h4 id="chapter-contents" class="unnumbered">Chapter contents</h4>
 <ul>
-<li>
-<p>
-Early Displays That Were Not Scatterplots
-</p>
+<li>Early Displays That Were Not Scatterplots
 <ul>
-<li>
-Johann Lambert
-</li>
-<li>
-Why Not Playfair?
-</li>
-</ul>
-</li>
-<li>
-<p>
-John F. W. Herschel and the Orbits Of Twin Stars
-</p>
+<li>Johann Lambert</li>
+<li>Why Not Playfair?</li>
+</ul></li>
+<li>John F. W. Herschel and the Orbits Of Twin Stars
 <ul>
-<li>
-Herschel’s Graphical Impact Factor
-</li>
-</ul>
-</li>
-<li>
-<p>
-Francis Galton and the Idea Of Correlation
-</p>
+<li>Herschel’s Graphical Impact Factor</li>
+</ul></li>
+<li>Francis Galton and the Idea Of Correlation
 <ul>
-<li>
-Galton’s Elliptical Insight
-</li>
-<li>
-Another Asymmetry
-</li>
-</ul>
-</li>
-<li>
-<p>
-Some Remarkable Scatterplots
-</p>
+<li>Galton’s Elliptical Insight</li>
+<li>Another Asymmetry</li>
+</ul></li>
+<li>Some Remarkable Scatterplots
 <ul>
-<li>
-The Hertzsprung-Russell Diagram
-</li>
-<li>
-The Phillips Curve
-</li>
+<li>The Hertzsprung-Russell Diagram</li>
+<li>The Phillips Curve</li>
+</ul></li>
+<li>Spurious Correlations and Causation</li>
+<li>Scatterplot Thinking</li>
 </ul>
-</li>
-<li>
-<p>
-Spurious Correlations and Causation
-</p>
-</li>
-<li>
-<p>
-Scatterplot Thinking
-</p>
-</li>
-</ul>
-</div>
 </div>
 <h2 id="selected-figures">Selected Figures</h2>
 <div class="layout-chunk" data-layout="l-body">

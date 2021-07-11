@@ -58,7 +58,7 @@ insights, for both discovery and communication.
 </div>
 
 <div class="chaptercontents">
-#### Chapter topics
+#### Chapter contents
 
 * A Long History
 * Overview

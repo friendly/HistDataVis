@@ -60,7 +60,7 @@ remarkable development of the visual representation of numbers to communicate qu
 
 
 <div class="chaptercontents">
-#### Chapter topics
+#### Chapter contents
 
 * Introduction
 	+ The Evolution of Pictures

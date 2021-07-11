@@ -2057,6 +2057,27 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   
   
   <style type="text/css">
+  /* import fonts */
+  /* nag note says 'use link instead' */
+  
+  /*
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Signika:wght@500&display=swap" rel="stylesheet">
+  
+  in CSS rules:
+  font-family: 'Signika', sans-serif;
+  
+  */
+  
+  /* titles */
+  @import url('https://fonts.googleapis.com/css2?family=Signika:wght@500&display=swap');
+  
+  /* other headings */
+  @import url('https://fonts.googleapis.com/css?family=Work+Sans&display=swap');
+  
+  
   .article-banner {
     width: auto;
     height: auto;
@@ -2085,6 +2106,23 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     width: 100%;
   }
   
+  /* divs for chapters */
+  
+  .chapterprelude {
+    background-color: lightblue;
+  }
+  
+  .chaptercontents {
+    background-color: lightblue;
+  }
+  
+  .chaptercontents li {
+    line-height: 5px;
+  }
+  
+  
+  
+  
   </style>
   <!--/radix_placeholder_site_in_header-->
 
@@ -2105,6 +2143,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <header class="header header--fixed" role="banner">
 <nav class="distill-site-nav distill-site-header">
 <div class="nav-left">
+<a class="logo">
+<img src="images/favicon_io/favicon-32x32.png" alt="Logo"/>
+</a>
 <a href="index.html" class="title">History of Data Visualization</a>
 <a href="index.html" aria-label="Home">
 <i class="fa fa-home fa-2x" aria-hidden="true"></i>
@@ -2187,50 +2228,26 @@ Chapters
 </div>
 <h1 id="ch01-intro">In the Beginning…</h1>
 <blockquote>
-<p><em>If you would understand anything, observe its beginning and its development.</em></p>
-<p>Aristotle, <em>Metaphysics</em></p>
+<p><em>If you would understand anything, observe its beginning and its development.</em> <strong>Aristotle, <em>Metaphysics</em></strong></p>
 </blockquote>
-<div class="layout-chunk" data-layout="l-body">
 <div class="chapterprelude">
-<h4 id="synopsis" class="unnumbered">
-Synopsis
-</h4>
-<p>
-This chapter is an overview of the larger questions and themes that provide a context for the book. We consider the relations among numerical data, evidence for an argument and graphs, and then describe some of the pre-history of the visual representation of numbers and the early rise of visualization itself. The story continues to the rise of empirical thinking in philosophy and science around the 16th Century and the concomitant remarkable development of the visual representation of numbers to communicate quantitative phenomena.
-</p>
+<h4 id="synopsis" class="unnumbered">Synopsis</h4>
+<p>This chapter is an overview of the larger questions and themes that provide a context for the book. We consider the relations among numerical data, evidence for an argument and graphs, and then describe some of the pre-history of the visual representation of numbers and the early rise of visualization itself. The story continues to the rise of empirical thinking in philosophy and science around the 16th Century and the concomitant remarkable development of the visual representation of numbers to communicate quantitative phenomena.</p>
 </div>
-</div>
-<div class="layout-chunk" data-layout="l-body">
 <div class="chaptercontents">
-<h4 id="chapter-topics">
-Chapter topics
-</h4>
+<h4 id="chapter-topics">Chapter topics</h4>
 <ul>
-<li>
-Introduction
+<li>Introduction
 <ul>
-<li>
-The Evolution of Pictures
-</li>
-<li>
-Connecting Data with Pictures
-</li>
+<li>The Evolution of Pictures</li>
+<li>Connecting Data with Pictures</li>
+</ul></li>
+<li>Seeing the Unexpected</li>
+<li>The Rise of the Graphic Method and Visual Thinking</li>
+<li>A Golden Age</li>
 </ul>
-</li>
-<li>
-Seeing the Unexpected
-</li>
-<li>
-The Rise of the Graphic Method and Visual Thinking
-</li>
-<li>
-A Golden Age
-</li>
-</ul>
-</div>
 </div>
 <h2 id="selected-figures">Selected Figures</h2>
-<h2 id="selected-figures-1">Selected Figures</h2>
 <div class="layout-chunk" data-layout="l-body">
 <table class="chap-fig">
 <tr>

@@ -46,36 +46,29 @@ source("R/chapter_figs.R")
 ```
 # The Birth of Data {#ch03-data}
 
-```{block, type="chapterprelude"}
+<div class="chapterprelude">
 #### Synopsis {-}
 This chapter traces the role of data in the initial rise of graphical methods around the early 1800s.
 We start with the very idea of numbers used for some wider purpose, and considered what what we now
 call "data".
-We focus attention on one important participant in this story: Andr\'e-Michel Guerry [1802--1866], who used an "avalanche of data" and graphical methods to help invent modern social science.
-```
+We focus attention on one important participant in this story: André-Michel Guerry [1802--1866], who used an "avalanche of data" and graphical methods to help invent modern social science.
+</div>
 
-```{block, type="chaptercontents"}
+<div class="chaptercontents">
 
 * Early Numerical Recordings 
-
 	+ Flooding of the Nile 
 	+ Ephemeris tables 
-
 * Political Arithmetic 
-
 * The Human Sex Ratio 
-
 * An Avalanche of Numbers 
-
 * Mapping Social Data 
 	+ Graphic details matter 
-
 * Stability and Variation 
 	+ Seeking Explanations, Causes and Relationships 
 	+ Analytical Statistics 
-
 * Re-Visions: Consulting for Guerry 
-```
+</div>
 
 
 

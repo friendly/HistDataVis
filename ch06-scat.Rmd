@@ -46,7 +46,7 @@ source("R/chapter_figs.R")
 ```
 # The Origin and Development of the Scatterplot {#ch06-scat}
 
-```{block, type="chapterprelude"}
+<div class="chapterprelude">
 #### Synopsis {-}
 Among all the moderns forms of statistical graphics,
 the scatterplot may be considered the most versatile,
@@ -59,33 +59,24 @@ of Francis Galton [1822--1911] on the heritability of traits.
 Galton's work, visualized through statistical diagrams,
 became the source of the statistical ideas of correlation and regression and thus most of
 modern statistical methods.
-```
+</div>
 
-```{block, type="chaptercontents"}
+<div class="chaptercontents">
 
 * Early Displays That Were Not Scatterplots
-
 	+ Johann Lambert
 	+ Why Not Playfair?
-
 * John F. W. Herschel and the Orbits Of Twin Stars
-
 	+ Herschel's Graphical Impact Factor
-
 * Francis Galton and the Idea Of Correlation
-
 	+ Galton's Elliptical Insight
 	+ Another Asymmetry
-
 * Some Remarkable Scatterplots
-
 	+ The Hertzsprung-Russell Diagram
 	+ The Phillips Curve
-
 * Spurious Correlations and Causation
-
 * Scatterplot Thinking 
-```
+</div>
 
 
 

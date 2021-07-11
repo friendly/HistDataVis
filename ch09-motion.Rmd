@@ -46,7 +46,7 @@ source("R/chapter_figs.R")
 ```
 # Visualizing Time and Space {#ch09-motion}
 
-```{block, type="chapterprelude"}
+<div class="chapterprelude">
 #### Synopsis {-}
 The recent history of data visualization is much harder to characterize because
 innovations have been so varied, and have occurred at an accelerated pace and
@@ -58,41 +58,28 @@ capable of showing changes over time by animation and changing the nature of a g
 from a static image to one that a viewer can directly manipulate, zoom or query.
 Second, the escape from flatland has been continued, with a variety of new approaches to 
 understanding data in ever higher dimensions.
-```
+</div>
 
-```{block, type="chaptercontents"}
+<div class="chaptercontents">
 * The Laws of Motion 
-
 * The Horse in Motion 
 	+ A Trick of the Eye
-
-* 'Etienne-Jules Marey and a Science of Visualizing Time and Motion
-
-	+ La M'ethode Graphique
+* Étienne-Jules Marey and a Science of Visualizing Time and Motion
+	+ La Méthode Graphique
 	+ Chronophotography 
-
 	+ Falling cats
-
 * Computer Graphics Animation 
-
 * Animated Algorithms 
-
 	+ The MDS movie
 	+ Color similarity
 	+ The Monte Carlo Method
 	+ RANDU
-
 * Travels in High-D Space 
-
 	+ Diabetes classification
-
 * Hardware and Software
-
 	+ Software
-
 * Telling stories with Animated Graphics 
-
-```
+</div>
 
 
 ## Selected Figures

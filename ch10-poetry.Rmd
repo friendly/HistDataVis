@@ -46,7 +46,7 @@ source("R/chapter_figs.R")
 ```
 # Graphs as Poetry {#ch10-poetry}
 
-```{block, type="chapterprelude"}
+<div class="chapterprelude">
 #### Synopsis {-}
 Graphs are justly celebrated for their ability to accurately present phenomena
 in a compact way while simultaneously provide their context. If this were all
@@ -59,28 +59,20 @@ The Great Migration of six million African-Americans fleeing the racism and
 terror in the post-Confederacy South to the industrial North. The result of this
 *gedanken* collaboration provides a vivid example of how we can profit from
 studying the past to help solve the problems of the future.
-```
+</div>
 
-```{block, type="chaptercontents"}
-
+<div class="chaptercontents">
 * Two Plain Graphical Poems
-
 	+ Young Men and Fire
 	+ The Kovno Ghetto
-
 * The Graphic Poetry of Charles Joseph Minard
-
 * Using Graphs in a Narrative Argument
-
 * W. E. B. Du Bois
-
 * The Great Migration
-
 	+ A Gedanken Collaboration
-
 * Conclusion 
+</div>
 
-```
 
 
 ## Selected Figures

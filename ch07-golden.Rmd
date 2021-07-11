@@ -47,7 +47,7 @@ source("R/chapter_figs.R")
 # The Golden Age of Statistical Graphics {#ch07-golden}
 
 
-```{block, type="chapterprelude"}
+<div class="chapterprelude">
 #### Synopsis {-}
 In the latter half of the 19th Century, enthusiasm for graphical methods
 matured, and a variety of developments in statistics, data collection and
@@ -56,32 +56,23 @@ was a qualitatively distinct period that produced works of unparalleled beauty
 and scope, the likes of which would be hard to duplicate today. We argue that
 this period deserves to be recognized as the "Golden Age of Statistical
 Graphics."
-```
+</div>
 
-```{block, type="chaptercontents"}
+<div class="chaptercontents">
 * Ages in the History of Graphics
-
 * Some Golden Ages 
-
 * Prerequisites for the Golden Age 
-
 	+ Lithography and Color Printing	
 	+ Automatic Recording	
 	+ Calculation
-
-
 * The Graphic Vision of Charles Joseph Minard
-	
 * Francis Galton's Greatest Graphical Discovery
-	
 * Statistical Albums
-
 	+ The Album de Statistique Graphique
 	+ US Census Albums
-
 * The Modern Dark Ages 
 
-```
+</div>
 
 
 ## Selected Figures

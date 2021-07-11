@@ -46,6 +46,7 @@ figure_chunk = function(image_path, fig_title, fig_desc, fignum, width=700) {
   }
   
 #  header = glue("#### Figure {fignum}: {fig_title}")
+  figtype <- if(str_detect(fignum, "P")) "Plate" else "Figure"
   header = glue("<h3 class='figtitle'>Figure {fignum}: {fig_title}</h3>")
   
 # use glue features to make to output more readable  

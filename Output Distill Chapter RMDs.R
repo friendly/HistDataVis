@@ -23,7 +23,7 @@ for (f in chap_rmds) {
   
   rmd_mod[2] = glue(rmd_mod[2])
   
-  in_chunks = readLines("Chunk Template for Selected Figures.txt")
+  in_chunks = readLines("ChunkTemplate.txt")
   
   in_chunks[5] = glue(in_chunks[5])
   rmd_mod = c(rmd_mod, in_chunks)

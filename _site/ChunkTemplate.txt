@@ -1,0 +1,6 @@
+
+## Selected Figures
+
+```{r results="asis", echo=FALSE, message=FALSE, warning=FALSE}
+ do_chapter({chapnum})
+```

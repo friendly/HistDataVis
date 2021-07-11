@@ -47,6 +47,8 @@ img[src="images/banner.png"] {
   width: 100%;
 }
 
+
+
 /* divs for chapters */
 
 .chapterprelude {
@@ -61,5 +63,20 @@ img[src="images/banner.png"] {
   line-height: 6px;
 }
 
+.chaptercontents li+li {
+  margin-top: 10px;
+}
 
 
+/* Selected Figures in Chapter RMDs */
+/* the attributes here are only to show that we can control them here */
+
+.figtitle {
+  color: blue;
+}
+
+/*
+.chap-fig-desc {
+  line-height: 6px;
+}
+*/

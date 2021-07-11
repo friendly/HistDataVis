@@ -2106,6 +2106,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     width: 100%;
   }
   
+  
+  
   /* divs for chapters */
   
   .chapterprelude {
@@ -2120,8 +2122,23 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     line-height: 6px;
   }
   
+  .chaptercontents li+li {
+    margin-top: 10px;
+  }
   
   
+  /* Selected Figures in Chapter RMDs */
+  /* the attributes here are only to show that we can control them here */
+  
+  .figtitle {
+    color: blue;
+  }
+  
+  /*
+  .chap-fig-desc {
+    line-height: 6px;
+  }
+  */
   
   </style>
   <!--/radix_placeholder_site_in_header-->
@@ -2548,24 +2565,11 @@ Correlations between countries’ number of Nobel laureates per 10 million popul
 <table class="chap-fig">
 <tr>
 <td width="400">
-<img src='figs-web/P_08-playfair1805-inquiry-crop.jpg' alt="The long view of history: NA" width=400>
-</td>
-<td class="chap-fig-desc" width="400">
-<h3 class="figtitle">
-Figure P.8: The long view of history
-</h3>
-Playfair’s “Chart of Universal Commercial History.”
-</td>
-</tr>
-</table>
-<table class="chap-fig">
-<tr>
-<td width="400">
 <img src='figs-web/P_09-joyplot-politics.png' alt="Polarization of politics: Ridgeline plot showing the increasing polarization of U.S. House of Representatives and Senate in the Democratic (left, blue) and Republican (right, red) parties from 1963 to 2013." width=400>
 </td>
 <td class="chap-fig-desc" width="400">
 <h3 class="figtitle">
-Figure P.9: Polarization of politics
+Plate P.9: Polarization of politics
 </h3>
 Ridgeline plot showing the increasing polarization of U.S. House of Representatives and Senate in the Democratic (left, blue) and Republican (right, red) parties from 1963 to 2013. The DW-NOMINATE scores attempt to characterize the main dimensions that distinguish voting patterns of U.S. legislators. The first dimension, plotted here, is interpreted as a liberal-conservative or left-right dimension.
 </td>
@@ -2578,7 +2582,7 @@ Ridgeline plot showing the increasing polarization of U.S. House of Representati
 </td>
 <td class="chap-fig-desc" width="400">
 <h3 class="figtitle">
-Figure P.10: Playfair’s time-series chart
+Plate P.10: Playfair’s time-series chart
 </h3>
 William Playfair’s 1821 time-series graph of prices, wages, and ruling monarch over a 250-year period.
 </td>

@@ -2106,6 +2106,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     width: 100%;
   }
   
+  
+  
   /* divs for chapters */
   
   .chapterprelude {
@@ -2120,8 +2122,23 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     line-height: 6px;
   }
   
+  .chaptercontents li+li {
+    margin-top: 10px;
+  }
   
   
+  /* Selected Figures in Chapter RMDs */
+  /* the attributes here are only to show that we can control them here */
+  
+  .figtitle {
+    color: blue;
+  }
+  
+  /*
+  .chap-fig-desc {
+    line-height: 6px;
+  }
+  */
   
   </style>
   <!--/radix_placeholder_site_in_header-->
@@ -2507,7 +2524,7 @@ Three frames of an animated sequence, plotting life expectancy against income pe
 </td>
 <td class="chap-fig-desc" width="400">
 <h3 class="figtitle">
-Figure P.16: MDS solution
+Plate P.16: MDS solution
 </h3>
 Re-creation of the MDS solution for Ekman’s color similarities data. This figure represents the final configuration of the points shown in the right-most panel of the MDS movie, Figure 9.12. The dashed circle is at the average distance of the points from the origin.
 </td>

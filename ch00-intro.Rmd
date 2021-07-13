@@ -55,6 +55,9 @@ methods of data visualization, so common today, were conceived and developed.
 You can think of it as a guided tour of this history, focusing on social and
 scientific questions and a developing language of graphics that provided
 insights, for both discovery and communication. 
+
+This [introductory chapter](pdf/HistDataVis-Ch0.pdf), provided here as a PDF file, gives the origin story of this book and provides and overview of the main themes and content of the book.
+
 </div>
 
 <div class="chaptercontents">
@@ -66,16 +69,6 @@ insights, for both discovery and communication.
 	+ Chronology versus Theme
 </div>
 
-
-<!-- ```{block, type="chaptercontents"} -->
-<!-- #### Chapter topics -->
-
-<!-- * A Long History -->
-<!-- * Overview -->
-<!-- 	+ Re-Visions  -->
-<!-- 	+ Chronology versus Theme -->
-
-<!-- ``` -->
 
 
 ## Selected Figures

@@ -60,11 +60,12 @@ img[src="images/banner.png"] {
 }
 
 .chaptercontents li {
-  line-height: 6px;
+  line-height: 10px;
 }
 
-.chaptercontents li+li {
-  margin-top: 10px;
+.chaptercontents li li {
+  margin-top: 14px;
+  font-size:  10pt;
 }
 
 

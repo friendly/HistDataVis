@@ -48,6 +48,17 @@ source("R/chapter_figs.R")
 
 <div class="chapterprelude">
 #### Synopsis {-}
+
+Who invented the idea of graphing data? This question is meant to be provocative and contentious. It is provocative, because you
+might wonder or argue about what "graphing data" actually means. 
+
+* what counts as "data"?
+* what counts as a "graph"?
+
+It is contentious, because like many other scientific discoveries and inventions, claims of "firsts" are difficult to pin down: many important discoveries were preceded by others that might count under a looser definition; conversely, those who followed  often developed the same idea in wider or more general ways.
+
+This chapter begins our journey through the history of data visualization with the story and context of what can be claimed as the earliest example of modern graphic depictions of statistical data.
+
 A fundamental and difficult problem in the 17th century was determination of longitude at sea. A variety of methods were tried, but none were very accurate. To demonstrate the problem (and seek patronage from King Philip of Spain), Michael Florent van Langren had the idea to make a graph of historical determinations of the longitude distance from Toledo to Rome, in what is arguably the first graph of statistical data. This chapter shows why this was exactly the right thing to do.
 </div>
 
@@ -64,8 +75,6 @@ A fundamental and difficult problem in the 17th century was determination of lon
 	+ Van Langren's Legacy 
  
 ```
-
-## Selected Figures
 
 
 

@@ -20,6 +20,8 @@ navbar:
       href: related.html
     - text: "Chapters"
       menu:
+        - text: 'Introduction'
+          href: ch00-intro.html
         - text: '1. In the Beginning'
           href: ch01-beginning.html
         - text: '2. The First Graph Got it Right'

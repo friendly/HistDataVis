@@ -2119,11 +2119,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   }
   
   .chaptercontents li {
-    line-height: 6px;
+    line-height: 10px;
   }
   
-  .chaptercontents li+li {
-    margin-top: 10px;
+  .chaptercontents li li {
+    margin-top: 14px;
+    font-size:  10pt;
   }
   
   
@@ -2180,6 +2181,7 @@ Chapters
 <span class="down-arrow">&#x25BE;</span>
 </button>
 <div class="nav-dropdown-content">
+<a href="ch00-intro.html">Introduction</a>
 <a href="ch01-beginning.html">1. In the Beginning</a>
 <a href="ch02-langren.html">2. The First Graph Got it Right</a>
 <a href="ch03-data.html">3. The Birth of Data</a>
@@ -2249,6 +2251,7 @@ Chapters
 <div class="chapterprelude">
 <h4 id="synopsis" class="unnumbered">Synopsis</h4>
 <p>This book recounts a long history, a broad overview of how, where, and why the methods of data visualization, so common today, were conceived and developed. You can think of it as a guided tour of this history, focusing on social and scientific questions and a developing language of graphics that provided insights, for both discovery and communication.</p>
+<p>This <a href="pdf/HistDataVis-Ch0.pdf">introductory chapter</a>, provided here as a PDF file, gives the origin story of this book and provides and overview of the main themes and content of the book.</p>
 </div>
 <div class="chaptercontents">
 <h4 id="chapter-contents">Chapter contents</h4>
@@ -2261,23 +2264,16 @@ Chapters
 </ul></li>
 </ul>
 </div>
-<!-- ```{block, type="chaptercontents"} -->
-<!-- #### Chapter topics -->
-<!-- * A Long History -->
-<!-- * Overview -->
-<!--    + Re-Visions  -->
-<!--    + Chronology versus Theme -->
-<!-- ``` -->
 <h2 id="selected-figures">Selected Figures</h2>
 <div class="layout-chunk" data-layout="l-body">
 <table class="chap-fig">
 <tr>
 <td width="400">
-<img src='figs-web/00_1-mileyears4.png' alt="Time line of mile stone events: Classified by place of development." width=400>
+<img src='figs-web/00_1-mileyears4.png' alt="Time line of milestone events: Classified by place of development." width=400>
 </td>
 <td class="chap-fig-desc" width="400">
 <h3 class="figtitle">
-Figure 0.1: Time line of mile stone events
+Figure 0.1: Time line of milestone events
 </h3>
 Classified by place of development. Tick marks at the bottom show individual events. The smoothed curves plot their relative frequency, in Europe and North America.
 </td>

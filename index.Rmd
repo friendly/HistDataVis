@@ -23,17 +23,28 @@ As well, it serves as a place to collect related articles or topics that could n
 </table>
 
 
-
+<table>
+<tr>
+  <td>
+  <img src="images/HUP-icon.png" width=40 alt="HUP-icon">
+  </td>
+  <td>
 The book can be ordered from:
 [Harvard University Press](https://www.hup.harvard.edu/catalog.php?isbn=9780674975231),
 [Amazon.com](https://www.amazon.com/History-Data-Visualization-Graphic-Communication/dp/0674975235/) or affiliates, such as [Amazon.ca](https://www.amazon.ca/History-Data-Visualization-Graphic-Communication/dp/0674975235).
 
+[Publishing details](pdf/BookFlier.pdf) are contained in this HUP flyer.
+</td>
+</tr>
+</table>
+
+
+
 ## What it is about
 
-To function in modern society we must absorb and understand complex data at a
-breakneck pace. The most efficient way to comprehend and convey complex
-information is through data-based graphics. This book is an exploration and
-celebration of the origins and, to some extent, future of graphical methods of
+With complex information everywhere, graphics have become indispensable to our daily lives. Navigation apps show real-time, interactive traffic data. Charts communicate stock market trends, government spending, and the dangers of epidemics. 
+_A History of Data Visualization & Graphic Communication_ tells the story of how graphics left the exclusive confines of scientific research and became ubiquitous. As data visualization spread, it changed the way we think.
+This book is an exploration and celebration of the origins and, to some extent, future of graphical methods of
 data presentation.
 
 It aims to give a comprehensive history of data visualization with an emphasis
@@ -54,6 +65,9 @@ communicated in visual displays, rather than just words or tables of numbers.
 behind these innovations can be better understood by trying to reproduce them
 today.
 
+### Introductory chapter
 
+The [introductory chapter](pdf/HistDataVis-Ch0.pdf) gives the origin story of this book and provides and overview
+of the book.
 
 

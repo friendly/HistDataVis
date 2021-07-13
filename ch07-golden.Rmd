@@ -44,7 +44,7 @@ knitr::opts_chunk$set(R.options = list(width = 150))
 library(knitr)
 source("R/chapter_figs.R")
 ```
-# The Golden Age of Statistical Graphics {#ch07-golden}
+# The Golden Age of Statistical Graphics <img src="images/cartoons/cheysson.png" align="right" height="100px" /> 
 
 
 <div class="chapterprelude">

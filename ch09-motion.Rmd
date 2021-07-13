@@ -44,7 +44,7 @@ knitr::opts_chunk$set(R.options = list(width = 150))
 library(knitr)
 source("R/chapter_figs.R")
 ```
-# Visualizing Time and Space {#ch09-motion}
+# Visualizing Time and Space <img src="images/cartoons/muybridge.png" align="right" height="100px" /> 
 
 <div class="chapterprelude">
 #### Synopsis {-}

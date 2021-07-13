@@ -44,7 +44,7 @@ knitr::opts_chunk$set(R.options = list(width = 150))
 library(knitr)
 source("R/chapter_figs.R")
 ```
-# Graphs as Poetry {#ch10-poetry}
+# Graphs as Poetry <img src="images/cartoons/minard-march.png" align="right" height="100px" />
 
 <div class="chapterprelude">
 #### Synopsis {-}
@@ -53,7 +53,9 @@ in a compact way while simultaneously provide their context. If this were all
 that they did, their place in scientific history would be secure. But with
 suitable data and the right design, they can also convey emotion. Indeed, in
 some instances graphs provide an emotional impact that can be likened to that of
-poetry. In this chapter we imagine a collaboration between the civil rights
+poetry. 
+
+In this chapter we imagine a collaboration between the civil rights
 activist W.E.B. DuBois and the canonized graphic designer C. J. Minard to show
 The Great Migration of six million African-Americans fleeing the racism and
 terror in the post-Confederacy South to the industrial North. The result of this

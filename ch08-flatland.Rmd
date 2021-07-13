@@ -44,7 +44,7 @@ knitr::opts_chunk$set(R.options = list(width = 150))
 library(knitr)
 source("R/chapter_figs.R")
 ```
-# Escaping Flatland {#ch08-flatland}
+# Escaping Flatland <img src="images/cartoons/perozzo.png" align="right" height="100px" /> 
 
 <div class="chapterprelude">
 #### Synopsis {-}

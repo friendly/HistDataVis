@@ -1,5 +1,8 @@
 ---
 title: "About This Website"
+output: 
+  distill::distill_article:
+    toc: true
 ---
 
 
@@ -7,7 +10,7 @@ These web pages are meant as a supplement to our book,
 [A History of Data Visualization and Graphic Communication](https://www.hup.harvard.edu/catalog.php?isbn=9780674975231).
 The main goals are to:
 
-* reproduce here more color figures than could be accommodated in the print edition.
+* reproduce here more color figures than could be accommodated in the print edition. The selected figures are shown as thumbnails, but can be enlarged with a click.
 * provide links to [related papers](related.html) and topics that expand on the themes in our book.
 
 ## Who needs this book?
@@ -62,5 +65,10 @@ The colored bands reflect:
 This graphic form was recently re-invented
 and called a ``ridgeline'' plot because it resembles a set of
 mountain ridges. This figure appears as Plate 8 in the book
-and is discussed in Chapter 5, "Charts of History".
+and is discussed in [Chapter 5](ch05-playfair.html), "Charts of History".
 
+## Credits
+
+All figures displayed here are authorized for this limited use.
+
+In addition, we use a collection of cartoon images for our chapters created by RJ Andrews, [http://infowetrust.com](http://infowetrust.com). We are grateful for permission to use them here. 

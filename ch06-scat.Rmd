@@ -44,7 +44,7 @@ knitr::opts_chunk$set(R.options = list(width = 150))
 library(knitr)
 source("R/chapter_figs.R")
 ```
-# The Origin and Development of the Scatterplot {#ch06-scat}
+# The Origin and Development of the Scatterplot <img src="images/cartoons/galton3.png" align="right" height="100px" /> 
 
 <div class="chapterprelude">
 #### Synopsis {-}

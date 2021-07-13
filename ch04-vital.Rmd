@@ -44,7 +44,7 @@ knitr::opts_chunk$set(R.options = list(width = 150))
 library(knitr)
 source("R/chapter_figs.R")
 ```
-# Vital Statistics: William Farr, John Snow and Cholera {#ch04-vital}
+# Vital Statistics: William Farr, John Snow and Cholera <img src="images/cartoons/snow.png" align="right" height="100px" />
 
 <div class="chapterprelude">
 #### Synopsis {-}

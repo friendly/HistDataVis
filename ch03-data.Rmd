@@ -44,7 +44,7 @@ knitr::opts_chunk$set(R.options = list(width = 150))
 library(knitr)
 source("R/chapter_figs.R")
 ```
-# The Birth of Data {#ch03-data}
+# The Birth of Data <img src="images/cartoons/guerry-balbi.png" align="right" height="100px" />
 
 <div class="chapterprelude">
 #### Synopsis {-}

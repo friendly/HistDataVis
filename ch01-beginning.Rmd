@@ -44,7 +44,7 @@ knitr::opts_chunk$set(R.options = list(width = 150))
 library(knitr)
 source("R/chapter_figs.R")
 ```
-# In the Beginning... {#ch01-intro}
+# In the Beginning... <img src="images/cartoons/ogilby.png" align="right" height="100px" />
 
 > *If you would understand anything, observe its beginning and its development.* __Aristotle, *Metaphysics*__
 

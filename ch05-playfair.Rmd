@@ -44,7 +44,7 @@ knitr::opts_chunk$set(R.options = list(width = 150))
 library(knitr)
 source("R/chapter_figs.R")
 ```
-# The Big Bang: William Playfair, the Father of Modern Graphics {#ch05-playfair}
+# The Big Bang: William Playfair, the Father of Modern Graphics <img src="images/cartoons/playfair-lines.png" align="right" height="100px" /> 
 
 <div class="chapterprelude">
 

@@ -44,7 +44,7 @@ knitr::opts_chunk$set(R.options = list(width = 150))
 library(knitr)
 source("R/chapter_figs.R")
 ```
-# The First Graph Got It Right {#ch02-langren}
+# The First Graph Got It Right <img src="images/cartoons/langren.png" align="right" height="100px" />
 
 <div class="chapterprelude">
 #### Synopsis {-}

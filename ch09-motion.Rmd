@@ -79,7 +79,7 @@ understanding data in ever higher dimensions.
 	+ Diabetes classification
 * Hardware and Software
 	+ Software
-* Telling stories with Animated Graphics 
+* Telling Stories with Animated Graphics 
 </div>
 
 

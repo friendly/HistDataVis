@@ -38,6 +38,14 @@ The book can be ordered from:
 </tr>
 </table>
 
+## Contents
+
+The Chapters menu at the top right presents information and images for the chapters.
+Here is a visual overview.
+
+<img src="images/TOGS4-top.png" width="100%" alt="VTOC">
+
+
 
 
 ## What it is about

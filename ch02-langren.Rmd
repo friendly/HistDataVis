@@ -62,7 +62,7 @@ This chapter begins our journey through the history of data visualization with t
 A fundamental and difficult problem in the 17th century was determination of longitude at sea. A variety of methods were tried, but none were very accurate. To demonstrate the problem (and seek patronage from King Philip of Spain), Michael Florent van Langren had the idea to make a graph of historical determinations of the longitude distance from Toledo to Rome, in what is arguably the first graph of statistical data. This chapter shows why this was exactly the right thing to do.
 </div>
 
-```{block, type="chaptercontents"}
+<div class="chaptercontents">
 ### Chapter contents
 
 * Early Things Called "graphs" 
@@ -73,8 +73,7 @@ A fundamental and difficult problem in the 17th century was determination of lon
 	+ Eyes on the Prize 
 	+ The "Secret" of Longitude
 	+ Van Langren's Legacy 
- 
-```
+</div>
 
 
 

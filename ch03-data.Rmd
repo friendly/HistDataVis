@@ -49,7 +49,7 @@ source("R/chapter_figs.R")
 <div class="chapterprelude">
 #### Synopsis {-}
 This chapter traces the role of data in the initial rise of graphical methods around the early 1800s.
-We start with the very idea of numbers used for some wider purpose, and considered what what we now
+We start with the very idea of numbers used for some wider purpose, and considered what we now
 call "data".
 We focus attention on one important participant in this story: André-Michel Guerry [1802--1866], who used an "avalanche of data" and graphical methods to help invent modern social science.
 </div>

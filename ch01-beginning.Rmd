@@ -56,10 +56,7 @@ and then describe some of the pre-history of the visual representation of number
 visualization itself. The story continues to the rise of empirical thinking in philosophy and
 science around the 16th Century and the concomitant
 remarkable development of the visual representation of numbers to communicate quantitative phenomena.
-</div>
-
-
-<div class="chaptercontents">
+</div><div class="chaptercontents">
 #### Chapter contents
 
 * Introduction

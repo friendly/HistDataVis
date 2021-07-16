@@ -14,7 +14,7 @@ title: "History of Data Visualization"
   <td>
 This is the web site associated with our book,
 [A History of Data Visualization and Graphic Communication](https://www.hup.harvard.edu/catalog.php?isbn=9780674975231), Harvard University Press, 2021.
-It's main purpose is to provide high-res color images of figures from the book, because the print edition was limited
+Its main purpose is to provide high-res color images of figures from the book, because the print edition was limited
 to 20 color plates.
 
 As well, it serves as a place to collect related articles or topics that could not be included in the print edition.

@@ -1,7 +1,7 @@
 name: "datavishist"
 title: "History of Data Visualization"
-output_dir: "_site"
-exclude: ["figureinfo/", "Synopsis RMDs/", "*.txt"]
+output_dir: "docs"   #for GH pages: docs directory of main branch
+exclude: ["figureinfo/", "Synopsis RMDs/", "*.txt", "desktop.ini"]
 navbar:
   logo:
     image: images/favicon_io/favicon-32x32.png

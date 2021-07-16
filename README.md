@@ -1,4 +1,4 @@
-# HistDataVis
+# HistDataVis <img src="images/FriendlyWainer-thumb.jpg" width=150 alt="Book cover">
 
 HistDataVis is the rmarkdown web site to accompany our  book, 
 [A History of Visualization and Graphic Communication](https://www.hup.harvard.edu/catalog.php?isbn=9780674975231), 

@@ -63,7 +63,7 @@ The colored bands reflect:
 * America (yellow)
 
 This graphic form was recently re-invented
-and called a ``ridgeline'' plot because it resembles a set of
+and called a "ridgeline" plot because it resembles a set of
 mountain ridges. This figure appears as Plate 8 in the book
 and is discussed in [Chapter 5](ch05-playfair.html), "Charts of History".
 

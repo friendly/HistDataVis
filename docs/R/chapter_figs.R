@@ -21,7 +21,7 @@ figureinfo <- openxlsx::read.xlsx("figureinfo/TOGS-lof5.xlsx")
 
 image_folder <- "figs-web"
 
-figure_chunk = function(image_path, fig_title, fig_desc, fignum, width=700) {
+figure_chunk = function(image_path, fig_title, fig_desc, fig_source, fignum, width=400) {
   # construct the <img src=> allowing for two or more figure files
   img_src = ""
   comma_count = str_count(image_path, ",")+1
@@ -48,6 +48,13 @@ figure_chunk = function(image_path, fig_title, fig_desc, fignum, width=700) {
 #  header = glue("#### Figure {fignum}: {fig_title}")
   figtype <- if(str_detect(fignum, "P")) "Plate" else "Figure"
   header = glue("<h3 class='figtitle'>{figtype} {fignum}: {fig_title}</h3>")
+
+  # include figure_source, but as a <span> to allow smaller font size
+  fig_src <- glue(
+    '<span class="fig-src">',
+    '<em>Source:</em> ', {fig_source},
+    '</span>'
+  )
   
 # use glue features to make to output more readable  
   template = glue('
@@ -59,6 +66,7 @@ figure_chunk = function(image_path, fig_title, fig_desc, fignum, width=700) {
     <td class="chap-fig-desc" width = {width}>
       {header}
       {fig_desc}
+      {fig_src}
     </td>
   </tr>
 </table>
@@ -118,6 +126,7 @@ do_chapter <- function(ch, thumbwidth=400) {
     newchunk = figure_chunk(figlist[r, "filename"],
                             figlist[r, "title"], 
                             figlist[r, "subtitle"],
+                            figlist[r, "source"],
                             figlist[r, "fignum"], width=thumbwidth)
     
     cat(newchunk)

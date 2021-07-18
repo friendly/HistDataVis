@@ -76,8 +76,9 @@ img[src="images/banner.png"] {
   color: blue;
 }
 
-/*
+
 .chap-fig-desc {
-  line-height: 6px;
+  line-height: 16px;
+  color: blue;
 }
-*/
+

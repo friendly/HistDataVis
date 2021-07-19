@@ -46,7 +46,7 @@ source("R/chapter_figs.R")
 ```
 # The Birth of Data <img src="images/cartoons/guerry-balbi.png" align="right" height="100px" />
 
-<div class="chapterprelude">
+<div class="chapterintro"><div class="chapterprelude">
 #### Synopsis {-}
 This chapter traces the role of data in the initial rise of graphical methods around the early 1800s.
 We start with the very idea of numbers used for some wider purpose, and considered what we now
@@ -68,7 +68,7 @@ We focus attention on one important participant in this story: André-Michel Gue
 	+ Seeking Explanations, Causes and Relationships 
 	+ Analytical Statistics 
 * Re-Visions: Consulting for Guerry 
-</div>
+</div></div>
 
 
 

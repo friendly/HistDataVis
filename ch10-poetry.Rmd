@@ -46,7 +46,7 @@ source("R/chapter_figs.R")
 ```
 # Graphs as Poetry <img src="images/cartoons/minard-march.png" align="right" height="100px" />
 
-<div class="chapterprelude">
+<div class="chapterintro"><div class="chapterprelude">
 #### Synopsis {-}
 Graphs are justly celebrated for their ability to accurately present phenomena
 in a compact way while simultaneously provide their context. If this were all
@@ -74,7 +74,7 @@ studying the past to help solve the problems of the future.
 * The Great Migration
 	+ A Gedanken Collaboration
 * Conclusion 
-</div>
+</div></div>
 
 
 

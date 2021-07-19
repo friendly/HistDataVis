@@ -46,7 +46,7 @@ source("R/chapter_figs.R")
 ```
 # The First Graph Got It Right <img src="images/cartoons/langren.png" align="right" height="100px" />
 
-<div class="chapterprelude">
+<div class="chapterintro"><div class="chapterprelude">
 #### Synopsis {-}
 
 Who invented the idea of graphing data? This question is meant to be provocative and contentious. It is provocative, because you
@@ -73,7 +73,7 @@ A fundamental and difficult problem in the 17th century was determination of lon
 	+ Eyes on the Prize 
 	+ The "Secret" of Longitude
 	+ Van Langren's Legacy 
-</div>
+</div></div>
 
 
 

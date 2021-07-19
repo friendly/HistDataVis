@@ -46,7 +46,7 @@ source("R/chapter_figs.R")
 ```
 # The Origin and Development of the Scatterplot <img src="images/cartoons/galton3.png" align="right" height="100px" /> 
 
-<div class="chapterprelude">
+<div class="chapterintro"><div class="chapterprelude">
 #### Synopsis {-}
 Among all the moderns forms of statistical graphics,
 the scatterplot may be considered the most versatile,
@@ -76,7 +76,7 @@ modern statistical methods.
 	+ The Phillips Curve
 * Spurious Correlations and Causation
 * Scatterplot Thinking 
-</div>
+</div></div>
 
 
 

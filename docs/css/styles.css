@@ -51,8 +51,15 @@ img[src="images/banner.png"] {
 
 /* divs for chapters */
 
+.chapterintro {
+    background-color: #daeff0;
+    margin-bottom: 1px;
+  }
+
 .chapterprelude {
   background-color: #daeff0;
+  margin-top: 1px;
+  margin-bottom: 1px;
 }
 
 .chapterprelude li {
@@ -61,6 +68,7 @@ img[src="images/banner.png"] {
 
 .chaptercontents {
   background-color: #daeff0;
+  margin-bottom: 1px;
 }
 
 .chaptercontents li {

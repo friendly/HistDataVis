@@ -46,7 +46,7 @@ source("R/chapter_figs.R")
 ```
 # Vital Statistics: William Farr, John Snow and Cholera <img src="images/cartoons/snow.png" align="right" height="100px" />
 
-<div class="chapterprelude">
+<div class="chapterintro"><div class="chapterprelude">
 #### Synopsis {-}
 
 A short time later, analogous widespread data collection was begun in the United Kingdom, but this
@@ -72,7 +72,7 @@ be mitigated.
 * Graphical Successes and Failures
 	+ The Answer: A Bug
 	+ Florence Nightingale's Graphical Success
-</div>
+</div></div>
 
 
 

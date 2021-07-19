@@ -48,7 +48,7 @@ source("R/chapter_figs.R")
 
 > *If you would understand anything, observe its beginning and its development.* __Aristotle, *Metaphysics*__
 
-<div class="chapterprelude">
+<div class="chapterintro"><div class="chapterprelude">
 #### Synopsis {-}
 This chapter is an overview of the larger questions and themes that
 provide a context for the book. We consider the relations among numerical data, evidence for an argument and graphs,
@@ -65,7 +65,7 @@ remarkable development of the visual representation of numbers to communicate qu
 * Seeing the Unexpected
 * The Rise of the Graphic Method and Visual Thinking 
 * A Golden Age
-</div>
+</div></div>
 
 
 ## Selected Figures

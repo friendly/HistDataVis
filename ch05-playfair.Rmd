@@ -46,7 +46,7 @@ source("R/chapter_figs.R")
 ```
 # The Big Bang: William Playfair, the Father of Modern Graphics <img src="images/cartoons/playfair-lines.png" align="right" height="100px" /> 
 
-<div class="chapterprelude">
+<div class="chapterintro"><div class="chapterprelude">
 
 #### Synopsis {-}
 
@@ -69,7 +69,7 @@ At the beginning of the 19th Century, nearly all of the modern forms of data gra
 * Ridgeline Plots
 * Why Playfair?
 * Playfair's legacy
-</div>
+</div></div>
 
 
 ## Selected Figures

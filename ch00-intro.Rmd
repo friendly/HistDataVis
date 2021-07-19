@@ -47,7 +47,7 @@ source("R/chapter_figs.R")
 > *The only new thing in the world is the history you don't know.* --- **Harry S. Truman, quoted by David McCulloch**
 
 
-<div class="chapterprelude">
+<div class="chapterintro"><div class="chapterprelude">
 #### Synopsis {-}
 
 This book recounts a long history, a broad overview of how, where, and why the
@@ -68,7 +68,7 @@ This [introductory chapter](pdf/HistDataVis-Ch0.pdf), provided here as a PDF fil
 	+ Re-Visions 
 	+ Chronology versus Theme
 </div>
-
+</div>
 
 
 ## Selected Figures

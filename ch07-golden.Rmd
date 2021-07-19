@@ -47,7 +47,7 @@ source("R/chapter_figs.R")
 # The Golden Age of Statistical Graphics <img src="images/cartoons/cheysson.png" align="right" height="100px" /> 
 
 
-<div class="chapterprelude">
+<div class="chapterintro"><div class="chapterprelude">
 #### Synopsis {-}
 In the latter half of the 19th Century, enthusiasm for graphical methods
 matured, and a variety of developments in statistics, data collection and
@@ -73,7 +73,7 @@ Graphics."
 	+ US Census Albums
 * The Modern Dark Ages 
 
-</div>
+</div></div>
 
 
 ## Selected Figures

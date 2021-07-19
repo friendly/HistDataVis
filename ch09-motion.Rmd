@@ -46,7 +46,7 @@ source("R/chapter_figs.R")
 ```
 # Visualizing Time and Space <img src="images/cartoons/muybridge.png" align="right" height="100px" /> 
 
-<div class="chapterprelude">
+<div class="chapterintro"><div class="chapterprelude">
 #### Synopsis {-}
 The recent history of data visualization is much harder to characterize because
 innovations have been so varied, and have occurred at an accelerated pace and
@@ -80,7 +80,7 @@ understanding data in ever higher dimensions.
 * Hardware and Software
 	+ Software
 * Telling Stories with Animated Graphics 
-</div>
+</div></div>
 
 
 ## Selected Figures

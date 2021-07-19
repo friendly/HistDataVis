@@ -74,3 +74,5 @@ All figures displayed here are authorized for this limited use. In some cases, t
 those printed in the book, but these are credited and available for this use.
 
 In addition, we use a collection of cartoon images for our chapters created by RJ Andrews, [http://infowetrust.com](http://infowetrust.com). We are grateful for permission to use them here. 
+
+We'd like to thank Matthew Dubins of [Donor Science Consulting](https://www.donorscience.ca) for his help in making this web site possible.

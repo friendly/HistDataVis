@@ -78,7 +78,9 @@ figure_chunk = function(image_path, fig_title, fig_desc, fig_source, fignum, wid
 }
 
 
-# extract figureinfo for a given chapter. Add a formatted figure caption
+# Extract figureinfo for a given chapter. Add a formatted figure caption
+# This is not currently used, except for the side effect of extracting
+# figures for a given chapter.
 
 chapter_figs <- function(ch, fignums) {
 	if (missing(fignums))		
@@ -118,10 +120,6 @@ do_chapter <- function(ch, thumbwidth=400) {
 
   for (r in 1:nrow(figlist)) {
 
-  #TODO re-write figure_chunk to take the call below, using pre-formatted caption
-    # newchunk <- figure_chunk(figlist[r, "filename"],
-    #                          figlist[r, "caption"], 
-    #                          figlist[r, "fignum"], width=thumbwidth)
 
     newchunk = figure_chunk(figlist[r, "filename"],
                             figlist[r, "title"], 

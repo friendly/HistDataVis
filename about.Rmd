@@ -12,6 +12,7 @@ The main goals are to:
 
 * reproduce here more color figures than could be accommodated in the print edition. The selected figures are shown as thumbnails, but can be enlarged with a click.
 * provide links to [related papers](related.html) and topics that expand on the themes in our book.
+* serve as a forum for comments, errata and other topics that could not be fully covered in this first edition.
 
 ## Who needs this book?
 
@@ -58,9 +59,9 @@ novel graphic form: using compressed little distributions showing the "relative"
 of each civilization over time in a way thay they could be easily compared. 
 The colored bands reflect: 
 
-* ancient states (pink)
-* modern states (green)
-* America (yellow)
+* ancient states (<span style="color:darkpink">pink</span>)
+* modern states (<span style="color:darkgreen">green</span>)
+* America (<span style="color:darkyellow">yellow</span>)
 
 This graphic form was recently re-invented
 and called a "ridgeline" plot because it resembles a set of
@@ -69,6 +70,7 @@ and is discussed in [Chapter 5](ch05-playfair.html), "Charts of History".
 
 ## Credits
 
-All figures displayed here are authorized for this limited use.
+All figures displayed here are authorized for this limited use. In some cases, the figures shown here differ from
+those printed in the book, but these are credited and available for this use.
 
 In addition, we use a collection of cartoon images for our chapters created by RJ Andrews, [http://infowetrust.com](http://infowetrust.com). We are grateful for permission to use them here. 

@@ -55,6 +55,10 @@ img[src="images/banner.png"] {
   background-color: #daeff0;
 }
 
+.chapterprelude li {
+  line-height: 10px;
+}
+
 .chaptercontents {
   background-color: #daeff0;
 }

@@ -9,9 +9,9 @@ togs = as.data.table(
   openxlsx::read.xlsx("figureinfo/TOGS-lof5.xlsx")
 )
 
-distill_setup = readLines("Distill Page Setup.txt")
+distill_setup = readLines("Distill-Page-Setup.txt")
 
-chap_rmds = list.files(path = "Synopsis RMDs", pattern = "ch.+\\.Rmd")
+chap_rmds = list.files(path = "Synopsis-RMDs", pattern = "ch.+\\.Rmd")
 
 for (f in chap_rmds) {
   

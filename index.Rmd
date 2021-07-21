@@ -12,12 +12,17 @@ title: "History of Data Visualization"
   <img src="images/FriendlyWainer-thumb.jpg" width=180 alt="Book cover">
   </td>
   <td>
-This is the web site associated with our book,
-[A History of Data Visualization and Graphic Communication](https://www.hup.harvard.edu/catalog.php?isbn=9780674975231), Harvard University Press, 2021.
-Its main purpose is to provide high-res color images of figures from the book, because the print edition was limited
+This is the companion web site associated with our book,
+[A History of Data Visualization and Graphic Communication](https://www.hup.harvard.edu/catalog.php?isbn=9780674975231), Harvard University Press, 2021. Its' purpose is to provide additional resources for readers of the book, beyond what is contained
+in the print edition.
+
+* We provide high-res color images of figures from the book, because the print edition was limited
 to 20 color plates.
 
-As well, it serves as a place to collect related articles or topics that could not be included in the print edition.
+* We collect related articles or topics that could not be included in the print edition, links to associated talks, etc.
+
+* There may also be errata, topics for addition to a 2nd edition, and a place for commentaries by readers.
+
 </td>
 </tr>
 </table>
@@ -45,6 +50,10 @@ Here is a visual overview.
 
 <img src="images/TOGS4-top.png" width="100%" alt="VTOC">
 
+#### Introductory chapter
+
+The [introductory chapter](pdf/HistDataVis-Ch0.pdf) gives the origin story of this book and provides and overview
+of the book.
 
 
 
@@ -73,9 +82,5 @@ communicated in visual displays, rather than just words or tables of numbers.
 behind these innovations can be better understood by trying to reproduce them
 today.
 
-### Introductory chapter
-
-The [introductory chapter](pdf/HistDataVis-Ch0.pdf) gives the origin story of this book and provides and overview
-of the book.
 
 

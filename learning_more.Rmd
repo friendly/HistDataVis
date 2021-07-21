@@ -2,13 +2,12 @@
 title: "Learning more"
 output: 
   distill::distill_article
-bibliography:
-	"references.bib"
+bibliography: references.bib
 nocite:
 - '[@Bauer:2017]'
 - '[@Palsky:1996]'
 ...
-
+---
 
 
 This section contains some links and references to further reading and
@@ -23,7 +22,7 @@ Chapter 2 {#chapter-2 .unnumbered}
 * This chapter draws on material from @Friendly-etal:2010:langren. The
   supplementary web page for this paper,
   <https://datavis.ca/gallery/langren/>, gives the historical sources,
-  including earlier versions of Figure 2.1 contained in
+  including earlier versions of Figure 2.1 contained in
   various letters, translations of *La Verdadera* and the text of Van
   Langren’s cipher.
   
@@ -45,7 +44,7 @@ Chapter 2 {#chapter-2 .unnumbered}
 * In the period after van Langren, other early things that could be called
   graphs were often produced by devices that recorded some phenomenon like
   temperature or barometric pressure by a pen on moving paper or a drum.
-  Robert Plot’s chart of barometric pressure Figure \[fig:plot-weather\]
+  Robert Plot’s chart of barometric pressure Figure 1.4
   is one example. @HoffGeddes:1962 give a detailed history of this early
   history with many fine illustrations.
 
@@ -61,7 +60,7 @@ Chapter 3 {#chapter-3 .unnumbered}
   work and relates his data and questions to modern methods of statistics
   and graphics. A web supplement, <https://datavis.ca/gallery/guerry>,
   provides resource material, and Guerry’s data have been made available
-  in the R package Guerry, <https://CRAN.R-project.org/package=Guerry>.
+  in the R package `Guerry`, <https://CRAN.R-project.org/package=Guerry>.
   
 * Very little of Guerry’s personal life or family history was known until
   recently. A brief biography is available (in French) in
@@ -99,7 +98,7 @@ Chapter 4 {#chapter-4 .unnumbered}
     medical uses of cartography to understand the outbreak and
     transmission of disease.
 
--   Scott Klein, a data journalist at ProPublica, presents an
+-   Scott Klein, a data journalist at [ProPublica](https://www.propublica.org/), presents an
     interesting look at how journalists at the New York *Tribune*
     covered an outbreak of cholera in New York City in September, 1849,
     using a time-series line graph of cholera deaths on its front page.
@@ -123,7 +122,7 @@ Chapter 5 {#chapter-5 .unnumbered}
 ---------
 
 -   Unlike most other classics in the history of data visualization,
-    Playfair’s main works—the *Atlas* and the *Statistical Breviary*—
+    Playfair’s main works—--the *Atlas* and the *Statistical Breviary*—--
     are available in a modern reprinting, edited and introduced by
     Howard Wainer and Ian Spence and published in 2005 by Cambridge
     University Press. A modern reader may be interested reading
@@ -186,7 +185,7 @@ Chapter 7 {#chapter-7 .unnumbered}
     quantitative information in a geographical framework. The most
     complete discussion of the rise of graphical methods in this context
     in France in the remains Gilles Palsky’s 1996 book, *Des Chiffres et
-    de Cartes* $\dots$ . @FriendlyPalsky:2007 give a more extensive
+    de Cartes* ... . @FriendlyPalsky:2007 give a more extensive
     overview of the development of the use of maps and statistical
     diagrams to visualize nature and society.
 

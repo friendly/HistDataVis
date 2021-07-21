@@ -1,10 +1,12 @@
 # HistDataVis <img src="images/FriendlyWainer-thumb.jpg" width=60 style="float: right;" alt="Book cover">
 
-HistDataVis is the rmarkdown for the
+This HistDataVis repo is the rmarkdown source for the
 [HistDataVis web site](http://friendly.github.io/HistDataVis) to accompany our  book, 
 [A History of Visualization and Graphic Communication](https://www.hup.harvard.edu/catalog.php?isbn=9780674975231), 
 published in June 2021 by Harvard University Press.
-We try to provide an overview of the book, and include some color images and text that does not appear in the printed edition.
+We provide an overview of the book, include color images and text that do not appear in the printed edition,
+and other topics for readers and those interested in this topic.
+
 We'd like to thank Matthew Dubins of [Donor Science Consulting](https://www.donorscience.ca) for his help in making this web site possible.
 
 

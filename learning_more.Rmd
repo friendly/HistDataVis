@@ -1,7 +1,8 @@
 ---
 title: "Learning more"
 output: 
-  distill::distill_article
+  distill::distill_article:
+    toc: true
 bibliography: references.bib
 nocite:
 - '[@Bauer:2017]'
@@ -14,10 +15,15 @@ This section contains some links and references to further reading and
 topics that you might wish to explore. They didn’t fit directly in the
 narrative of a given chapter, but are useful nonetheless.
 
+## Chapter 1  {#chapter-1 .unnumbered}
+
+*  The history of cartography has many sources, but among these, the project of the same name at the University 
+   of Wisconsin (<https://geography.wisc.edu/histcart/>) is notable. There are now six volumes, some published
+   online and in print form by the University of Chicago press (<https://www.press.uchicago.edu/books/HOC/index.html>)
 
 
-Chapter 2 {#chapter-2 .unnumbered}
----------
+## Chapter 2 {#chapter-2 .unnumbered}
+
 
 * This chapter draws on material from @Friendly-etal:2010:langren. The
   supplementary web page for this paper,
@@ -44,12 +50,11 @@ Chapter 2 {#chapter-2 .unnumbered}
 * In the period after van Langren, other early things that could be called
   graphs were often produced by devices that recorded some phenomenon like
   temperature or barometric pressure by a pen on moving paper or a drum.
-  Robert Plot’s chart of barometric pressure Figure 1.4
+  Robert Plot’s chart of barometric pressure (Figure 1.4)
   is one example. @HoffGeddes:1962 give a detailed history of this early
   history with many fine illustrations.
 
-Chapter 3 {#chapter-3 .unnumbered}
----------
+## Chapter 3 {#chapter-3 .unnumbered}
 
 * The wider story of the roles of empirical observation and data in the
   intellectual development of science in the and is well told by Ian
@@ -65,7 +70,7 @@ Chapter 3 {#chapter-3 .unnumbered}
 * Very little of Guerry’s personal life or family history was known until
   recently. A brief biography is available (in French) in
   @Friendly:2007:guerryvie and an English version linked on the
-  `datavis.ca` web site mentioned above.
+  `datavis.ca` web site mentioned above. 
   
 * Along the way, Guerry tabulated so much data that he invented a
   mechanical calculator, an *ordonnateur statistique*, to help in this
@@ -84,8 +89,7 @@ Chapter 3 {#chapter-3 .unnumbered}
   scientific questioning. @Delaney:2012 provides a richly illustrated
   overview of some landmark developments in this area.
 
-Chapter 4 {#chapter-4 .unnumbered}
----------
+## Chapter 4 {#chapter-4 .unnumbered}
 
 -   Steven Johnson’s *The Ghost Map ...* [@Johnson:2006] is a compelling
     popular description of the background for the cholera outbreaks in
@@ -118,8 +122,7 @@ Chapter 4 {#chapter-4 .unnumbered}
     your world as you’ve never seen it before.” It is well worth a
     visit, if not a journey.
 
-Chapter 5 {#chapter-5 .unnumbered}
----------
+## Chapter 5 {#chapter-5 .unnumbered}
 
 -   Unlike most other classics in the history of data visualization,
     Playfair’s main works—--the *Atlas* and the *Statistical Breviary*—--
@@ -135,8 +138,7 @@ Chapter 5 {#chapter-5 .unnumbered}
     Playfair by Ian Spence can be found at
     <https://psych.utoronto.ca/users/spence/Research_WP.html>
 
-Chapter 6 {#chapter-6 .unnumbered}
----------
+## Chapter 6 {#chapter-6 .unnumbered}
 
 -   Parts of the chapter are based on material presented in
     @FriendlyDenis:05:scat.
@@ -153,11 +155,10 @@ Chapter 6 {#chapter-6 .unnumbered}
     $y$-axis, now usually considered a graphical sin, if not a high
     crime or misdemeanor.
 
-Chapter 7 {#chapter-7 .unnumbered}
----------
+## Chapter 7 {#chapter-7 .unnumbered}
 
 -   This chapter draws heavily on @Friendly:2008:golden, “The Golden Age
-    of Statistical Graphics”. This paper contains many more figures and
+    of Statistical Graphics”. That paper contains many more figures and
     greater depth on some of the topics discussed here.
 
 -   @Friendly:02:Minard provides a review of Minard’s graphical works. A
@@ -189,8 +190,7 @@ Chapter 7 {#chapter-7 .unnumbered}
     overview of the development of the use of maps and statistical
     diagrams to visualize nature and society.
 
-Chapter 8 {#chapter-8 .unnumbered}
----------
+## Chapter 8 {#chapter-8 .unnumbered}
 
 -   The most comprehensive source on the development of thematic
     cartography is Arthur Robinson’s *Early Thematic Mapping in the
@@ -209,8 +209,7 @@ Chapter 8 {#chapter-8 .unnumbered}
     <https://www.scratchapixel.com/lessons/3d-basic-rendering/rendering-3d-scene-overview>
     for a readable introduction to this topic.
 
-Chapter 9 {#chapter-9 .unnumbered}
----------
+## Chapter 9 {#chapter-9 .unnumbered}
 
 -   Maria Braun’s *Picturing Time* (1992) is the most comprehensive
     treatment of the work of E.-J. Marey. It contains over 300 images of
@@ -235,8 +234,14 @@ Chapter 9 {#chapter-9 .unnumbered}
     you’ve ever seen,” <https://www.youtube.com/watch?v=hVimVzgtD6w>.
     These are well worth watching.
 
-Chapter 10 {#chapter-10 .unnumbered}
-----------
+-   Our coverage of modern software for data visualization was necessarily limited
+    to early developments. Among the most influential recent developments is
+    _The Grammar of Graphics_ by Lee Wilkinson [-@Wilkinson:99], a general theory
+    of the syntax and semantics of data graphs and charts. Various implementations
+    of these ideas for different programming languages abound, but the most
+    widely-known is `ggplot2` for R by Hadley Wickham [-@Wickham:16]
+
+## Chapter 10 {#chapter-10 .unnumbered}
 
 -   Minard’s graphic of the 1812 campaign has inspired many to try to
     extend the graphic portrayal of this history. A collection of some
@@ -257,12 +262,13 @@ Chapter 10 {#chapter-10 .unnumbered}
     at
     <https://hyperallergic.com/306559/w-e-b-du-boiss-modernist-data-visualizations-of-black-life/>.
 
--   The drafting of Figures \[fig:RJ-migration1\] and
-    \[fig:RJ-migration2\] required more than standard graphics software.
+-   The drafting of Plates 17 and 19 required more than standard graphics software.
     To learn the full story behind the development of these figures, see
     <https://infowetrust.com/picturing-the-great-migration/>.
 
 -   A related article is Andrews, RJ & Wainer, H.
     [-@AndrewsWainer:2017]. The Great Migration: A Graphics Novel
     Featuring the Contributions of W. E. B. Du Bois and C. J. Minard,
-    *Significance*, 14(3), 14–19.
+    *Significance*, **14**(3), 14–19.
+
+## References

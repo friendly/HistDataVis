@@ -42,6 +42,8 @@ navbar:
           href: ch09-motion.html
         - text: '10. Graphs as Poetry'
           href: ch10-poetry.html
+    - text: "Learning more"
+      href: learning_more.html
 output: 
   distill::distill_article:
     css: "css/styles.css"

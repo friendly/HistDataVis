@@ -38,7 +38,7 @@ The book can be ordered from:
 [Harvard University Press](https://www.hup.harvard.edu/catalog.php?isbn=9780674975231),
 [Amazon.com](https://www.amazon.com/History-Data-Visualization-Graphic-Communication/dp/0674975235/) or affiliates, such as [Amazon.ca](https://www.amazon.ca/History-Data-Visualization-Graphic-Communication/dp/0674975235).
 
-[Publishing details](pdf/BookFlier.pdf) are contained in this HUP flyer.
+Publishing details are contained in this [HUP flyer](pdf/BookFlier.pdf).
 </td>
 </tr>
 </table>

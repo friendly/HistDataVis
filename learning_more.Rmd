@@ -1,0 +1,269 @@
+---
+title: "Learning more"
+output: 
+  distill::distill_article
+bibliography:
+	"references.bib"
+nocite:
+- '[@Bauer:2017]'
+- '[@Palsky:1996]'
+...
+
+
+
+This section contains some links and references to further reading and
+topics that you might wish to explore. They didn’t fit directly in the
+narrative of a given chapter, but are useful nonetheless.
+
+
+
+Chapter 2 {#chapter-2 .unnumbered}
+---------
+
+* This chapter draws on material from @Friendly-etal:2010:langren. The
+  supplementary web page for this paper,
+  <https://datavis.ca/gallery/langren/>, gives the historical sources,
+  including earlier versions of Figure 2.1 contained in
+  various letters, translations of *La Verdadera* and the text of Van
+  Langren’s cipher.
+  
+* Van Langren’s cipher (Figure 2.5) is still one of the most elusive unsolved problems
+  in cryptography. If you like the history of this topic, you might enjoy
+  the book by Craig Bauer, *Unsolved!: …* [@Bauer:2017].
+  
+* A popular history of the problem of longitude by Dava Sobel
+  [-@Sobel:1996], focuses on the work of the clockmaker John Harrison who,
+  only with considerable difficulty, was finally perceived to have solved
+  the problem to sufficient accuracy to be awarded a prize by the
+  Longitude Commission.
+  
+* The story of the mapping and naming of lunar features did not begin or
+  end with van Langren. Ewen Whitaker’s *Mapping and Naming the Moon …*
+  [-@Whitaker:2003:mapping] gives a comprehensive history and devotes a
+  chapter to van Langren, including other versions of the 1645 lunar map.
+  
+* In the period after van Langren, other early things that could be called
+  graphs were often produced by devices that recorded some phenomenon like
+  temperature or barometric pressure by a pen on moving paper or a drum.
+  Robert Plot’s chart of barometric pressure Figure \[fig:plot-weather\]
+  is one example. @HoffGeddes:1962 give a detailed history of this early
+  history with many fine illustrations.
+
+Chapter 3 {#chapter-3 .unnumbered}
+---------
+
+* The wider story of the roles of empirical observation and data in the
+  intellectual development of science in the and is well told by Ian
+  Hacking in *The Taming of Chance* [-@Hacking:1990].
+  
+* The story of Guerry’s *Moral Statistics of France* is told in greater
+  detail in @Friendly:2007:guerry. This article also describes his later
+  work and relates his data and questions to modern methods of statistics
+  and graphics. A web supplement, <https://datavis.ca/gallery/guerry>,
+  provides resource material, and Guerry’s data have been made available
+  in the R package Guerry, <https://CRAN.R-project.org/package=Guerry>.
+  
+* Very little of Guerry’s personal life or family history was known until
+  recently. A brief biography is available (in French) in
+  @Friendly:2007:guerryvie and an English version linked on the
+  `datavis.ca` web site mentioned above.
+  
+* Along the way, Guerry tabulated so much data that he invented a
+  mechanical calculator, an *ordonnateur statistique*, to help in this
+  work. The history of this device, perhaps the first special-purpose
+  statistical calculator is described in @Friendly:2012:ordonnateur.
+  
+* In England, Joseph Fletcher comes closest to Guerry in his pursuit of
+  the relations among moral variables and his use of thematic maps to
+  display such data. @CookWainer:2012 describe these contributions.
+  
+* The most comprehensive treatment of the early development of thematic
+  mapping is still @Robinson:1982. @Palsky:1996 gives a detailed history
+  of quantitative cartography in the 19th century (in French), and
+  @FriendlyPalsky:2007 provide a history of thematic maps and diagrams
+  designed to explore the connections between graphic images and
+  scientific questioning. @Delaney:2012 provides a richly illustrated
+  overview of some landmark developments in this area.
+
+Chapter 4 {#chapter-4 .unnumbered}
+---------
+
+-   Steven Johnson’s *The Ghost Map ...* [@Johnson:2006] is a compelling
+    popular description of the background for the cholera outbreaks in
+    London and the roles that Snow and others played in uncovering
+    evidence and tracing the initial outbreak to the “index case,”
+    Frances Lewis, a five-month-old child residing at 40 Broad Street,
+    adjacent to the pump.
+
+-   *Disease Maps ...* by Tom Koch [-@Koch:2011] traces a history of the
+    medical uses of cartography to understand the outbreak and
+    transmission of disease.
+
+-   Scott Klein, a data journalist at ProPublica, presents an
+    interesting look at how journalists at the New York *Tribune*
+    covered an outbreak of cholera in New York City in September, 1849,
+    using a time-series line graph of cholera deaths on its front page.
+    See:
+    <https://www.propublica.org/nerds/item/infographics-in-the-time-of-cholera>.
+
+-   A project initiated by Lynn McDonald, *The Collected Works of
+    Florence Nightingale*, comprises all her available surviving writing
+    (letters, articles, pamphlets, etc.) in 16 volumes. An online
+    catalog is available at <https://www.uoguelph.ca/~cwfn/index.htm>.
+
+-   Worldmapper, <https://www.worldmapper.org/>, is a project developed
+    by Danny Dorling and others, largely at the University of Sheffield
+    in the U.K. It now has nearly 700 maps in 30 general categories
+    covering food, goods, income, poverty, housing, education, disease,
+    violence, causes of death, and so forth. Their slogan is “mapping
+    your world as you’ve never seen it before.” It is well worth a
+    visit, if not a journey.
+
+Chapter 5 {#chapter-5 .unnumbered}
+---------
+
+-   Unlike most other classics in the history of data visualization,
+    Playfair’s main works—the *Atlas* and the *Statistical Breviary*—
+    are available in a modern reprinting, edited and introduced by
+    Howard Wainer and Ian Spence and published in 2005 by Cambridge
+    University Press. A modern reader may be interested reading
+    Playfair’s words to see how he faced the challenge of describing his
+    novel charts to his audience around 1800. Equally well, one might be
+    impressed with the quality of the reprinting and the presentation of
+    Playfair’s plates, a number of which are on fold-out pages.
+
+-   The collection of research papers and biographical studies of
+    Playfair by Ian Spence can be found at
+    <https://psych.utoronto.ca/users/spence/Research_WP.html>
+
+Chapter 6 {#chapter-6 .unnumbered}
+---------
+
+-   Parts of the chapter are based on material presented in
+    @FriendlyDenis:05:scat.
+
+-   The remarkable capabilities of the ellipse and higher dimensional
+    cousins (ellipsoids) are described in @Friendly-etal:ellipses:2013.
+    Slides from a related talk can be found at
+    <https://datavis.ca/papers/EllipticalInsights-2x2.pdf>.
+
+-   You can find more examples of spurious correlations on the web page
+    of Tyler Vigan, <https://www.tylervigen.com/spurious-correlations>,
+    and his accompanying book. Most of these result from plotting two
+    different time series, using different scales for each on the
+    $y$-axis, now usually considered a graphical sin, if not a high
+    crime or misdemeanor.
+
+Chapter 7 {#chapter-7 .unnumbered}
+---------
+
+-   This chapter draws heavily on @Friendly:2008:golden, “The Golden Age
+    of Statistical Graphics”. This paper contains many more figures and
+    greater depth on some of the topics discussed here.
+
+-   @Friendly:02:Minard provides a review of Minard’s graphical works. A
+    complete bibliography with many images can be found at
+    <https://datavis.ca/gallery/minbib.html>. Most recently,
+    @Rendgen:2018, *The Minard System*, provides beautiful reproductions
+    of all of Minard’s statistical graphics, some not well-known before.
+
+-   Raymond Andrews has taken this further, with a visual catalog of
+    Minard’s works, with thumbnails, a timeline and classification by
+    content topic. See this at:
+    <https://infowetrust.com/seeking-minard/>
+
+-   Some years ago, one of the authors issued a challenge for modern
+    software designers to take Minard’s data and either reproduce his
+    graph of the fate of Napoleon’s Grand Army, or take this graphic
+    story further. A number of these are collected at
+    <https://www.datavis.ca/gallery/re-minard.php>. There is a recent
+    addition, an interactive chart by Norbert Landsteiner,
+    <https://www.masswerk.at/minard/>, one of the nicest interactive
+    reproductions we have seen.
+
+-   Many of the developments in data-based graphics in this period
+    stemmed from thematic cartography, the use of maps to present
+    quantitative information in a geographical framework. The most
+    complete discussion of the rise of graphical methods in this context
+    in France in the remains Gilles Palsky’s 1996 book, *Des Chiffres et
+    de Cartes* $\dots$ . @FriendlyPalsky:2007 give a more extensive
+    overview of the development of the use of maps and statistical
+    diagrams to visualize nature and society.
+
+Chapter 8 {#chapter-8 .unnumbered}
+---------
+
+-   The most comprehensive source on the development of thematic
+    cartography is Arthur Robinson’s *Early Thematic Mapping in the
+    History of Cartography* [-@Robinson:1982].
+
+-   Some historical connections among scientific discovery, visual
+    explanation and thematic maps and statistical diagrams are described
+    in @FriendlyPalsky:2007.
+
+-   The modern text by @Slocum-etal:2005 covers thematic cartography and
+    geographic visualization.
+
+-   Three-dimensional surfaces have long been studied as mathematical
+    objects, described by equations, or $(x, y, z)$ data and capable of
+    being rendered realistically with lighting and shadows. See
+    <https://www.scratchapixel.com/lessons/3d-basic-rendering/rendering-3d-scene-overview>
+    for a readable introduction to this topic.
+
+Chapter 9 {#chapter-9 .unnumbered}
+---------
+
+-   Maria Braun’s *Picturing Time* (1992) is the most comprehensive
+    treatment of the work of E.-J. Marey. It contains over 300 images of
+    his mechanical devices, chronophotographs and cinematic work.
+
+-   The Graphics Video Library of the Statistical Graphics Section of
+    the American Statistical Association,
+    <https://stat-graphics.org/movies/> captures much of the history of
+    dynamic graphics for data analysis over the past 50 years. it
+    includes Kruskal’s MDS video, Tukey’s PRIM-9 video, and many more
+    that illustrate and explain some of the important early developments
+    in modern data visualization methods.
+
+-   @FriedmanSteutzel:2002 give an historical appreciation of John W.
+    Tukey’s work in the development of PRIM-9 and interactive graphics.
+    @CookSwayne:2007 provide some modern examples of interactive and
+    dynamic graphics, using R and GGobi software.
+
+-   The collection of Hans Rosling’s video presentations may be found at
+    <https://www.gapminder.org/videos-2/>. One of the first, introducing
+    the moving bubble chart, was a TED talk titled “The best stats
+    you’ve ever seen,” <https://www.youtube.com/watch?v=hVimVzgtD6w>.
+    These are well worth watching.
+
+Chapter 10 {#chapter-10 .unnumbered}
+----------
+
+-   Minard’s graphic of the 1812 campaign has inspired many to try to
+    extend the graphic portrayal of this history. A collection of some
+    of these and further background can be seen at
+    <https://www.datavis.ca/gallery/re-minard.php>.
+
+-   Recently, an impressive interactive map and historical narrative of
+    the Russian campaign with many illustrations was developed by the
+    Russian News Agency TASS, <https://1812.tass.ru/> and was
+    shortlisted for the Kantar Information is Beautiful Awards.
+
+-   The entire collection of the graphic works of C. J. Minard is now
+    available in a lovely volume curated by Sandra Rendgen
+    [-@Rendgen:2018].
+
+-   A discussion of W. E. B. Du Bois’ charts at the 1900 Paris
+    Exposition Universelle and a wider selection of these can be found
+    at
+    <https://hyperallergic.com/306559/w-e-b-du-boiss-modernist-data-visualizations-of-black-life/>.
+
+-   The drafting of Figures \[fig:RJ-migration1\] and
+    \[fig:RJ-migration2\] required more than standard graphics software.
+    To learn the full story behind the development of these figures, see
+    <https://infowetrust.com/picturing-the-great-migration/>.
+
+-   A related article is Andrews, RJ & Wainer, H.
+    [-@AndrewsWainer:2017]. The Great Migration: A Graphics Novel
+    Featuring the Contributions of W. E. B. Du Bois and C. J. Minard,
+    *Significance*, 14(3), 14–19.

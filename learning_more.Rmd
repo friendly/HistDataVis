@@ -235,7 +235,7 @@ narrative of a given chapter, but are useful nonetheless.
     These are well worth watching.
 
 -   Our coverage of modern software for data visualization was necessarily limited
-    to early developments. Among the most influential recent developments is
+    to early developments. Perhaps the most influential recent development is
     _The Grammar of Graphics_ by Lee Wilkinson [-@Wilkinson:99], a general theory
     of the syntax and semantics of data graphs and charts. Various implementations
     of these ideas for different programming languages abound, but the most

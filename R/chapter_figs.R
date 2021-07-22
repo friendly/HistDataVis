@@ -13,13 +13,17 @@ library(rmarkdown)
 
 
 # file of information about all figures
-# NB: now using TOGS-lof5.xlsx, where plates have been made to appear in their chaperts.
-figureinfo <- openxlsx::read.xlsx("figureinfo/TOGS-lof5.xlsx")
+# NB: now using TOGS-lof5.xlsx, where plates have been made to appear in their chapters.
+#     now using TOGS-lof6.xlsx, where some figures have been marked 'DO NOT POST', via `repro=0`
+
+figureinfo <- openxlsx::read.xlsx("figureinfo/TOGS-lof6.xlsx")
 
 # > names(figureinfo)
-# [1] "chapter"  "fig"      "fignum"   "filename" "title"    "subtitle" "source" 
+# [1] "chapter"  "fig"      "fignum"   "repro"    "filename" "title"    "subtitle" "source"  
 
-image_folder <- "figs-web"
+# constant folder and filenames
+image_folder <- "figs-web"                # where the fig live
+nono_image   <- "copyright.png"    # image to be used when `repro=0`
 
 figure_chunk = function(image_path, fig_title, fig_desc, fig_source, fignum, width=400) {
   # construct the <img src=> allowing for two or more figure files
@@ -115,13 +119,15 @@ chapter_figs <- function(ch, fignums) {
 # do_chapter(xx)
 # ````
 
+# NB: now use `nono_image` if repro==0
+
 do_chapter <- function(ch, thumbwidth=400) {
   figlist <- chapter_figs(ch)
 
   for (r in 1:nrow(figlist)) {
 
-
-    newchunk = figure_chunk(figlist[r, "filename"],
+    filename <- if(figlist[r, "repro"]==0) nono_image else figlist[r, "filename"]
+    newchunk = figure_chunk(filename,
                             figlist[r, "title"], 
                             figlist[r, "subtitle"],
                             figlist[r, "source"],

@@ -9,9 +9,11 @@ output: distill::distill_article
   <tr><td>
   <img src="images/MichaelFriendly.jpg" width="110" alt="MF photo"></td>
   <td>
-  Michael Friendly is a Professor of Psychology, founding chair of the <a href="http://qm.info.yorku.ca/">Graduate Program in Quantitative Methods</a>, and an associate coordinator with the <a href="http://www.yorku.ca/isr/scs/">Statistical Consulting Service</a> at York University. He earned a PhD in psychology from Princeton University, specializing in psychometrics and cognitive psychology.
+  Michael Friendly is a Professor of Psychology, founding chair of the <a href="http://qm.info.yorku.ca/">Graduate Program in Quantitative Methods</a>, and Coordinator of the <a href="http://www.yorku.ca/isr/scs/">Statistical Consulting Service</a> at York University. He is a	fellow of the American Statistical Association, associate editor of the *Journal of Computational and Graphical Statistics* and *Statistical Science*. 
   
-  His main research areas are the development of graphical methods for categorical and multivariate data and the history of data visualization. He is the author of five other books, most recently, *Discrete Data Analysis with R: Visualization and Modeling Techniques for Categorical and Count Data* (2015).  He is a	fellow of the American Statistical Association, associate editor of the *Journal of Computational and Graphical Statistics* and *Statistical Science*. 
+  His main research areas are the development of graphical methods for categorical and multivariate data and also the history of data visualization. In the latter, he directs the <a href="https://datavis.ca/milestones/">Milestones Project</a>, 
+a comprehensive catalog and database of the principal developments in the histories of thematic cartography, statistical graphics and data visualization. 
+  He is the author of five other books, most recently, [*Discrete Data Analysis with R: Visualization and Modeling Techniques for Categorical and Count Data*](https://www.ddar.datavis.ca) (2015).  
   </td>
   </tr>
 </table>
@@ -27,7 +29,7 @@ output: distill::distill_article
   Association. He is an author of over 20 books on statistical and graphic topics,
   including *Visual Revelations: Graphical Tales of Fate and Deception From  Napoleon Bonaparte To Ross Perot* (2000), 
   *Picturing the Uncertain World: How to Understand, Communicate and Control Uncertainty through Graphical Display*
-  (2009), and *Truth or Truthiness: Distinguishing Fact from Fiction by Learning to Think like a Data Scientist* (2016).
+  (2009), and [*Truth or Truthiness: Distinguishing Fact from Fiction by Learning to Think like a Data Scientist*](https://www.cambridge.org/core/books/truth-or-truthiness/469B4B6B9A7196A6FF6EB206DA3363B9) (2016).
   </td>
   </tr>
 </table>

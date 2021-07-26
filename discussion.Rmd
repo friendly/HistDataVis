@@ -1,0 +1,41 @@
+---
+title: "Discussion"
+description: |
+  Discussion of History of Data Visualization topics.
+author:
+  - name: Michael Friendly 
+date: "`r Sys.Date()`"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+With the release of this web site for the book, we began to solicit comments and discussion on the
+contents, both of the book and what we present as a book companion on this web site.
+
+Here are a few topics (in no particular order) with some discussion,
+
+## Optics and data visualization
+
+** Howard Wainer**: It is worth thinking some more about the comparison made in the [New Yorker article](https://www.newyorker.com/magazine/2021/06/21/when-graphs-are-a-matter-of-life-and-death) about the relative value of data visualization vs. the telescope and the microscope.
+All three instruments made subsequent scientific advancement possible and it seems sensible to take the comparison seriously and see if data viz is in the same class as these iconic optical tools.
+Your thoughts?
+
+**Lee Wilkinson**: Note that today, the statistical analysis/model is intertwined with the visualization. Playfair imagined many of the charts we use today, for example, but he had no conception of the richness of the analytic environment provided through methods like the one here (in this case, graph layout algorithms). The following example, from [^1], concerns members of the US Congress. The entries in the cells of the data matrix are the number of times a given pair of members voted the same way. The authors did this analysis 60 times (60 such matrices), once for each year from 1949 to 2011. The result is a graphic that almost uniquely illustrates the dramatic history of partisanship in US politics.
+[^1]:  Andris, C., Lee, D., Hamilton, M.J., Martino, M., Gunning, C.E., Selden, J.A. (2015). The Rise of Partisanship and Super-Cooperators in the U.S. House of Representatives. PLOS ONE https://doi.org/10.1371/ journal.pone.0123507.
+
+![](images/dem-republican-network.png){width=60%}
+
+So the equivalent of the telescope and microscope is not rendering capabilities, but the statistical algorithms now provided in tools like R and SYSTAT and Datadesk. 
+For those today who think statistics and visualization are separate topics, I can only imagine one of those ironic Tukey smiles questioning their certainty.
+
+**Michael Friendly**: Your network figure, showing increased polarization in the US is similar in intent to Plate 9 in the book.
+Goal: show changes in polarization as reflected in votes in the U.S. House of Representatives over time. 
+
+![](figs-web/P_09-joyplot-politics.png){width=60%}
+
+**Paul Velleman**: I agree with Lee. But I’d go perhaps a step further. The interplay between visualization and model is itself dynamic since we can now make and modify visualizations so quickly and with so little effort. Rotate a plot, select a subset that has been revealed, and make a new display for just that subset. Color points that group together in one display and be surprised at where they pop up in an entirely different view of the data using different variables. Notice in a display that a subgroup should be isolated, mask it out and find a  regression for the rest of the data and then look at a plot of the residuals as you gradually slide the isolated points back in to the data. (Of course, I think of things you can do in Data Desk. I’m sure there are other examples.)
+
+

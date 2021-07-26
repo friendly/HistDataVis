@@ -1,6 +1,8 @@
 ---
 title: "Reviews"
-output: distill::distill_article
+output: 
+  distill::distill_article:
+    toc: true
 ---
 
 
@@ -26,6 +28,11 @@ output: distill::distill_article
 
 "The invention of graphs and charts was a much quieter affair than that of the telescope, but these tools have done just as much to change how and what we see."
 -- **Hannah Fry, _The New Yorker_**
+
+## More detailed reviews
+
+* [Hannah Fry, _New Yorker_, "When Graphs are a Matter of Life and Death"](https://www.newyorker.com/magazine/2021/06/21/when-graphs-are-a-matter-of-life-and-death), Online: June 14, 2021;
+print: June 21, 2021.
 
 
 

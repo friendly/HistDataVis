@@ -1,9 +1,5 @@
 ---
 title: "Discussion"
-description: |
-  Discussion of History of Data Visualization topics.
-author:
-  - name: Michael Friendly 
 date: "`r Sys.Date()`"
 output: distill::distill_article
 ---
@@ -13,17 +9,19 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 With the release of this web site for the book, we began to solicit comments and discussion on the
-contents, both of the book and what we present as a book companion on this web site.
+contents, both of the book, and what we present as a book companion on this web site.
 
-Here are a few topics (in no particular order) with some discussion,
+Here are a few topics (in no particular order) with some discussion.
 
 ## Optics and data visualization
 
-** Howard Wainer**: It is worth thinking some more about the comparison made in the [New Yorker article](https://www.newyorker.com/magazine/2021/06/21/when-graphs-are-a-matter-of-life-and-death) about the relative value of data visualization vs. the telescope and the microscope.
+**Howard Wainer**: It is worth thinking some more about the comparison made in the [New Yorker article](https://www.newyorker.com/magazine/2021/06/21/when-graphs-are-a-matter-of-life-and-death) about the relative value of data visualization vs. the telescope and the microscope.
+
 All three instruments made subsequent scientific advancement possible and it seems sensible to take the comparison seriously and see if data viz is in the same class as these iconic optical tools.
 Your thoughts?
 
 **Lee Wilkinson**: Note that today, the statistical analysis/model is intertwined with the visualization. Playfair imagined many of the charts we use today, for example, but he had no conception of the richness of the analytic environment provided through methods like the one here (in this case, graph layout algorithms). The following example, from [^1], concerns members of the US Congress. The entries in the cells of the data matrix are the number of times a given pair of members voted the same way. The authors did this analysis 60 times (60 such matrices), once for each year from 1949 to 2011. The result is a graphic that almost uniquely illustrates the dramatic history of partisanship in US politics.
+
 [^1]:  Andris, C., Lee, D., Hamilton, M.J., Martino, M., Gunning, C.E., Selden, J.A. (2015). The Rise of Partisanship and Super-Cooperators in the U.S. House of Representatives. PLOS ONE https://doi.org/10.1371/ journal.pone.0123507.
 
 ![](images/dem-republican-network.png){width=60%}
@@ -33,6 +31,7 @@ For those today who think statistics and visualization are separate topics, I ca
 
 **Michael Friendly**: Your network figure, showing increased polarization in the US is similar in intent to Plate 9 in the book.
 Goal: show changes in polarization as reflected in votes in the U.S. House of Representatives over time. 
+It is interesting to compare these two totally different analyses and graphic methods, and see the same message presented.
 
 ![](figs-web/P_09-joyplot-politics.png){width=60%}
 

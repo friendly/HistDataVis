@@ -68,6 +68,11 @@ and called a "ridgeline" plot because it resembles a set of
 mountain ridges. This figure appears as Plate 8 in the book
 and is discussed in [Chapter 5](ch05-playfair.html), "Charts of History".
 
+## Errata
+
+None so far, but if you find errors in the book, file [an issue on GitHub](https://github.com/friendly/HistDataVis/issues).
+
+
 ## Credits
 
 All figures displayed here are authorized for this limited use. In some cases, the figures shown here differ from

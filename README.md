@@ -7,7 +7,7 @@ published in June 2021 by Harvard University Press.
 We provide an overview of the book, include color images and text that do not appear in the printed edition,
 and other topics for readers and those interested in this topic.
 
-We'd like to thank Matthew Dubins of [Donor Science Consulting](https://www.donorscience.ca) for his help in making this web site possible.
+We thank Matthew Dubins of [Donor Science Consulting](https://www.donorscience.ca) for his help in making this web site possible.
 
 
 # Book description
@@ -25,3 +25,14 @@ Two major themes connect the topics and chronology of this account.
 * First, we take the view that the principal innovations over the last 400 years arose in conjunction with a cognitive revolution we call "visual thinking," the idea that some problems and their solutions could be so much more clearly addressed and communicated in visual displays, rather than just words or tables of numbers.
 
 * Second, we try to show how the intellectual, scientific and graphical questions behind these innovations can be better understood by trying to reproduce them today.
+
+## Website features
+
+* Pages for each chapter include most color figures and their captions. The items in the [Learning More section](http://friendly.github.io/HistDataVis/learning_more.html)
+include links and references.
+
+* A [Discussion page](http://friendly.github.io/HistDataVis/discussion.html) will be used to post discussion of topics related to the book.
+
+* Please report any errors in the book on the [issues page](https://github.com/friendly/HistDataVis/issues).
+
+

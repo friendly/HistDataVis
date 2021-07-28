@@ -155,6 +155,11 @@ narrative of a given chapter, but are useful nonetheless.
     $y$-axis, now usually considered a graphical sin, if not a high
     crime or misdemeanor.
 
+-   Galton's classic data on the heights of parents and their offspring, shown in Figures 6.14 - 6.16
+    were not quite as linear as most people believe. @Wachsmuth-etal:03 re-analyze this data and
+    find a slightly non-linear relation, explained by Galton's method of pooling mothers' and
+    fathers' heights.
+
 ## Chapter 7 {#chapter-7 .unnumbered}
 
 -   This chapter draws heavily on @Friendly:2008:golden, “The Golden Age

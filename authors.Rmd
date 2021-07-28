@@ -7,7 +7,7 @@ output: distill::distill_article
 
 <table>
   <tr><td>
-  <img src="images/MichaelFriendly.jpg" width="110" alt="MF photo"></td>
+  <img src="images/MF-gray.jpg" width="110" alt="MF photo"></td>
   <td>
   Michael Friendly is a Professor of Psychology, founding chair of the <a href="http://qm.info.yorku.ca/">Graduate Program in Quantitative Methods</a>, and Coordinator of the <a href="http://www.yorku.ca/isr/scs/">Statistical Consulting Service</a> at York University. He is a	fellow of the American Statistical Association, associate editor of the *Journal of Computational and Graphical Statistics* and *Statistical Science*. 
   

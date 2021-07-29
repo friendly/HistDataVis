@@ -190,7 +190,7 @@ narrative of a given chapter, but are useful nonetheless.
     stemmed from thematic cartography, the use of maps to present
     quantitative information in a geographical framework. The most
     complete discussion of the rise of graphical methods in this context
-    in France in the remains Gilles Palsky’s 1996 book, *Des Chiffres et
+    in France in the remains Gilles Palsky’s [-@Palsky:1996] book, *Des Chiffres et
     de Cartes* ... . @FriendlyPalsky:2007 give a more extensive
     overview of the development of the use of maps and statistical
     diagrams to visualize nature and society.
@@ -216,7 +216,7 @@ narrative of a given chapter, but are useful nonetheless.
 
 ## Chapter 9 {#chapter-9 .unnumbered}
 
--   Maria Braun’s *Picturing Time* (1992) is the most comprehensive
+-   Maria Braun’s *Picturing Time* [-@Braun:1992] is the most comprehensive
     treatment of the work of E.-J. Marey. It contains over 300 images of
     his mechanical devices, chronophotographs and cinematic work.
 
@@ -260,7 +260,7 @@ narrative of a given chapter, but are useful nonetheless.
 
 -   The entire collection of the graphic works of C. J. Minard is now
     available in a lovely volume curated by Sandra Rendgen
-    [-@Rendgen:2018].
+    [-@Rendgen:2018], _The Minard System_.
 
 -   A discussion of W. E. B. Du Bois’ charts at the 1900 Paris
     Exposition Universelle and a wider selection of these can be found

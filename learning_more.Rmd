@@ -194,6 +194,11 @@ narrative of a given chapter, but are useful nonetheless.
     de Cartes* ... . @FriendlyPalsky:2007 give a more extensive
     overview of the development of the use of maps and statistical
     diagrams to visualize nature and society.
+    
+-   Due to limitations of space, we treat the period from ~ 1900 -- 1950 only in a few pages
+    at the end of this chapter. In part this reflects the fact that there were few
+    innovations in graphic methods and techniques during this period. 
+
 
 ## Chapter 8 {#chapter-8 .unnumbered}
 

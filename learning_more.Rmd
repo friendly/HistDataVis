@@ -10,7 +10,6 @@ nocite:
 ...
 ---
 
-
 This section contains some links and references to further reading and
 topics that you might wish to explore. They didn’t fit directly in the
 narrative of a given chapter, but are useful nonetheless.
@@ -282,3 +281,5 @@ narrative of a given chapter, but are useful nonetheless.
     *Significance*, **14**(3), 14–19.
 
 ## References
+
+<div id="refs" style="color:black;"></div>

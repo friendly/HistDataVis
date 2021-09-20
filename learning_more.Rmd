@@ -196,7 +196,13 @@ narrative of a given chapter, but are useful nonetheless.
     
 -   Due to limitations of space, we treat the period from ~ 1900 -- 1950 only in a few pages
     at the end of this chapter. In part this reflects the fact that there were few
-    innovations in graphic methods and techniques during this period. 
+    innovations in graphic methods and techniques during this period [@Friendly:2006:hbook].
+
+-   One topic that is novel is the Isotype system of pictorial graphics introduced in Vienna by
+    Otto and Marie Neurath between 1925 -- 1935. 
+    Isotype, the **I**nternational **S**ystem **o**f **T**ypographic **P**icture **E**ducation, was designed to
+    represent social and economic facts pictorially, thus making numbers
+    visually appealing and memorable. 
 
 
 ## Chapter 8 {#chapter-8 .unnumbered}

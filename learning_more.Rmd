@@ -14,6 +14,8 @@ This section contains some links and references to further reading and
 topics that you might wish to explore. They didn’t fit directly in the
 narrative of a given chapter, but are useful nonetheless.
 
+This web version contains additional items and references not printed in the book.
+
 ## Chapter 1  {#chapter-1 .unnumbered}
 
 *  The history of cartography has many sources, but among these, the project of the same name at the University 

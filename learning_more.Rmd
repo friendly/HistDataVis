@@ -198,11 +198,13 @@ narrative of a given chapter, but are useful nonetheless.
     at the end of this chapter. In part this reflects the fact that there were few
     innovations in graphic methods and techniques during this period [@Friendly:2006:hbook].
 
--   One topic that is novel is the Isotype system of pictorial graphics introduced in Vienna by
+-   One topic that _is_ novel is the Isotype system of pictorial graphics introduced in Vienna by
     Otto and Marie Neurath between 1925 -- 1935. 
     Isotype, the **I**nternational **S**ystem **o**f **T**ypographic **P**icture **E**ducation, was designed to
     represent social and economic facts pictorially, thus making numbers
-    visually appealing and memorable. 
+    visually appealing and memorable. Jason Forrest tells me that @Burke-etal:2013 
+    [Isotype: design and contexts 1925-1971](https://hyphenpress.co.uk/products/books/978-0-907259-47-3)
+    is the definitive book on the topic.
 
 
 ## Chapter 8 {#chapter-8 .unnumbered}

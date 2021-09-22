@@ -52,6 +52,7 @@ A reader of the book wrote:
 
 **Reply**: You are correct that there is no mention of the work of the Neuraths, but it was not for not trying or not being aware of their work.  Our contract with HUP called for 50,000 words; our first draft included much more material (including ISOtype stuff), but clocked in at >90,000 words. We had to fight to get them to agree to ~ 75,000 or so.  Many topics fell off the editors desk, much to our displeasure.  In fact, the entire period, 1900-1950 gets only 2 pages.
 
-Some content on this topic and pointers to relevant literature will be provided under 
-![_Learning More_ for Chapter 7](learning_more.html#chapter-7).
+Some content on this topic and pointers to relevant literature will be provided under
+_Learning More_ for Chapter 7.
+<!-- ![_Learning More_ for Chapter 7](learning_more.html#chapter-7). -->
 

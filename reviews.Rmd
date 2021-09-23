@@ -8,7 +8,7 @@ output:
 
 ## Capsule reviews of our book
 
-"A masterly study of graphic innovations, their context, and their scientific use. This brilliant book, without equivalent, is an indispensable read." 
+"A synthetic and comprehensive work that finely retraces the steps that allowed the construction of a "visual thought". Friendly and Wainer invite us to follow them in a masterly study of the graphic innovations, their context and their scientific use. This brilliant book, without equivalent so far, will be an indispensable read for all those interested in information visualization."
 -- **Gilles Palsky, coauthor of _An Atlas of Geographical Wonders_**
 
 "Friendly and Wainer are the Watson and Crick of statistical graphics, showing us the history of the DNA structure that is the code of life for innovative visualizations." 
@@ -29,6 +29,8 @@ output:
 "The invention of graphs and charts was a much quieter affair than that of the telescope, but these tools have done just as much to change how and what we see."
 -- **Hannah Fry, _The New Yorker_**
 
+“This is a thoughtful and well-written introduction to the world of data visualization and its history.” -- **Bill Slater, _Mathematical Association of America_**
+
 ## More detailed reviews
 
 * [Hannah Fry, _New Yorker_, "When Graphs are a Matter of Life and Death"](https://www.newyorker.com/magazine/2021/06/21/when-graphs-are-a-matter-of-life-and-death), Online: June 14, 2021;
@@ -37,4 +39,6 @@ print: June 21, 2021.
 * [Annette Gordon-Reed, _New York Review of Books_, "The Color Line"](https://www.nybooks.com/articles/2021/08/19/du-bois-color-line-paris-exposition/), Print: August 19, 2021 issue.
 
 * [George Spencer, _Princeton Alumni Weekly_, "Howard Wainer *68 and Michael Friendly *71 Give Data Meaning"](https://paw.princeton.edu/article/howard-wainer-68-and-michael-friendly-71-give-data-meaning), Published online August 25, 2021.
+
+* [Bill Slater, _Mathematical Association of America_, Review](https://www.maa.org/press/maa-reviews/a-history-of-data-visualization-and-graphic-communication), Online: September 22, 2021.
 

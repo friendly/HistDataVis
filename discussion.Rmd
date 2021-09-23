@@ -44,4 +44,15 @@ Dems and Republicans on that dimension.
 
 **Paul Velleman**: I agree with Lee. But I’d go perhaps a step further. The interplay between visualization and model is itself dynamic since we can now make and modify visualizations so quickly and with so little effort. Rotate a plot, select a subset that has been revealed, and make a new display for just that subset. Color points that group together in one display and be surprised at where they pop up in an entirely different view of the data using different variables. Notice in a display that a subgroup should be isolated, mask it out and find a  regression for the rest of the data and then look at a plot of the residuals as you gradually slide the isolated points back in to the data. (Of course, I think of things you can do in Data Desk. I’m sure there are other examples.)
 
+## ISOTYPE (Otto & Marie Neurath)
+
+A reader of the book wrote:
+
+> I was surprised to learn that [this] volume has no mention of the groundbreaking and creative work by Otto and, later, Marie Neurath (e.g., the Vienna Method and Isotype), which was associated with their equally pioneering exhibitions for museums and the former's participatory and deliberative democratic model of urban planning. 
+
+**Reply**: You are correct that there is no mention of the work of the Neuraths, but it was not for not trying or not being aware of their work.  Our contract with HUP called for 50,000 words; our first draft included much more material (including ISOtype stuff), but clocked in at >90,000 words. We had to fight to get them to agree to ~ 75,000 or so.  Many topics fell off the editors desk, much to our displeasure.  In fact, the entire period, 1900-1950 gets only 2 pages.
+
+Some content on this topic and pointers to relevant literature will be provided under
+_Learning More_ for Chapter 7.
+<!-- ![_Learning More_ for Chapter 7](learning_more.html#chapter-7). -->
 

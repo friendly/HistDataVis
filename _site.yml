@@ -46,6 +46,8 @@ navbar:
       href: learning_more.html
     - text: "Discussion"
       href: discussion.html
+    - icon: fab fa-github
+      href: https://github.com/friendly/HistDataVis
 output: 
   distill::distill_article:
     css: "css/styles.css"

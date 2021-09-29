@@ -1,7 +1,9 @@
 ---
 title: "Discussion"
 date: "`r Sys.Date()`"
-output: distill::distill_article
+output: 
+  distill::distill_article:
+    toc: true
 ---
 
 ```{r setup, include=FALSE}

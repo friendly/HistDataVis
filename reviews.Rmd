@@ -42,5 +42,3 @@ print: June 21, 2021.
 
 * [Bill Slater, _Mathematical Association of America_, Review](https://www.maa.org/press/maa-reviews/a-history-of-data-visualization-and-graphic-communication), Online: September 22, 2021.
 
-
-

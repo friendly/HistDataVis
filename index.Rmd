@@ -17,11 +17,12 @@ This is the companion web site associated with our book,
 in the print edition.
 
 * We provide high-res color images of figures from the book, because the print edition was limited
-to 20 color plates.
+to 20 color plates. These are contained in the 
 
-* We collect related articles or topics that could not be included in the print edition, links to associated talks, etc.
+* We collect [related articles](related.html) or topics that could not be included in the print edition, links to associated talks, etc.
 
-* There may also be errata, topics for addition to a 2nd edition, and a place for commentaries by readers.
+* There may also be errata, topics for addition to a 2nd edition, and a place for commentaries by readers. 
+See the [Discussion](discussion.html) for what has accumulated so far.
 
 </td>
 </tr>
@@ -38,7 +39,8 @@ The book can be ordered from:
 [Harvard University Press](https://www.hup.harvard.edu/catalog.php?isbn=9780674975231),
 [Amazon.com](https://www.amazon.com/History-Data-Visualization-Graphic-Communication/dp/0674975235/) or affiliates, such as [Amazon.ca](https://www.amazon.ca/History-Data-Visualization-Graphic-Communication/dp/0674975235).
 
-Publishing details are contained in this [HUP flyer](pdf/BookFlier.pdf).
+Publishing details are contained in this [HUP flyer](pdf/BookFlier.pdf). The [Introduction chapter](pdf/HistDataVis-Ch0.pdf) is
+available here.
 </td>
 </tr>
 </table>

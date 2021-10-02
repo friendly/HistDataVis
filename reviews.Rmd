@@ -31,6 +31,10 @@ output:
 
 “This is a thoughtful and well-written introduction to the world of data visualization and its history.” -- **Bill Slater, _Mathematical Association of America_**
 
+"The book is a marvel of research scholarship. Unlike histories of the rich and famous, the work of many of the stars of this
+narrative is relatively obscure. The authors have done a remarkable job of digging it up
+and putting it into perspective in a way that is both clear and accessible. This is the sort of book that one can browse and sample in bitesize chunks as the mood seizes, encountering curious delights while doing so." -- **Bert Gunter, _Significance_**
+
 ## More detailed reviews
 
 * [Hannah Fry, _New Yorker_, "When Graphs are a Matter of Life and Death"](https://www.newyorker.com/magazine/2021/06/21/when-graphs-are-a-matter-of-life-and-death), Online: June 14, 2021;
@@ -42,3 +46,5 @@ print: June 21, 2021.
 
 * [Bill Slater, _Mathematical Association of America_, Review](https://www.maa.org/press/maa-reviews/a-history-of-data-visualization-and-graphic-communication), Online: September 22, 2021.
 
+* [Bert Gunter, _Significance_](pdf/SIGNIFICANCE-Review.pdf), Review in v. **18*(5), p. 45
+(Oct. 2021 issue)

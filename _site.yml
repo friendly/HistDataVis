@@ -48,6 +48,8 @@ navbar:
       href: discussion.html
     - icon: fab fa-github
       href: https://github.com/friendly/HistDataVis
+    - icon: fab fa-twitter
+      href: https://twitter.com/datavisFriendly
 output: 
   distill::distill_article:
     css: "css/styles.css"

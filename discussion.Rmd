@@ -65,7 +65,7 @@ Reviewed on September 27, 2021 for [Amazon.com](https://www.amazon.com/gp/custom
 <i class="fa fa-star" color="yellow"></i>
 <i class="fa fa-star" color="yellow"></i>
 <i class="fa fa-star" color="yellow"></i>
-<i class="fa fa-star" color="yellow"></i> (5.0 out of 5 stars)
+<i class="fa fa-star" color="yellow"></i> (5 out of 5 stars)
 
 > A highly readable overview of the history of statistical graphics, intriguing and informative
 
@@ -81,5 +81,17 @@ Enormous scope remains for future work. The authors mention a golden age for gra
 The authors score high on enthusiasm, entertainment, and enterprise. They and close colleagues have unearthed much splendid work otherwise gathering dust in libraries and archives, at least metaphorically. Unfortunately copy editing and proof-reading has left a peppering of small errors and a few outright howlers. Greek, Latin, German, and French names are the most frequent casualties, but some British details are mangled too, as when Newton's work on calculus is misplaced by a century and Galton's focus on regression to mediocrity is reported in terms of mediocracy, itself a much needed gap in political life. The authors' references are sometimes capricious, missing entire monographs on Playfair, Herschel, Snow, Minard and the history of Venn diagrams, for example. Perhaps these errors and omissions will be made good in the accompanying website.
 
 There was one major disappointment for me. Unlike those in many books in the history of cartography (let alone the history of art), the illustrations are mostly small and often a muddy black and white, with only a short selection in color. It seems that the publishers missed an opportunity for a bold publication that would have appealed widely, far beyond the small number of specialists in this territory.
+
+## Eurocentric view
+
+Several reviewers pointed to the largely Eurocentric view of history taken in our book.  For example, Bert Gunter in his review for [_Significance_](pdf/SIGNIFICANCE-Review.pdf) said,
+
+>_"This book is very Eurocentric, leading me to wonder whether the forces that gave rise to many of the European graphical
+developments might also have been replicated in, say, China, Japan, or the Ottoman Empire.
+Perhaps not – or perhaps such revelations await the research of scholars in those regions."_
+
+**Reply**:
+
+This is a topic that has long concerned us. There were many precursors to the development of data visualization in non-Western cultures, but few that fit into a coherent narrative where we could trace the origins of visual thinking and graphic communication as general principles, with clear lines of development.
 
 

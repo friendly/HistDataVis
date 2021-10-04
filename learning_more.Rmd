@@ -191,8 +191,8 @@ This web version contains additional items and references not printed in the boo
     stemmed from thematic cartography, the use of maps to present
     quantitative information in a geographical framework. The most
     complete discussion of the rise of graphical methods in this context
-    in France in the remains Gilles Palsky’s [-@Palsky:1996] book, *Des Chiffres et
-    de Cartes* ... . @FriendlyPalsky:2007 give a more extensive
+    in France in the remains Gilles Palsky’s [-@Palsky:1996] book, _Des Chiffres et
+    de Cartes_ ... . @FriendlyPalsky:2007 give a more extensive
     overview of the development of the use of maps and statistical
     diagrams to visualize nature and society.
     
@@ -206,7 +206,8 @@ This web version contains additional items and references not printed in the boo
     represent social and economic facts pictorially, thus making numbers
     visually appealing and memorable. Jason Forrest tells me that @Burke-etal:2013 
     [Isotype: design and contexts 1925-1971](https://hyphenpress.co.uk/products/books/978-0-907259-47-3)
-    is the definitive book on the topic.
+    is the definitive book on the topic. Another good source of information on Neurath’s methods
+    of pictorial statistics is the collection at the University of Reading: [Typography & Graphic Communication: Otto and Marie Neurath Isotype Collection]( https://www.reading.ac.uk/m/typography/collectionsandarchives/typ-isotype-collection.aspx).
 
 
 ## Chapter 8 {#chapter-8 .unnumbered}

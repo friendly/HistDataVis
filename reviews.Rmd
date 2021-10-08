@@ -37,7 +37,7 @@ and putting it into perspective in a way that is both clear and accessible. This
 
 "What sets this book apart from other such histories is the depth of analysis dedicated to the graphic instruments
 of science that emerged out of a need to explore complex issues, identify patterns, and reduce complexity
-in communication. Friendly and Weiner dive deep into numerical relationships, providing thoughtful analysis
+in communication. Friendly and Wainer dive deep into numerical relationships, providing thoughtful analysis
 that highlights the strength of the graphs. And with a retrospective eye, they present critiques and contemporary
 alternatives." -- **María del Mar Navarro, _She Ji: The Journal of Design, Economics, and Innovation_**
 
@@ -57,3 +57,6 @@ print: June 21, 2021.
 
 * [María del Mar Navarro, _She Ji: The Journal of Design, Economics, and Innovation_](https://www.sciencedirect.com/science/article/pii/S2405872621000873), 
 Volume 7, Issue 3, Autumn 2021, Pages 485-491.
+
+* [Nick Cox, Customer review on Amazon](https://www.amazon.com/gp/customer-reviews/R19HUUJRY5UXOY/ref=cm_cr_arp_d_rvw_ttl?ie=UTF8&ASIN=0674975235), September 27, 2021.
+

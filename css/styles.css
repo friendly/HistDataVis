@@ -98,3 +98,11 @@ img[src="images/banner.png"] {
   font-size:  8pt;
   color: SlateGray;
 }
+
+/* fontawesome icons */
+
+.fa-star {
+    color: red;
+    border: black;
+}
+

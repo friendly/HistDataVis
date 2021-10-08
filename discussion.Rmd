@@ -62,10 +62,12 @@ Some content on this topic and pointers to relevant literature will be provided 
 
 Reviewed on September 27, 2021 for [Amazon.com](https://www.amazon.com/gp/customer-reviews/R19HUUJRY5UXOY/ref=cm_cr_arp_d_rvw_ttl?ie=UTF8&ASIN=0674975235)
 
-<i class="fa fa-star" color="yellow"></i>
-<i class="fa fa-star" color="yellow"></i>
-<i class="fa fa-star" color="yellow"></i>
-<i class="fa fa-star" color="yellow"></i> (5 out of 5 stars)
+<i class="fa fa-star"></i>
+<i class="fa fa-star"></i>
+<i class="fa fa-star"></i>
+<i class="fa fa-star"></i> (5 out of 5 stars)
+
+
 
 > A highly readable overview of the history of statistical graphics, intriguing and informative
 

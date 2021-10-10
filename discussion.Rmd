@@ -4,6 +4,8 @@ date: "`r Sys.Date()`"
 output: 
   distill::distill_article:
     toc: true
+    includes:
+      in_header: utterances.html
 ---
 
 ```{r setup, include=FALSE}

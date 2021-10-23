@@ -2056,6 +2056,35 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </html>
   
   
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (!/posts/.test(location.pathname)) {
+        return;
+      }
+      
+      var script = document.createElement("script");
+      script.src = "https://utteranc.es/client.js";
+      script.setAttribute("repo", "friendly/HistDataVis");
+      script.setAttribute("issue-term", "og:title");
+      script.setAttribute("crossorigin", "anonymous");
+      script.setAttribute("label", "comments ðŸ’¬");
+      
+      /* wait for article to load, append script to article element */
+        var observer = new MutationObserver(function (mutations, observer) {
+          var article = document.querySelector("d-article");
+          if (article) {
+            observer.disconnect();
+            /* HACK: article scroll */
+              article.setAttribute("style", "overflow-y: hidden");
+            article.appendChild(script);
+          }
+        });
+      
+      observer.observe(document.body, { childList: true });
+    });
+  </script>
+    
   <style type="text/css">
   /* import fonts */
   /* nag note says 'use link instead' */
@@ -2250,6 +2279,7 @@ Chapters
 <ul>
 <li><a href="#who-needs-this-book">Who needs this book?</a></li>
 <li><a href="#front-cover">Front cover</a></li>
+<li><a href="#datasets">Datasets</a></li>
 <li><a href="#errata">Errata</a></li>
 <li><a href="#credits">Credits</a></li>
 </ul>
@@ -2289,6 +2319,13 @@ Chapters
 <li>America (<span style="color:darkyellow">yellow</span>)</li>
 </ul>
 <p>This graphic form was recently re-invented and called a “ridgeline” plot because it resembles a set of mountain ridges. This figure appears as Plate 8 in the book and is discussed in <a href="ch05-playfair.html">Chapter 5</a>, “Charts of History”.</p>
+<h2 id="datasets">Datasets</h2>
+<p>A unique feature of our book is that we try to appreciate the efforts of key thinkers in the history of data visualization by understanding their data and the graphs they produced. In many cases, we can shed some light on their topics and graphical innovations by trying to reproduce their graphs with modern software.</p>
+<p>Toward this end, we created two R packages, used in some of our graphs in the book.</p>
+<ul>
+<li><p><a href="https://cran.r-project.org/package=HistData">HistData</a>, a collection of many datasets that are interesting and important in the history of statistics and data visualization.</p></li>
+<li><p><a href="https://cran.r-project.org/package=Guerry">Guerry</a>, datasets and maps related to Guerry’s (1833) <em>La Statistique Morale de la France</em>.</p></li>
+</ul>
 <h2 id="errata">Errata</h2>
 <p>None so far, but if you find errors in the book, file <a href="https://github.com/friendly/HistDataVis/issues">an issue on GitHub</a>.</p>
 <h2 id="credits">Credits</h2>

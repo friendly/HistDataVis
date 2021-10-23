@@ -68,6 +68,19 @@ and called a "ridgeline" plot because it resembles a set of
 mountain ridges. This figure appears as Plate 8 in the book
 and is discussed in [Chapter 5](ch05-playfair.html), "Charts of History".
 
+## Datasets
+
+A unique feature of our book is that we try to appreciate the efforts of key thinkers in the history of data visualization
+by understanding their data and the graphs they produced.  In many cases, we can shed some light on their topics
+and graphical innovations by trying to reproduce their graphs with modern software.
+
+Toward this end, we created two R packages, used in some of our graphs in the book.
+
+* [HistData](https://cran.r-project.org/package=HistData), a collection of many datasets that are interesting and important in the history of statistics and data visualization.
+
+* [Guerry](https://cran.r-project.org/package=Guerry), datasets and maps related to Guerry's (1833)
+_La Statistique Morale de la France_.
+
 ## Errata
 
 None so far, but if you find errors in the book, file [an issue on GitHub](https://github.com/friendly/HistDataVis/issues).

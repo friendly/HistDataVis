@@ -83,7 +83,7 @@ _La Statistique Morale de la France_.
 
 ## Translations
 
-```{r  out.width="40%", fig.align='center', echo=FALSE}
+```{r  out.width="10%", fig.align='left', echo=FALSE}
 knitr::include_graphics("images/Japanese-cover.jpg")
 ```
 

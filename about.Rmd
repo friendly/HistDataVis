@@ -81,6 +81,16 @@ Toward this end, we created two R packages, used in some of our graphs in the bo
 * [Guerry](https://cran.r-project.org/package=Guerry), datasets and maps related to Guerry's (1833)
 _La Statistique Morale de la France_.
 
+## Translations
+
+```{r  out.width="40%", fig.align='center', echo=FALSE}
+knitr::include_graphics("images/Japanese-cover.jpg")
+```
+
+* A [Japanese translation](http://www.seidosha.co.jp/book/index.php?id=3626) was recently published by Seidosha.
+
+* A Chinese translation is in the works.
+
 ## Errata
 
 None so far, but if you find errors in the book, file [an issue on GitHub](https://github.com/friendly/HistDataVis/issues).

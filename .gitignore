@@ -4,3 +4,5 @@
 .Ruserdata
 desktop.ini
 _site/
+*.bak
+

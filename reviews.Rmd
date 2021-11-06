@@ -60,3 +60,6 @@ Volume 7, Issue 3, Autumn 2021, Pages 485-491.
 
 * [Nick Cox, Customer review on Amazon](https://www.amazon.com/gp/customer-reviews/R19HUUJRY5UXOY/ref=cm_cr_arp_d_rvw_ttl?ie=UTF8&ASIN=0674975235), September 27, 2021.
 
+* [George Spencer, _Journal of Accountancy_, "Creating the right visuals for your data"](https://www.journalofaccountancy.com/news/2021/oct/tools-building-visual-representations-data.html),
+an interview published October 18, 2021.
+

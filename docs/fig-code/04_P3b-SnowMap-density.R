@@ -1,0 +1,23 @@
+library(HistData)
+folder <- "C:/Dropbox/Documents/TOGS/ch04-vital"
+
+# Figure 4.11 (right panel)
+
+#SnowMap(polygons=TRUE, main="Snow's Cholera Map with Pump Polygons")
+
+#SnowMap(scale=FALSE, main="Snow's Cholera Map with Pump Neighborhoods",
+#        xlim=c(5,18), ylim=c(5,18)
+
+png(file=file.path(folder, "fig/SnowMap-density.png"),
+		width=7, height=7, units="in", res=300)
+
+#svg(file=file.path(folder, "fig/SnowMap-density.svg"), width=7, height=7)
+
+op <- par(mar=c(1,1,3,1)+.1)
+SnowMap(density=TRUE, scale=FALSE, main="Snow's Cholera Map, Death Intensity",
+				xlim=c(5,18), ylim=c(5,18)
+				)
+par(op)
+
+dev.off()
+

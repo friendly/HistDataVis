@@ -52,7 +52,7 @@ print: June 21, 2021.
 
 * [Bill Slater, _Mathematical Association of America_, Review](https://www.maa.org/press/maa-reviews/a-history-of-data-visualization-and-graphic-communication), Online: September 22, 2021.
 
-* [Bert Gunter, _Significance_](pdf/SIGNIFICANCE-Review.pdf), Review in v. **18*(5), p. 45
+* [Bert Gunter, _Significance_](pdf/SIGNIFICANCE-Review.pdf), Review in v. **18**(5), p. 45
 (Oct. 2021 issue)
 
 * [María del Mar Navarro, _She Ji: The Journal of Design, Economics, and Innovation_](https://www.sciencedirect.com/science/article/pii/S2405872621000873), 

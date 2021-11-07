@@ -16,16 +16,23 @@ library(rmarkdown)
 # NB: now using TOGS-lof5.xlsx, where plates have been made to appear in their chapters.
 #     now using TOGS-lof6.xlsx, where some figures have been marked 'DO NOT POST', via `repro=0`
 
-figureinfo <- openxlsx::read.xlsx("figureinfo/TOGS-lof6.xlsx")
+figureinfo <- openxlsx::read.xlsx("figureinfo/TOGS-lof7.xlsx")
 
 # > names(figureinfo)
 # [1] "chapter"  "fig"      "fignum"   "repro"    "filename" "title"    "subtitle" "source"  
 
 # constant folder and filenames
-image_folder <- "figs-web"                # where the fig live
+image_folder <- "figs-web"                # where the figs live
+code_foler   <- "fig-code"
 nono_image   <- "copyright.png"    # image to be used when `repro=0`
 
-figure_chunk = function(image_path, fig_title, fig_desc, fig_source, fignum, width=400) {
+figure_chunk = function(image_path, 
+                        fig_title, 
+                        fig_desc, 
+                        fig_source, 
+                        fignum,
+                        code,
+                        width=400) {
   # construct the <img src=> allowing for two or more figure files
   img_src = ""
   comma_count = str_count(image_path, ",")+1
@@ -48,6 +55,13 @@ figure_chunk = function(image_path, fig_title, fig_desc, fig_source, fignum, wid
     final_path = glue("{image_folder}/{image_path}")
     img_src = glue("<img src={single_quote(final_path)} alt={double_quote(fig_alt)} width={width}>")
   }
+
+  # handle figure code
+  code_str <- ""
+  if(!is.na(code)) {
+    comma_count = str_count(code, ",")+1    
+  }
+  img_code
   
 #  header = glue("#### Figure {fignum}: {fig_title}")
   figtype <- if(str_detect(fignum, "P")) "Plate" else "Figure"
@@ -131,7 +145,9 @@ do_chapter <- function(ch, thumbwidth=400) {
                             figlist[r, "title"], 
                             figlist[r, "subtitle"],
                             figlist[r, "source"],
-                            figlist[r, "fignum"], width=thumbwidth)
+                            figlist[r, "fignum"], 
+                            figlist[r, "codefile"], 
+                            width=thumbwidth)
     
     cat(newchunk)
   }

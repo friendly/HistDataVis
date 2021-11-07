@@ -15,6 +15,7 @@ codefn <- list.files("fig-code", pattern="^[01]")
 
 codesplt <- str_split_fixed(codefn, "[_-]", 3)
 
+library(dplyr)
 codefiles <- data.frame(
            chapter=as.numeric(codesplt[,1]), 
            figc=codesplt[,2], 
@@ -25,9 +26,7 @@ codefiles <- data.frame(
 # make fig numeric, to match what it is in the figureinfo file
 
 figc <- codefiles[,"figc"]
-
 fig <- as.numeric(str_extract(figc, "\\d+"))
-fig
 
 # handle plates
 plate <- str_detect(figc, "P")
@@ -43,9 +42,9 @@ for (i in 1:nrow(codefiles)) {
 codefiles <- cbind(codefiles, fig, fignum)
 codefiles <- codefiles[,c(1, 5, 3, 2, 4)]
 
-library(dplyr)
-cf %>% 
-  group_by(fignum) %>% 
+codefiles <- 
+  codefiles %>% 
+  group_by(chapter, fignum) %>% 
   summarise(codefile = paste0(codefile, collapse = ', '), .groups = 'drop')
 
 # now merge/join with figureinfo
@@ -55,5 +54,11 @@ figureinfo2 <- left_join(figureinfo,
                          by=c("chapter", "fignum")) %>%
 		relocate(codefile, .after = filename)
 
+
 View(figureinfo2)
+
+openxlsx::write.xlsx(figureinfo2, "figureinfo/TOGS-lof7.xlsx")
+
+
+
 

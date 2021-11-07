@@ -60,5 +60,29 @@ View(figureinfo2)
 openxlsx::write.xlsx(figureinfo2, "figureinfo/TOGS-lof7.xlsx")
 
 
+code_folder  <- "fig-code"
+# function to make links from code file names
+make_links <- function(codefn) {
+  code_str <- ""
+  if (!is.na(codefn)) {
+    comma_count = str_count(codefn, ",")+1    
+    if (comma_count > 1) {
+      codefns = str_trim(
+        str_split(codefn, ",")[[1]])
+      for (fn in codefns) {
+        final_fn = glue("{code_folder}/{fn}")
+        code_str = str_c(code_str, 
+                         glue("<b>Rcode</b>: <a href='{code_folder}/{fn}'> {fn} </a>\n"),
+                         sep = "\n")
+      }
+    }
+      else {
+      code_str <- glue("<b>Rcode</b>: <a href='{code_folder}/{codefn}'> {codefn} </a>\n")
+    }
+  }
+  return(code_str)
+}
 
-
+for (i in 8:12) {
+  cat(make_links(codefiles[i,"codefile"]), "\n")
+}

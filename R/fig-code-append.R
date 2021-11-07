@@ -43,6 +43,11 @@ for (i in 1:nrow(codefiles)) {
 codefiles <- cbind(codefiles, fig, fignum)
 codefiles <- codefiles[,c(1, 5, 3, 2, 4)]
 
+library(dplyr)
+cf %>% 
+  group_by(fignum) %>% 
+  summarise(codefile = paste0(codefile, collapse = ', '), .groups = 'drop')
+
 # now merge/join with figureinfo
 
 figureinfo2 <- left_join(figureinfo, 

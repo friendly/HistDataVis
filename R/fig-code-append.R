@@ -12,16 +12,16 @@ figureinfo <- openxlsx::read.xlsx("figureinfo/TOGS-lof6.xlsx")
 
 # read code file names
 codefn <- list.files("fig-code", pattern="^[01]")
+codefn <- str_subset(codefn, ".R$")
 
+# split figure number string from the filename
 codesplt <- str_split_fixed(codefn, "[_-]", 3)
 
-library(dplyr)
 codefiles <- data.frame(
            chapter=as.numeric(codesplt[,1]), 
            figc=codesplt[,2], 
            codefile=codefn,
            stringsAsFactors = FALSE)
-#str(codefiles)
 
 # make fig numeric, to match what it is in the figureinfo file
 
@@ -89,3 +89,29 @@ make_links <- function(codefn) {
 for (i in 8:12) {
   cat(make_links(codefiles[i,"codefile"]), "\n")
 }
+
+##########################
+
+# Generate a list of figure code files and their titles
+# in HTML, ... 
+# should re-do this to generate in rmarkdown, to be incorporated into an .Rmd file
+
+titles <- NULL
+for (i in 1:length(codefn)) {
+	fn <- codefn[i]
+	file <- glue("{code_folder}/{fn}")
+#	cat(file, "\n")
+	lines <- readLines(file)
+	title_line <- str_which(lines, "title:")
+	title <- lines[title_line]
+	title <- str_replace(title, "#' title: ", "")
+	title <- str_replace_all(title, '"', "")
+	figtype <- if(str_detect(fn, "P")) "Plate" else "Figure"
+	title <- glue("{figtype} {title}")
+	link <- glue("<a href='{file}'> {fn} </a>")
+	title <- glue("* {link} {title}")
+	cat(title, "\n")
+	titles <- c(titles, title)
+}
+
+

@@ -68,19 +68,6 @@ and called a "ridgeline" plot because it resembles a set of
 mountain ridges. This figure appears as Plate 8 in the book
 and is discussed in [Chapter 5](ch05-playfair.html), "Charts of History".
 
-## Datasets
-
-A unique feature of our book is that we try to appreciate the efforts of key thinkers in the history of data visualization
-by understanding their data and the graphs they produced.  In many cases, we can shed some light on their topics
-and graphical innovations by trying to reproduce their graphs with modern software.
-
-Toward this end, we created two R packages, used in some of our graphs in the book.
-
-* [HistData](https://cran.r-project.org/package=HistData), a collection of many datasets that are interesting and important in the history of statistics and data visualization.
-
-* [Guerry](https://cran.r-project.org/package=Guerry), datasets and maps related to Guerry's (1833)
-_La Statistique Morale de la France_.
-
 ## Translations
 
 ```{r  out.width="10%", fig.align='left', echo=FALSE}
@@ -91,6 +78,17 @@ knitr::include_graphics("images/Japanese-cover.jpg")
 
 * A Chinese translation is in the works.
 
+## Datasets
+
+A unique feature of our book is that we try to appreciate the efforts of key thinkers in the history of data visualization by understanding their data and the graphs they produced.  In many cases, we can shed some light on their topics and graphical innovations by trying to reproduce their graphs with modern software.
+
+Toward this end, we created two R packages, used in some of our graphs in the book.
+
+* [HistData](https://cran.r-project.org/package=HistData), a collection of many datasets that are interesting and important in the history of statistics and data visualization. In addition, we use some features from Peter Li's [cholera](https://cran.r-project.org/package=cholera) package for graphs of John Snow's data on the 1854 cholera outbreak in London.
+
+* [Guerry](https://cran.r-project.org/package=Guerry), datasets and maps related to Guerry's (1833)
+_La Statistique Morale de la France_.
+
 ## Errata
 
 None so far, but if you find errors in the book, file [an issue on GitHub](https://github.com/friendly/HistDataVis/issues).
@@ -98,9 +96,8 @@ None so far, but if you find errors in the book, file [an issue on GitHub](https
 
 ## Credits
 
-All figures displayed here are authorized for this limited use. In some cases, the figures shown here differ from
-those printed in the book, but these are credited and available for this use.
+All figures displayed here are authorized for this limited use. In some cases, the figures shown here differ from those printed in the book, but these are credited and available for this use.
 
-In addition, we use a collection of cartoon images for our chapters created by RJ Andrews, [http://infowetrust.com](http://infowetrust.com). We are grateful for permission to use them here. 
+In addition, we use a collection of cartoon images for our chapter pages created by RJ Andrews, [http://infowetrust.com](http://infowetrust.com). We are grateful for permission to use them here. 
 
 We thank Matthew Dubins of [Donor Science Consulting](https://www.donorscience.ca) for his help in making this web site possible.

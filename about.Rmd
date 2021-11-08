@@ -10,7 +10,7 @@ These web pages are meant as a supplement to our book,
 [A History of Data Visualization and Graphic Communication](https://www.hup.harvard.edu/catalog.php?isbn=9780674975231).
 The main goals are to:
 
-* reproduce here more color figures than could be accommodated in the print edition. The selected figures are shown as thumbnails, but can be enlarged with a click.
+* reproduce here more color figures than could be accommodated in the print edition. The selected figures are shown as thumbnails, but can be enlarged with a click. R code for the figures we reproduced are also provided as links in the figure captions.
 * provide links to [related papers](related.html) and topics that expand on the themes in our book.
 * serve as a forum for comments, errata and other topics that could not be fully covered in this first edition.
 

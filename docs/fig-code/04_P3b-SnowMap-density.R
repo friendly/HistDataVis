@@ -1,12 +1,13 @@
+#' ---
+#' title: "04_P3b: Snow's Cholera Map with Pump Polygons"
+#' author: "Michael Friendly"
+#' date: "08 Nov 2021"
+#' ---
+
 library(HistData)
 folder <- "C:/Dropbox/Documents/TOGS/ch04-vital"
 
-# Figure 4.11 (right panel)
-
-#SnowMap(polygons=TRUE, main="Snow's Cholera Map with Pump Polygons")
-
-#SnowMap(scale=FALSE, main="Snow's Cholera Map with Pump Neighborhoods",
-#        xlim=c(5,18), ylim=c(5,18)
+# Figure Plate 3b was: 4.11 (right panel)
 
 png(file=file.path(folder, "fig/SnowMap-density.png"),
 		width=7, height=7, units="in", res=300)

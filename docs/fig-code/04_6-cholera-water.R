@@ -1,3 +1,8 @@
+#' ---
+#' title: "04_6: Cholera deaths by water supply region"
+#' author: "Michael Friendly"
+#' date: "08 Nov 2021"
+#' ---
 library(car)
 library(here)
 

@@ -38,4 +38,3 @@ ggplot(all_house_88_113, aes(x = dim_1, y = year1, group=year1)) +
 
 ggsave("05_14-joyplot-politics.png", width=8.9, height=4.9)  # uses dpi=300
 ggsave("05_14-joyplot-politics.svg", width=8.9, height=4.9)
- 

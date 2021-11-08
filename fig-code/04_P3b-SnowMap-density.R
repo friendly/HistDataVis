@@ -1,3 +1,8 @@
+#' ---
+#' title: "04_P3b: Snow's Cholera Map with Pump Polygons"
+#' author: "Michael Friendly"
+#' date: "08 Nov 2021"
+#' ---
 library(HistData)
 folder <- "C:/Dropbox/Documents/TOGS/ch04-vital"
 

@@ -22,6 +22,10 @@ as thumbnail images, but a click shows them in higher resolution.
 
 * We collect [related articles](related.html) or topics that could not be included in the print edition, links to associated talks, etc.
 
+* We provide the [R code](https://cran.r-project.org/) for our reconstructions of historical graphs, linked in the figure captions on the individual
+chapter pages.  These may be useful to readers who want to use them for their own research or teaching.
+You can download them all in this [fig-code.zip](fig-code.zip) file.
+
 * There may also be errata, topics for addition to a 2nd edition, and a place for commentaries by readers. 
 See the [Discussion](discussion.html) for what has accumulated so far.
 

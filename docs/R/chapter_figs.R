@@ -16,16 +16,23 @@ library(rmarkdown)
 # NB: now using TOGS-lof5.xlsx, where plates have been made to appear in their chapters.
 #     now using TOGS-lof6.xlsx, where some figures have been marked 'DO NOT POST', via `repro=0`
 
-figureinfo <- openxlsx::read.xlsx("figureinfo/TOGS-lof6.xlsx")
+figureinfo <- openxlsx::read.xlsx("figureinfo/TOGS-lof7.xlsx")
 
 # > names(figureinfo)
-# [1] "chapter"  "fig"      "fignum"   "repro"    "filename" "title"    "subtitle" "source"  
+# [1] "chapter"  "fig"      "fignum"   "repro"    "filename" "codefile" "title"    "subtitle" "source"  
 
 # constant folder and filenames
-image_folder <- "figs-web"                # where the fig live
+image_folder <- "figs-web"                # where the figs live
+code_folder  <- "fig-code"
 nono_image   <- "copyright.png"    # image to be used when `repro=0`
 
-figure_chunk = function(image_path, fig_title, fig_desc, fig_source, fignum, width=400) {
+figure_chunk = function(image_path, 
+                        fig_title, 
+                        fig_desc, 
+                        fig_source, 
+                        fignum,
+                        code,
+                        width=400) {
   # construct the <img src=> allowing for two or more figure files
   img_src = ""
   comma_count = str_count(image_path, ",")+1
@@ -48,7 +55,33 @@ figure_chunk = function(image_path, fig_title, fig_desc, fig_source, fignum, wid
     final_path = glue("{image_folder}/{image_path}")
     img_src = glue("<img src={single_quote(final_path)} alt={double_quote(fig_alt)} width={width}>")
   }
-  
+
+  # handle figure code
+  # function to make links from code file names
+  make_links <- function(codefn) {
+    code_str <- ""
+    rcode <- "<b>Rcode</b>"
+    if (!is.na(codefn)) {
+      comma_count = str_count(codefn, ",")+1    
+      if (comma_count > 1) {
+        codefns = str_trim(
+          str_split(codefn, ",")[[1]])
+        for (fn in codefns) {
+          final_fn = glue("{code_folder}/{fn}")
+          code_str = str_c(code_str, 
+                           glue("{rcode}: <a href='{code_folder}/{fn}'> {fn} </a>\n"),
+                           sep = "\n")
+        }
+      }
+      else {
+        code_str <- glue("{rcode}: <a href='{code_folder}/{codefn}'> {codefn} </a>\n")
+      }
+    }
+    return(code_str)
+  }
+
+  code_str <- make_links(code)  
+
 #  header = glue("#### Figure {fignum}: {fig_title}")
   figtype <- if(str_detect(fignum, "P")) "Plate" else "Figure"
   header = glue("<h3 class='figtitle'>{figtype} {fignum}: {fig_title}</h3>")
@@ -69,8 +102,9 @@ figure_chunk = function(image_path, fig_title, fig_desc, fig_source, fignum, wid
     </td>
     <td class="chap-fig-desc" width = {width}>
       {header}
-      {fig_desc}
-      {fig_src}
+      {fig_desc}<br/>
+      {fig_src}<br/>
+      {code_str}
     </td>
   </tr>
 </table>
@@ -131,7 +165,9 @@ do_chapter <- function(ch, thumbwidth=400) {
                             figlist[r, "title"], 
                             figlist[r, "subtitle"],
                             figlist[r, "source"],
-                            figlist[r, "fignum"], width=thumbwidth)
+                            figlist[r, "fignum"], 
+                            figlist[r, "codefile"], 
+                            width=thumbwidth)
     
     cat(newchunk)
   }

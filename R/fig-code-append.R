@@ -59,7 +59,10 @@ View(figureinfo2)
 
 openxlsx::write.xlsx(figureinfo2, "figureinfo/TOGS-lof7.xlsx")
 
+######################
 
+
+### This is just for testng
 code_folder  <- "fig-code"
 # function to make links from code file names
 make_links <- function(codefn) {

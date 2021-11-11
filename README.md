@@ -31,6 +31,8 @@ Two major themes connect the topics and chronology of this account.
 * Pages for each chapter include most color figures and their captions. The items in the [Learning More section](http://friendly.github.io/HistDataVis/learning_more.html)
 include links and references.
 
+* We provide the [R code](https://cran.r-project.org/) for our reconstructions of historical graphs, linked in the figure captions on the individual chapter pages.
+
 * A [Discussion page](http://friendly.github.io/HistDataVis/discussion.html) will be used to post discussion of topics related to the book.
 
 * Please report any errors in the book on the [issues page](https://github.com/friendly/HistDataVis/issues).

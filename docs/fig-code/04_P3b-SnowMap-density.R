@@ -1,5 +1,5 @@
 #' ---
-#' title: "04_P3b: Snow's Cholera Map with Pump Polygons"
+#' title: "04_P3b: Snow's cholera map with pump polygons"
 #' author: "Michael Friendly"
 #' date: "08 Nov 2021"
 #' ---

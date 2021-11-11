@@ -89,6 +89,37 @@ Toward this end, we created two R packages, used in some of our graphs in the bo
 * [Guerry](https://cran.r-project.org/package=Guerry), datasets and maps related to Guerry's (1833)
 _La Statistique Morale de la France_.
 
+### R code for figures
+
+This is a list of the [R code](https://cran.r-project.org/) files for our reconstructions of historical graphs. They are also linked in the figure captions on the individual chapter pages.
+
+* [Figure 00_1: Timeline of milestones events, by continent](fig-code/00_1-mileyears4.R) 
+* [Figure 02_3: Graphical inventions](fig-code/02_3-graphic-forms.R) 
+* [Figure 03_2: Sex ratio. Arbuthnot's data on the ratio of male to female births](fig-code/03_2-arbuthnot-gg.R) 
+* [Figure 03_7: Reproduction of Guerry's six maps](fig-code/03_7-guerrymap.R) 
+* [Figure 03_8: Enhanced scatterplot of crimes against persons vs literacy](fig-code/03_8-guerry-bivar.R) 
+* [Figure 04_10: Line graph of Nightingale's data](fig-code/04_10-nightingale-line.R) 
+* [Figure 04_3: Farr's elevation - mortality data as a scatterplot](fig-code/04_3-cholera-elevation-law.R) 
+* [Figure 04_4: Farr's Inverse Natural Law of Cholera and Elevation](fig-code/04_4-cholera-mod.R) 
+* [Figure 04_6: Cholera deaths by water supply region](fig-code/04_6-cholera-water.R) 
+* [Plate 04_P3a: Snow's cholera map with pump neighborhoods](fig-code/04_P3a-cholera-neighborhoods.R) 
+* [Plate 04_P3b: Snow's cholera map with pump polygons](fig-code/04_P3b-SnowMap-density.R) 
+* [Figure 05_5: Re-creating Playfair's graph of balance of trade with East Indies](fig-code/05_5-playfair-east-indies.R) 
+* [Figure 06_1: Modern scatterplot](fig-code/06_1-workers.R) 
+* [Figure 06_13: Galton's visual argument for regression](fig-code/06_13-galton-peas.R) 
+* [Figure 06_15: Galton's method for finding contours of equal frequency](fig-code/06_15-galton-ex2.R) 
+* [Figure 06_18: Hertzsprung-Russel diagrams for stars in the CYG OB1 cluster](fig-code/06_18-hertzsprung.R) 
+* [Figure 06_21: Chocolate consumption and Nobel prizes](fig-code/06_21-nobel-chocolate.R) 
+* [Figure 06_22: Wine, IKEA and Nobel prizes](fig-code/06_22-nobel-wine.R) 
+* [Figure 06_5: Re-drawn version of Playfair's graph](fig-code/06_5-wheat2.R) 
+* [Figure 06_6: Scatterplot version of Playfair's plot](fig-code/06_6-wheat3.R) 
+* [Figure 06_9: Reconstruction of Herschel's graph](fig-code/06_9-herschel.R) 
+* [Plate 06_P9: Ridgeline plot showing increasing polarization of politics](fig-code/06_P9-ridgeline-politics.R) 
+* [Figure 07_1: Milestones timeline](fig-code/07_1-mileyears3.R) 
+* [Figure 09_13: Plots of successive pairs of RANDU random numbers](fig-code/09_13-randu1.R) 
+* [Figure 09_14: RANDU in 3D](fig-code/09_14-randu2.R) 
+* [Figure 09_15: Diabetes data from Reaven and Miller](fig-code/09_15-diabetes.R) 
+
 ## Errata
 
 None so far, but if you find errors in the book, file [an issue on GitHub](https://github.com/friendly/HistDataVis/issues).

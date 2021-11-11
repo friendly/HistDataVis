@@ -115,3 +115,20 @@ for (i in 1:length(codefn)) {
 }
 
 
+titles <- NULL
+for (i in 1:length(codefn)) {
+	fn <- codefn[i]
+	file <- glue("{code_folder}/{fn}")
+	lines <- readLines(file)
+	title_line <- str_which(lines, "title:")
+	title <- lines[title_line]
+	title <- str_replace(title, "#' title: ", "")
+	title <- str_replace_all(title, '"', "")
+	figtype <- if(str_detect(fn, "P")) "Plate" else "Figure"
+	title <- glue("{figtype} {title}")
+#	link <- glue("<a href='{file}'> {fn} </a>")
+	link <- glue("[{file}]({fn}) ")
+	title <- glue("* {link} {title}")
+	cat(title, "\n")
+	titles <- c(titles, title)
+}

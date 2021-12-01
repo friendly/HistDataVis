@@ -281,6 +281,10 @@ This web version contains additional items and references not printed in the boo
     Exposition Universelle and a wider selection of these can be found
     at
     <https://hyperallergic.com/306559/w-e-b-du-boiss-modernist-data-visualizations-of-black-life/>.
+    
+-   A nearly complete collection of W. E. B. Du Bois’ charts has been recreated using modern software
+    by Anthony J. Starks. See <https://speakerdeck.com/ajstarks/recreating-the-dubois-data-portraits>
+    for an impressive slide show. 
 
 -   The drafting of Plates 17 and 19 required more than standard graphics software.
     To learn the full story behind the development of these figures, see

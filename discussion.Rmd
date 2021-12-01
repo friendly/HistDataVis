@@ -48,7 +48,7 @@ Dems and Republicans on that dimension.
 
 **Paul Velleman**: I agree with Lee. But I’d go perhaps a step further. The interplay between visualization and model is itself dynamic since we can now make and modify visualizations so quickly and with so little effort. Rotate a plot, select a subset that has been revealed, and make a new display for just that subset. Color points that group together in one display and be surprised at where they pop up in an entirely different view of the data using different variables. Notice in a display that a subgroup should be isolated, mask it out and find a  regression for the rest of the data and then look at a plot of the residuals as you gradually slide the isolated points back in to the data. (Of course, I think of things you can do in Data Desk. I’m sure there are other examples.)
 
-## ISOTYPE (Otto & Marie Neurath)
+## ISOTYPE (Otto & Marie Neurath) {#isotype}
 
 A reader of the book wrote:
 
@@ -86,7 +86,7 @@ The authors score high on enthusiasm, entertainment, and enterprise. They and cl
 
 There was one major disappointment for me. Unlike those in many books in the history of cartography (let alone the history of art), the illustrations are mostly small and often a muddy black and white, with only a short selection in color. It seems that the publishers missed an opportunity for a bold publication that would have appealed widely, far beyond the small number of specialists in this territory.
 
-## Eurocentric view
+## Eurocentric view {#eurocentric}
 
 Several reviewers pointed to the largely Eurocentric view of history taken in our book.  For example, Bert Gunter in his review for [_Significance_](pdf/SIGNIFICANCE-Review.pdf) said,
 

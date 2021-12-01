@@ -284,7 +284,7 @@ This web version contains additional items and references not printed in the boo
     
 -   A nearly complete collection of W. E. B. Du Bois’ charts has been recreated using modern software
     by Anthony J. Starks. See <https://speakerdeck.com/ajstarks/recreating-the-dubois-data-portraits>
-    for an impressive slide show. 
+    for an impressive slide show. The data and code is available on [Github: ajstarks/dubois-data-portraits](https://github.com/ajstarks/dubois-data-portraits)
 
 -   The drafting of Plates 17 and 19 required more than standard graphics software.
     To learn the full story behind the development of these figures, see

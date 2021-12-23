@@ -20,26 +20,28 @@
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -48,9 +50,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
@@ -83,23 +85,44 @@ code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
+<style>
+  div.csl-bib-body { }
+  div.csl-entry {
+    clear: both;
+    }
+  .hanging div.csl-entry {
+    margin-left:2em;
+    text-indent:-2em;
+  }
+  div.csl-left-margin {
+    min-width:2em;
+    float:left;
+  }
+  div.csl-right-inline {
+    margin-left:2em;
+    padding-left:1em;
+  }
+  div.csl-indent {
+    margin-left: 2em;
+  }
+</style>
 
   <!--radix_placeholder_meta_tags-->
   <title>History of Data Visualization: Learning more</title>
-  
-  
-  
-  
+
+
+
+
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="History of Data Visualization: Learning more"/>
   <meta property="og:type" content="article"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="History of Data Visualization"/>
-  
+
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
   <meta property="twitter:title" content="History of Data Visualization: Learning more"/>
-  
+
   <!--/radix_placeholder_meta_tags-->
   
   <meta name="citation_reference" content="citation_title=The Great Migration: A graphics novel featuring the contributions of W. E. B. Du Bois and C. J. Minard;citation_publication_date=2017;citation_volume=14;citation_author=R. J. Andrews;citation_author=Howard Wainer"/>
@@ -107,47 +130,47 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <meta name="citation_reference" content="citation_title=Picturing time: The work of Etienne-Jules Marey (1830-1904);citation_publication_date=1992;citation_publisher=University of Chicago Press;citation_author=Marta Braun"/>
   <meta name="citation_reference" content="citation_title=Isotype: Design and contexts 1925-1971;citation_publication_date=2013;citation_publisher=Hyphen Press"/>
   <meta name="citation_reference" content="citation_title=Interactive and dynamic graphics for data analysis : With R and GGobi;citation_publication_date=2007;citation_publisher=Springer;citation_author=Dianne Cook;citation_author=Deborah F. Swayne"/>
-  <meta name="citation_reference" content="citation_title=&lt;span class=&quot;nocase&quot;&gt;A century and a half of moral statistics in the United Kingdom: Variations on Joseph Fletcher’s thematic maps&lt;/span&gt;;citation_publication_date=2012;citation_publisher=Blackwell Publishing Ltd;citation_volume=9;citation_author=Robert Cook;citation_author=Howard Wainer"/>
+  <meta name="citation_reference" content="citation_title=A century and a half of moral statistics in the United Kingdom: Variations on Joseph Fletcher’s thematic maps;citation_publication_date=2012;citation_publisher=Blackwell Publishing Ltd;citation_volume=9;citation_author=Robert Cook;citation_author=Howard Wainer"/>
   <meta name="citation_reference" content="citation_title=First x, then y, now z: An introduction to landmark thematic maps;citation_publication_date=2012;citation_publisher=Diane Publishing Co.;citation_author=John Delaney"/>
-  <meta name="citation_reference" content="citation_title=&lt;span class=&quot;nocase&quot;&gt;John W. Tukey’s&lt;/span&gt; work on interactive graphics;citation_publication_date=2002;citation_publisher=Institute of Mathematical Statistics;citation_volume=30;citation_author=Jerome H. Friedman;citation_author=Werner Stuetzle"/>
-  <meta name="citation_reference" content="citation_title=The first (known) statistical graph: &lt;span class=&quot;nocase&quot;&gt;Michael Florent van Langren and the “Secret” of Longitude&lt;/span&gt;;citation_publication_date=2010;citation_volume=64;citation_author=Michael Friendly;citation_author=Pedro Valero-Mora;citation_author=Joaquı́n Ibáñez Ulargui"/>
+  <meta name="citation_reference" content="citation_title=John W. Tukey’s work on interactive graphics;citation_publication_date=2002;citation_publisher=Institute of Mathematical Statistics;citation_volume=30;citation_author=Jerome H. Friedman;citation_author=Werner Stuetzle"/>
+  <meta name="citation_reference" content="citation_title=The first (known) statistical graph: Michael Florent van Langren and the “Secret” of Longitude;citation_publication_date=2010;citation_volume=64;citation_author=Michael Friendly;citation_author=Pedro Valero-Mora;citation_author=Joaquı́n Ibáñez Ulargui"/>
   <meta name="citation_reference" content="citation_title=Elliptical insights: Understanding statistical methods through elliptical geometry;citation_publication_date=2013;citation_volume=28;citation_author=Michael Friendly;citation_author=Georges Monette;citation_author=John Fox"/>
   <meta name="citation_reference" content="citation_title=Visions and Re-Visions of Charles Joseph Minard;citation_publication_date=2002;citation_volume=27;citation_author=Michael Friendly"/>
   <meta name="citation_reference" content="citation_title=A brief history of data visualization;citation_publication_date=2007;citation_publisher=Springer-Verlag;citation_volume=III;citation_author=M. Friendly"/>
-  <meta name="citation_reference" content="citation_title=&lt;span class=&quot;nocase&quot;&gt;A.-M. Guerry’s Moral Statistics of France&lt;/span&gt;: Challenges for multivariable spatial analysis;citation_publication_date=2007;citation_volume=22;citation_author=Michael Friendly"/>
-  <meta name="citation_reference" content="citation_title=La vie et l’Oeuvre &lt;span class=&quot;nocase&quot;&gt;d’André-Michael Guerry&lt;/span&gt; (1802-1866);citation_publication_date=2008;citation_volume=20;citation_author=Michael Friendly"/>
+  <meta name="citation_reference" content="citation_title=A.-M. Guerry’s Moral Statistics of France: Challenges for multivariable spatial analysis;citation_publication_date=2007;citation_volume=22;citation_author=Michael Friendly"/>
+  <meta name="citation_reference" content="citation_title=La vie et l’oeuvre d’André-Michael Guerry (1802-1866);citation_publication_date=2008;citation_volume=20;citation_author=Michael Friendly"/>
   <meta name="citation_reference" content="citation_title=The Golden Age of statistical graphics;citation_publication_date=2008;citation_volume=23;citation_author=Michael Friendly"/>
-  <meta name="citation_reference" content="citation_title=&lt;span class=&quot;nocase&quot;&gt;André-Michel Guerry’s&lt;/span&gt; &lt;i&gt;ordonnateur statistique&lt;/i&gt;: The first statistical calculator?;citation_publication_date=2012;citation_volume=66;citation_author=Michael Friendly;citation_author= Saint Agathe"/>
+  <meta name="citation_reference" content="citation_title=André-Michel Guerry’s &lt;i&gt;ordonnateur statistique&lt;/i&gt;: The first statistical calculator?;citation_publication_date=2012;citation_volume=66;citation_author=Michael Friendly;citation_author= Saint Agathe"/>
   <meta name="citation_reference" content="citation_title=The early origins and development of the scatterplot;citation_publication_date=2005;citation_volume=41;citation_author=Michael Friendly;citation_author=D. Denis"/>
   <meta name="citation_reference" content="citation_title=Visualizing nature and society;citation_publication_date=2007;citation_publisher=University of Chicago Press;citation_author=Michael Friendly;citation_author=Gilles Palsky"/>
   <meta name="citation_reference" content="citation_title=The taming of chance;citation_publication_date=1990;citation_publisher=Cambridge University Press;citation_author=Ian Hacking"/>
   <meta name="citation_reference" content="citation_title=The beginnings of graphic recording;citation_publication_date=1962;citation_volume=53;citation_author=Hebbel E. Hoff;citation_author=L. A. Geddes"/>
-  <meta name="citation_reference" content="citation_title=The ghost map: The story of &lt;span class=&quot;nocase&quot;&gt;London’s most&lt;/span&gt; terrifying epidemic–and how it changed science, cities, and the modern world;citation_publication_date=2006;citation_publisher=Riverhead Books;citation_author=Steven Johnson"/>
+  <meta name="citation_reference" content="citation_title=The ghost map: The story of London’s most terrifying epidemic–and how it changed science, cities, and the modern world;citation_publication_date=2006;citation_publisher=Riverhead Books;citation_author=Steven Johnson"/>
   <meta name="citation_reference" content="citation_title=Disease maps: Epidemics on the ground;citation_publication_date=2011;citation_publisher=University of Chicago Press;citation_author=Tom Koch"/>
-  <meta name="citation_reference" content="citation_title=Des chiffres et des cartes: Naissance et développement de la cartographie quantitative française au XIX${}^e$ siècle;citation_publication_date=1996;citation_publisher=Comité des Travaux Historiques et Scientifiques (CTHS);citation_author=G. Palsky"/>
+  <meta name="citation_reference" content="citation_title=Des chiffres et des cartes: Naissance et développement de la cartographie quantitative française au XIX{}^e siècle;citation_publication_date=1996;citation_publisher=Comité des Travaux Historiques et Scientifiques (CTHS);citation_author=G. Palsky"/>
   <meta name="citation_reference" content="citation_title=The minard system: The complete statistical graphics of Charles-Joseph Minard;citation_publication_date=2018;citation_publisher=Princeton Architectural Press;citation_author=Sandra Rendgen"/>
   <meta name="citation_reference" content="citation_title=Early thematic mapping in the history of cartography;citation_publication_date=1982;citation_publisher=University of Chicago Press;citation_author=Arthur H. Robinson"/>
   <meta name="citation_reference" content="citation_title=Thematic cartography and geographic visualization;citation_publication_date=2008;citation_publisher=Pearson/Prentice Hall;citation_author=Terry A. Slocum;citation_author=Robert B. McMaster;citation_author=Fritz C. Kessler;citation_author=Hugh H. Howard"/>
   <meta name="citation_reference" content="citation_title=Longitude: The true story of a lone genius who solved the greatest scientific problem of his time;citation_publication_date=1996;citation_publisher=Penguin;citation_author=Dava Sobel"/>
   <meta name="citation_reference" content="citation_title=Mapping and naming the moon: A history of lunar cartography and nomenclature;citation_publication_date=2003;citation_publisher=Cambridge University Press;citation_author=Ewen Adair Whitaker"/>
   <meta name="citation_reference" content="citation_title=The grammar of graphics;citation_publication_date=1999;citation_publisher=Springer;citation_author=Leland Wilkinson"/>
-  <meta name="citation_reference" content="citation_title=Ggplot2: Elegant graphics for data analysis;citation_publication_date=2016;citation_publisher=Springer-Verlag New York;citation_author=Hadley Wickham"/>
-  <meta name="citation_reference" content="citation_title=Galton’s bend: A previously undiscovered nonlinearity in &lt;span class=&quot;nocase&quot;&gt;Galton’s&lt;/span&gt; family stature regression data;citation_publication_date=2003;citation_volume=57;citation_author=A. Wachsmuth;citation_author=L. Wilkinson;citation_author=G. E. Dallal"/>
+  <meta name="citation_reference" content="citation_title=ggplot2: Elegant graphics for data analysis;citation_publication_date=2016;citation_publisher=Springer-Verlag New York;citation_author=Hadley Wickham"/>
+  <meta name="citation_reference" content="citation_title=Galton’s bend: A previously undiscovered nonlinearity in Galton’s family stature regression data;citation_publication_date=2003;citation_volume=57;citation_author=A. Wachsmuth;citation_author=L. Wilkinson;citation_author=G. E. Dallal"/>
   <!--radix_placeholder_rmarkdown_metadata-->
-  
+
   <script type="text/json" id="radix-rmarkdown-metadata">
   {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output","bibliography","nocite"]}},"value":[{"type":"character","attributes":{},"value":["Learning more"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc"]}},"value":[{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"character","attributes":{},"value":["references.bib"]},{"type":"character","attributes":{},"value":["[@Bauer:2017]","[@Palsky:1996]"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
   <meta name="distill:offset" content=""/>
-  
+
   <script type="application/javascript">
-  
+
     window.headroom_prevent_pin = false;
-  
+
     window.document.addEventListener("DOMContentLoaded", function (event) {
-  
+
       // initialize headroom for banner
       var header = $('header').get(0);
       var headerHeight = header.offsetHeight;
@@ -164,13 +187,13 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       if(window.location.hash)
         headroom.unpin();
       $(header).addClass('headroom--transition');
-  
+
       // offset scroll location for banner on hash change
       // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
       window.addEventListener("hashchange", function(event) {
         window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
       });
-  
+
       // responsive menu
       $('.distill-site-header').each(function(i, val) {
         var topnav = $(this);
@@ -179,7 +202,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           topnav.toggleClass('responsive');
         });
       });
-  
+
       // nav dropdowns
       $('.nav-dropbtn').click(function(e) {
         $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
@@ -194,99 +217,99 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       });
     });
   </script>
-  
+
   <style type="text/css">
-  
+
   /* Theme (user-documented overrideables for nav appearance) */
-  
+
   .distill-site-nav {
     color: rgba(255, 255, 255, 0.8);
     background-color: #0F2E3D;
     font-size: 15px;
     font-weight: 300;
   }
-  
+
   .distill-site-nav a {
     color: inherit;
     text-decoration: none;
   }
-  
+
   .distill-site-nav a:hover {
     color: white;
   }
-  
+
   @media print {
     .distill-site-nav {
       display: none;
     }
   }
-  
+
   .distill-site-header {
-  
+
   }
-  
+
   .distill-site-footer {
-  
+
   }
-  
-  
+
+
   /* Site Header */
-  
+
   .distill-site-header {
     width: 100%;
     box-sizing: border-box;
     z-index: 3;
   }
-  
+
   .distill-site-header .nav-left {
     display: inline-block;
     margin-left: 8px;
   }
-  
+
   @media screen and (max-width: 768px) {
     .distill-site-header .nav-left {
       margin-left: 0;
     }
   }
-  
-  
+
+
   .distill-site-header .nav-right {
     float: right;
     margin-right: 8px;
   }
-  
+
   .distill-site-header a,
   .distill-site-header .title {
     display: inline-block;
     text-align: center;
     padding: 14px 10px 14px 10px;
   }
-  
+
   .distill-site-header .title {
     font-size: 18px;
     min-width: 150px;
   }
-  
+
   .distill-site-header .logo {
     padding: 0;
   }
-  
+
   .distill-site-header .logo img {
     display: none;
     max-height: 20px;
     width: auto;
     margin-bottom: -4px;
   }
-  
+
   .distill-site-header .nav-image img {
     max-height: 18px;
     width: auto;
     display: inline-block;
     margin-bottom: -3px;
   }
-  
-  
-  
+
+
+
   @media screen and (min-width: 1000px) {
     .distill-site-header .logo img {
       display: inline-block;
@@ -301,17 +324,17 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       padding-left: 12px;
     }
   }
-  
-  
+
+
   .distill-site-header .nav-toggle {
     display: none;
   }
-  
+
   .nav-dropdown {
     display: inline-block;
     position: relative;
   }
-  
+
   .nav-dropdown .nav-dropbtn {
     border: none;
     outline: none;
@@ -325,7 +348,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     margin-top: 1px;
     z-index: 2;
   }
-  
+
   .nav-dropdown-content {
     display: none;
     position: absolute;
@@ -340,18 +363,18 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     padding-top: 4px;
     padding-bottom: 4px;
   }
-  
+
   .nav-dropdown-content hr {
     margin-top: 4px;
     margin-bottom: 4px;
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   }
-  
+
   .nav-dropdown-active {
     display: block;
   }
-  
+
   .nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
     color: black;
     padding: 6px 24px;
@@ -359,7 +382,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     display: block;
     text-align: left;
   }
-  
+
   .nav-dropdown-content .nav-dropdown-header {
     display: block;
     padding: 5px 24px;
@@ -369,21 +392,21 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: #999999;
     white-space: nowrap;
   }
-  
+
   .nav-dropdown:hover .nav-dropbtn {
     color: white;
   }
-  
+
   .nav-dropdown-content a:hover {
     background-color: #ddd;
     color: black;
   }
-  
+
   .nav-right .nav-dropdown-content {
     margin-left: -45%;
     right: 0;
   }
-  
+
   @media screen and (max-width: 768px) {
     .distill-site-header a, .distill-site-header .nav-dropdown  {display: none;}
     .distill-site-header a.nav-toggle {
@@ -403,8 +426,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       margin-left: 0;
     }
   }
-  
-  
+
+
   @media screen and (max-width: 768px) {
     .distill-site-header.responsive {position: relative; min-height: 500px; }
     .distill-site-header.responsive a.nav-toggle {
@@ -429,9 +452,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       text-align: left;
     }
   }
-  
+
   /* Site Footer */
-  
+
   .distill-site-footer {
     width: 100%;
     overflow: hidden;
@@ -442,19 +465,19 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     padding-bottom: 30px;
     text-align: center;
   }
-  
+
   /* Headroom */
-  
+
   d-title {
     padding-top: 6rem;
   }
-  
+
   @media print {
     d-title {
       padding-top: 4rem;
     }
   }
-  
+
   .headroom {
     z-index: 1000;
     position: fixed;
@@ -462,36 +485,36 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     left: 0;
     right: 0;
   }
-  
+
   .headroom--transition {
     transition: all .4s ease-in-out;
   }
-  
+
   .headroom--unpinned {
     top: -100px;
   }
-  
+
   .headroom--pinned {
     top: 0;
   }
-  
+
   /* adjust viewport for navbar height */
   /* helps vertically center bootstrap (non-distill) content */
   .min-vh-100 {
     min-height: calc(100vh - 100px) !important;
   }
-  
+
   </style>
-  
+
   <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
   <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
   <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
   <script src="site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
   <script src="site_libs/fuse-6.4.1/fuse.min.js"></script>
-  
+
   <script type="application/javascript">
-  
+
   function getMeta(metaName) {
     var metas = document.getElementsByTagName('meta');
     for (let i = 0; i < metas.length; i++) {
@@ -501,14 +524,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     }
     return '';
   }
-  
+
   function offsetURL(url) {
     var offset = getMeta('distill:offset');
     return offset ? offset + '/' + url : url;
   }
-  
+
   function createFuseIndex() {
-  
+
     // create fuse index
     var options = {
       keys: [
@@ -521,7 +544,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       threshold: 0
     };
     var fuse = new window.Fuse([], options);
-  
+
     // fetch the main search.json
     return fetch(offsetURL('search.json'))
       .then(function(response) {
@@ -551,7 +574,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
               return fuse;
             });
           });
-  
+
         } else {
           return Promise.reject(
             new Error('Unexpected status from search index request: ' +
@@ -560,20 +583,20 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
         }
       });
   }
-  
+
   window.document.addEventListener("DOMContentLoaded", function (event) {
-  
+
     // get search element (bail if we don't have one)
     var searchEl = window.document.getElementById('distill-search');
     if (!searchEl)
       return;
-  
+
     createFuseIndex()
       .then(function(fuse) {
-  
+
         // make search box visible
         searchEl.classList.remove('hidden');
-  
+
         // initialize autocomplete
         var options = {
           autoselect: true,
@@ -622,19 +645,19 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       .catch(function(error) {
         console.log(error);
       });
-  
+
   });
-  
+
   </script>
-  
+
   <style type="text/css">
-  
+
   .nav-search {
     font-size: x-small;
   }
-  
+
   /* Algolioa Autocomplete */
-  
+
   .algolia-autocomplete {
     display: inline-block;
     margin-left: 10px;
@@ -648,8 +671,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     border: 1px #0F2E3D solid;
     width: 180px;
   }
-  
-  
+
+
   @media screen and (max-width: 768px) {
     .distill-site-nav .algolia-autocomplete {
       display: none;
@@ -665,13 +688,13 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       max-height: 400px;
     }
   }
-  
+
   .algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
     width: 90%;
     outline: none;
     border: none;
   }
-  
+
   .algolia-autocomplete .aa-hint {
     color: #999;
   }
@@ -688,30 +711,30 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     border: 1px solid #999;
     border-top: none;
   }
-  
+
   .algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
     cursor: pointer;
     padding: 5px 4px;
     border-bottom: 1px solid #eee;
   }
-  
+
   .algolia-autocomplete .aa-dropdown-menu .aa-suggestion:last-of-type {
     border-bottom: none;
     margin-bottom: 2px;
   }
-  
+
   .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item {
     overflow: hidden;
     font-size: 0.8em;
     line-height: 1.4em;
   }
-  
+
   .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item h3 {
     font-size: 1rem;
     margin-block-start: 0;
     margin-block-end: 5px;
   }
-  
+
   .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-description {
     display: inline-block;
     overflow: hidden;
@@ -719,22 +742,22 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     width: 80%;
     margin-right: 4%;
   }
-  
+
   .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview {
     display: inline-block;
     width: 15%;
   }
-  
+
   .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img {
     height: 3em;
     width: auto;
     display: none;
   }
-  
+
   .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img[src] {
     display: initial;
   }
-  
+
   .algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
     background-color: #eee;
   }
@@ -742,47 +765,47 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     font-weight: bold;
     font-style: normal;
   }
-  
+
   </style>
-  
-  
+
+
   <!--/radix_placeholder_navigation_in_header-->
   <!--radix_placeholder_distill-->
-  
+
   <style type="text/css">
-  
+
   body {
     background-color: white;
   }
-  
+
   .pandoc-table {
     width: 100%;
   }
-  
+
   .pandoc-table>caption {
     margin-bottom: 10px;
   }
-  
+
   .pandoc-table th:not([align]) {
     text-align: left;
   }
-  
+
   .pagedtable-footer {
     font-size: 15px;
   }
-  
+
   d-byline .byline {
     grid-template-columns: 2fr 2fr;
   }
-  
+
   d-byline .byline h3 {
     margin-block-start: 1.5em;
   }
-  
+
   d-byline .byline .authors-affiliations h3 {
     margin-block-start: 0.5em;
   }
-  
+
   .authors-affiliations .orcid-id {
     width: 16px;
     height:16px;
@@ -791,12 +814,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     vertical-align: middle;
     padding-bottom: 2px;
   }
-  
+
   d-title .dt-tags {
     margin-top: 1em;
     grid-column: text;
   }
-  
+
   .dt-tags .dt-tag {
     text-decoration: none;
     display: inline-block;
@@ -810,24 +833,24 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     text-transform: uppercase;
     font-weight: 500;
   }
-  
+
   d-article table.gt_table td,
   d-article table.gt_table th {
     border-bottom: none;
   }
-  
+
   .html-widget {
     margin-bottom: 2.0em;
   }
-  
+
   .l-screen-inset {
     padding-right: 16px;
   }
-  
+
   .l-screen .caption {
     margin-left: 10px;
   }
-  
+
   .shaded {
     background: rgb(247, 247, 247);
     padding-top: 20px;
@@ -835,75 +858,75 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   }
-  
+
   .shaded .html-widget {
     margin-bottom: 0;
     border: 1px solid rgba(0, 0, 0, 0.1);
   }
-  
+
   .shaded .shaded-content {
     background: white;
   }
-  
+
   .text-output {
     margin-top: 0;
     line-height: 1.5em;
   }
-  
+
   .hidden {
     display: none !important;
   }
-  
+
   d-article {
     padding-top: 2.5rem;
     padding-bottom: 30px;
   }
-  
+
   d-appendix {
     padding-top: 30px;
   }
-  
+
   d-article>p>img {
     width: 100%;
   }
-  
+
   d-article h2 {
     margin: 1rem 0 1.5rem 0;
   }
-  
+
   d-article h3 {
     margin-top: 1.5rem;
   }
-  
+
   d-article iframe {
     border: 1px solid rgba(0, 0, 0, 0.1);
     margin-bottom: 2.0em;
     width: 100%;
   }
-  
+
   /* Tweak code blocks */
-  
+
   d-article div.sourceCode code,
   d-article pre code {
     font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   }
-  
+
   d-article pre,
   d-article div.sourceCode,
   d-article div.sourceCode pre {
     overflow: auto;
   }
-  
+
   d-article div.sourceCode {
     background-color: white;
   }
-  
+
   d-article div.sourceCode pre {
     padding-left: 10px;
     font-size: 12px;
     border-left: 2px solid rgba(0,0,0,0.1);
   }
-  
+
   d-article pre {
     font-size: 12px;
     color: black;
@@ -915,50 +938,50 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     word-break: normal;
     word-wrap: normal;
     line-height: 1.5;
-  
+
     -moz-tab-size: 4;
     -o-tab-size: 4;
     tab-size: 4;
-  
+
     -webkit-hyphens: none;
     -moz-hyphens: none;
     -ms-hyphens: none;
     hyphens: none;
   }
-  
+
   d-article pre a {
     border-bottom: none;
   }
-  
+
   d-article pre a:hover {
     border-bottom: none;
     text-decoration: underline;
   }
-  
+
   d-article details {
     grid-column: text;
     margin-bottom: 0.8em;
   }
-  
+
   @media(min-width: 768px) {
-  
+
   d-article pre,
   d-article div.sourceCode,
   d-article div.sourceCode pre {
     overflow: visible !important;
   }
-  
+
   d-article div.sourceCode pre {
     padding-left: 18px;
     font-size: 14px;
   }
-  
+
   d-article pre {
     font-size: 14px;
   }
-  
+
   }
-  
+
   figure img.external {
     background: white;
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -966,9 +989,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     padding: 18px;
     box-sizing: border-box;
   }
-  
+
   /* CSS for d-contents */
-  
+
   .d-contents {
     grid-column: text;
     color: rgba(0,0,0,0.8);
@@ -980,7 +1003,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     padding-left: 0.25em;
     justify-self: start;
   }
-  
+
   @media(min-width: 1000px) {
     .d-contents.d-contents-float {
       height: 0;
@@ -991,82 +1014,82 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       padding-left: 2em;
     }
   }
-  
+
   .d-contents nav h3 {
     font-size: 18px;
     margin-top: 0;
     margin-bottom: 1em;
   }
-  
+
   .d-contents li {
     list-style-type: none
   }
-  
+
   .d-contents nav > ul {
     padding-left: 0;
   }
-  
+
   .d-contents ul {
     padding-left: 1em
   }
-  
+
   .d-contents nav ul li {
     margin-top: 0.6em;
     margin-bottom: 0.2em;
   }
-  
+
   .d-contents nav a {
     font-size: 13px;
     border-bottom: none;
     text-decoration: none
     color: rgba(0, 0, 0, 0.8);
   }
-  
+
   .d-contents nav a:hover {
     text-decoration: underline solid rgba(0, 0, 0, 0.6)
   }
-  
+
   .d-contents nav > ul > li > a {
     font-weight: 600;
   }
-  
+
   .d-contents nav > ul > li > ul {
     font-weight: inherit;
   }
-  
+
   .d-contents nav > ul > li > ul > li {
     margin-top: 0.2em;
   }
-  
-  
+
+
   .d-contents nav ul {
     margin-top: 0;
     margin-bottom: 0.25em;
   }
-  
+
   .d-article-with-toc h2:nth-child(2) {
     margin-top: 0;
   }
-  
-  
+
+
   /* Figure */
-  
+
   .figure {
     position: relative;
     margin-bottom: 2.5em;
     margin-top: 1.5em;
   }
-  
+
   .figure img {
     width: 100%;
   }
-  
+
   .figure .caption {
     color: rgba(0, 0, 0, 0.6);
     font-size: 12px;
     line-height: 1.5em;
   }
-  
+
   .figure img.external {
     background: white;
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -1074,42 +1097,42 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     padding: 18px;
     box-sizing: border-box;
   }
-  
+
   .figure .caption a {
     color: rgba(0, 0, 0, 0.6);
   }
-  
+
   .figure .caption b,
   .figure .caption strong, {
     font-weight: 600;
     color: rgba(0, 0, 0, 1.0);
   }
-  
+
   /* Citations */
-  
+
   d-article .citation {
     color: inherit;
     cursor: inherit;
   }
-  
+
   div.hanging-indent{
     margin-left: 1em; text-indent: -1em;
   }
-  
+
   /* Citation hover box */
-  
+
   .tippy-box[data-theme~=light-border] {
     background-color: rgba(250, 250, 250, 0.95);
   }
-  
+
   .tippy-content > p {
     margin-bottom: 0;
     padding: 2px;
   }
-  
-  
+
+
   /* Tweak 1000px media break to show more text */
-  
+
   @media(min-width: 1000px) {
     .base-grid,
     distill-header,
@@ -1125,11 +1148,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
       grid-column-gap: 16px;
     }
-  
+
     .grid {
       grid-column-gap: 16px;
     }
-  
+
     d-article {
       font-size: 1.06rem;
       line-height: 1.7em;
@@ -1138,7 +1161,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       font-size: 13px;
     }
   }
-  
+
   @media(min-width: 1180px) {
     .base-grid,
     distill-header,
@@ -1154,16 +1177,16 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
       grid-column-gap: 32px;
     }
-  
+
     .grid {
       grid-column-gap: 32px;
     }
   }
-  
-  
+
+
   /* Get the citation styles for the appendix (not auto-injected on render since
      we do our own rendering of the citation appendix) */
-  
+
   d-appendix .citation-appendix,
   .d-appendix .citation-appendix {
     font-size: 11px;
@@ -1180,9 +1203,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     white-space: pre-wrap;
     word-wrap: break-word;
   }
-  
+
   /* Include appendix styles here so they can be overridden */
-  
+
   d-appendix {
     contain: layout style;
     font-size: 0.8em;
@@ -1194,7 +1217,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     padding-top: 60px;
     padding-bottom: 48px;
   }
-  
+
   d-appendix h3 {
     grid-column: page-start / text-start;
     font-size: 15px;
@@ -1203,59 +1226,59 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     margin-bottom: 0;
     color: rgba(0,0,0,0.65);
   }
-  
+
   d-appendix h3 + * {
     margin-top: 1em;
   }
-  
+
   d-appendix ol {
     padding: 0 0 0 15px;
   }
-  
+
   @media (min-width: 768px) {
     d-appendix ol {
       padding: 0 0 0 30px;
       margin-left: -30px;
     }
   }
-  
+
   d-appendix li {
     margin-bottom: 1em;
   }
-  
+
   d-appendix a {
     color: rgba(0, 0, 0, 0.6);
   }
-  
+
   d-appendix > * {
     grid-column: text;
   }
-  
+
   d-appendix > d-footnote-list,
   d-appendix > d-citation-list,
   d-appendix > distill-appendix {
     grid-column: screen;
   }
-  
+
   /* Include footnote styles here so they can be overridden */
-  
+
   d-footnote-list {
     contain: layout style;
   }
-  
+
   d-footnote-list > * {
     grid-column: text;
   }
-  
+
   d-footnote-list a.footnote-backlink {
     color: rgba(0,0,0,0.3);
     padding-left: 0.5em;
   }
-  
-  
-  
+
+
+
   /* Anchor.js */
-  
+
   .anchorjs-link {
     /*transition: all .25s linear; */
     text-decoration: none;
@@ -1266,86 +1289,86 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     text-decoration: none;
     border-bottom: none;
   }
-  
+
   /* Social footer */
-  
+
   .social_footer {
     margin-top: 30px;
     margin-bottom: 0;
     color: rgba(0,0,0,0.67);
   }
-  
+
   .disqus-comments {
     margin-right: 30px;
   }
-  
+
   .disqus-comment-count {
     border-bottom: 1px solid rgba(0, 0, 0, 0.4);
     cursor: pointer;
   }
-  
+
   #disqus_thread {
     margin-top: 30px;
   }
-  
+
   .article-sharing a {
     border-bottom: none;
     margin-right: 8px;
   }
-  
+
   .article-sharing a:hover {
     border-bottom: none;
   }
-  
+
   .sidebar-section.subscribe {
     font-size: 12px;
     line-height: 1.6em;
   }
-  
+
   .subscribe p {
     margin-bottom: 0.5em;
   }
-  
-  
+
+
   .article-footer .subscribe {
     font-size: 15px;
     margin-top: 45px;
   }
-  
-  
+
+
   .sidebar-section.custom {
     font-size: 12px;
     line-height: 1.6em;
   }
-  
+
   .custom p {
     margin-bottom: 0.5em;
   }
-  
+
   /* Styles for listing layout (hide title) */
   .layout-listing d-title, .layout-listing .d-title {
     display: none;
   }
-  
+
   /* Styles for posts lists (not auto-injected) */
-  
-  
+
+
   .posts-with-sidebar {
     padding-left: 45px;
     padding-right: 45px;
   }
-  
+
   .posts-list .description h2,
   .posts-list .description p {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
   }
-  
+
   .posts-list .description h2 {
     font-weight: 700;
     border-bottom: none;
     padding-bottom: 0;
   }
-  
+
   .posts-list h2.post-tag {
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     padding-bottom: 12px;
@@ -1354,7 +1377,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     margin-top: 60px;
     margin-bottom: 24px;
   }
-  
+
   .posts-list .post-preview {
     text-decoration: none;
     overflow: hidden;
@@ -1362,29 +1385,29 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     padding: 24px 0;
   }
-  
+
   .post-preview-last {
     border-bottom: none !important;
   }
-  
+
   .posts-list .posts-list-caption {
     grid-column: screen;
     font-weight: 400;
   }
-  
+
   .posts-list .post-preview h2 {
     margin: 0 0 6px 0;
     line-height: 1.2em;
     font-style: normal;
     font-size: 24px;
   }
-  
+
   .posts-list .post-preview p {
     margin: 0 0 12px 0;
     line-height: 1.4em;
     font-size: 16px;
   }
-  
+
   .posts-list .post-preview .thumbnail {
     box-sizing: border-box;
     margin-bottom: 24px;
@@ -1395,32 +1418,32 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     width: 100%;
     display: block;
   }
-  
+
   .posts-list .metadata {
     font-size: 12px;
     line-height: 1.4em;
     margin-bottom: 18px;
   }
-  
+
   .posts-list .metadata > * {
     display: inline-block;
   }
-  
+
   .posts-list .metadata .publishedDate {
     margin-right: 2em;
   }
-  
+
   .posts-list .metadata .dt-authors {
     display: block;
     margin-top: 0.3em;
     margin-right: 2em;
   }
-  
+
   .posts-list .dt-tags {
     display: block;
     line-height: 1em;
   }
-  
+
   .posts-list .dt-tags .dt-tag {
     display: inline-block;
     color: rgba(0,0,0,0.6);
@@ -1433,24 +1456,24 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     text-transform: uppercase;
     font-weight: 500;
   }
-  
+
   .posts-list img {
     opacity: 1;
   }
-  
+
   .posts-list img[data-src] {
     opacity: 0;
   }
-  
+
   .posts-more {
     clear: both;
   }
-  
-  
+
+
   .posts-sidebar {
     font-size: 16px;
   }
-  
+
   .posts-sidebar h3 {
     font-size: 16px;
     margin-top: 0;
@@ -1458,39 +1481,39 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     font-weight: 400;
     text-transform: uppercase;
   }
-  
+
   .sidebar-section {
     margin-bottom: 30px;
   }
-  
+
   .categories ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
   }
-  
+
   .categories li {
     color: rgba(0, 0, 0, 0.8);
     margin-bottom: 0;
   }
-  
+
   .categories li>a {
     border-bottom: none;
   }
-  
+
   .categories li>a:hover {
     border-bottom: 1px solid rgba(0, 0, 0, 0.4);
   }
-  
+
   .categories .active {
     font-weight: 600;
   }
-  
+
   .categories .category-count {
     color: rgba(0, 0, 0, 0.4);
   }
-  
-  
+
+
   @media(min-width: 768px) {
     .posts-list .post-preview h2 {
       font-size: 26px;
@@ -1526,55 +1549,55 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       padding-bottom: 24px;
     }
   }
-  
-  
+
+
   /* Improve display for browsers without grid (IE/Edge <= 15) */
-  
+
   .downlevel {
     line-height: 1.6em;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
     margin: 0;
   }
-  
+
   .downlevel .d-title {
     padding-top: 6rem;
     padding-bottom: 1.5rem;
   }
-  
+
   .downlevel .d-title h1 {
     font-size: 50px;
     font-weight: 700;
     line-height: 1.1em;
     margin: 0 0 0.5rem;
   }
-  
+
   .downlevel .d-title p {
     font-weight: 300;
     font-size: 1.2rem;
     line-height: 1.55em;
     margin-top: 0;
   }
-  
+
   .downlevel .d-byline {
     padding-top: 0.8em;
     padding-bottom: 0.8em;
     font-size: 0.8rem;
     line-height: 1.8em;
   }
-  
+
   .downlevel .section-separator {
     border: none;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
   }
-  
+
   .downlevel .d-article {
     font-size: 1.06rem;
     line-height: 1.7em;
     padding-top: 1rem;
     padding-bottom: 2rem;
   }
-  
-  
+
+
   .downlevel .d-appendix {
     padding-left: 0;
     padding-right: 0;
@@ -1586,11 +1609,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     padding-top: 40px;
     padding-bottom: 48px;
   }
-  
+
   .downlevel .footnotes ol {
     padding-left: 13px;
   }
-  
+
   .downlevel .base-grid,
   .downlevel .distill-header,
   .downlevel .d-title,
@@ -1607,7 +1630,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     padding-left: 40px;
     padding-right: 40px;
   }
-  
+
   @media(min-width: 768px) {
     .downlevel .base-grid,
     .downlevel .distill-header,
@@ -1627,14 +1650,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     max-width: 900px;
   }
   }
-  
+
   .downlevel pre code {
     display: block;
     border-left: 2px solid rgba(0, 0, 0, .1);
     padding: 0 0 0 20px;
     font-size: 14px;
   }
-  
+
   .downlevel code, .downlevel pre {
     color: black;
     background: none;
@@ -1645,27 +1668,27 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     word-break: normal;
     word-wrap: normal;
     line-height: 1.5;
-  
+
     -moz-tab-size: 4;
     -o-tab-size: 4;
     tab-size: 4;
-  
+
     -webkit-hyphens: none;
     -moz-hyphens: none;
     -ms-hyphens: none;
     hyphens: none;
   }
-  
+
   .downlevel .posts-list .post-preview {
     color: inherit;
   }
-  
-  
-  
+
+
+
   </style>
-  
+
   <script type="application/javascript">
-  
+
   function is_downlevel_browser() {
     if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
                                    window.navigator.userAgent)) {
@@ -1674,20 +1697,20 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       return window.load_distill_framework === undefined;
     }
   }
-  
+
   // show body when load is complete
   function on_load_complete() {
-  
+
     // add anchors
     if (window.anchors) {
       window.anchors.options.placement = 'left';
       window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
     }
-  
-  
+
+
     // set body to visible
     document.body.style.visibility = 'visible';
-  
+
     // force redraw for leaflet widgets
     if (window.HTMLWidgets) {
       var maps = window.HTMLWidgets.findAll(".leaflet");
@@ -1700,39 +1723,39 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
         });
       });
     }
-  
+
     // trigger 'shown' so htmlwidgets resize
     $('d-article').trigger('shown');
   }
-  
+
   function init_distill() {
-  
+
     init_common();
-  
+
     // create front matter
     var front_matter = $('<d-front-matter></d-front-matter>');
     $('#distill-front-matter').wrap(front_matter);
-  
+
     // create d-title
     $('.d-title').changeElementType('d-title');
-  
+
     // create d-byline
     var byline = $('<d-byline></d-byline>');
     $('.d-byline').replaceWith(byline);
-  
+
     // create d-article
     var article = $('<d-article></d-article>');
     $('.d-article').wrap(article).children().unwrap();
-  
+
     // move posts container into article
     $('.posts-container').appendTo($('d-article'));
-  
+
     // create d-appendix
     $('.d-appendix').changeElementType('d-appendix');
-  
+
     // flag indicating that we have appendix items
     var appendix = $('.appendix-bottom').children('h3').length > 0;
-  
+
     // replace footnotes with <d-footnote>
     $('.footnote-ref').each(function(i, val) {
       appendix = true;
@@ -1748,10 +1771,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     });
     // remove footnotes
     $('.footnotes').remove();
-  
+
     // move refs into #references-listing
     $('#references-listing').replaceWith($('#refs'));
-  
+
     $('h1.appendix, h2.appendix').each(function(i, val) {
       $(this).changeElementType('h3');
     });
@@ -1761,16 +1784,16 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       appendix = true;
       $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
     });
-  
+
     // show d-appendix if we have appendix content
     $("d-appendix").css('display', appendix ? 'grid' : 'none');
-  
+
     // localize layout chunks to just output
     $('.layout-chunk').each(function(i, val) {
-  
+
       // capture layout
       var layout = $(this).attr('data-layout');
-  
+
       // apply layout to markdown level block elements
       var elements = $(this).children().not('details, div.sourceCode, pre, script');
       elements.each(function(i, el) {
@@ -1783,40 +1806,40 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           $(this).wrap(layout_div);
         }
       });
-  
-  
+
+
       // unwrap the layout-chunk div
       $(this).children().unwrap();
     });
-  
+
     // remove code block used to force  highlighting css
     $('.distill-force-highlighting-css').parent().remove();
-  
+
     // remove empty line numbers inserted by pandoc when using a
     // custom syntax highlighting theme
     $('code.sourceCode a:empty').remove();
-  
+
     // load distill framework
     load_distill_framework();
-  
+
     // wait for window.distillRunlevel == 4 to do post processing
     function distill_post_process() {
-  
+
       if (!window.distillRunlevel || window.distillRunlevel < 4)
         return;
-  
+
       // hide author/affiliations entirely if we have no authors
       var front_matter = JSON.parse($("#distill-front-matter").html());
       var have_authors = front_matter.authors && front_matter.authors.length > 0;
       if (!have_authors)
         $('d-byline').addClass('hidden');
-  
+
       // article with toc class
       $('.d-contents').parent().addClass('d-article-with-toc');
-  
+
       // strip links that point to #
       $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
-  
+
       // add orcid ids
       $('.authors-affiliations').find('.author').each(function(i, el) {
         var orcid_id = front_matter.authors[i].orcidID;
@@ -1831,12 +1854,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           $(this).append(a);
         }
       });
-  
+
       // hide elements of author/affiliations grid that have no value
       function hide_byline_column(caption) {
         $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
       }
-  
+
       // affiliations
       var have_affiliations = false;
       for (var i = 0; i<front_matter.authors.length; ++i) {
@@ -1848,11 +1871,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       }
       if (!have_affiliations)
         $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
-  
+
       // published date
       if (!front_matter.publishedDate)
         hide_byline_column("Published");
-  
+
       // document object identifier
       var doi = $('d-byline').find('h3:contains("DOI")');
       var doi_p = doi.next().empty();
@@ -1872,22 +1895,22 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
            .html(front_matter.doi)
            .appendTo(doi_p);
       }
-  
+
        // change plural form of authors/affiliations
       if (front_matter.authors.length === 1) {
         var grid = $('.authors-affiliations');
         grid.children('h3:contains("Authors")').text('Author');
         grid.children('h3:contains("Affiliations")').text('Affiliation');
       }
-  
+
       // remove d-appendix and d-footnote-list local styles
       $('d-appendix > style:first-child').remove();
       $('d-footnote-list > style:first-child').remove();
-  
+
       // move appendix-bottom entries to the bottom
       $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
       $('.appendix-bottom').remove();
-  
+
       // hoverable references
       $('span.citation[data-cites]').each(function() {
         var refs = $(this).attr('data-cites').split(" ");
@@ -1904,39 +1927,39 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           placement: 'bottom-start'
         });
       });
-  
+
       // clear polling timer
       clearInterval(tid);
-  
+
       // show body now that everything is ready
       on_load_complete();
     }
-  
+
     var tid = setInterval(distill_post_process, 50);
     distill_post_process();
-  
+
   }
-  
+
   function init_downlevel() {
-  
+
     init_common();
-  
+
      // insert hr after d-title
     $('.d-title').after($('<hr class="section-separator"/>'));
-  
+
     // check if we have authors
     var front_matter = JSON.parse($("#distill-front-matter").html());
     var have_authors = front_matter.authors && front_matter.authors.length > 0;
-  
+
     // manage byline/border
     if (!have_authors)
       $('.d-byline').remove();
     $('.d-byline').after($('<hr class="section-separator"/>'));
     $('.d-byline a').remove();
-  
+
     // remove toc
     $('.d-contents').remove();
-  
+
     // move appendix elements
     $('h1.appendix, h2.appendix').each(function(i, val) {
       $(this).changeElementType('h3');
@@ -1944,62 +1967,62 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     $('h3.appendix').each(function(i, val) {
       $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
     });
-  
-  
+
+
     // inject headers into references and footnotes
     var refs_header = $('<h3></h3>');
     refs_header.text('References');
     $('#refs').prepend(refs_header);
-  
+
     var footnotes_header = $('<h3></h3');
     footnotes_header.text('Footnotes');
     $('.footnotes').children('hr').first().replaceWith(footnotes_header);
-  
+
     // move appendix-bottom entries to the bottom
     $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
     $('.appendix-bottom').remove();
-  
+
     // remove appendix if it's empty
     if ($('.d-appendix').children().length === 0)
       $('.d-appendix').remove();
-  
+
     // prepend separator above appendix
     $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
-  
+
     // trim code
     $('pre>code').each(function(i, val) {
       $(this).html($.trim($(this).html()));
     });
-  
+
     // move posts-container right before article
     $('.posts-container').insertBefore($('.d-article'));
-  
+
     $('body').addClass('downlevel');
-  
+
     on_load_complete();
   }
-  
-  
+
+
   function init_common() {
-  
+
     // jquery plugin to change element types
     (function($) {
       $.fn.changeElementType = function(newType) {
         var attrs = {};
-  
+
         $.each(this[0].attributes, function(idx, attr) {
           attrs[attr.nodeName] = attr.nodeValue;
         });
-  
+
         this.replaceWith(function() {
           return $("<" + newType + "/>", attrs).append($(this).contents());
         });
       };
     })(jQuery);
-  
+
     // prevent underline for linked images
     $('a > img').parent().css({'border-bottom' : 'none'});
-  
+
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
@@ -2011,35 +2034,35 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           var fig = $(this);
           fig.css('width', fig.attr('width') + 'px');
         });
-  
+
       }
     });
-  
+
     // auto-append index.html to post-preview links in file: protocol
     // and in rstudio ide preview
     $('.post-preview').each(function(i, val) {
       if (window.location.protocol === "file:")
         $(this).attr('href', $(this).attr('href') + "index.html");
     });
-  
+
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
         $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
       });
     }
-  
+
     // add class to pandoc style tables
     $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
     $('.kable-table').children('table').addClass('pandoc-table');
-  
+
     // add figcaption style to table captions
     $('caption').parent('table').addClass("figcaption");
-  
+
     // initialize posts list
     if (window.init_posts_list)
       window.init_posts_list();
-  
+
     // implmement disqus comment link
     $('.disqus-comment-count').click(function() {
       window.headroom_prevent_pin = true;
@@ -2053,17 +2076,18 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       }
     });
   }
-  
+
   document.addEventListener('DOMContentLoaded', function() {
     if (is_downlevel_browser())
       init_downlevel();
     else
       window.addEventListener('WebComponentsReady', init_distill);
   });
-  
+
   </script>
-  
+
   <!--/radix_placeholder_distill-->
+  <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2090,9 +2114,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       <script language="JavaScript" src="css/zoom.js"></script>
     </body>
   </html>
-  
-  
-  
+
+
+
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       if (!/HistDataVis/.test(location.pathname)) {
@@ -2124,38 +2148,38 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <style type="text/css">
   /* import fonts */
   /* nag note says 'use link instead' */
-  
+
   /*
-  
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Signika:wght@500&display=swap" rel="stylesheet">
-  
+
   in CSS rules:
   font-family: 'Signika', sans-serif;
-  
+
   */
-  
+
   /* titles */
   @import url('https://fonts.googleapis.com/css2?family=Signika:wght@500&display=swap');
-  
+
   /* other headings */
   @import url('https://fonts.googleapis.com/css?family=Work+Sans&display=swap');
-  
-  
+
+
   .article-banner {
     width: auto;
     height: auto;
     border: 0;
   }
-  
+
   img[src="images/banner.png"] {
     border: 0;
     padding: 0;
     width: 100%;
     margin: 100px 25px 0 0;
   }
-  
+
   .zoomDiv {
     opacity: 0;
     position: fixed;
@@ -2166,71 +2190,71 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     box-shadow: 10px 10px 50px #888888;
     max-height:100%;
   }
-  
+
   .zoomImg {
     width: 100%;
   }
-  
-  
-  
+
+
+
   /* divs for chapters */
-  
+
   .chapterintro {
       background-color: #daeff0;
       margin-bottom: 1px;
     }
-  
+
   .chapterprelude {
     background-color: #daeff0;
     margin-top: 1px;
     margin-bottom: 1px;
   }
-  
+
   .chapterprelude li {
     line-height: 10px;
   }
-  
+
   .chaptercontents {
     background-color: #daeff0;
     margin-bottom: 1px;
   }
-  
+
   .chaptercontents li {
     line-height: 10px;
   }
-  
+
   .chaptercontents li li {
     margin-top: 14px;
     font-size:  10pt;
   }
-  
-  
+
+
   /* Selected Figures in Chapter RMDs */
   /* the attributes here are only to show that we can control them here */
-  
+
   .figtitle {
     color: blue;
   }
-  
-  
+
+
   .chap-fig-desc {
     line-height: 16px;
     color: blue;
   }
-  
+
   .fig-src {
     font-size:  8pt;
     color: SlateGray;
   }
-  
+
   /* fontawesome icons */
-  
+
   .fa-star {
       color: red;
       border: black;
   }
-  
-  
+
+
   </style>
   <!--/radix_placeholder_site_in_header-->
 
@@ -2330,73 +2354,73 @@ Chapters
 <hr />
 <p>This section contains some links and references to further reading and topics that you might wish to explore. They didn’t fit directly in the narrative of a given chapter, but are useful nonetheless.</p>
 <p>This web version contains additional items and references not printed in the book.</p>
-<h2 id="chapter-1" class="unnumbered">Chapter 1</h2>
+<h2 class="unnumbered" id="chapter-1">Chapter 1</h2>
 <ul>
 <li>The history of cartography has many sources, but among these, the project of the same name at the University of Wisconsin (<a href="https://geography.wisc.edu/histcart/" class="uri">https://geography.wisc.edu/histcart/</a>) is notable. There are now six volumes, some published online and in print form by the University of Chicago press (<a href="https://www.press.uchicago.edu/books/HOC/index.html" class="uri">https://www.press.uchicago.edu/books/HOC/index.html</a>)</li>
 </ul>
-<h2 id="chapter-2" class="unnumbered">Chapter 2</h2>
+<h2 class="unnumbered" id="chapter-2">Chapter 2</h2>
 <ul>
-<li><p>This chapter draws on material from <span class="citation" data-cites="Friendly-etal:2010:langren">Friendly, Valero-Mora, and Ulargui (<a href="#ref-Friendly-etal:2010:langren" role="doc-biblioref">2010</a>)</span>. The supplementary web page for this paper, <a href="https://datavis.ca/gallery/langren/" class="uri">https://datavis.ca/gallery/langren/</a>, gives the historical sources, including earlier versions of Figure 2.1 contained in various letters, translations of <em>La Verdadera</em> and the text of Van Langren’s cipher.</p></li>
-<li><p>Van Langren’s cipher (Figure 2.5) is still one of the most elusive unsolved problems in cryptography. If you like the history of this topic, you might enjoy the book by Craig Bauer, <em>Unsolved!: …</em> <span class="citation" data-cites="Bauer:2017">(Bauer <a href="#ref-Bauer:2017" role="doc-biblioref">2017</a>)</span>.</p></li>
+<li><p>This chapter draws on material from <span class="citation" data-cites="Friendly-etal:2010:langren"><a href="#ref-Friendly-etal:2010:langren" role="doc-biblioref">Michael Friendly, Valero-Mora, and Ulargui</a> (<a href="#ref-Friendly-etal:2010:langren" role="doc-biblioref">2010</a>)</span>. The supplementary web page for this paper, <a href="https://datavis.ca/gallery/langren/" class="uri">https://datavis.ca/gallery/langren/</a>, gives the historical sources, including earlier versions of Figure 2.1 contained in various letters, translations of <em>La Verdadera</em> and the text of Van Langren’s cipher.</p></li>
+<li><p>Van Langren’s cipher (Figure 2.5) is still one of the most elusive unsolved problems in cryptography. If you like the history of this topic, you might enjoy the book by Craig Bauer, <em>Unsolved!: …</em> <span class="citation" data-cites="Bauer:2017">(<a href="#ref-Bauer:2017" role="doc-biblioref">Bauer 2017</a>)</span>.</p></li>
 <li><p>A popular history of the problem of longitude by Dava Sobel <span class="citation" data-cites="Sobel:1996">(<a href="#ref-Sobel:1996" role="doc-biblioref">1996</a>)</span>, focuses on the work of the clockmaker John Harrison who, only with considerable difficulty, was finally perceived to have solved the problem to sufficient accuracy to be awarded a prize by the Longitude Commission.</p></li>
 <li><p>The story of the mapping and naming of lunar features did not begin or end with van Langren. Ewen Whitaker’s <em>Mapping and Naming the Moon …</em> <span class="citation" data-cites="Whitaker:2003:mapping">(<a href="#ref-Whitaker:2003:mapping" role="doc-biblioref">2003</a>)</span> gives a comprehensive history and devotes a chapter to van Langren, including other versions of the 1645 lunar map.</p></li>
-<li><p>In the period after van Langren, other early things that could be called graphs were often produced by devices that recorded some phenomenon like temperature or barometric pressure by a pen on moving paper or a drum. Robert Plot’s chart of barometric pressure (Figure 1.4) is one example. <span class="citation" data-cites="HoffGeddes:1962">Hoff and Geddes (<a href="#ref-HoffGeddes:1962" role="doc-biblioref">1962</a>)</span> give a detailed history of this early history with many fine illustrations.</p></li>
+<li><p>In the period after van Langren, other early things that could be called graphs were often produced by devices that recorded some phenomenon like temperature or barometric pressure by a pen on moving paper or a drum. Robert Plot’s chart of barometric pressure (Figure 1.4) is one example. <span class="citation" data-cites="HoffGeddes:1962"><a href="#ref-HoffGeddes:1962" role="doc-biblioref">Hoff and Geddes</a> (<a href="#ref-HoffGeddes:1962" role="doc-biblioref">1962</a>)</span> give a detailed history of this early history with many fine illustrations.</p></li>
 </ul>
-<h2 id="chapter-3" class="unnumbered">Chapter 3</h2>
+<h2 class="unnumbered" id="chapter-3">Chapter 3</h2>
 <ul>
 <li><p>The wider story of the roles of empirical observation and data in the intellectual development of science in the and is well told by Ian Hacking in <em>The Taming of Chance</em> <span class="citation" data-cites="Hacking:1990">(<a href="#ref-Hacking:1990" role="doc-biblioref">1990</a>)</span>.</p></li>
-<li><p>The story of Guerry’s <em>Moral Statistics of France</em> is told in greater detail in <span class="citation" data-cites="Friendly:2007:guerry">Michael Friendly (<a href="#ref-Friendly:2007:guerry" role="doc-biblioref">2007</a>)</span>. This article also describes his later work and relates his data and questions to modern methods of statistics and graphics. A web supplement, <a href="https://datavis.ca/gallery/guerry" class="uri">https://datavis.ca/gallery/guerry</a>, provides resource material, and Guerry’s data have been made available in the R package <code>Guerry</code>, <a href="https://CRAN.R-project.org/package=Guerry" class="uri">https://CRAN.R-project.org/package=Guerry</a>.</p></li>
-<li><p>Very little of Guerry’s personal life or family history was known until recently. A brief biography is available (in French) in <span class="citation" data-cites="Friendly:2007:guerryvie">Michael Friendly (<a href="#ref-Friendly:2007:guerryvie" role="doc-biblioref">2008</a><a href="#ref-Friendly:2007:guerryvie" role="doc-biblioref">b</a>)</span> and an English version linked on the <code>datavis.ca</code> web site mentioned above.</p></li>
-<li><p>Along the way, Guerry tabulated so much data that he invented a mechanical calculator, an <em>ordonnateur statistique</em>, to help in this work. The history of this device, perhaps the first special-purpose statistical calculator is described in <span class="citation" data-cites="Friendly:2012:ordonnateur">Friendly and Saint Agathe (<a href="#ref-Friendly:2012:ordonnateur" role="doc-biblioref">2012</a>)</span>.</p></li>
-<li><p>In England, Joseph Fletcher comes closest to Guerry in his pursuit of the relations among moral variables and his use of thematic maps to display such data. <span class="citation" data-cites="CookWainer:2012">Cook and Wainer (<a href="#ref-CookWainer:2012" role="doc-biblioref">2012</a>)</span> describe these contributions.</p></li>
-<li><p>The most comprehensive treatment of the early development of thematic mapping is still <span class="citation" data-cites="Robinson:1982">Robinson (<a href="#ref-Robinson:1982" role="doc-biblioref">1982</a>)</span>. <span class="citation" data-cites="Palsky:1996">Palsky (<a href="#ref-Palsky:1996" role="doc-biblioref">1996</a>)</span> gives a detailed history of quantitative cartography in the 19th century (in French), and <span class="citation" data-cites="FriendlyPalsky:2007">Michael Friendly and Palsky (<a href="#ref-FriendlyPalsky:2007" role="doc-biblioref">2007</a>)</span> provide a history of thematic maps and diagrams designed to explore the connections between graphic images and scientific questioning. <span class="citation" data-cites="Delaney:2012">Delaney (<a href="#ref-Delaney:2012" role="doc-biblioref">2012</a>)</span> provides a richly illustrated overview of some landmark developments in this area.</p></li>
+<li><p>The story of Guerry’s <em>Moral Statistics of France</em> is told in greater detail in <span class="citation" data-cites="Friendly:2007:guerry"><a href="#ref-Friendly:2007:guerry" role="doc-biblioref">Michael Friendly</a> (<a href="#ref-Friendly:2007:guerry" role="doc-biblioref">2007</a>)</span>. This article also describes his later work and relates his data and questions to modern methods of statistics and graphics. A web supplement, <a href="https://datavis.ca/gallery/guerry" class="uri">https://datavis.ca/gallery/guerry</a>, provides resource material, and Guerry’s data have been made available in the R package <code>Guerry</code>, <a href="https://CRAN.R-project.org/package=Guerry" class="uri">https://CRAN.R-project.org/package=Guerry</a>.</p></li>
+<li><p>Very little of Guerry’s personal life or family history was known until recently. A brief biography is available (in French) in <span class="citation" data-cites="Friendly:2007:guerryvie"><a href="#ref-Friendly:2007:guerryvie" role="doc-biblioref">Michael Friendly</a> (<a href="#ref-Friendly:2007:guerryvie" role="doc-biblioref">2008b</a>)</span> and an English version linked on the <code>datavis.ca</code> web site mentioned above.</p></li>
+<li><p>Along the way, Guerry tabulated so much data that he invented a mechanical calculator, an <em>ordonnateur statistique</em>, to help in this work. The history of this device, perhaps the first special-purpose statistical calculator is described in <span class="citation" data-cites="Friendly:2012:ordonnateur"><a href="#ref-Friendly:2012:ordonnateur" role="doc-biblioref">Michael Friendly and Saint Agathe</a> (<a href="#ref-Friendly:2012:ordonnateur" role="doc-biblioref">2012</a>)</span>.</p></li>
+<li><p>In England, Joseph Fletcher comes closest to Guerry in his pursuit of the relations among moral variables and his use of thematic maps to display such data. <span class="citation" data-cites="CookWainer:2012"><a href="#ref-CookWainer:2012" role="doc-biblioref">R. Cook and Wainer</a> (<a href="#ref-CookWainer:2012" role="doc-biblioref">2012</a>)</span> describe these contributions.</p></li>
+<li><p>The most comprehensive treatment of the early development of thematic mapping is still <span class="citation" data-cites="Robinson:1982"><a href="#ref-Robinson:1982" role="doc-biblioref">Robinson</a> (<a href="#ref-Robinson:1982" role="doc-biblioref">1982</a>)</span>. <span class="citation" data-cites="Palsky:1996"><a href="#ref-Palsky:1996" role="doc-biblioref">Palsky</a> (<a href="#ref-Palsky:1996" role="doc-biblioref">1996</a>)</span> gives a detailed history of quantitative cartography in the 19th century (in French), and <span class="citation" data-cites="FriendlyPalsky:2007"><a href="#ref-FriendlyPalsky:2007" role="doc-biblioref">Michael Friendly and Palsky</a> (<a href="#ref-FriendlyPalsky:2007" role="doc-biblioref">2007</a>)</span> provide a history of thematic maps and diagrams designed to explore the connections between graphic images and scientific questioning. <span class="citation" data-cites="Delaney:2012"><a href="#ref-Delaney:2012" role="doc-biblioref">Delaney</a> (<a href="#ref-Delaney:2012" role="doc-biblioref">2012</a>)</span> provides a richly illustrated overview of some landmark developments in this area.</p></li>
 </ul>
-<h2 id="chapter-4" class="unnumbered">Chapter 4</h2>
+<h2 class="unnumbered" id="chapter-4">Chapter 4</h2>
 <ul>
-<li><p>Steven Johnson’s <em>The Ghost Map …</em> <span class="citation" data-cites="Johnson:2006">(Johnson <a href="#ref-Johnson:2006" role="doc-biblioref">2006</a>)</span> is a compelling popular description of the background for the cholera outbreaks in London and the roles that Snow and others played in uncovering evidence and tracing the initial outbreak to the “index case,” Frances Lewis, a five-month-old child residing at 40 Broad Street, adjacent to the pump.</p></li>
+<li><p>Steven Johnson’s <em>The Ghost Map …</em> <span class="citation" data-cites="Johnson:2006">(<a href="#ref-Johnson:2006" role="doc-biblioref">Johnson 2006</a>)</span> is a compelling popular description of the background for the cholera outbreaks in London and the roles that Snow and others played in uncovering evidence and tracing the initial outbreak to the “index case,” Frances Lewis, a five-month-old child residing at 40 Broad Street, adjacent to the pump.</p></li>
 <li><p><em>Disease Maps …</em> by Tom Koch <span class="citation" data-cites="Koch:2011">(<a href="#ref-Koch:2011" role="doc-biblioref">2011</a>)</span> traces a history of the medical uses of cartography to understand the outbreak and transmission of disease.</p></li>
 <li><p>Scott Klein, a data journalist at <a href="https://www.propublica.org/">ProPublica</a>, presents an interesting look at how journalists at the New York <em>Tribune</em> covered an outbreak of cholera in New York City in September, 1849, using a time-series line graph of cholera deaths on its front page. See: <a href="https://www.propublica.org/nerds/item/infographics-in-the-time-of-cholera" class="uri">https://www.propublica.org/nerds/item/infographics-in-the-time-of-cholera</a>.</p></li>
 <li><p>A project initiated by Lynn McDonald, <em>The Collected Works of Florence Nightingale</em>, comprises all her available surviving writing (letters, articles, pamphlets, etc.) in 16 volumes. An online catalog is available at <a href="https://www.uoguelph.ca/~cwfn/index.htm" class="uri">https://www.uoguelph.ca/~cwfn/index.htm</a>.</p></li>
 <li><p>Worldmapper, <a href="https://www.worldmapper.org/" class="uri">https://www.worldmapper.org/</a>, is a project developed by Danny Dorling and others, largely at the University of Sheffield in the U.K. It now has nearly 700 maps in 30 general categories covering food, goods, income, poverty, housing, education, disease, violence, causes of death, and so forth. Their slogan is “mapping your world as you’ve never seen it before.” It is well worth a visit, if not a journey.</p></li>
 </ul>
-<h2 id="chapter-5" class="unnumbered">Chapter 5</h2>
+<h2 class="unnumbered" id="chapter-5">Chapter 5</h2>
 <ul>
 <li><p>Unlike most other classics in the history of data visualization, Playfair’s main works—–the <em>Atlas</em> and the <em>Statistical Breviary</em>—– are available in a modern reprinting, edited and introduced by Howard Wainer and Ian Spence and published in 2005 by Cambridge University Press. A modern reader may be interested reading Playfair’s words to see how he faced the challenge of describing his novel charts to his audience around 1800. Equally well, one might be impressed with the quality of the reprinting and the presentation of Playfair’s plates, a number of which are on fold-out pages.</p></li>
 <li><p>The collection of research papers and biographical studies of Playfair by Ian Spence can be found at <a href="https://psych.utoronto.ca/users/spence/Research_WP.html" class="uri">https://psych.utoronto.ca/users/spence/Research_WP.html</a></p></li>
 </ul>
-<h2 id="chapter-6" class="unnumbered">Chapter 6</h2>
+<h2 class="unnumbered" id="chapter-6">Chapter 6</h2>
 <ul>
-<li><p>Parts of the chapter are based on material presented in <span class="citation" data-cites="FriendlyDenis:05:scat">Friendly and Denis (<a href="#ref-FriendlyDenis:05:scat" role="doc-biblioref">2005</a>)</span>.</p></li>
-<li><p>The remarkable capabilities of the ellipse and higher dimensional cousins (ellipsoids) are described in <span class="citation" data-cites="Friendly-etal:ellipses:2013">Friendly, Monette, and Fox (<a href="#ref-Friendly-etal:ellipses:2013" role="doc-biblioref">2013</a>)</span>. Slides from a related talk can be found at <a href="https://datavis.ca/papers/EllipticalInsights-2x2.pdf" class="uri">https://datavis.ca/papers/EllipticalInsights-2x2.pdf</a>.</p></li>
+<li><p>Parts of the chapter are based on material presented in <span class="citation" data-cites="FriendlyDenis:05:scat"><a href="#ref-FriendlyDenis:05:scat" role="doc-biblioref">Michael Friendly and Denis</a> (<a href="#ref-FriendlyDenis:05:scat" role="doc-biblioref">2005</a>)</span>.</p></li>
+<li><p>The remarkable capabilities of the ellipse and higher dimensional cousins (ellipsoids) are described in <span class="citation" data-cites="Friendly-etal:ellipses:2013"><a href="#ref-Friendly-etal:ellipses:2013" role="doc-biblioref">Michael Friendly, Monette, and Fox</a> (<a href="#ref-Friendly-etal:ellipses:2013" role="doc-biblioref">2013</a>)</span>. Slides from a related talk can be found at <a href="https://datavis.ca/papers/EllipticalInsights-2x2.pdf" class="uri">https://datavis.ca/papers/EllipticalInsights-2x2.pdf</a>.</p></li>
 <li><p>You can find more examples of spurious correlations on the web page of Tyler Vigan, <a href="https://www.tylervigen.com/spurious-correlations" class="uri">https://www.tylervigen.com/spurious-correlations</a>, and his accompanying book. Most of these result from plotting two different time series, using different scales for each on the <span class="math inline">\(y\)</span>-axis, now usually considered a graphical sin, if not a high crime or misdemeanor.</p></li>
-<li><p>Galton’s classic data on the heights of parents and their offspring, shown in Figures 6.14 - 6.16 were not quite as linear as most people believe. <span class="citation" data-cites="Wachsmuth-etal:03">Wachsmuth, Wilkinson, and Dallal (<a href="#ref-Wachsmuth-etal:03" role="doc-biblioref">2003</a>)</span> re-analyze this data and find a slightly non-linear relation, explained by Galton’s method of pooling mothers’ and fathers’ heights.</p></li>
+<li><p>Galton’s classic data on the heights of parents and their offspring, shown in Figures 6.14 - 6.16 were not quite as linear as most people believe. <span class="citation" data-cites="Wachsmuth-etal:03"><a href="#ref-Wachsmuth-etal:03" role="doc-biblioref">Wachsmuth, Wilkinson, and Dallal</a> (<a href="#ref-Wachsmuth-etal:03" role="doc-biblioref">2003</a>)</span> re-analyze this data and find a slightly non-linear relation, explained by Galton’s method of pooling mothers’ and fathers’ heights.</p></li>
 </ul>
-<h2 id="chapter-7" class="unnumbered">Chapter 7</h2>
+<h2 class="unnumbered" id="chapter-7">Chapter 7</h2>
 <ul>
-<li><p>This chapter draws heavily on <span class="citation" data-cites="Friendly:2008:golden">Michael Friendly (<a href="#ref-Friendly:2008:golden" role="doc-biblioref">2008</a><a href="#ref-Friendly:2008:golden" role="doc-biblioref">a</a>)</span>, “The Golden Age of Statistical Graphics”. That paper contains many more figures and greater depth on some of the topics discussed here.</p></li>
-<li><p><span class="citation" data-cites="Friendly:02:Minard">Friendly (<a href="#ref-Friendly:02:Minard" role="doc-biblioref">2002</a>)</span> provides a review of Minard’s graphical works. A complete bibliography with many images can be found at <a href="https://datavis.ca/gallery/minbib.html" class="uri">https://datavis.ca/gallery/minbib.html</a>. Most recently, <span class="citation" data-cites="Rendgen:2018">Rendgen (<a href="#ref-Rendgen:2018" role="doc-biblioref">2018</a>)</span>, <em>The Minard System</em>, provides beautiful reproductions of all of Minard’s statistical graphics, some not well-known before.</p></li>
+<li><p>This chapter draws heavily on <span class="citation" data-cites="Friendly:2008:golden"><a href="#ref-Friendly:2008:golden" role="doc-biblioref">Michael Friendly</a> (<a href="#ref-Friendly:2008:golden" role="doc-biblioref">2008a</a>)</span>, “The Golden Age of Statistical Graphics.” That paper contains many more figures and greater depth on some of the topics discussed here.</p></li>
+<li><p><span class="citation" data-cites="Friendly:02:Minard"><a href="#ref-Friendly:02:Minard" role="doc-biblioref">Michael Friendly</a> (<a href="#ref-Friendly:02:Minard" role="doc-biblioref">2002</a>)</span> provides a review of Minard’s graphical works. A complete bibliography with many images can be found at <a href="https://datavis.ca/gallery/minbib.html" class="uri">https://datavis.ca/gallery/minbib.html</a>. Most recently, <span class="citation" data-cites="Rendgen:2018"><a href="#ref-Rendgen:2018" role="doc-biblioref">Rendgen</a> (<a href="#ref-Rendgen:2018" role="doc-biblioref">2018</a>)</span>, <em>The Minard System</em>, provides beautiful reproductions of all of Minard’s statistical graphics, some not well-known before.</p></li>
 <li><p>Raymond Andrews has taken this further, with a visual catalog of Minard’s works, with thumbnails, a timeline and classification by content topic. See this at: <a href="https://infowetrust.com/seeking-minard/" class="uri">https://infowetrust.com/seeking-minard/</a></p></li>
 <li><p>Some years ago, one of the authors issued a challenge for modern software designers to take Minard’s data and either reproduce his graph of the fate of Napoleon’s Grand Army, or take this graphic story further. A number of these are collected at <a href="https://www.datavis.ca/gallery/re-minard.php" class="uri">https://www.datavis.ca/gallery/re-minard.php</a>. There is a recent addition, an interactive chart by Norbert Landsteiner, <a href="https://www.masswerk.at/minard/" class="uri">https://www.masswerk.at/minard/</a>, one of the nicest interactive reproductions we have seen.</p></li>
-<li><p>Many of the developments in data-based graphics in this period stemmed from thematic cartography, the use of maps to present quantitative information in a geographical framework. The most complete discussion of the rise of graphical methods in this context in France in the remains Gilles Palsky’s <span class="citation" data-cites="Palsky:1996">(<a href="#ref-Palsky:1996" role="doc-biblioref">1996</a>)</span> book, <em>Des Chiffres et de Cartes</em> … . <span class="citation" data-cites="FriendlyPalsky:2007">Michael Friendly and Palsky (<a href="#ref-FriendlyPalsky:2007" role="doc-biblioref">2007</a>)</span> give a more extensive overview of the development of the use of maps and statistical diagrams to visualize nature and society.</p></li>
-<li><p>Due to limitations of space, we treat the period from ~ 1900 – 1950 only in a few pages at the end of this chapter. In part this reflects the fact that there were few innovations in graphic methods and techniques during this period <span class="citation" data-cites="Friendly:2006:hbook">(M. Friendly <a href="#ref-Friendly:2006:hbook" role="doc-biblioref">2007</a>)</span>.</p></li>
-<li><p>One topic that <em>is</em> novel is the Isotype system of pictorial graphics introduced in Vienna by Otto and Marie Neurath between 1925 – 1935. Isotype, the <strong>I</strong>nternational <strong>S</strong>ystem <strong>o</strong>f <strong>T</strong>ypographic <strong>P</strong>icture <strong>E</strong>ducation, was designed to represent social and economic facts pictorially, thus making numbers visually appealing and memorable. Jason Forrest tells me that <span class="citation" data-cites="Burke-etal:2013">Burke, Kindel, and Walker (<a href="#ref-Burke-etal:2013" role="doc-biblioref">2013</a>)</span> <a href="https://hyphenpress.co.uk/products/books/978-0-907259-47-3">Isotype: design and contexts 1925-1971</a> is the definitive book on the topic. Another good source of information on Neurath’s methods of pictorial statistics is the collection at the University of Reading: <a href="https://www.reading.ac.uk/m/typography/collectionsandarchives/typ-isotype-collection.aspx">Typography &amp; Graphic Communication: Otto and Marie Neurath Isotype Collection</a>.</p></li>
+<li><p>Many of the developments in data-based graphics in this period stemmed from thematic cartography, the use of maps to present quantitative information in a geographical framework. The most complete discussion of the rise of graphical methods in this context in France in the remains Gilles Palsky’s <span class="citation" data-cites="Palsky:1996">(<a href="#ref-Palsky:1996" role="doc-biblioref">1996</a>)</span> book, <em>Des Chiffres et de Cartes</em> … . <span class="citation" data-cites="FriendlyPalsky:2007"><a href="#ref-FriendlyPalsky:2007" role="doc-biblioref">Michael Friendly and Palsky</a> (<a href="#ref-FriendlyPalsky:2007" role="doc-biblioref">2007</a>)</span> give a more extensive overview of the development of the use of maps and statistical diagrams to visualize nature and society.</p></li>
+<li><p>Due to limitations of space, we treat the period from ~ 1900 – 1950 only in a few pages at the end of this chapter. In part this reflects the fact that there were few innovations in graphic methods and techniques during this period <span class="citation" data-cites="Friendly:2006:hbook">(<a href="#ref-Friendly:2006:hbook" role="doc-biblioref">M. Friendly 2007</a>)</span>.</p></li>
+<li><p>One topic that <em>is</em> novel is the Isotype system of pictorial graphics introduced in Vienna by Otto and Marie Neurath between 1925 – 1935. Isotype, the <strong>I</strong>nternational <strong>S</strong>ystem <strong>o</strong>f <strong>T</strong>ypographic <strong>P</strong>icture <strong>E</strong>ducation, was designed to represent social and economic facts pictorially, thus making numbers visually appealing and memorable. Jason Forrest tells me that <span class="citation" data-cites="Burke-etal:2013"><a href="#ref-Burke-etal:2013" role="doc-biblioref">Burke, Kindel, and Walker</a> (<a href="#ref-Burke-etal:2013" role="doc-biblioref">2013</a>)</span> <a href="https://hyphenpress.co.uk/products/books/978-0-907259-47-3">Isotype: design and contexts 1925-1971</a> is the definitive book on the topic. Another good source of information on Neurath’s methods of pictorial statistics is the collection at the University of Reading: <a href="https://www.reading.ac.uk/m/typography/collectionsandarchives/typ-isotype-collection.aspx">Typography &amp; Graphic Communication: Otto and Marie Neurath Isotype Collection</a>.</p></li>
 </ul>
-<h2 id="chapter-8" class="unnumbered">Chapter 8</h2>
+<h2 class="unnumbered" id="chapter-8">Chapter 8</h2>
 <ul>
 <li><p>The most comprehensive source on the development of thematic cartography is Arthur Robinson’s <em>Early Thematic Mapping in the History of Cartography</em> <span class="citation" data-cites="Robinson:1982">(<a href="#ref-Robinson:1982" role="doc-biblioref">1982</a>)</span>.</p></li>
-<li><p>Some historical connections among scientific discovery, visual explanation and thematic maps and statistical diagrams are described in <span class="citation" data-cites="FriendlyPalsky:2007">Michael Friendly and Palsky (<a href="#ref-FriendlyPalsky:2007" role="doc-biblioref">2007</a>)</span>.</p></li>
-<li><p>The modern text by <span class="citation" data-cites="Slocum-etal:2005">Slocum et al. (<a href="#ref-Slocum-etal:2005" role="doc-biblioref">2008</a>)</span> covers thematic cartography and geographic visualization.</p></li>
+<li><p>Some historical connections among scientific discovery, visual explanation and thematic maps and statistical diagrams are described in <span class="citation" data-cites="FriendlyPalsky:2007"><a href="#ref-FriendlyPalsky:2007" role="doc-biblioref">Michael Friendly and Palsky</a> (<a href="#ref-FriendlyPalsky:2007" role="doc-biblioref">2007</a>)</span>.</p></li>
+<li><p>The modern text by <span class="citation" data-cites="Slocum-etal:2005"><a href="#ref-Slocum-etal:2005" role="doc-biblioref">Slocum et al.</a> (<a href="#ref-Slocum-etal:2005" role="doc-biblioref">2008</a>)</span> covers thematic cartography and geographic visualization.</p></li>
 <li><p>Three-dimensional surfaces have long been studied as mathematical objects, described by equations, or <span class="math inline">\((x, y, z)\)</span> data and capable of being rendered realistically with lighting and shadows. See <a href="https://www.scratchapixel.com/lessons/3d-basic-rendering/rendering-3d-scene-overview" class="uri">https://www.scratchapixel.com/lessons/3d-basic-rendering/rendering-3d-scene-overview</a> for a readable introduction to this topic.</p></li>
 </ul>
-<h2 id="chapter-9" class="unnumbered">Chapter 9</h2>
+<h2 class="unnumbered" id="chapter-9">Chapter 9</h2>
 <ul>
 <li><p>Maria Braun’s <em>Picturing Time</em> <span class="citation" data-cites="Braun:1992">(<a href="#ref-Braun:1992" role="doc-biblioref">1992</a>)</span> is the most comprehensive treatment of the work of E.-J. Marey. It contains over 300 images of his mechanical devices, chronophotographs and cinematic work.</p></li>
 <li><p>The Graphics Video Library of the Statistical Graphics Section of the American Statistical Association, <a href="https://stat-graphics.org/movies/" class="uri">https://stat-graphics.org/movies/</a> captures much of the history of dynamic graphics for data analysis over the past 50 years. it includes Kruskal’s MDS video, Tukey’s PRIM-9 video, and many more that illustrate and explain some of the important early developments in modern data visualization methods.</p></li>
-<li><p><span class="citation" data-cites="FriedmanSteutzel:2002">Friedman and Stuetzle (<a href="#ref-FriedmanSteutzel:2002" role="doc-biblioref">2002</a>)</span> give an historical appreciation of John W. Tukey’s work in the development of PRIM-9 and interactive graphics. <span class="citation" data-cites="CookSwayne:2007">Cook and Swayne (<a href="#ref-CookSwayne:2007" role="doc-biblioref">2007</a>)</span> provide some modern examples of interactive and dynamic graphics, using R and GGobi software.</p></li>
+<li><p><span class="citation" data-cites="FriedmanSteutzel:2002"><a href="#ref-FriedmanSteutzel:2002" role="doc-biblioref">Friedman and Stuetzle</a> (<a href="#ref-FriedmanSteutzel:2002" role="doc-biblioref">2002</a>)</span> give an historical appreciation of John W. Tukey’s work in the development of PRIM-9 and interactive graphics. <span class="citation" data-cites="CookSwayne:2007"><a href="#ref-CookSwayne:2007" role="doc-biblioref">D. Cook and Swayne</a> (<a href="#ref-CookSwayne:2007" role="doc-biblioref">2007</a>)</span> provide some modern examples of interactive and dynamic graphics, using R and GGobi software.</p></li>
 <li><p>The collection of Hans Rosling’s video presentations may be found at <a href="https://www.gapminder.org/videos-2/" class="uri">https://www.gapminder.org/videos-2/</a>. One of the first, introducing the moving bubble chart, was a TED talk titled “The best stats you’ve ever seen,” <a href="https://www.youtube.com/watch?v=hVimVzgtD6w" class="uri">https://www.youtube.com/watch?v=hVimVzgtD6w</a>. These are well worth watching.</p></li>
 <li><p>Our coverage of modern software for data visualization was necessarily limited to early developments. Perhaps the most influential recent development is <em>The Grammar of Graphics</em> by Lee Wilkinson <span class="citation" data-cites="Wilkinson:99">(<a href="#ref-Wilkinson:99" role="doc-biblioref">1999</a>)</span>, a general theory of the syntax and semantics of data graphs and charts. Various implementations of these ideas for different programming languages abound, but the most widely-known is <code>ggplot2</code> for R by Hadley Wickham <span class="citation" data-cites="Wickham:16">(<a href="#ref-Wickham:16" role="doc-biblioref">2016</a>)</span></p></li>
 </ul>
-<h2 id="chapter-10" class="unnumbered">Chapter 10</h2>
+<h2 class="unnumbered" id="chapter-10">Chapter 10</h2>
 <ul>
 <li><p>Minard’s graphic of the 1812 campaign has inspired many to try to extend the graphic portrayal of this history. A collection of some of these and further background can be seen at <a href="https://www.datavis.ca/gallery/re-minard.php" class="uri">https://www.datavis.ca/gallery/re-minard.php</a>.</p></li>
 <li><p>Recently, an impressive interactive map and historical narrative of the Russian campaign with many illustrations was developed by the Russian News Agency TASS, <a href="https://1812.tass.ru/" class="uri">https://1812.tass.ru/</a> and was shortlisted for the Kantar Information is Beautiful Awards.</p></li>
@@ -2407,99 +2431,99 @@ Chapters
 <li><p>A related article is Andrews, RJ &amp; Wainer, H. <span class="citation" data-cites="AndrewsWainer:2017">(<a href="#ref-AndrewsWainer:2017" role="doc-biblioref">2017</a>)</span>. The Great Migration: A Graphics Novel Featuring the Contributions of W. E. B. Du Bois and C. J. Minard, <em>Significance</em>, <strong>14</strong>(3), 14–19.</p></li>
 </ul>
 <h2 id="references">References</h2>
-<div id="refs" style="color:black;" role="doc-bibliography">
-<div id="ref-AndrewsWainer:2017">
-<p>Andrews, R. J., and Howard Wainer. 2017. “The Great Migration: A Graphics Novel Featuring the Contributions of W. E. B. Du Bois and C. J. Minard.” <em>Significance</em> 14 (3): 14–19.</p>
+<div id="refs" class="references csl-bib-body hanging-indent" style="color:black;" role="doc-bibliography">
+<div id="ref-AndrewsWainer:2017" class="csl-entry" role="doc-biblioentry">
+Andrews, R. J., and Howard Wainer. 2017. <span>“The <span>Great Migration</span>: A Graphics Novel Featuring the Contributions of <span>W. E. B. Du Bois</span> and <span>C. J. Minard</span>.”</span> <em>Significance</em> 14 (3): 14–19.
 </div>
-<div id="ref-Bauer:2017">
-<p>Bauer, Craig P. 2017. <em>Unsolved!: The History and Mystery of the World’s Greatest Ciphers from Ancient Egypt to Online Secret Societies</em>. Princeton, NJ: Princeton University Press.</p>
+<div id="ref-Bauer:2017" class="csl-entry" role="doc-biblioentry">
+Bauer, Craig P. 2017. <em>Unsolved!: The History and Mystery of the World’s Greatest Ciphers from Ancient Egypt to Online Secret Societies</em>. Princeton, NJ: Princeton University Press.
 </div>
-<div id="ref-Braun:1992">
-<p>Braun, Marta. 1992. <em>Picturing Time: The Work of Etienne-Jules Marey (1830-1904)</em>. Chicago, IL: University of Chicago Press.</p>
+<div id="ref-Braun:1992" class="csl-entry" role="doc-biblioentry">
+Braun, Marta. 1992. <em>Picturing Time: The Work of <span>Etienne-Jules Marey</span> (1830-1904)</em>. Chicago, IL: University of Chicago Press.
 </div>
-<div id="ref-Burke-etal:2013">
-<p>Burke, Christopher, Eric Kindel, and Sue Walker, eds. 2013. <em>Isotype: Design and Contexts 1925-1971</em>. London: Hyphen Press. <a href="https://hyphenpress.co.uk/products/books/978-0-907259-47-3">https://hyphenpress.co.uk/products/books/978-0-907259-47-3</a>.</p>
+<div id="ref-Burke-etal:2013" class="csl-entry" role="doc-biblioentry">
+Burke, Christopher, Eric Kindel, and Sue Walker, eds. 2013. <em>Isotype: Design and Contexts 1925-1971</em>. London: Hyphen Press. <a href="https://hyphenpress.co.uk/products/books/978-0-907259-47-3">https://hyphenpress.co.uk/products/books/978-0-907259-47-3</a>.
 </div>
-<div id="ref-CookSwayne:2007">
-<p>Cook, Dianne, and Deborah F. Swayne. 2007. <em>Interactive and Dynamic Graphics for Data Analysis : With R and GGobi</em>. Use R ! New York: Springer.</p>
+<div id="ref-CookSwayne:2007" class="csl-entry" role="doc-biblioentry">
+Cook, Dianne, and Deborah F. Swayne. 2007. <em>Interactive and Dynamic Graphics for Data Analysis : With <span>R</span> and <span>GGobi</span></em>. Use r ! New York: Springer.
 </div>
-<div id="ref-CookWainer:2012">
-<p>Cook, Robert, and Howard Wainer. 2012. “A century and a half of moral statistics in the United Kingdom: Variations on Joseph Fletcher’s thematic maps.” <em>Significance</em> 9 (3): 31–36.</p>
+<div id="ref-CookWainer:2012" class="csl-entry" role="doc-biblioentry">
+Cook, Robert, and Howard Wainer. 2012. <span>“<span class="nocase">A century and a half of moral statistics in the United Kingdom: Variations on Joseph Fletcher’s thematic maps</span>.”</span> <em>Significance</em> 9 (3): 31–36.
 </div>
-<div id="ref-Delaney:2012">
-<p>Delaney, John. 2012. <em>First X, Then Y, Now Z: An Introduction to Landmark Thematic Maps</em>. Darby, PA: Diane Publishing Co.</p>
+<div id="ref-Delaney:2012" class="csl-entry" role="doc-biblioentry">
+Delaney, John. 2012. <em>First x, Then y, Now z: An Introduction to Landmark Thematic Maps</em>. Darby, PA: Diane Publishing Co.
 </div>
-<div id="ref-FriedmanSteutzel:2002">
-<p>Friedman, Jerome H., and Werner Stuetzle. 2002. “John W. Tukey’s Work on Interactive Graphics.” <em>The Annals of Statistics</em> 30 (6): 1629–39.</p>
+<div id="ref-FriedmanSteutzel:2002" class="csl-entry" role="doc-biblioentry">
+Friedman, Jerome H., and Werner Stuetzle. 2002. <span>“<span class="nocase">John W. Tukey’s</span> Work on Interactive Graphics.”</span> <em>The Annals of Statistics</em> 30 (6): 1629–39.
 </div>
-<div id="ref-Friendly:2006:hbook">
-<p>Friendly, M. 2007. “A Brief History of Data Visualization.” In <em>Handbook of Computational Statistics: Data Visualization</em>, edited by C. Chen, Wolfgang Härdle, and Antony Unwin, III:1–34. Heidelberg: Springer-Verlag.</p>
+<div id="ref-Friendly:2006:hbook" class="csl-entry" role="doc-biblioentry">
+Friendly, M. 2007. <span>“A Brief History of Data Visualization.”</span> In <em>Handbook of Computational Statistics: Data Visualization</em>, edited by C. Chen, Wolfgang Härdle, and Antony Unwin, III:1–34. Heidelberg: Springer-Verlag.
 </div>
-<div id="ref-Friendly:02:Minard">
-<p>Friendly, Michael. 2002. “Visions and Re-Visions of Charles Joseph Minard.” <em>Journal of Educational and Behavioral Statistics</em> 27 (1): 31–51.</p>
+<div id="ref-Friendly:02:Minard" class="csl-entry" role="doc-biblioentry">
+Friendly, Michael. 2002. <span>“Visions and <span>Re-Visions</span> of <span>Charles Joseph Minard</span>.”</span> <em>Journal of Educational and Behavioral Statistics</em> 27 (1): 31–51.
 </div>
-<div id="ref-Friendly:2007:guerry">
-<p>———. 2007. “A.-M. Guerry’s Moral Statistics of France: Challenges for Multivariable Spatial Analysis.” <em>Statistical Science</em> 22 (3): 368–99.</p>
+<div id="ref-Friendly:2007:guerry" class="csl-entry" role="doc-biblioentry">
+———. 2007. <span>“<span class="nocase">A.-M. Guerry’s Moral Statistics of France</span>: Challenges for Multivariable Spatial Analysis.”</span> <em>Statistical Science</em> 22 (3): 368–99.
 </div>
-<div id="ref-Friendly:2008:golden">
-<p>———. 2008a. “The Golden Age of Statistical Graphics.” <em>Statistical Science</em> 23 (4): 502–35.</p>
+<div id="ref-Friendly:2008:golden" class="csl-entry" role="doc-biblioentry">
+———. 2008a. <span>“The <span>Golden Age</span> of Statistical Graphics.”</span> <em>Statistical Science</em> 23 (4): 502–35.
 </div>
-<div id="ref-Friendly:2007:guerryvie">
-<p>———. 2008b. “La Vie et L’Oeuvre d’André-Michael Guerry (1802-1866).” <em>Mémoires de L’Académie de Touraine</em> 20 (May).</p>
+<div id="ref-Friendly:2007:guerryvie" class="csl-entry" role="doc-biblioentry">
+———. 2008b. <span>“La Vie Et l’oeuvre <span class="nocase">d’André-Michael Guerry</span> (1802-1866).”</span> <em>Mémoires de l’Académie de Touraine</em> 20 (May).
 </div>
-<div id="ref-FriendlyDenis:05:scat">
-<p>Friendly, Michael, and D. Denis. 2005. “The Early Origins and Development of the Scatterplot.” <em>Journal of the History of the Behavioral Sciences</em> 41 (2): 103–30.</p>
+<div id="ref-FriendlyDenis:05:scat" class="csl-entry" role="doc-biblioentry">
+Friendly, Michael, and D. Denis. 2005. <span>“The Early Origins and Development of the Scatterplot.”</span> <em>Journal of the History of the Behavioral Sciences</em> 41 (2): 103–30.
 </div>
-<div id="ref-Friendly-etal:ellipses:2013">
-<p>Friendly, Michael, Georges Monette, and John Fox. 2013. “Elliptical Insights: Understanding Statistical Methods Through Elliptical Geometry.” <em>Statistical Science</em> 28 (1): 1–39.</p>
+<div id="ref-Friendly-etal:ellipses:2013" class="csl-entry" role="doc-biblioentry">
+Friendly, Michael, Georges Monette, and John Fox. 2013. <span>“Elliptical Insights: Understanding Statistical Methods Through Elliptical Geometry.”</span> <em>Statistical Science</em> 28 (1): 1–39.
 </div>
-<div id="ref-FriendlyPalsky:2007">
-<p>Friendly, Michael, and Gilles Palsky. 2007. “Visualizing Nature and Society.” In <em>Maps: Finding Our Place in the World</em>, edited by James R. Ackerman and Robert W. Karrow, 205–51. Chicago, IL: University of Chicago Press.</p>
+<div id="ref-FriendlyPalsky:2007" class="csl-entry" role="doc-biblioentry">
+Friendly, Michael, and Gilles Palsky. 2007. <span>“Visualizing Nature and Society.”</span> In <em>Maps: Finding Our Place in the World</em>, edited by James R. Ackerman and Robert W. Karrow, 205–51. Chicago, IL: University of Chicago Press.
 </div>
-<div id="ref-Friendly:2012:ordonnateur">
-<p>Friendly, Michael, and de Saint Agathe. 2012. “André-Michel Guerry’s <em>Ordonnateur Statistique</em>: The First Statistical Calculator?” <em>The American Statistician</em> 66 (3): 195–200.</p>
+<div id="ref-Friendly:2012:ordonnateur" class="csl-entry" role="doc-biblioentry">
+Friendly, Michael, and de Saint Agathe. 2012. <span>“<span class="nocase">André-Michel Guerry’s</span> <em>Ordonnateur Statistique</em>: The First Statistical Calculator?”</span> <em>The American Statistician</em> 66 (3): 195–200.
 </div>
-<div id="ref-Friendly-etal:2010:langren">
-<p>Friendly, Michael, Pedro Valero-Mora, and Joaquı́n Ibáñez Ulargui. 2010. “The First (Known) Statistical Graph: Michael Florent van Langren and the ‘Secret’ of Longitude.” <em>The American Statistician</em> 64 (2): 185–91.</p>
+<div id="ref-Friendly-etal:2010:langren" class="csl-entry" role="doc-biblioentry">
+Friendly, Michael, Pedro Valero-Mora, and Joaquı́n Ibáñez Ulargui. 2010. <span>“The First (Known) Statistical Graph: <span class="nocase">Michael Florent van Langren and the <span>‘Secret’</span> of Longitude</span>.”</span> <em>The American Statistician</em> 64 (2): 185–91.
 </div>
-<div id="ref-Hacking:1990">
-<p>Hacking, Ian. 1990. <em>The Taming of Chance</em>. Cambridge, UK: Cambridge University Press.</p>
+<div id="ref-Hacking:1990" class="csl-entry" role="doc-biblioentry">
+Hacking, Ian. 1990. <em>The Taming of Chance</em>. Cambridge, UK: Cambridge University Press.
 </div>
-<div id="ref-HoffGeddes:1962">
-<p>Hoff, Hebbel E., and L. A. Geddes. 1962. “The Beginnings of Graphic Recording.” <em>Isis</em> 53: 287–324.</p>
+<div id="ref-HoffGeddes:1962" class="csl-entry" role="doc-biblioentry">
+Hoff, Hebbel E., and L. A. Geddes. 1962. <span>“The Beginnings of Graphic Recording.”</span> <em>Isis</em> 53: 287–324.
 </div>
-<div id="ref-Johnson:2006">
-<p>Johnson, Steven. 2006. <em>The Ghost Map: The Story of London’s most Terrifying Epidemic–and How It Changed Science, Cities, and the Modern World</em>. New York: Riverhead Books.</p>
+<div id="ref-Johnson:2006" class="csl-entry" role="doc-biblioentry">
+Johnson, Steven. 2006. <em>The Ghost Map: The Story of <span class="nocase">London’s most</span> Terrifying Epidemic–and How It Changed Science, Cities, and the Modern World</em>. New York: Riverhead Books.
 </div>
-<div id="ref-Koch:2011">
-<p>Koch, Tom. 2011. <em>Disease Maps: Epidemics on the Ground</em>. Chicago, IL: University of Chicago Press.</p>
+<div id="ref-Koch:2011" class="csl-entry" role="doc-biblioentry">
+Koch, Tom. 2011. <em>Disease Maps: Epidemics on the Ground</em>. Chicago, IL: University of Chicago Press.
 </div>
-<div id="ref-Palsky:1996">
-<p>Palsky, G. 1996. <em>Des Chiffres et Des Cartes: Naissance et développement de La Cartographie Quantitative Française Au XIX<span class="math inline">\({}^e\)</span> Siècle</em>. Paris: Comité des Travaux Historiques et Scientifiques (CTHS).</p>
+<div id="ref-Palsky:1996" class="csl-entry" role="doc-biblioentry">
+Palsky, G. 1996. <em>Des Chiffres Et Des Cartes: Naissance Et d<span>é</span>veloppement de La Cartographie Quantitative Française Au <span>XIX<span class="math inline">\({}^e\)</span></span> Si<span>è</span>cle</em>. Paris: Comit<span>é</span> des Travaux Historiques et Scientifiques (CTHS).
 </div>
-<div id="ref-Rendgen:2018">
-<p>Rendgen, Sandra. 2018. <em>The Minard System: The Complete Statistical Graphics of Charles-Joseph Minard</em>. New York: Princeton Architectural Press.</p>
+<div id="ref-Rendgen:2018" class="csl-entry" role="doc-biblioentry">
+Rendgen, Sandra. 2018. <em>The Minard System: The Complete Statistical Graphics of <span>Charles-Joseph Minard</span></em>. New York: Princeton Architectural Press.
 </div>
-<div id="ref-Robinson:1982">
-<p>Robinson, Arthur H. 1982. <em>Early Thematic Mapping in the History of Cartography</em>. Chicago: University of Chicago Press.</p>
+<div id="ref-Robinson:1982" class="csl-entry" role="doc-biblioentry">
+Robinson, Arthur H. 1982. <em>Early Thematic Mapping in the History of Cartography</em>. Chicago: University of Chicago Press.
 </div>
-<div id="ref-Slocum-etal:2005">
-<p>Slocum, Terry A., Robert B. McMaster, Fritz C. Kessler, and Hugh H. Howard. 2008. <em>Thematic Cartography and Geographic Visualization</em>. Geographic Information Science. Pearson/Prentice Hall.</p>
+<div id="ref-Slocum-etal:2005" class="csl-entry" role="doc-biblioentry">
+Slocum, Terry A., Robert B. McMaster, Fritz C. Kessler, and Hugh H. Howard. 2008. <em>Thematic Cartography and Geographic Visualization</em>. Geographic Information Science. Pearson/Prentice Hall.
 </div>
-<div id="ref-Sobel:1996">
-<p>Sobel, Dava. 1996. <em>Longitude: The True Story of a Lone Genius Who Solved the Greatest Scientific Problem of His Time</em>. New York: Penguin.</p>
+<div id="ref-Sobel:1996" class="csl-entry" role="doc-biblioentry">
+Sobel, Dava. 1996. <em>Longitude: The True Story of a Lone Genius Who Solved the Greatest Scientific Problem of His Time</em>. New York: Penguin.
 </div>
-<div id="ref-Wachsmuth-etal:03">
-<p>Wachsmuth, A., L. Wilkinson, and G. E. Dallal. 2003. “Galton’s Bend: A Previously Undiscovered Nonlinearity in Galton’s Family Stature Regression Data.” <em>The American Statistician</em> 57 (3): 190–92.</p>
+<div id="ref-Wachsmuth-etal:03" class="csl-entry" role="doc-biblioentry">
+Wachsmuth, A., L. Wilkinson, and G. E. Dallal. 2003. <span>“Galton’s Bend: A Previously Undiscovered Nonlinearity in <span class="nocase">Galton’s</span> Family Stature Regression Data.”</span> <em>The American Statistician</em> 57 (3): 190–92.
 </div>
-<div id="ref-Whitaker:2003:mapping">
-<p>Whitaker, Ewen Adair. 2003. <em>Mapping and Naming the Moon: A History of Lunar Cartography and Nomenclature</em>. Cambridge University Press.</p>
+<div id="ref-Whitaker:2003:mapping" class="csl-entry" role="doc-biblioentry">
+Whitaker, Ewen Adair. 2003. <em>Mapping and Naming the Moon: A History of Lunar Cartography and Nomenclature</em>. Cambridge University Press.
 </div>
-<div id="ref-Wickham:16">
-<p>Wickham, Hadley. 2016. <em>Ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>.</p>
+<div id="ref-Wickham:16" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley. 2016. <em>Ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>.
 </div>
-<div id="ref-Wilkinson:99">
-<p>Wilkinson, Leland. 1999. <em>The Grammar of Graphics</em>. New York: Springer.</p>
+<div id="ref-Wilkinson:99" class="csl-entry" role="doc-biblioentry">
+Wilkinson, Leland. 1999. <em>The Grammar of Graphics</em>. New York: Springer.
 </div>
 </div>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>

@@ -56,5 +56,4 @@ output:
     includes:
       in_header: 
         - header.html
-        - utterances.html
       after_body: footer.html

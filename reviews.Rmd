@@ -6,7 +6,7 @@ output:
 ---
 
 
-## Capsule reviews of our book
+## Capsule reviews
 
 "A synthetic and comprehensive work that finely retraces the steps that allowed the construction of a "visual thought". Friendly and Wainer invite us to follow them in a masterly study of the graphic innovations, their context and their scientific use. This brilliant book, without equivalent so far, will be an indispensable read for all those interested in information visualization."
 -- **Gilles Palsky, coauthor of _An Atlas of Geographical Wonders_**
@@ -49,6 +49,10 @@ classic." -- **Leland Wilkinson, _CHANCE_, 34:4, 38-40, November, 2021.**
 
 "The authors have taken on the ambitious task of writing whirlwind historical narratives, synthesizing centuries of scientific inquiry within a single chapter. Such is this book’s grand ambition: it chronicles the history of graphic communication since the beginning of human language and reflects decades of expertise from the authors, who were themselves part of a prominent wave of visualization research."
 -- **Crystal Lee, _Information & Culture_, December, 2021.**
+
+"C'est un passionnant voyage aux côtés de ceux qui ont inventé le langage de la dataviz, du 17e à nos jours,
+un ouvrage magistral et accessible"
+-- **Éric Mauvière, Twitter**, December 28, 2021.
 
 
 ## More detailed reviews

@@ -122,7 +122,9 @@ This is a list of the [R code](https://cran.r-project.org/) files for our recons
 
 ## Errata
 
-None so far, but if you find errors in the book, file [an issue on GitHub](https://github.com/friendly/HistDataVis/issues).
+
+Here is a [list of current errata](pdf/Errata.pdf).
+If you other errors in the book, file [an issue on GitHub](https://github.com/friendly/HistDataVis/issues).
 
 
 ## Credits

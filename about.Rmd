@@ -78,7 +78,7 @@ knitr::include_graphics("images/Japanese-cover.jpg")
 
 * A Chinese translation is in the works.
 
-## Datasets
+## Datasets {#datasets}
 
 A unique feature of our book is that we try to appreciate the efforts of key thinkers in the history of data visualization by understanding their data and the graphs they produced.  In many cases, we can shed some light on their topics and graphical innovations by trying to reproduce their graphs with modern software.
 
@@ -89,7 +89,7 @@ Toward this end, we created two R packages, used in some of our graphs in the bo
 * [Guerry](https://cran.r-project.org/package=Guerry), datasets and maps related to Guerry's (1833)
 _La Statistique Morale de la France_.
 
-### R code for figures
+### R code for figures {#rcode}
 
 This is a list of the [R code](https://cran.r-project.org/) files for our reconstructions of historical graphs. They are also linked in the figure captions on the individual chapter pages.
 
@@ -120,11 +120,11 @@ This is a list of the [R code](https://cran.r-project.org/) files for our recons
 * [Figure 09_14: RANDU in 3D](fig-code/09_14-randu2.R) 
 * [Figure 09_15: Diabetes data from Reaven and Miller](fig-code/09_15-diabetes.R) 
 
-## Errata
+## Errata {#errata}
 
 
 Here is a [list of current errata](pdf/Errata.pdf).
-If you other errors in the book, file [an issue on GitHub](https://github.com/friendly/HistDataVis/issues).
+If you find other errors in the book, file [an issue on GitHub](https://github.com/friendly/HistDataVis/issues).
 
 
 ## Credits

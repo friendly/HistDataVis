@@ -1,0 +1,35 @@
+---
+title: Image Gallery
+output: distill::distill_article
+---
+
+```{r setup, echo=FALSE, warning=FALSE, message=FALSE}
+knitr::opts_chunk$set(R.options = list(width = 150))
+
+library(knitr)
+library(pixture)
+source("R/pixture-gen.R")
+```
+
+### Chapter 1
+
+```{r results="asis", echo=FALSE, message=FALSE, warning=FALSE}
+chapfigs <- chfigs(1)
+pixture::pixture(chapfigs["paths",],
+                 chapfigs["figfn",]
+                 )
+```
+
+### Try again, w/o a function
+
+```{r results="asis", echo=FALSE}
+paths <- c(
+  "figs-web/01_1-composite.png",             "figs-web/01_2-Egyptmotionseries.jpg",              
+  "figs-web/01_3-Anaximander-Hecateus.png",  "figs-web/01_4-plot-weather-new.png",                
+  "figs-web/01_5-huygens1669-better.png",    "figs-web/01_6-priestley-chart-biography-better.png", 
+  "figs-web/01_7-marey-trains.png")
+
+pixture::pixture(paths, w="150px", gap="10px")
+
+```
+

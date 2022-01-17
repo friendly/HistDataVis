@@ -96,7 +96,7 @@ Perhaps not – or perhaps such revelations await the research of scholars in th
 
 **Reply**:
 
-This is a topic that has long concerned us. Almost surely some of the graphical inventions we describe had some other and perhaps earlier form in non-Western cultures. We have seen many wonderful examples.  Celestial graphic representations--- positions of stars and planets -- go back thousands of years, and we find one particularly lovely example in the Dunhung Star Chart (7th Century)[^2] , the world’s oldest star catalog.
+This is a topic that has long concerned us. Almost surely some of the graphical inventions we describe had some other and perhaps earlier form in non-Western cultures. We have seen many wonderful examples.  Celestial graphic representations--- positions of stars and planets -- go back thousands of years, and we find one particularly lovely example in the Dunhung Star Chart (7th Century)[^2], the world’s oldest star catalog.
 
 [^2]: Dunhung Star Chart, https://en.wikipedia.org/wiki/Dunhuang_Star_Chart
 
@@ -107,5 +107,14 @@ Systematic data tabulation is easily traced to early Egyptian recordings of leve
 [^5]: https://en.wikipedia.org/wiki/Musical_notation 
 
 Yet, it is difficult to understand these unique sources without wider historical context. The main goal of our book was to present a coherent narrative where we could trace the origins of visual thinking and graphic communication as general principles, with clear lines of development. Our book has recently been published in Japanese and Chinese translations, so we hope Asian scholars will add to this history.
+
+Now that this question has been raised, we continue to find previuously unknown (by us) Asian data visualization examples
+(e.g., https://datavizcatalogue.com/blog/japanese-contributions-to-data-visualisation/), but it remains hard to find those that were true innovations. For example, this 1926 chart by Hosuke Nagase (translated title: _World's Rise and Fall Table_)
+is certainly exquisite and notable, but merely extends the idea of parallel time-series of events in Joseph Priestley's (1769) _A New Chart of History_.
+
+<center>
+![](https://datavizcatalogue.com/blog/wp-content/uploads/2021/12/Worlds-Rise-and-Fall-Table-Hosuke-Nagase.png){width=60%}
+</center>
+
 
 

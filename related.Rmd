@@ -35,7 +35,12 @@ SORT 45 (1) January-June 2021, 3-18. DOI: 10.2436/20.8080.02.106.
 
 * Wainer, H. & Friendly, M. (2019). [Visual Answers to Scientific Questions. _The American Scientist_, **107** (July-August), 210-213](https://www.americanscientist.org/article/visual-answers-to-scientific-questions)
 
-* Wainer, H. & Friendly, M. (2020). [The graphical birth of plate tectonics.  Chance, **33**(1), 44-47.](https://chance.amstat.org/2020/02/plate-tectonics/)
+* Wainer, H. & Friendly, M. (2020). [The graphical birth of plate tectonics.  _Chance_, **33**(1), 44-47.](https://chance.amstat.org/2020/02/plate-tectonics/)
 
+* Friendly, M. and Wainer, H. (2022). PolicyViz podcast,
+[Michael Friendly and Howard Wainer on the history of data visualization](https://youtu.be/_MQv_Nc4qvg)
 
+* Wainer, H., & Friendly, M. (2022). [On the Origins of Data Visualization](https://doi.org/10.1007/978-3-030-75460-0_27). In: _Statistics in the Public Interest: In Memory of Stephen E. Fienberg_, A. L. Carriquiry, J. M. Tanur, & W. F. Eddy, Eds., New York: Springer.
+
+* Friendly, M. (2022) [The life and works of Andr&eacute;-Michel Guerry, Revisited, _Sociological Spectrum_, **42**](https://www.datavis.ca/papers/guerryvie/GuerryLife2-SocSpectrum.pdf)
 

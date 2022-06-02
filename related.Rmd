@@ -37,6 +37,8 @@ SORT 45 (1) January-June 2021, 3-18. DOI: 10.2436/20.8080.02.106.
 
 * Wainer, H. & Friendly, M. (2020). [The graphical birth of plate tectonics.  _Chance_, **33**(1), 44-47.](https://chance.amstat.org/2020/02/plate-tectonics/)
 
+* Friendly, M. (2022). [Colorless Green Graphs Sleep Furiously: A Conversation with Leland Wilkinson, _Nightingale_](https://nightingaledvs.com/colorless-green-graphs-sleep-furiously-a-conversation-with-leland-wilkinson/).
+
 * Friendly, M. and Wainer, H. (2022). PolicyViz podcast,
 [Michael Friendly and Howard Wainer on the history of data visualization](https://youtu.be/_MQv_Nc4qvg)
 

@@ -50,16 +50,17 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { } /* Attribute */
+code span.at { color: #657422; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
+code span.cf { color: #00769e; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -73,9 +74,9 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
+code span.kw { color: #00769e; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
+code span.ot { color: #00769e; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
 code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
@@ -1027,10 +1028,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     margin-top: 1.5em;
   }
 
-  .figure img {
-    width: 100%;
-  }
-
   .figure .caption {
     color: rgba(0, 0, 0, 0.6);
     font-size: 12px;
@@ -1860,6 +1857,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
+        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
+          var fn = $(this).children()[0]
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
           return "<p>" + $('#ref-' + ref).html() + "</p>";
@@ -1874,6 +1877,31 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           placement: 'bottom-start'
         });
       });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
 
       // clear polling timer
       clearInterval(tid);
@@ -1973,6 +2001,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -1995,7 +2025,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
       });
     }
 
@@ -2034,7 +2064,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.15/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2306,11 +2336,18 @@ Chapters
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
-<h1 id="the-big-bang-william-playfair-the-father-of-modern-graphics">The Big Bang: William Playfair, the Father of Modern Graphics <img src="images/cartoons/playfair-lines.png" align="right" height="100px" /></h1>
+<h1 id="the-big-bang-william-playfair-the-father-of-modern-graphics">The
+Big Bang: William Playfair, the Father of Modern Graphics
+<img src="images/cartoons/playfair-lines.png" align="right" height="100px" /></h1>
 <div class="chapterintro">
 <section id="synopsis" class="unnumbered chapterprelude">
 <h4 class="unnumbered">Synopsis</h4>
-<p>At the beginning of the 19th Century, nearly all of the modern forms of data graphics— the pie chart, the line graph of a time series, and the bar chart— were invented. These key developments were all due to a wily Scot named William Playfair. He can rightly be called the father of modern graphical methods, and it is only a slight stretch to consider his contributions to be the Big Bang of data graphics.</p>
+<p>At the beginning of the 19th Century, nearly all of the modern forms
+of data graphics— the pie chart, the line graph of a time series, and
+the bar chart— were invented. These key developments were all due to a
+wily Scot named William Playfair. He can rightly be called the father of
+modern graphical methods, and it is only a slight stretch to consider
+his contributions to be the Big Bang of data graphics.</p>
 </section>
 <section id="chapter-contents" class="unnumbered chaptercontents">
 <h4 class="unnumbered">Chapter contents</h4>
@@ -2347,7 +2384,11 @@ Chapters
 <h3 class="figtitle">
 Figure 5.1: Graphical conventions
 </h3>
-<p>Some of the basic graphical conventions for statistical charts established by Playfair. These features were designed to make graphs more directly readable and understandable. <br/> <span class="fig-src"><em>Source:</em> William Playfair, The Commercial and Political Atlas, London, 1786. Labels by the authors.</span><br/></p>
+<p>Some of the basic graphical conventions for statistical charts
+established by Playfair. These features were designed to make graphs
+more directly readable and understandable. <br/> <span
+class="fig-src"><em>Source:</em> William Playfair, The Commercial and
+Political Atlas, London, 1786. Labels by the authors.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2360,7 +2401,11 @@ Figure 5.1: Graphical conventions
 <h3 class="figtitle">
 Figure 5.2: Pie chart details
 </h3>
-<p>Three details from Playfair’s Chart 2, showing two pie charts (left: Turkish Empire; middle: German Empire) and a Venn-like diagram (right) for the German Empire. <br/> <span class="fig-src"><em>Source:</em> William Playfair, The Statistical Breviary, London, 1801.</span><br/></p>
+<p>Three details from Playfair’s Chart 2, showing two pie charts (left:
+Turkish Empire; middle: German Empire) and a Venn-like diagram (right)
+for the German Empire. <br/> <span class="fig-src"><em>Source:</em>
+William Playfair, The Statistical Breviary, London,
+1801.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2373,7 +2418,11 @@ Figure 5.2: Pie chart details
 <h3 class="figtitle">
 Figure 5.3: Exports and imports with Germany
 </h3>
-<p>A time-series line graph showing England’s im- ports from and exports to Germany over the entire eighteenth century. The area between the curves represents the balance of trade, labeled “Balance in Favor of England.” <br/> <span class="fig-src"><em>Source:</em> William Playfair, The Commercial and Political Atlas, London, 1786.</span><br/></p>
+<p>A time-series line graph showing England’s im- ports from and exports
+to Germany over the entire eighteenth century. The area between the
+curves represents the balance of trade, labeled “Balance in Favor of
+England.” <br/> <span class="fig-src"><em>Source:</em> William Playfair,
+The Commercial and Political Atlas, London, 1786.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2386,7 +2435,11 @@ Figure 5.3: Exports and imports with Germany
 <h3 class="figtitle">
 Figure 5.4: Exports and imports with France
 </h3>
-<p>A time-series line graph showing England’s exports to and imports from France over the entire eighteenth century. The area between the curves represents the balance of trade, labeled “Balance in Favor of England.” <br/> <span class="fig-src"><em>Source:</em> William Playfair, The Commercial and Political Atlas, London, 1786.</span><br/></p>
+<p>A time-series line graph showing England’s exports to and imports
+from France over the entire eighteenth century. The area between the
+curves represents the balance of trade, labeled “Balance in Favor of
+England.” <br/> <span class="fig-src"><em>Source:</em> William Playfair,
+The Commercial and Political Atlas, London, 1786.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2399,7 +2452,13 @@ Figure 5.4: Exports and imports with France
 <h3 class="figtitle">
 Figure 5.5: Plotting the difference between curves
 </h3>
-Left: Re-creation of Playfair’s chart of the exports and imports between England and the East Indies; right: a direct plot of balance of trade, exports minus imports. <br/> <span class="fig-src"><em>Source:</em> Redrawn from William S. Cleveland, The Elements of Graphing Data. New Jersey: Hobart Press, 1994, fig. 4.2.</span><br/> <b>Rcode</b>: <a href='fig-code/05_5-playfair-east-indies.R'> 05_5-playfair-east-indies.R </a>
+Left: Re-creation of Playfair’s chart of the exports and imports between
+England and the East Indies; right: a direct plot of balance of trade,
+exports minus imports. <br/> <span class="fig-src"><em>Source:</em>
+Redrawn from William S. Cleveland, The Elements of Graphing Data. New
+Jersey: Hobart Press, 1994, fig. 4.2.</span><br/> <b>Rcode</b>:
+<a href='fig-code/05_5-playfair-east-indies.R'>
+05_5-playfair-east-indies.R </a>
 </td>
 </tr>
 </table>
@@ -2412,7 +2471,10 @@ Left: Re-creation of Playfair’s chart of the exports and imports between Engla
 <h3 class="figtitle">
 Figure 5.6: Plotting the national debt
 </h3>
-<p>Playfair’s chart of the national debt of England containing a lot of explanatory collateral information brilliantly integrated. <br/> <span class="fig-src"><em>Source:</em> William Playfair, The Commercial and Political Atlas, London, 1786.</span><br/></p>
+<p>Playfair’s chart of the national debt of England containing a lot of
+explanatory collateral information brilliantly integrated. <br/> <span
+class="fig-src"><em>Source:</em> William Playfair, The Commercial and
+Political Atlas, London, 1786.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2425,7 +2487,10 @@ Figure 5.6: Plotting the national debt
 <h3 class="figtitle">
 Figure 5.7: Playfair’s first bar chart
 </h3>
-<p>Playfair’s bar chart of the imports (gray bars) and exports (black) to Scotland in 1781 from 17 different places. <br/> <span class="fig-src"><em>Source:</em> William Playfair, The Commercial and Political Atlas, London, 1786.</span><br/></p>
+<p>Playfair’s bar chart of the imports (gray bars) and exports (black)
+to Scotland in 1781 from 17 different places. <br/> <span
+class="fig-src"><em>Source:</em> William Playfair, The Commercial and
+Political Atlas, London, 1786.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2438,7 +2503,11 @@ Figure 5.7: Playfair’s first bar chart
 <h3 class="figtitle">
 Figure 5.8: The first known bar chart
 </h3>
-<p>A bar chart by Philippe Buache and Guillaume de L’Isle showing both the low and high water marks of the Seine for the thirty-five years between 1732 until 1766. <br/> <span class="fig-src"><em>Source:</em> Philippe Buache, Cartes et tables de la géographie physique ou naturelle, Paris, 1754.</span><br/></p>
+<p>A bar chart by Philippe Buache and Guillaume de L’Isle showing both
+the low and high water marks of the Seine for the thirty-five years
+between 1732 until 1766. <br/> <span class="fig-src"><em>Source:</em>
+Philippe Buache, Cartes et tables de la géographie physique ou
+naturelle, Paris, 1754.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2451,7 +2520,13 @@ Figure 5.8: The first known bar chart
 <h3 class="figtitle">
 Figure 5.9: Parallel time-series
 </h3>
-<p>A time-series display showing three parallel time-series: prices of a quarter of wheat (the histogram bars), wages of a good mechanic (the line beneath it) and the reigns of English monarchs from Elizabeth I to George IV (1565 through 1820). <br/> <span class="fig-src"><em>Source:</em> William Playfair, A Letter on Our Agricultural Distresses, Their Causes and Remedies. London: W. Sams, 1821.</span><br/></p>
+<p>A time-series display showing three parallel time-series: prices of a
+quarter of wheat (the histogram bars), wages of a good mechanic (the
+line beneath it) and the reigns of English monarchs from Elizabeth I to
+George IV (1565 through 1820). <br/> <span
+class="fig-src"><em>Source:</em> William Playfair, A Letter on Our
+Agricultural Distresses, Their Causes and Remedies. London: W. Sams,
+1821.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2464,7 +2539,11 @@ Figure 5.9: Parallel time-series
 <h3 class="figtitle">
 Plate P.5: First pie chart
 </h3>
-<p>Playfair’s 1801 graphic depiction of fifteen nations’ size, location, population and revenue. Its representation of the location of the Turkish Empire was the first pie chart. <br/> <span class="fig-src"><em>Source:</em> William Playfair, The Statistical Breviary, (London) 1801.</span><br/></p>
+<p>Playfair’s 1801 graphic depiction of fifteen nations’ size, location,
+population and revenue. Its representation of the location of the
+Turkish Empire was the first pie chart. <br/> <span
+class="fig-src"><em>Source:</em> William Playfair, The Statistical
+Breviary, (London) 1801.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2477,7 +2556,12 @@ Plate P.5: First pie chart
 <h3 class="figtitle">
 Plate P.6: First pie charts on a map
 </h3>
-<p>Minard’s 1858 divided-circle map, showing the amounts and proportions of butcher’s meats supplied to the Paris market. Segments show the relative proportions of beef, port, and lamb. It is the first known use of pie charts in thematic cartography, and also show the total by area. <br/> <span class="fig-src"><em>Source:</em> Wikimedia Commons.</span><br/></p>
+<p>Minard’s 1858 divided-circle map, showing the amounts and proportions
+of butcher’s meats supplied to the Paris market. Segments show the
+relative proportions of beef, port, and lamb. It is the first known use
+of pie charts in thematic cartography, and also show the total by area.
+<br/> <span class="fig-src"><em>Source:</em> Wikimedia
+Commons.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2490,12 +2574,17 @@ Plate P.6: First pie charts on a map
 <h3 class="figtitle">
 Plate P.8: The long view of history
 </h3>
-<p>Playfair’s “Chart of Universal Commercial History.” <br/> <span class="fig-src"><em>Source:</em> William Playfair, An Inquiry Into the Permanent Causes of the Decline and Fall of Powerful and Wealthy Nations . . . Designed to Shew How the Prosperity of the British Empire May Be Prolonged. London: Greenland and Norris, 1805.</span><br/></p>
+<p>Playfair’s “Chart of Universal Commercial History.” <br/> <span
+class="fig-src"><em>Source:</em> William Playfair, An Inquiry Into the
+Permanent Causes of the Decline and Fall of Powerful and Wealthy Nations
+. . . Designed to Shew How the Prosperity of the British Empire May Be
+Prolonged. London: Greenland and Norris, 1805.</span><br/></p>
 </td>
 </tr>
 </table>
 </div>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

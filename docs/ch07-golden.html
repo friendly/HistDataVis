@@ -50,16 +50,17 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { } /* Attribute */
+code span.at { color: #657422; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
+code span.cf { color: #00769e; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -73,9 +74,9 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
+code span.kw { color: #00769e; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
+code span.ot { color: #00769e; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
 code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
@@ -1027,10 +1028,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     margin-top: 1.5em;
   }
 
-  .figure img {
-    width: 100%;
-  }
-
   .figure .caption {
     color: rgba(0, 0, 0, 0.6);
     font-size: 12px;
@@ -1860,6 +1857,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
+        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
+          var fn = $(this).children()[0]
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
           return "<p>" + $('#ref-' + ref).html() + "</p>";
@@ -1874,6 +1877,31 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           placement: 'bottom-start'
         });
       });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
 
       // clear polling timer
       clearInterval(tid);
@@ -1973,6 +2001,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -1995,7 +2025,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
       });
     }
 
@@ -2034,7 +2064,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.15/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2306,11 +2336,19 @@ Chapters
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
-<h1 id="the-golden-age-of-statistical-graphics">The Golden Age of Statistical Graphics <img src="images/cartoons/cheysson.png" align="right" height="100px" /></h1>
+<h1 id="the-golden-age-of-statistical-graphics">The Golden Age of
+Statistical Graphics
+<img src="images/cartoons/cheysson.png" align="right" height="100px" /></h1>
 <div class="chapterintro">
 <section id="synopsis" class="unnumbered chapterprelude">
 <h4 class="unnumbered">Synopsis</h4>
-<p>In the latter half of the 19th Century, enthusiasm for graphical methods matured, and a variety of developments in statistics, data collection and technology combined to produce a “perfect storm” for data graphics. The result was a qualitatively distinct period that produced works of unparalleled beauty and scope, the likes of which would be hard to duplicate today. We argue that this period deserves to be recognized as the “Golden Age of Statistical Graphics.”</p>
+<p>In the latter half of the 19th Century, enthusiasm for graphical
+methods matured, and a variety of developments in statistics, data
+collection and technology combined to produce a “perfect storm” for data
+graphics. The result was a qualitatively distinct period that produced
+works of unparalleled beauty and scope, the likes of which would be hard
+to duplicate today. We argue that this period deserves to be recognized
+as the “Golden Age of Statistical Graphics.”</p>
 </section>
 <section id="chapter-contents" class="unnumbered chaptercontents">
 <h4 class="unnumbered">Chapter contents</h4>
@@ -2347,20 +2385,35 @@ Chapters
 <h3 class="figtitle">
 Figure 7.1: Milestones timeline
 </h3>
-The time distribution of events considered milestones in the history of data visualization, shown by a rug plot and a density estimate. The data consist of n = 260 significant events from 1500 to the present (Friendly, 2005). The developments in the highlighted period, from roughly 1840 to 1910, comprise the subject of this chapter. <br/> <span class="fig-src"><em>Source:</em> Reformatted from Michael Friendly, “The Golden Age of Statistical Graphics,” Statistical Science, 23:4 (2008), pp. 502–535, fig. 1.</span><br/> <b>Rcode</b>: <a href='fig-code/07_1-mileyears3.R'> 07_1-mileyears3.R </a>
+The time distribution of events considered milestones in the history of
+data visualization, shown by a rug plot and a density estimate. The data
+consist of n = 260 significant events from 1500 to the present
+(Friendly, 2005). The developments in the highlighted period, from
+roughly 1840 to 1910, comprise the subject of this chapter. <br/> <span
+class="fig-src"><em>Source:</em> Reformatted from Michael Friendly, “The
+Golden Age of Statistical Graphics,” Statistical Science, 23:4 (2008),
+pp. 502–535, fig. 1.</span><br/> <b>Rcode</b>:
+<a href='fig-code/07_1-mileyears3.R'> 07_1-mileyears3.R </a>
 </td>
 </tr>
 </table>
 <table class="chap-fig">
 <tr>
 <td width="400">
-<img src='figs-web/07_2a-watt-indicator2.jpg' alt='Some technological advances leading to the Golden Age: NA' width=400> <img src='figs-web/07_2b-technology2.jpg' alt='Some technological advances leading to the Golden Age: NA' width=400> <img src='figs-web/07_2c-technology3.jpg' alt='Some technological advances leading to the Golden Age: NA' width=400>
+<img src='figs-web/07_2a-watt-indicator2.jpg' alt='Some technological advances leading to the Golden Age: NA' width=400>
+<img src='figs-web/07_2b-technology2.jpg' alt='Some technological advances leading to the Golden Age: NA' width=400>
+<img src='figs-web/07_2c-technology3.jpg' alt='Some technological advances leading to the Golden Age: NA' width=400>
 </td>
 <td class="chap-fig-desc" width="400">
 <h3 class="figtitle">
 Figure 7.2: Some technological advances leading to the Golden Age
 </h3>
-<p>Left: automatic recording: the Watt Indicator, James Watt (1822); middle: calculating devices, Babbage (1822/1833); right: photography: motion: Muybridge (1879). <br/> <span class="fig-src"><em>Source:</em> (left) National Museum of American History, The Smithsonian Institution; (middle) Britannica.com; (right) Library of Congress, Prints and Photographs Division, LC-DIG-ppmsca-23778, detail.</span><br/></p>
+<p>Left: automatic recording: the Watt Indicator, James Watt (1822);
+middle: calculating devices, Babbage (1822/1833); right: photography:
+motion: Muybridge (1879). <br/> <span class="fig-src"><em>Source:</em>
+(left) National Museum of American History, The Smithsonian Institution;
+(middle) Britannica.com; (right) Library of Congress, Prints and
+Photographs Division, LC-DIG-ppmsca-23778, detail.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2373,7 +2426,11 @@ Figure 7.2: Some technological advances leading to the Golden Age
 <h3 class="figtitle">
 Figure 7.3: Nomograms
 </h3>
-<p>A computational diagram combining diverse graphic forms. This tour-de force nomogram by Charles Lallemand (1885) uses anamorphic maps, parallel coordinates, and 3D surfaces to calculate magnetic deviation at sea. <br/> <span class="fig-src"><em>Source:</em> Reproduction courtesy of École des Mines.</span><br/></p>
+<p>A computational diagram combining diverse graphic forms. This tour-de
+force nomogram by Charles Lallemand (1885) uses anamorphic maps,
+parallel coordinates, and 3D surfaces to calculate magnetic deviation at
+sea. <br/> <span class="fig-src"><em>Source:</em> Reproduction courtesy
+of École des Mines.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2386,20 +2443,33 @@ Figure 7.3: Nomograms
 <h3 class="figtitle">
 Figure 7.4: Engineering diagram
 </h3>
-<p>Why did the bridge collapse? Across-sectional diagram showing one of the bridge supports, providing a before-after comparison. <br/> <span class="fig-src"><em>Source:</em> Detail from Charles Joseph Minard, De la chute des ponts dans les grandes crues. Paris: E Thunot et Cie, 1856. Reproduction © École nationale des ponts et chausées, 4_4921_C282.</span><br/></p>
+<p>Why did the bridge collapse? Across-sectional diagram showing one of
+the bridge supports, providing a before-after comparison. <br/> <span
+class="fig-src"><em>Source:</em> Detail from Charles Joseph Minard, De
+la chute des ponts dans les grandes crues. Paris: E Thunot et Cie, 1856.
+Reproduction © École nationale des ponts et chausées,
+4_4921_C282.</span><br/></p>
 </td>
 </tr>
 </table>
 <table class="chap-fig">
 <tr>
 <td width="400">
-<img src='figs-web/07_5a-Minard_1858.jpg' alt='Comparative flow maps: Effect of the US Civil War on trade in cotton.' width=400> <img src='figs-web/07_5b-Minard_1862.jpg' alt='Comparative flow maps: Effect of the US Civil War on trade in cotton.' width=400>
+<img src='figs-web/07_5a-Minard_1858.jpg' alt='Comparative flow maps: Effect of the US Civil War on trade in cotton.' width=400>
+<img src='figs-web/07_5b-Minard_1862.jpg' alt='Comparative flow maps: Effect of the US Civil War on trade in cotton.' width=400>
 </td>
 <td class="chap-fig-desc" width="400">
 <h3 class="figtitle">
 Figure 7.5: Comparative flow maps
 </h3>
-<p>Effect of the US Civil War on trade in cotton. The import of raw cotton to Europe from various sources to destination is shown by colored flow bands of width proportional to the amount of cotton before (left: 1858) and after (right: 1862) the US Civil War. <br/> <span class="fig-src"><em>Source:</em> Charles Joseph Minard, “Carte figurative et approximative des quantités de coton en Europe en 1858 et 1862,” Paris, 1863. Reproduction © École nationale des ponts et chausées, 4Fol 10975.</span><br/></p>
+<p>Effect of the US Civil War on trade in cotton. The import of raw
+cotton to Europe from various sources to destination is shown by colored
+flow bands of width proportional to the amount of cotton before (left:
+1858) and after (right: 1862) the US Civil War. <br/> <span
+class="fig-src"><em>Source:</em> Charles Joseph Minard, “Carte
+figurative et approximative des quantités de coton en Europe en 1858 et
+1862,” Paris, 1863. Reproduction © École nationale des ponts et
+chausées, 4Fol 10975.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2412,7 +2482,9 @@ Figure 7.5: Comparative flow maps
 <h3 class="figtitle">
 Figure 7.6: Minard’s greatest work
 </h3>
-<p>Minard’s 1869 Carte figurative depicting the fate of Napoleon’s Grand Army in the disastrous 1812 campaign to capture Moscow. <br/> <span class="fig-src"><em>Source:</em> Wikimedia Commons.</span><br/></p>
+<p>Minard’s 1869 Carte figurative depicting the fate of Napoleon’s Grand
+Army in the disastrous 1812 campaign to capture Moscow. <br/> <span
+class="fig-src"><em>Source:</em> Wikimedia Commons.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2425,7 +2497,13 @@ Figure 7.6: Minard’s greatest work
 <h3 class="figtitle">
 Figure 7.7: Galton’s data collection form
 </h3>
-<p>Top portion of the form Galton sent to observers to record weather variables throughout the month of December 1861. Noteworthy is Galton’s attempt to define the conditions of the observations and to standardize the scales on which each of the seven weather variables were to be recorded. <br/> <span class="fig-src"><em>Source:</em> Francis Galton, Meteorographica, or Methods of Mapping the Weather. London: Macmillan, 1863.</span><br/></p>
+<p>Top portion of the form Galton sent to observers to record weather
+variables throughout the month of December 1861. Noteworthy is Galton’s
+attempt to define the conditions of the observations and to standardize
+the scales on which each of the seven weather variables were to be
+recorded. <br/> <span class="fig-src"><em>Source:</em> Francis Galton,
+Meteorographica, or Methods of Mapping the Weather. London: Macmillan,
+1863.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2438,7 +2516,12 @@ Figure 7.7: Galton’s data collection form
 <h3 class="figtitle">
 Figure 7.8: Iconic 3D barometric maps, bipolar scale
 </h3>
-<p>Galton’s barometric maps for December 8, 1861. Gray and black symbols represent, respectively, lower and higher barometric pressure than average, with degrees of divergence ranging from &lt;U+20DD&gt; through &lt;U+2A00&gt;, and &lt;U+273B&gt; to &lt;U+25CF&gt;. <br/> <span class="fig-src"><em>Source:</em> Francis Galton, Meteographica, or Methods of Mapping the Weather. London: Macmillan, 1863.</span><br/></p>
+<p>Galton’s barometric maps for December 8, 1861. Gray and black symbols
+represent, respectively, lower and higher barometric pressure than
+average, with degrees of divergence ranging from &lt;U+20DD&gt; through
+&lt;U+2A00&gt;, and &lt;U+273B&gt; to &lt;U+25CF&gt;. <br/> <span
+class="fig-src"><em>Source:</em> Francis Galton, Meteographica, or
+Methods of Mapping the Weather. London: Macmillan, 1863.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2451,7 +2534,14 @@ Figure 7.8: Iconic 3D barometric maps, bipolar scale
 <h3 class="figtitle">
 Figure 7.9: Two-way star / radar diagrams
 </h3>
-<p>“Comparison of the numbers attending the Expositions of 1867, 1878 and 1889” (Exposition Universelle de 1889: Comparaison du Nombre des Entrées aux Expositions de 1867, 1878 et 1889). In each star-shaped figure the length of the radial dimension shows the number of paid entrants on each day of the month. <br/> <span class="fig-src"><em>Source:</em> Caisse nationale des retraites pour la vieillesse. Album de Statistique Graphique. Paris: Imprimerie Nationale, 1889, Plate 21.</span><br/></p>
+<p>“Comparison of the numbers attending the Expositions of 1867, 1878
+and 1889” (Exposition Universelle de 1889: Comparaison du Nombre des
+Entrées aux Expositions de 1867, 1878 et 1889). In each star-shaped
+figure the length of the radial dimension shows the number of paid
+entrants on each day of the month. <br/> <span
+class="fig-src"><em>Source:</em> Caisse nationale des retraites pour la
+vieillesse. Album de Statistique Graphique. Paris: Imprimerie Nationale,
+1889, Plate 21.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2464,7 +2554,14 @@ Figure 7.9: Two-way star / radar diagrams
 <h3 class="figtitle">
 Figure 7.10: Polar / area diagrams on a map
 </h3>
-<p>“Gross receipts of theaters in Paris from 1878 to 1889” (Exposition Universelle de 1889: Recettes brutes des théatres et spectacles de Paris 1878 à 1889). Each diagram uses sectors of length proportional to the receipts at a given theater in each year from 1878 to 1889, highlighting the values for the years of the Universal Expositions in a lighter shade. <br/> <span class="fig-src"><em>Source:</em> Caisse nationale des retraites pour la vieillesse. Album de Statistique Graphique. Paris: Imprimerie Nationale, 1889, Plate 26.</span><br/></p>
+<p>“Gross receipts of theaters in Paris from 1878 to 1889” (Exposition
+Universelle de 1889: Recettes brutes des théatres et spectacles de Paris
+1878 à 1889). Each diagram uses sectors of length proportional to the
+receipts at a given theater in each year from 1878 to 1889, highlighting
+the values for the years of the Universal Expositions in a lighter
+shade. <br/> <span class="fig-src"><em>Source:</em> Caisse nationale des
+retraites pour la vieillesse. Album de Statistique Graphique. Paris:
+Imprimerie Nationale, 1889, Plate 26.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2477,7 +2574,13 @@ Figure 7.10: Polar / area diagrams on a map
 <h3 class="figtitle">
 Figure 7.11: Anamorphic map
 </h3>
-<p>“Acceleration of travel in France over 200 years” (Accélération des voyages en France depuis 200 Ans). A set of five Paris-centric maps scaled along radial directions to major cities to show the relative decrease in travel time from 1789 to 1887. <br/> <span class="fig-src"><em>Source:</em> Caisse nationale des retraites pour la vieillesse. Album de Statistique Graphique. Paris: Imprimerie Nationale, 1888, Plate 8a.</span><br/></p>
+<p>“Acceleration of travel in France over 200 years” (Accélération des
+voyages en France depuis 200 Ans). A set of five Paris-centric maps
+scaled along radial directions to major cities to show the relative
+decrease in travel time from 1789 to 1887. <br/> <span
+class="fig-src"><em>Source:</em> Caisse nationale des retraites pour la
+vieillesse. Album de Statistique Graphique. Paris: Imprimerie Nationale,
+1888, Plate 8a.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2490,20 +2593,34 @@ Figure 7.11: Anamorphic map
 <h3 class="figtitle">
 Figure 7.12: Planetary diagram
 </h3>
-<p>“Transportation of principal merchandise in France in four-year periods” (Mouvement des principales marchandises en France, par période quatriennale). Left: combustible minerals, for example, coal, coke; right: construction materials. The length of rays indicate average distance; circle diameters represent tonnage moved. <br/> <span class="fig-src"><em>Source:</em> Caisse nationale des retraites pour la vieillesse. Album de Statistique Graphique. Paris: Imprimerie Nationale, 1897, Plate 9.</span><br/></p>
+<p>“Transportation of principal merchandise in France in four-year
+periods” (Mouvement des principales marchandises en France, par période
+quatriennale). Left: combustible minerals, for example, coal, coke;
+right: construction materials. The length of rays indicate average
+distance; circle diameters represent tonnage moved. <br/> <span
+class="fig-src"><em>Source:</em> Caisse nationale des retraites pour la
+vieillesse. Album de Statistique Graphique. Paris: Imprimerie Nationale,
+1897, Plate 9.</span><br/></p>
 </td>
 </tr>
 </table>
 <table class="chap-fig">
 <tr>
 <td width="400">
-<img src='figs-web/07_13a-1870_racedeath_pyramidline-detail.jpg' alt='Bilateral histograms: “Chart Showing the Distribution of Deaths... by Sex and Month of Death and according to Race and Nationality.” Left: detail from causes of death; right: full plate, with labels for the three sections added.' width=400> <img src='figs-web/07_13b-1870_racedeath_pyramidline-s-anno.jpg' alt='Bilateral histograms: “Chart Showing the Distribution of Deaths... by Sex and Month of Death and according to Race and Nationality.” Left: detail from causes of death; right: full plate, with labels for the three sections added.' width=400>
+<img src='figs-web/07_13a-1870_racedeath_pyramidline-detail.jpg' alt='Bilateral histograms: “Chart Showing the Distribution of Deaths... by Sex and Month of Death and according to Race and Nationality.” Left: detail from causes of death; right: full plate, with labels for the three sections added.' width=400>
+<img src='figs-web/07_13b-1870_racedeath_pyramidline-s-anno.jpg' alt='Bilateral histograms: “Chart Showing the Distribution of Deaths... by Sex and Month of Death and according to Race and Nationality.” Left: detail from causes of death; right: full plate, with labels for the three sections added.' width=400>
 </td>
 <td class="chap-fig-desc" width="400">
 <h3 class="figtitle">
 Figure 7.13: Bilateral histograms
 </h3>
-<p>“Chart Showing the Distribution of Deaths… by Sex and Month of Death and according to Race and Nationality.” Left: detail from causes of death; right: full plate, with labels for the three sections added. <br/> <span class="fig-src"><em>Source:</em> United States Census Office, Statistical Atlas of the United States Based on the Results of the Ninth Census 1870. New York: Julius Bien, 1874, Plate 44.</span><br/></p>
+<p>“Chart Showing the Distribution of Deaths… by Sex and Month of Death
+and according to Race and Nationality.” Left: detail from causes of
+death; right: full plate, with labels for the three sections added.
+<br/> <span class="fig-src"><em>Source:</em> United States Census
+Office, Statistical Atlas of the United States Based on the Results of
+the Ninth Census 1870. New York: Julius Bien, 1874, Plate
+44.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2516,7 +2633,13 @@ Figure 7.13: Bilateral histograms
 <h3 class="figtitle">
 Plate P.7: Pie map of Paris transport
 </h3>
-<p>Bottom portion of Plate 17 from the Album de Statistique Graphique of 1885, showing transport of goods to the ports of Paris and the principal maritime ports in 1883. The sectors of the circle-diagrams show the composition by type and area shows the total tonnage. <br/> <span class="fig-src"><em>Source:</em> Ministère des Travaux Publics, Album de Statistique Graphique de 1885. Paris: Imprimerie Nationale, 1885, Plate 17.</span><br/></p>
+<p>Bottom portion of Plate 17 from the Album de Statistique Graphique of
+1885, showing transport of goods to the ports of Paris and the principal
+maritime ports in 1883. The sectors of the circle-diagrams show the
+composition by type and area shows the total tonnage. <br/> <span
+class="fig-src"><em>Source:</em> Ministère des Travaux Publics, Album de
+Statistique Graphique de 1885. Paris: Imprimerie Nationale, 1885, Plate
+17.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2529,7 +2652,13 @@ Plate P.7: Pie map of Paris transport
 <h3 class="figtitle">
 Plate P.11: Multivariate glyph map
 </h3>
-<p>Galton’s glyph map of wind, cloud cover and rain on the evening of December 7, 1861. The U-shaped icons open toward the direction of the wind and are filled in relation to its strength; a circle indicates calm. Stippled and hatched backgrounds range from clear through degrees of cloud to snow and rain. <br/> <span class="fig-src"><em>Source:</em> Francis Galton, Meteorographica, or Methods of Mapping the Weather. London: Macmillan, 1863.</span><br/></p>
+<p>Galton’s glyph map of wind, cloud cover and rain on the evening of
+December 7, 1861. The U-shaped icons open toward the direction of the
+wind and are filled in relation to its strength; a circle indicates
+calm. Stippled and hatched backgrounds range from clear through degrees
+of cloud to snow and rain. <br/> <span class="fig-src"><em>Source:</em>
+Francis Galton, Meteorographica, or Methods of Mapping the Weather.
+London: Macmillan, 1863.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2542,20 +2671,32 @@ Plate P.11: Multivariate glyph map
 <h3 class="figtitle">
 Plate P.12: Multivariate schematic mini-maps
 </h3>
-<p>Francis Galton, “Charts of the Thermometer, Wind, Rain and Barometer on the Morning, Afternoon and Evening on Each Day during December 1861.” Each daily panel is a 3x3 display of the combinations of barometric pressure, wind and rain and temperature by morning, noon and afternoon. <br/> <span class="fig-src"><em>Source:</em> Francis Galton, Meteorographica, or Methods of Mapping the Weather. London: Macmillan, 1863.</span><br/></p>
+<p>Francis Galton, “Charts of the Thermometer, Wind, Rain and Barometer
+on the Morning, Afternoon and Evening on Each Day during December 1861.”
+Each daily panel is a 3x3 display of the combinations of barometric
+pressure, wind and rain and temperature by morning, noon and afternoon.
+<br/> <span class="fig-src"><em>Source:</em> Francis Galton,
+Meteorographica, or Methods of Mapping the Weather. London: Macmillan,
+1863.</span><br/></p>
 </td>
 </tr>
 </table>
 <table class="chap-fig">
 <tr>
 <td width="400">
-<img src='figs-web/P_13a-galton-summary-symbols.jpg' alt='Multivariate schematic mini-maps: Legend: Top: Legend in the bottom right of Plate 12, showing the use of color, shape, texture, and other visual attributes to portray quantitative variables.' width=400> <img src='figs-web/P_13b-galton1861-dec5-detail.png' alt='Multivariate schematic mini-maps: Legend: Top: Legend in the bottom right of Plate 12, showing the use of color, shape, texture, and other visual attributes to portray quantitative variables.' width=400>
+<img src='figs-web/P_13a-galton-summary-symbols.jpg' alt='Multivariate schematic mini-maps: Legend: Top: Legend in the bottom right of Plate 12, showing the use of color, shape, texture, and other visual attributes to portray quantitative variables.' width=400>
+<img src='figs-web/P_13b-galton1861-dec5-detail.png' alt='Multivariate schematic mini-maps: Legend: Top: Legend in the bottom right of Plate 12, showing the use of color, shape, texture, and other visual attributes to portray quantitative variables.' width=400>
 </td>
 <td class="chap-fig-desc" width="400">
 <h3 class="figtitle">
 Plate P.13: Multivariate schematic mini-maps
 </h3>
-<p>Legend: Top: Legend in the bottom right of Plate 12, showing the use of color, shape, texture, and other visual attributes to portray quantitative variables. Bottom: Detail for December 5, from the top left corner. <br/> <span class="fig-src"><em>Source:</em> Francis Galton, Meteorographica, or Methods of Mapping the Weath- er. London: Macmillan, 1863.</span><br/></p>
+<p>Legend: Top: Legend in the bottom right of Plate 12, showing the use
+of color, shape, texture, and other visual attributes to portray
+quantitative variables. Bottom: Detail for December 5, from the top left
+corner. <br/> <span class="fig-src"><em>Source:</em> Francis Galton,
+Meteorographica, or Methods of Mapping the Weath- er. London: Macmillan,
+1863.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2568,12 +2709,19 @@ Plate P.13: Multivariate schematic mini-maps
 <h3 class="figtitle">
 Plate P.14: Mosaics/treemaps
 </h3>
-<p>Francis Walker, Chart showing the principal constituents of each state (1874). Bottom left: detail for Missouri showing the subdivisions by race and origin; above: full plate, with annotated labels added. <br/> <span class="fig-src"><em>Source:</em> United States Census Office, Statistical Atlas of the United States Based on the Results of the Ninth Census 1870. New York: Julius Bien, 1874, Plate 20. (Annotations added by authors.)</span><br/></p>
+<p>Francis Walker, Chart showing the principal constituents of each
+state (1874). Bottom left: detail for Missouri showing the subdivisions
+by race and origin; above: full plate, with annotated labels added.
+<br/> <span class="fig-src"><em>Source:</em> United States Census
+Office, Statistical Atlas of the United States Based on the Results of
+the Ninth Census 1870. New York: Julius Bien, 1874, Plate 20.
+(Annotations added by authors.)</span><br/></p>
 </td>
 </tr>
 </table>
 </div>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

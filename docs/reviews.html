@@ -50,16 +50,17 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { } /* Attribute */
+code span.at { color: #657422; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
+code span.cf { color: #00769e; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -73,9 +74,9 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
+code span.kw { color: #00769e; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
+code span.ot { color: #00769e; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
 code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
@@ -1027,10 +1028,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     margin-top: 1.5em;
   }
 
-  .figure img {
-    width: 100%;
-  }
-
   .figure .caption {
     color: rgba(0, 0, 0, 0.6);
     font-size: 12px;
@@ -1860,6 +1857,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
+        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
+          var fn = $(this).children()[0]
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
           return "<p>" + $('#ref-' + ref).html() + "</p>";
@@ -1874,6 +1877,31 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           placement: 'bottom-start'
         });
       });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
 
       // clear polling timer
       clearInterval(tid);
@@ -1973,6 +2001,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -1995,7 +2025,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
       });
     }
 
@@ -2034,7 +2064,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.15/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2276,40 +2306,150 @@ Chapters
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#capsule-reviews">Capsule reviews</a></li>
-<li><a href="#more-detailed-reviews">More detailed reviews</a></li>
+<li><a href="#capsule-reviews" id="toc-capsule-reviews">Capsule
+reviews</a></li>
+<li><a href="#more-detailed-reviews" id="toc-more-detailed-reviews">More
+detailed reviews</a></li>
 </ul>
 </nav>
 </div>
 <h2 id="capsule-reviews">Capsule reviews</h2>
-<p>“A synthetic and comprehensive work that finely retraces the steps that allowed the construction of a”visual thought”. Friendly and Wainer invite us to follow them in a masterly study of the graphic innovations, their context and their scientific use. This brilliant book, without equivalent so far, will be an indispensable read for all those interested in information visualization.” – <strong>Gilles Palsky, coauthor of <em>An Atlas of Geographical Wonders</em></strong></p>
-<p>“Friendly and Wainer are the Watson and Crick of statistical graphics, showing us the history of the DNA structure that is the code of life for innovative visualizations.” – <strong>Ben Shneiderman, founder of the Human-Computer Interaction Lab, University of Maryland</strong></p>
-<p>“Data expertise is a fundamental prerequisite for success in our digital age. But exactly how, and when, have we learned to draw conclusions from data? For decades, Michael Friendly and Howard Wainer have been studying how data has informed decision-making, through visualization and statistical analysis. Replete with mesmerizing visual examples, this book is an eye-opening distillation of their research.” – <strong>Sandra Rendgen, author of <em>History of Information Graphics</em></strong></p>
-<p>“Michael Friendly and Howard Wainer have given us a wonderful history of the dazzling field of data visualization. They bring new life to ancient death statistics and describe the artistic poetry used to display numbers. An intriguing story of how we have learned to communicate data of all types.” – <strong>Stephen M. Stigler, author of <em>The Seven Pillars of Statistical Wisdom</em></strong></p>
-<p>“Two of the most distinguished scholars of data visualization give us a glimpse of ancient attempts to quantify the world, before revealing the century-long revolution that led to the invention of modern statistics and many of the graphical methods we use today. I learned a lot from this book, and I think you will too.” – <strong>Alberto Cairo, author of <em>How Charts Lie: Getting Smarter about Visual Information</em></strong></p>
-<p>“Friendly and Wainer demonstrate the amazing progress that has been made in data graphics over the past two hundred years. Understanding this history-where graphs came from and how they developed-will be valuable as we move forward.” – <strong>Andrew Gelman, coauthor of <em>Regression and Other Stories</em></strong></p>
-<p>“The invention of graphs and charts was a much quieter affair than that of the telescope, but these tools have done just as much to change how and what we see.” – <strong>Hannah Fry, <em>The New Yorker</em></strong></p>
-<p>“This is a thoughtful and well-written introduction to the world of data visualization and its history.” – <strong>Bill Slater, <em>Mathematical Association of America</em></strong></p>
-<p>“The book is a marvel of research scholarship. Unlike histories of the rich and famous, the work of many of the stars of this narrative is relatively obscure. The authors have done a remarkable job of digging it up and putting it into perspective in a way that is both clear and accessible. This is the sort of book that one can browse and sample in bitesize chunks as the mood seizes, encountering curious delights while doing so.” – <strong>Bert Gunter, <em>Significance</em></strong></p>
-<p>“What sets this book apart from other such histories is the depth of analysis dedicated to the graphic instruments of science that emerged out of a need to explore complex issues, identify patterns, and reduce complexity in communication. Friendly and Wainer dive deep into numerical relationships, providing thoughtful analysis that highlights the strength of the graphs. And with a retrospective eye, they present critiques and contemporary alternatives.” – <strong>María del Mar Navarro, <em>She Ji: The Journal of Design, Economics, and Innovation</em></strong></p>
-<p>“This book is a must-read for anyone interested in visualization. Its scope and informed perspective already make it a classic.” – <strong>Leland Wilkinson, <em>CHANCE</em>, 34:4, 38-40, November, 2021.</strong></p>
-<p>“The book covers a wide and varied history in a manner that is remarkably free of technical phrasing and instead applies a common, clear language. That alone is reason enough, these days for praise. … The book was worth waiting for and I’m delighted to have it on my shelf.” – <strong>Tom Koch, Author of <em>Disease Maps</em></strong></p>
-<p>“The authors have taken on the ambitious task of writing whirlwind historical narratives, synthesizing centuries of scientific inquiry within a single chapter. Such is this book’s grand ambition: it chronicles the history of graphic communication since the beginning of human language and reflects decades of expertise from the authors, who were themselves part of a prominent wave of visualization research.” – <strong>Crystal Lee, <em>Information &amp; Culture</em>, December, 2021.</strong></p>
-<p>“C’est un passionnant voyage aux côtés de ceux qui ont inventé le langage de la dataviz, du 17e à nos jours, un ouvrage magistral et accessible” – <strong>Éric Mauvière, Twitter</strong>, December 28, 2021.</p>
+<p>“A synthetic and comprehensive work that finely retraces the steps
+that allowed the construction of a”visual thought”. Friendly and Wainer
+invite us to follow them in a masterly study of the graphic innovations,
+their context and their scientific use. This brilliant book, without
+equivalent so far, will be an indispensable read for all those
+interested in information visualization.” – <strong>Gilles Palsky,
+coauthor of <em>An Atlas of Geographical Wonders</em></strong></p>
+<p>“Friendly and Wainer are the Watson and Crick of statistical
+graphics, showing us the history of the DNA structure that is the code
+of life for innovative visualizations.” – <strong>Ben Shneiderman,
+founder of the Human-Computer Interaction Lab, University of
+Maryland</strong></p>
+<p>“Data expertise is a fundamental prerequisite for success in our
+digital age. But exactly how, and when, have we learned to draw
+conclusions from data? For decades, Michael Friendly and Howard Wainer
+have been studying how data has informed decision-making, through
+visualization and statistical analysis. Replete with mesmerizing visual
+examples, this book is an eye-opening distillation of their research.” –
+<strong>Sandra Rendgen, author of <em>History of Information
+Graphics</em></strong></p>
+<p>“Michael Friendly and Howard Wainer have given us a wonderful history
+of the dazzling field of data visualization. They bring new life to
+ancient death statistics and describe the artistic poetry used to
+display numbers. An intriguing story of how we have learned to
+communicate data of all types.” – <strong>Stephen M. Stigler, author of
+<em>The Seven Pillars of Statistical Wisdom</em></strong></p>
+<p>“Two of the most distinguished scholars of data visualization give us
+a glimpse of ancient attempts to quantify the world, before revealing
+the century-long revolution that led to the invention of modern
+statistics and many of the graphical methods we use today. I learned a
+lot from this book, and I think you will too.” – <strong>Alberto Cairo,
+author of <em>How Charts Lie: Getting Smarter about Visual
+Information</em></strong></p>
+<p>“Friendly and Wainer demonstrate the amazing progress that has been
+made in data graphics over the past two hundred years. Understanding
+this history-where graphs came from and how they developed-will be
+valuable as we move forward.” – <strong>Andrew Gelman, coauthor of
+<em>Regression and Other Stories</em></strong></p>
+<p>“The invention of graphs and charts was a much quieter affair than
+that of the telescope, but these tools have done just as much to change
+how and what we see.” – <strong>Hannah Fry, <em>The New
+Yorker</em></strong></p>
+<p>“This is a thoughtful and well-written introduction to the world of
+data visualization and its history.” – <strong>Bill Slater,
+<em>Mathematical Association of America</em></strong></p>
+<p>“The book is a marvel of research scholarship. Unlike histories of
+the rich and famous, the work of many of the stars of this narrative is
+relatively obscure. The authors have done a remarkable job of digging it
+up and putting it into perspective in a way that is both clear and
+accessible. This is the sort of book that one can browse and sample in
+bitesize chunks as the mood seizes, encountering curious delights while
+doing so.” – <strong>Bert Gunter, <em>Significance</em></strong></p>
+<p>“What sets this book apart from other such histories is the depth of
+analysis dedicated to the graphic instruments of science that emerged
+out of a need to explore complex issues, identify patterns, and reduce
+complexity in communication. Friendly and Wainer dive deep into
+numerical relationships, providing thoughtful analysis that highlights
+the strength of the graphs. And with a retrospective eye, they present
+critiques and contemporary alternatives.” – <strong>María del Mar
+Navarro, <em>She Ji: The Journal of Design, Economics, and
+Innovation</em></strong></p>
+<p>“This book is a must-read for anyone interested in visualization. Its
+scope and informed perspective already make it a classic.” –
+<strong>Leland Wilkinson, <em>CHANCE</em>, 34:4, 38-40, November,
+2021.</strong></p>
+<p>“The book covers a wide and varied history in a manner that is
+remarkably free of technical phrasing and instead applies a common,
+clear language. That alone is reason enough, these days for praise. …
+The book was worth waiting for and I’m delighted to have it on my
+shelf.” – <strong>Tom Koch, Author of <em>Disease Maps</em></strong></p>
+<p>“The authors have taken on the ambitious task of writing whirlwind
+historical narratives, synthesizing centuries of scientific inquiry
+within a single chapter. Such is this book’s grand ambition: it
+chronicles the history of graphic communication since the beginning of
+human language and reflects decades of expertise from the authors, who
+were themselves part of a prominent wave of visualization research.” –
+<strong>Crystal Lee, <em>Information &amp; Culture</em>, December,
+2021.</strong></p>
+<p>“C’est un passionnant voyage aux côtés de ceux qui ont inventé le
+langage de la dataviz, du 17e à nos jours, un ouvrage magistral et
+accessible” – <strong>Éric Mauvière, Twitter</strong>, December 28,
+2021.</p>
+<p>“The audience for this book is wide. It would be useful to
+professionals and to professors in many departments such as psychology,
+sociology, economics, biology, physics, and any department that uses
+graphs to display quantitative information. It is a book to broaden your
+knowledge and offer interesting asides for lectures and meetings. This
+book is not only for academics but for the seekers of origins. It is a
+book for the curious intellectual.”We understand best those things we
+see grow from their very beginnings.” – <strong>Malcolm James Ree,
+<em>Personnel Psychology</em></strong>, August 9, 2022.</p>
 <h2 id="more-detailed-reviews">More detailed reviews</h2>
 <ul>
-<li><p><a href="https://www.newyorker.com/magazine/2021/06/21/when-graphs-are-a-matter-of-life-and-death">Hannah Fry, <em>New Yorker</em>, “When Graphs are a Matter of Life and Death”</a>, Online: June 14, 2021; print: June 21, 2021.</p></li>
-<li><p><a href="https://www.nybooks.com/articles/2021/08/19/du-bois-color-line-paris-exposition/">Annette Gordon-Reed, <em>New York Review of Books</em>, “The Color Line”</a>, Print: August 19, 2021 issue.</p></li>
-<li><p><a href="https://paw.princeton.edu/article/howard-wainer-68-and-michael-friendly-71-give-data-meaning">George Spencer, <em>Princeton Alumni Weekly</em>, “Howard Wainer <em>68 and Michael Friendly </em>71 Give Data Meaning”</a>, Published online August 25, 2021.</p></li>
-<li><p><a href="https://www.maa.org/press/maa-reviews/a-history-of-data-visualization-and-graphic-communication">Bill Slater, <em>Mathematical Association of America</em>, Review</a>, Online: September 22, 2021.</p></li>
-<li><p><a href="pdf/SIGNIFICANCE-Review.pdf">Bert Gunter, <em>Significance</em></a>, Review in v. <strong>18</strong>(5), p. 45 (Oct. 2021 issue)</p></li>
-<li><p><a href="https://www.sciencedirect.com/science/article/pii/S2405872621000873">María del Mar Navarro, <em>She Ji: The Journal of Design, Economics, and Innovation</em></a>, Volume 7, Issue 3, Autumn 2021, Pages 485-491.</p></li>
-<li><p><a href="https://www.amazon.com/gp/customer-reviews/R19HUUJRY5UXOY/ref=cm_cr_arp_d_rvw_ttl?ie=UTF8&amp;ASIN=0674975235">Nick Cox, Customer review on Amazon</a>, September 27, 2021.</p></li>
-<li><p><a href="https://www.journalofaccountancy.com/news/2021/oct/tools-building-visual-representations-data.html">George Spencer, <em>Journal of Accountancy</em>, “Creating the right visuals for your data”</a>, an interview published October 18, 2021.</p></li>
-<li><p><a href="https://doi.org/10.1080/09332480.2021.2003643">Leland Wilkinson, <em>CHANCE</em>, 34:4, 38-40</a>, Online: November 21, 2021.</p></li>
-<li><p><a href="https://infoculturejournal.org/book_reviews/Friendly_Lee">Crystal Lee, _Information &amp; Culture</a>, December, 2021.</p></li>
+<li><p><a
+href="https://www.newyorker.com/magazine/2021/06/21/when-graphs-are-a-matter-of-life-and-death">Hannah
+Fry, <em>New Yorker</em>, “When Graphs are a Matter of Life and
+Death”</a>, Online: June 14, 2021; print: June 21, 2021.</p></li>
+<li><p><a
+href="https://www.nybooks.com/articles/2021/08/19/du-bois-color-line-paris-exposition/">Annette
+Gordon-Reed, <em>New York Review of Books</em>, “The Color Line”</a>,
+Print: August 19, 2021 issue.</p></li>
+<li><p><a
+href="https://paw.princeton.edu/article/howard-wainer-68-and-michael-friendly-71-give-data-meaning">George
+Spencer, <em>Princeton Alumni Weekly</em>, “Howard Wainer <em>68 and
+Michael Friendly </em>71 Give Data Meaning”</a>, Published online August
+25, 2021.</p></li>
+<li><p><a
+href="https://www.maa.org/press/maa-reviews/a-history-of-data-visualization-and-graphic-communication">Bill
+Slater, <em>Mathematical Association of America</em>, Review</a>,
+Online: September 22, 2021.</p></li>
+<li><p><a href="pdf/SIGNIFICANCE-Review.pdf">Bert Gunter,
+<em>Significance</em></a>, Review in v. <strong>18</strong>(5), p. 45
+(Oct. 2021 issue)</p></li>
+<li><p><a
+href="https://www.sciencedirect.com/science/article/pii/S2405872621000873">María
+del Mar Navarro, <em>She Ji: The Journal of Design, Economics, and
+Innovation</em></a>, Volume 7, Issue 3, Autumn 2021, Pages
+485-491.</p></li>
+<li><p><a
+href="https://www.amazon.com/gp/customer-reviews/R19HUUJRY5UXOY/ref=cm_cr_arp_d_rvw_ttl?ie=UTF8&amp;ASIN=0674975235">Nick
+Cox, Customer review on Amazon</a>, September 27, 2021.</p></li>
+<li><p><a
+href="https://www.journalofaccountancy.com/news/2021/oct/tools-building-visual-representations-data.html">George
+Spencer, <em>Journal of Accountancy</em>, “Creating the right visuals
+for your data”</a>, an interview published October 18, 2021.</p></li>
+<li><p><a href="https://doi.org/10.1080/09332480.2021.2003643">Leland
+Wilkinson, <em>CHANCE</em>, 34:4, 38-40</a>, Online: November 21,
+2021.</p></li>
+<li><p><a
+href="https://infoculturejournal.org/book_reviews/Friendly_Lee">Crystal
+Lee, _Information &amp; Culture</a>, December, 2021.</p></li>
+<li><p><a href="https://doi.org/10.1111/peps.12540">Malcolm James Ree,
+<em>Personnel Psychology</em></a>, August 9, 2022</p></li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

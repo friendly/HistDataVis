@@ -50,16 +50,17 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { } /* Attribute */
+code span.at { color: #657422; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
+code span.cf { color: #00769e; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -73,9 +74,9 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
+code span.kw { color: #00769e; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
+code span.ot { color: #00769e; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
 code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
@@ -1027,10 +1028,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     margin-top: 1.5em;
   }
 
-  .figure img {
-    width: 100%;
-  }
-
   .figure .caption {
     color: rgba(0, 0, 0, 0.6);
     font-size: 12px;
@@ -1860,6 +1857,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
+        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
+          var fn = $(this).children()[0]
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
           return "<p>" + $('#ref-' + ref).html() + "</p>";
@@ -1874,6 +1877,31 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           placement: 'bottom-start'
         });
       });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
 
       // clear polling timer
       clearInterval(tid);
@@ -1973,6 +2001,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -1995,7 +2025,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
       });
     }
 
@@ -2034,7 +2064,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.15/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2306,12 +2336,24 @@ Chapters
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
-<h1 id="graphs-as-poetry">Graphs as Poetry <img src="images/cartoons/minard-march.png" align="right" height="100px" /></h1>
+<h1 id="graphs-as-poetry">Graphs as Poetry
+<img src="images/cartoons/minard-march.png" align="right" height="100px" /></h1>
 <div class="chapterintro">
 <section id="synopsis" class="unnumbered chapterprelude">
 <h4 class="unnumbered">Synopsis</h4>
-<p>Graphs are justly celebrated for their ability to accurately present phenomena in a compact way while simultaneously provide their context. If this were all that they did, their place in scientific history would be secure. But with suitable data and the right design, they can also convey emotion. Indeed, in some instances graphs provide an emotional impact that can be likened to that of poetry.</p>
-<p>In this chapter we imagine a collaboration between the civil rights activist W.E.B. DuBois and the canonized graphic designer C. J. Minard to show The Great Migration of six million African-Americans fleeing the racism and terror in the post-Confederacy South to the industrial North. The result of this <em>gedanken</em> collaboration provides a vivid example of how we can profit from studying the past to help solve the problems of the future.</p>
+<p>Graphs are justly celebrated for their ability to accurately present
+phenomena in a compact way while simultaneously provide their context.
+If this were all that they did, their place in scientific history would
+be secure. But with suitable data and the right design, they can also
+convey emotion. Indeed, in some instances graphs provide an emotional
+impact that can be likened to that of poetry.</p>
+<p>In this chapter we imagine a collaboration between the civil rights
+activist W.E.B. DuBois and the canonized graphic designer C. J. Minard
+to show The Great Migration of six million African-Americans fleeing the
+racism and terror in the post-Confederacy South to the industrial North.
+The result of this <em>gedanken</em> collaboration provides a vivid
+example of how we can profit from studying the past to help solve the
+problems of the future.</p>
 </section>
 <section id="chapter-contents" class="unnumbered chaptercontents">
 <h4 class="unnumbered">Chapter contents</h4>
@@ -2343,7 +2385,13 @@ Chapters
 <h3 class="figtitle">
 Figure 10.1: Mann Gulch fire
 </h3>
-<p>Distance and time graph of the estimated positions of the crew and the fire. Distances are estimated from the crew’s turnaround at point (Pt. 6). The slopes of the lines indicate the rate of movement; the steeper the line, the faster the rate. The entire tragedy took less than thirty minutes. <br/> <span class="fig-src"><em>Source:</em> Norman Maclean, Young Men and Fire. Chicago: University of Chicago Press, 1992, page 269.</span><br/></p>
+<p>Distance and time graph of the estimated positions of the crew and
+the fire. Distances are estimated from the crew’s turnaround at point
+(Pt. 6). The slopes of the lines indicate the rate of movement; the
+steeper the line, the faster the rate. The entire tragedy took less than
+thirty minutes. <br/> <span class="fig-src"><em>Source:</em> Norman
+Maclean, Young Men and Fire. Chicago: University of Chicago Press, 1992,
+page 269.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2356,7 +2404,13 @@ Figure 10.1: Mann Gulch fire
 <h3 class="figtitle">
 Figure 10.2: Kovno Ghetto
 </h3>
-<p>The population losses in the Kovno Ghetto due primarily to the“Great Action” of October 28, 1941. Males are represented on the left, females on the right. The shaded portion represents those still surviving in November. The central column indicates the age groups from 0–9-year-olds at the bottom to 70 and older at the top. <br/> <span class="fig-src"><em>Source:</em> United States Holocaust Museum.</span><br/></p>
+<p>The population losses in the Kovno Ghetto due primarily to the“Great
+Action” of October 28, 1941. Males are represented on the left, females
+on the right. The shaded portion represents those still surviving in
+November. The central column indicates the age groups from 0–9-year-olds
+at the bottom to 70 and older at the top. <br/> <span
+class="fig-src"><em>Source:</em> United States Holocaust
+Museum.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2369,7 +2423,12 @@ Figure 10.2: Kovno Ghetto
 <h3 class="figtitle">
 Figure 10.3: Napoleon march graphic
 </h3>
-<p>Charles Joseph Minard’s narrative map of Napoleon’s disastrous 1812 Russian campaign. The width of the gray “river” is proportional to the size of Napoleon’s invading army; its black continuation shows the size of the returning army. <br/> <span class="fig-src"><em>Source:</em> Reproduction courtesy of Archives, École Nationale des Ponts et Chaussées.</span><br/></p>
+<p>Charles Joseph Minard’s narrative map of Napoleon’s disastrous 1812
+Russian campaign. The width of the gray “river” is proportional to the
+size of Napoleon’s invading army; its black continuation shows the size
+of the returning army. <br/> <span class="fig-src"><em>Source:</em>
+Reproduction courtesy of Archives, École Nationale des Ponts et
+Chaussées.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2382,7 +2441,11 @@ Figure 10.3: Napoleon march graphic
 <h3 class="figtitle">
 Figure 10.4: Hannibal graphic
 </h3>
-<p>Minard’s depiction of Hannibal’s army, as it treks across Spain and France on a brilliant military campaign, but then suffers huge losses attempting to cross the Alps. <br/> <span class="fig-src"><em>Source:</em> Reproduction courtesy of Archives, École Nationale des Ponts et Chaussées.</span><br/></p>
+<p>Minard’s depiction of Hannibal’s army, as it treks across Spain and
+France on a brilliant military campaign, but then suffers huge losses
+attempting to cross the Alps. <br/> <span
+class="fig-src"><em>Source:</em> Reproduction courtesy of Archives,
+École Nationale des Ponts et Chaussées.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2395,7 +2458,11 @@ Figure 10.4: Hannibal graphic
 <h3 class="figtitle">
 Figure 10.5: Da Vinci’s notebook
 </h3>
-<p>Leonardo’s graphic story of a fetus told with words and incomparable pictures that disproved Galen of Pergamum’s claim about women’s bicameral uterus, which had persisted unchallenged for 1,400 years. <br/> <span class="fig-src"><em>Source:</em> Wikimedia Commons.</span><br/></p>
+<p>Leonardo’s graphic story of a fetus told with words and incomparable
+pictures that disproved Galen of Pergamum’s claim about women’s
+bicameral uterus, which had persisted unchallenged for 1,400 years.
+<br/> <span class="fig-src"><em>Source:</em> Wikimedia
+Commons.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2408,7 +2475,10 @@ Figure 10.5: Da Vinci’s notebook
 <h3 class="figtitle">
 Figure 10.6: Effect of the Emancipation Proclamation
 </h3>
-<p>“Proportion of freemen and slaves among American Negroes, from 1790 to 1870.” <br/> <span class="fig-src"><em>Source:</em> Library of Congress, Prints and Photographs Division, LC-DIG-ppmsca-33913.</span><br/></p>
+<p>“Proportion of freemen and slaves among American Negroes, from 1790
+to 1870.” <br/> <span class="fig-src"><em>Source:</em> Library of
+Congress, Prints and Photographs Division,
+LC-DIG-ppmsca-33913.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2421,7 +2491,9 @@ Figure 10.6: Effect of the Emancipation Proclamation
 <h3 class="figtitle">
 Figure 10.7: Du Bois’s bar chart
 </h3>
-<p>Increase of the Negro population of the United States from 1750 until 1890. <br/> <span class="fig-src"><em>Source:</em> Library of Congress, Prints and Photographs Division, LC-DIG-ppmsca-33901.</span><br/></p>
+<p>Increase of the Negro population of the United States from 1750 until
+1890. <br/> <span class="fig-src"><em>Source:</em> Library of Congress,
+Prints and Photographs Division, LC-DIG-ppmsca-33901.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2434,7 +2506,10 @@ Figure 10.7: Du Bois’s bar chart
 <h3 class="figtitle">
 Figure 10.8: Cartogram maps
 </h3>
-<p>“Negro population of the United States compared with the total population of other countries.” <br/> <span class="fig-src"><em>Source:</em> Library of Congress, Prints and Photographs Division, LC-DIG-ppmsca-33903.</span><br/></p>
+<p>“Negro population of the United States compared with the total
+population of other countries.” <br/> <span
+class="fig-src"><em>Source:</em> Library of Congress, Prints and
+Photographs Division, LC-DIG-ppmsca-33903.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2447,7 +2522,9 @@ Figure 10.8: Cartogram maps
 <h3 class="figtitle">
 Figure 10.9: Cartogram maps
 </h3>
-<p>“Proportion of Negroes in the total population of the United States.” <br/> <span class="fig-src"><em>Source:</em> Library of Congress, Prints and Photographs Division, LC-DIG-ppmsca-33904.</span><br/></p>
+<p>“Proportion of Negroes in the total population of the United States.”
+<br/> <span class="fig-src"><em>Source:</em> Library of Congress, Prints
+and Photographs Division, LC-DIG-ppmsca-33904.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2460,7 +2537,10 @@ Figure 10.9: Cartogram maps
 <h3 class="figtitle">
 Figure 10.10: Relative growth line chart
 </h3>
-<p>“Comparative rate of increase of the White and Negro elements of the population of the United States.” <br/> <span class="fig-src"><em>Source:</em> Library of Congress, Prints and Photographs Division, LC-DIG-ppmsca-33902.</span><br/></p>
+<p>“Comparative rate of increase of the White and Negro elements of the
+population of the United States.” <br/> <span
+class="fig-src"><em>Source:</em> Library of Congress, Prints and
+Photographs Division, LC-DIG-ppmsca-33902.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2473,7 +2553,11 @@ Figure 10.10: Relative growth line chart
 <h3 class="figtitle">
 Plate P.17: Minard: imports of cotton
 </h3>
-<p>A sequence of three graphs showing the sources of cotton imports to Europe for 1858, 1864, and 1865. The metaphorical blue river represents imports from the United States, the orange from India. <br/> <span class="fig-src"><em>Source:</em> Library of Congress, item 99463789.</span><br/></p>
+<p>A sequence of three graphs showing the sources of cotton imports to
+Europe for 1858, 1864, and 1865. The metaphorical blue river represents
+imports from the United States, the orange from India. <br/> <span
+class="fig-src"><em>Source:</em> Library of Congress, item
+99463789.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2486,7 +2570,10 @@ Plate P.17: Minard: imports of cotton
 <h3 class="figtitle">
 Plate P.18: Population density map
 </h3>
-<p>The distribution of the population of Negroes in the United States. Shading color shows “Negroes per square mile.” <br/> <span class="fig-src"><em>Source:</em> Library of Congress, Prints and Photographs Division, LC-DIG-ppmsca-33900.</span><br/></p>
+<p>The distribution of the population of Negroes in the United States.
+Shading color shows “Negroes per square mile.” <br/> <span
+class="fig-src"><em>Source:</em> Library of Congress, Prints and
+Photographs Division, LC-DIG-ppmsca-33900.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2499,7 +2586,11 @@ Plate P.18: Population density map
 <h3 class="figtitle">
 Plate P.19: Flow maps of migration
 </h3>
-<p>Figurative maps showing the flows of non-White migrants in America, 1880–1940, using a design inspired by Minard and Du Bois. <br/> <span class="fig-src"><em>Source:</em> R. J. Andrews and Howard Wainer, “The Great Migration: A Graphics Novel,” Significance, 14:3 (2017), pp. 14–19, Figure 5. (c) The Royal Statistical Society.</span><br/></p>
+<p>Figurative maps showing the flows of non-White migrants in America,
+1880–1940, using a design inspired by Minard and Du Bois. <br/> <span
+class="fig-src"><em>Source:</em> R. J. Andrews and Howard Wainer, “The
+Great Migration: A Graphics Novel,” Significance, 14:3 (2017),
+pp. 14–19, Figure 5. (c) The Royal Statistical Society.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2512,12 +2603,18 @@ Plate P.19: Flow maps of migration
 <h3 class="figtitle">
 Plate P.20: Flow maps for 1940
 </h3>
-<p>Maps showing the numbers of internal migrants by birthplace and place of residence, as recorded in the 1940 US Census, categorized by racial group, using a design inspired by Minard. <br/> <span class="fig-src"><em>Source:</em> R. J. Andrews and Howard Wainer, “The Great Migration: A Graphics Novel,” Significance, 14:3 (2017), pp. 14–19, Figure 6. (c) The Royal Statistical Society.</span><br/></p>
+<p>Maps showing the numbers of internal migrants by birthplace and place
+of residence, as recorded in the 1940 US Census, categorized by racial
+group, using a design inspired by Minard. <br/> <span
+class="fig-src"><em>Source:</em> R. J. Andrews and Howard Wainer, “The
+Great Migration: A Graphics Novel,” Significance, 14:3 (2017),
+pp. 14–19, Figure 6. (c) The Royal Statistical Society.</span><br/></p>
 </td>
 </tr>
 </table>
 </div>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

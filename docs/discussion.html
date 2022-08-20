@@ -50,16 +50,17 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { } /* Attribute */
+code span.at { color: #657422; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
+code span.cf { color: #00769e; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -73,9 +74,9 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
+code span.kw { color: #00769e; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
+code span.ot { color: #00769e; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
 code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
@@ -92,8 +93,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2022-01-18"/>
-  <meta property="article:created" itemprop="dateCreated" content="2022-01-18"/>
+  <meta property="article:published" itemprop="datePublished" content="2022-08-20"/>
+  <meta property="article:created" itemprop="dateCreated" content="2022-08-20"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="History of Data Visualization: Discussion"/>
@@ -109,7 +110,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Discussion"]},{"type":"character","attributes":{},"value":["2022-01-18"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","includes"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["in_header"]}},"value":[{"type":"character","attributes":{},"value":["utterances.html"]}]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Discussion"]},{"type":"character","attributes":{},"value":["2022-08-20"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","includes"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["in_header"]}},"value":[{"type":"character","attributes":{},"value":["utterances.html"]}]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -1030,10 +1031,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     margin-top: 1.5em;
   }
 
-  .figure img {
-    width: 100%;
-  }
-
   .figure .caption {
     color: rgba(0, 0, 0, 0.6);
     font-size: 12px;
@@ -1863,6 +1860,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
+        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
+          var fn = $(this).children()[0]
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
           return "<p>" + $('#ref-' + ref).html() + "</p>";
@@ -1877,6 +1880,31 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           placement: 'bottom-start'
         });
       });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
 
       // clear polling timer
       clearInterval(tid);
@@ -1976,6 +2004,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -1998,7 +2028,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
       });
     }
 
@@ -2037,7 +2067,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.15/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2238,7 +2268,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Discussion","authors":[],"publishedDate":"2022-01-18T00:00:00.000-05:00"}
+{"title":"Discussion","authors":[],"publishedDate":"2022-08-20T00:00:00.000-04:00"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2308,70 +2338,258 @@ Chapters
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#optics-and-data-visualization">Optics and data visualization</a></li>
-<li><a href="#isotype">ISOTYPE (Otto &amp; Marie Neurath)</a></li>
-<li><a href="#review-by-nick-cox">Review by Nick Cox</a></li>
-<li><a href="#eurocentric">Eurocentric view</a></li>
+<li><a href="#optics-and-data-visualization"
+id="toc-optics-and-data-visualization">Optics and data
+visualization</a></li>
+<li><a href="#isotype" id="toc-isotype">ISOTYPE (Otto &amp; Marie
+Neurath)</a></li>
+<li><a href="#review-by-nick-cox" id="toc-review-by-nick-cox">Review by
+Nick Cox</a></li>
+<li><a href="#eurocentric" id="toc-eurocentric">Eurocentric
+view</a></li>
 </ul>
 </nav>
 </div>
-<p>With the release of this web site for the book, we began to solicit comments and discussion on the contents, both of the book, and what we present as a book companion on this web site.</p>
-<p>Here are a few topics (in no particular order) with some discussion.</p>
-<h2 id="optics-and-data-visualization">Optics and data visualization</h2>
-<p><strong>Howard Wainer</strong>: It is worth thinking some more about the comparison made in the <a href="https://www.newyorker.com/magazine/2021/06/21/when-graphs-are-a-matter-of-life-and-death">New Yorker article</a> about the relative value of data visualization vs. the telescope and the microscope.</p>
-<p>All three instruments made subsequent scientific advancement possible and it seems sensible to take the comparison seriously and see if data viz is in the same class as these iconic optical tools. Your thoughts?</p>
-<p><strong>Lee Wilkinson</strong>: Note that today, the statistical analysis/model is intertwined with the visualization. Playfair imagined many of the charts we use today, for example, but he had no conception of the richness of the analytic environment provided through methods like the one here (in this case, graph layout algorithms). The following example, from <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, concerns members of the US Congress. The entries in the cells of the data matrix are the number of times a given pair of members voted the same way. The authors did this analysis 60 times (60 such matrices), once for each year from 1949 to 2011. The result is a graphic that almost uniquely illustrates the dramatic history of partisanship in US politics.</p>
-<p><img src="images/dem-republican-network.png" style="width:60.0%" /></p>
-<p>So the equivalent of the telescope and microscope is not rendering capabilities, but the statistical algorithms now provided in tools like R and SYSTAT and Datadesk. For those today who think statistics and visualization are separate topics, I can only imagine one of those ironic Tukey smiles questioning their certainty.</p>
-<p><strong>Michael Friendly</strong>: Your network figure, showing increased polarization in the US is similar in intent to Plate 9 in the book. Goal: show changes in polarization as reflected in votes in the U.S. House of Representatives over time.</p>
-<p>It is interesting to compare these two totally different analyses and graphic methods, and see the same message presented.</p>
+<p>With the release of this web site for the book, we began to solicit
+comments and discussion on the contents, both of the book, and what we
+present as a book companion on this web site.</p>
+<p>Here are a few topics (in no particular order) with some
+discussion.</p>
+<h2 id="optics-and-data-visualization">Optics and data
+visualization</h2>
+<p><strong>Howard Wainer</strong>: It is worth thinking some more about
+the comparison made in the <a
+href="https://www.newyorker.com/magazine/2021/06/21/when-graphs-are-a-matter-of-life-and-death">New
+Yorker article</a> about the relative value of data visualization
+vs. the telescope and the microscope.</p>
+<p>All three instruments made subsequent scientific advancement possible
+and it seems sensible to take the comparison seriously and see if data
+viz is in the same class as these iconic optical tools. Your
+thoughts?</p>
+<p><strong>Lee Wilkinson</strong>: Note that today, the statistical
+analysis/model is intertwined with the visualization. Playfair imagined
+many of the charts we use today, for example, but he had no conception
+of the richness of the analytic environment provided through methods
+like the one here (in this case, graph layout algorithms). The following
+example, from <a href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a>, concerns members of the US
+Congress. The entries in the cells of the data matrix are the number of
+times a given pair of members voted the same way. The authors did this
+analysis 60 times (60 such matrices), once for each year from 1949 to
+2011. The result is a graphic that almost uniquely illustrates the
+dramatic history of partisanship in US politics.</p>
+<p><img src="images/dem-republican-network.png"
+style="width:60.0%" /></p>
+<p>So the equivalent of the telescope and microscope is not rendering
+capabilities, but the statistical algorithms now provided in tools like
+R and SYSTAT and Datadesk. For those today who think statistics and
+visualization are separate topics, I can only imagine one of those
+ironic Tukey smiles questioning their certainty.</p>
+<p><strong>Michael Friendly</strong>: Your network figure, showing
+increased polarization in the US is similar in intent to Plate 9 in the
+book. Goal: show changes in polarization as reflected in votes in the
+U.S. House of Representatives over time.</p>
+<p>It is interesting to compare these two totally different analyses and
+graphic methods, and see the same message presented.</p>
 <ul>
-<li>Yours: based on pairwise agreement between House members, using MDS and graph layout.</li>
-<li>Ours: Based on an initial PCA to give scores on a dominant dimension, and then using a ridgeline plot to show the scores of Dems and Republicans on that dimension.</li>
+<li>Yours: based on pairwise agreement between House members, using MDS
+and graph layout.</li>
+<li>Ours: Based on an initial PCA to give scores on a dominant
+dimension, and then using a ridgeline plot to show the scores of Dems
+and Republicans on that dimension.</li>
 </ul>
-<p><img src="figs-web/P_09-joyplot-politics.png" style="width:60.0%" /></p>
-<p><strong>Paul Velleman</strong>: I agree with Lee. But I’d go perhaps a step further. The interplay between visualization and model is itself dynamic since we can now make and modify visualizations so quickly and with so little effort. Rotate a plot, select a subset that has been revealed, and make a new display for just that subset. Color points that group together in one display and be surprised at where they pop up in an entirely different view of the data using different variables. Notice in a display that a subgroup should be isolated, mask it out and find a regression for the rest of the data and then look at a plot of the residuals as you gradually slide the isolated points back in to the data. (Of course, I think of things you can do in Data Desk. I’m sure there are other examples.)</p>
+<p><img src="figs-web/P_09-joyplot-politics.png"
+style="width:60.0%" /></p>
+<p><strong>Paul Velleman</strong>: I agree with Lee. But I’d go perhaps
+a step further. The interplay between visualization and model is itself
+dynamic since we can now make and modify visualizations so quickly and
+with so little effort. Rotate a plot, select a subset that has been
+revealed, and make a new display for just that subset. Color points that
+group together in one display and be surprised at where they pop up in
+an entirely different view of the data using different variables. Notice
+in a display that a subgroup should be isolated, mask it out and find a
+regression for the rest of the data and then look at a plot of the
+residuals as you gradually slide the isolated points back in to the
+data. (Of course, I think of things you can do in Data Desk. I’m sure
+there are other examples.)</p>
 <h2 id="isotype">ISOTYPE (Otto &amp; Marie Neurath)</h2>
 <p>A reader of the book wrote:</p>
 <blockquote>
-<p>I was surprised to learn that [this] volume has no mention of the groundbreaking and creative work by Otto and, later, Marie Neurath (e.g., the Vienna Method and Isotype), which was associated with their equally pioneering exhibitions for museums and the former’s participatory and deliberative democratic model of urban planning.</p>
+<p>I was surprised to learn that [this] volume has no mention of the
+groundbreaking and creative work by Otto and, later, Marie Neurath
+(e.g., the Vienna Method and Isotype), which was associated with their
+equally pioneering exhibitions for museums and the former’s
+participatory and deliberative democratic model of urban planning.</p>
 </blockquote>
-<p><strong>Reply</strong>: You are correct that there is no mention of the work of the Neuraths, but it was not for not trying or not being aware of their work. Our contract with HUP called for 50,000 words; our first draft included much more material (including ISOtype stuff), but clocked in at &gt;90,000 words. We had to fight to get them to agree to ~ 75,000 or so. Many topics fell off the editors desk, much to our displeasure. In fact, the entire period, 1900-1950 gets only 2 pages.</p>
-<p>Some content on this topic and pointers to relevant literature will be provided under <!-- _Learning More_ for Chapter 7. --> <a href="learning_more.html#chapter-7"><em>Learning More</em> for Chapter 7</a>.</p>
+<p><strong>Reply</strong>: You are correct that there is no mention of
+the work of the Neuraths, but it was not for not trying or not being
+aware of their work. Our contract with HUP called for 50,000 words; our
+first draft included much more material (including ISOtype stuff), but
+clocked in at &gt;90,000 words. We had to fight to get them to agree to
+~ 75,000 or so. Many topics fell off the editors desk, much to our
+displeasure. In fact, the entire period, 1900-1950 gets only 2
+pages.</p>
+<p>Some content on this topic and pointers to relevant literature will
+be provided under <!-- _Learning More_ for Chapter 7. --> <a
+href="learning_more.html#chapter-7"><em>Learning More</em> for Chapter
+7</a>.</p>
 <h2 id="review-by-nick-cox">Review by Nick Cox</h2>
-<p>Reviewed on September 27, 2021 for <a href="https://www.amazon.com/gp/customer-reviews/R19HUUJRY5UXOY/ref=cm_cr_arp_d_rvw_ttl?ie=UTF8&amp;ASIN=0674975235">Amazon.com</a></p>
-<p><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> (5 out of 5 stars)</p>
+<p>Reviewed on September 27, 2021 for <a
+href="https://www.amazon.com/gp/customer-reviews/R19HUUJRY5UXOY/ref=cm_cr_arp_d_rvw_ttl?ie=UTF8&amp;ASIN=0674975235">Amazon.com</a></p>
+<p><i class="fa fa-star"></i> <i class="fa fa-star"></i>
+<i class="fa fa-star"></i> <i class="fa fa-star"></i> (5 out of 5
+stars)</p>
 <blockquote>
-<p>A highly readable overview of the history of statistical graphics, intriguing and informative</p>
+<p>A highly readable overview of the history of statistical graphics,
+intriguing and informative</p>
 </blockquote>
-<p>Data visualization is a broad area and graphic communication broader yet. In a newspaper alone the latter might include photos, puzzles, cartoons, and advertisements as well as graphs and maps. In practice authors Friendly and Wainer are most interested in statistical graphs and maps, and less interested in information graphics or any other kind of graphics beyond that.</p>
-<p>A poignant detail: the authors met as undergraduates in 1962, so have known each other nearly 60 years. Both are strongly statistically minded, with shared major interests in psychology, but each has experience and expertise across several application fields. Wainer is well known for many short papers on graphics in journals such as <em>The American Statistician</em>, <em>Chance</em> and <em>Significance</em>, most of which have been gathered in five previous books. Friendly is a leading authority on graphics for categorical data and has also written several substantial papers on the history of graphics. In coming together for this book they offer a highly readable overview of many of the highlights in the history of statistical graphics, which will be widely appreciated as intriguing and informative.</p>
-<p>The title detail “A History” is crucial. The authors could have written a book 2 or 3 times the length of this from their own previous papers. For that reason and others, this is emphatically a selective history with no intent or pretense at completeness. The authors are cheerfully historical in setting contributions in their contemporary context, and equally cheerfully unhistorical in hailing heroes retrospectively and judging past work in the light of the present, making gleeful anachronistic comments along the way on crowd sourcing and grant applications. Indeed, some of the most striking detail arises from exercises re-plotting historic data with modern tools. After an inevitably bitty start, the main focus is on such workers as the peripatetic van Langren; Guerry, Minard, and Marey in France; and Playfair, Herschel, Farr, Snow, and Galton in Britain. Later developments in North America are not neglected.</p>
-<p>Enormous scope remains for future work. The authors mention a golden age for graphics in the 19th century, but elsewhere I have mentioned a golden age starting around 1970 first centered on Princeton, Bell Labs, and Harvard and the work of Tukey, Tufte, Cleveland, Chambers, and others, which combined inventiveness in graph designs with modern computing. As is well known, magnificent progress in hardware and software over a few decades took graphs away from specialists in drawing offices and gave their control to scientists, statisticians, and others working at their own computers. Some of this later 20th century work – especially interactive and dynamic graphics – is mentioned here. There is continuing need for detailed historical analysis of the ways in which statistical graphics (and exploratory data analysis more generally) both challenged and complemented then current approaches to statistics. Graphical depiction of uncertainty is another understated theme. Who first plotted error bars anywhere? The history of that idea appears to be undocumented in any sustained form.</p>
-<p>The authors score high on enthusiasm, entertainment, and enterprise. They and close colleagues have unearthed much splendid work otherwise gathering dust in libraries and archives, at least metaphorically. Unfortunately copy editing and proof-reading has left a peppering of small errors and a few outright howlers. Greek, Latin, German, and French names are the most frequent casualties, but some British details are mangled too, as when Newton’s work on calculus is misplaced by a century and Galton’s focus on regression to mediocrity is reported in terms of mediocracy, itself a much needed gap in political life. The authors’ references are sometimes capricious, missing entire monographs on Playfair, Herschel, Snow, Minard and the history of Venn diagrams, for example. Perhaps these errors and omissions will be made good in the accompanying website.</p>
-<p>There was one major disappointment for me. Unlike those in many books in the history of cartography (let alone the history of art), the illustrations are mostly small and often a muddy black and white, with only a short selection in color. It seems that the publishers missed an opportunity for a bold publication that would have appealed widely, far beyond the small number of specialists in this territory.</p>
+<p>Data visualization is a broad area and graphic communication broader
+yet. In a newspaper alone the latter might include photos, puzzles,
+cartoons, and advertisements as well as graphs and maps. In practice
+authors Friendly and Wainer are most interested in statistical graphs
+and maps, and less interested in information graphics or any other kind
+of graphics beyond that.</p>
+<p>A poignant detail: the authors met as undergraduates in 1962, so have
+known each other nearly 60 years. Both are strongly statistically
+minded, with shared major interests in psychology, but each has
+experience and expertise across several application fields. Wainer is
+well known for many short papers on graphics in journals such as <em>The
+American Statistician</em>, <em>Chance</em> and <em>Significance</em>,
+most of which have been gathered in five previous books. Friendly is a
+leading authority on graphics for categorical data and has also written
+several substantial papers on the history of graphics. In coming
+together for this book they offer a highly readable overview of many of
+the highlights in the history of statistical graphics, which will be
+widely appreciated as intriguing and informative.</p>
+<p>The title detail “A History” is crucial. The authors could have
+written a book 2 or 3 times the length of this from their own previous
+papers. For that reason and others, this is emphatically a selective
+history with no intent or pretense at completeness. The authors are
+cheerfully historical in setting contributions in their contemporary
+context, and equally cheerfully unhistorical in hailing heroes
+retrospectively and judging past work in the light of the present,
+making gleeful anachronistic comments along the way on crowd sourcing
+and grant applications. Indeed, some of the most striking detail arises
+from exercises re-plotting historic data with modern tools. After an
+inevitably bitty start, the main focus is on such workers as the
+peripatetic van Langren; Guerry, Minard, and Marey in France; and
+Playfair, Herschel, Farr, Snow, and Galton in Britain. Later
+developments in North America are not neglected.</p>
+<p>Enormous scope remains for future work. The authors mention a golden
+age for graphics in the 19th century, but elsewhere I have mentioned a
+golden age starting around 1970 first centered on Princeton, Bell Labs,
+and Harvard and the work of Tukey, Tufte, Cleveland, Chambers, and
+others, which combined inventiveness in graph designs with modern
+computing. As is well known, magnificent progress in hardware and
+software over a few decades took graphs away from specialists in drawing
+offices and gave their control to scientists, statisticians, and others
+working at their own computers. Some of this later 20th century work –
+especially interactive and dynamic graphics – is mentioned here. There
+is continuing need for detailed historical analysis of the ways in which
+statistical graphics (and exploratory data analysis more generally) both
+challenged and complemented then current approaches to statistics.
+Graphical depiction of uncertainty is another understated theme. Who
+first plotted error bars anywhere? The history of that idea appears to
+be undocumented in any sustained form.</p>
+<p>The authors score high on enthusiasm, entertainment, and enterprise.
+They and close colleagues have unearthed much splendid work otherwise
+gathering dust in libraries and archives, at least metaphorically.
+Unfortunately copy editing and proof-reading has left a peppering of
+small errors and a few outright howlers. Greek, Latin, German, and
+French names are the most frequent casualties, but some British details
+are mangled too, as when Newton’s work on calculus is misplaced by a
+century and Galton’s focus on regression to mediocrity is reported in
+terms of mediocracy, itself a much needed gap in political life. The
+authors’ references are sometimes capricious, missing entire monographs
+on Playfair, Herschel, Snow, Minard and the history of Venn diagrams,
+for example. Perhaps these errors and omissions will be made good in the
+accompanying website.</p>
+<p>There was one major disappointment for me. Unlike those in many books
+in the history of cartography (let alone the history of art), the
+illustrations are mostly small and often a muddy black and white, with
+only a short selection in color. It seems that the publishers missed an
+opportunity for a bold publication that would have appealed widely, far
+beyond the small number of specialists in this territory.</p>
 <h2 id="eurocentric">Eurocentric view</h2>
-<p>Several reviewers pointed to the largely Eurocentric view of history taken in our book. For example, Bert Gunter in his review for <a href="pdf/SIGNIFICANCE-Review.pdf"><em>Significance</em></a> said,</p>
+<p>Several reviewers pointed to the largely Eurocentric view of history
+taken in our book. For example, Bert Gunter in his review for <a
+href="pdf/SIGNIFICANCE-Review.pdf"><em>Significance</em></a> said,</p>
 <blockquote>
-<p><em>“This book is very Eurocentric, leading me to wonder whether the forces that gave rise to many of the European graphical developments might also have been replicated in, say, China, Japan, or the Ottoman Empire. Perhaps not – or perhaps such revelations await the research of scholars in those regions.”</em></p>
+<p><em>“This book is very Eurocentric, leading me to wonder whether the
+forces that gave rise to many of the European graphical developments
+might also have been replicated in, say, China, Japan, or the Ottoman
+Empire. Perhaps not – or perhaps such revelations await the research of
+scholars in those regions.”</em></p>
 </blockquote>
 <p><strong>Reply</strong>:</p>
-<p>This is a topic that has long concerned us. Almost surely some of the graphical inventions we describe had some other and perhaps earlier form in non-Western cultures. We have seen many wonderful examples. Celestial graphic representations— positions of stars and planets – go back thousands of years, and we find one particularly lovely example in the Dunhung Star Chart (7th Century)<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, the world’s oldest star catalog.</p>
-<p>Systematic data tabulation is easily traced to early Egyptian recordings of levels of the Nile as a solution to problems caused by periodic flooding<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. We find that early geographical maps were developed independently in China around 227 BCE<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>, the first mention we could find. One can also trace the development of coordinate systems to music notation around the 9th Century <a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> which used a horizontal axis to represent time and the vertical axis for pitch.</p>
-<p>Yet, it is difficult to understand these unique sources without wider historical context. The main goal of our book was to present a coherent narrative where we could trace the origins of visual thinking and graphic communication as general principles, with clear lines of development. Our book has recently been published in Japanese and Chinese translations, so we hope Asian scholars will add to this history.</p>
-<p>Now that this question has been raised, we continue to find previuously unknown (by us) Asian data visualization examples (e.g., <a href="https://datavizcatalogue.com/blog/japanese-contributions-to-data-visualisation/" class="uri">https://datavizcatalogue.com/blog/japanese-contributions-to-data-visualisation/</a>), but it remains hard to find those that were true innovations. For example, this 1926 chart by Hosuke Nagase (translated title: <em>World’s Rise and Fall Table</em>) is certainly exquisite and notable, but merely extends the idea of parallel time-series of events in Joseph Priestley’s (1769) <em>A New Chart of History</em>.</p>
+<p>This is a topic that has long concerned us. Almost surely some of the
+graphical inventions we describe had some other and perhaps earlier form
+in non-Western cultures. We have seen many wonderful examples. Celestial
+graphic representations— positions of stars and planets – go back
+thousands of years, and we find one particularly lovely example in the
+Dunhung Star Chart (7th Century)<a href="#fn2" class="footnote-ref"
+id="fnref2" role="doc-noteref"><sup>2</sup></a>, the world’s oldest star
+catalog.</p>
+<p>Systematic data tabulation is easily traced to early Egyptian
+recordings of levels of the Nile as a solution to problems caused by
+periodic flooding<a href="#fn3" class="footnote-ref" id="fnref3"
+role="doc-noteref"><sup>3</sup></a>. We find that early geographical
+maps were developed independently in China around 227 BCE<a href="#fn4"
+class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>,
+the first mention we could find. One can also trace the development of
+coordinate systems to music notation around the 9th Century <a
+href="#fn5" class="footnote-ref" id="fnref5"
+role="doc-noteref"><sup>5</sup></a> which used a horizontal axis to
+represent time and the vertical axis for pitch.</p>
+<p>Yet, it is difficult to understand these unique sources without wider
+historical context. The main goal of our book was to present a coherent
+narrative where we could trace the origins of visual thinking and
+graphic communication as general principles, with clear lines of
+development. Our book has recently been published in Japanese and
+Chinese translations, so we hope Asian scholars will add to this
+history.</p>
+<p>Now that this question has been raised, we continue to find
+previuously unknown (by us) Asian data visualization examples (e.g., <a
+href="https://datavizcatalogue.com/blog/japanese-contributions-to-data-visualisation/"
+class="uri">https://datavizcatalogue.com/blog/japanese-contributions-to-data-visualisation/</a>),
+but it remains hard to find those that were true innovations. For
+example, this 1926 chart by Hosuke Nagase (translated title: <em>World’s
+Rise and Fall Table</em>) is certainly exquisite and notable, but merely
+extends the idea of parallel time-series of events in Joseph Priestley’s
+(1769) <em>A New Chart of History</em>.</p>
 <center>
-<img src="https://datavizcatalogue.com/blog/wp-content/uploads/2021/12/Worlds-Rise-and-Fall-Table-Hosuke-Nagase.png" style="width:60.0%" />
+<img
+src="https://datavizcatalogue.com/blog/wp-content/uploads/2021/12/Worlds-Rise-and-Fall-Table-Hosuke-Nagase.png"
+style="width:60.0%" />
 </center>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
-<section class="footnotes" role="doc-endnotes">
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<section class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1" role="doc-endnote"><p>Andris, C., Lee, D., Hamilton, M.J., Martino, M., Gunning, C.E., Selden, J.A. (2015). The Rise of Partisanship and Super-Cooperators in the U.S. House of Representatives. PLOS ONE <a href="https://doi.org/10.1371/" class="uri">https://doi.org/10.1371/</a> journal.pone.0123507.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2" role="doc-endnote"><p>Dunhung Star Chart, <a href="https://en.wikipedia.org/wiki/Dunhuang_Star_Chart" class="uri">https://en.wikipedia.org/wiki/Dunhuang_Star_Chart</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3" role="doc-endnote"><p>W. Popper, <em>The Cairo Nilometer: Studies in Ibn Taghri Birdi’s Chronicles of Egypt</em>: I, no. v. 12. University of California Press, 1951.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4" role="doc-endnote"><p><a href="https://www.viewofchina.com/ancient-chinese-maps/" class="uri">https://www.viewofchina.com/ancient-chinese-maps/</a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5" role="doc-endnote"><p><a href="https://en.wikipedia.org/wiki/Musical_notation" class="uri">https://en.wikipedia.org/wiki/Musical_notation</a><a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1" role="doc-endnote"><p>Andris, C., Lee, D., Hamilton, M.J.,
+Martino, M., Gunning, C.E., Selden, J.A. (2015). The Rise of
+Partisanship and Super-Cooperators in the U.S. House of Representatives.
+PLOS ONE <a href="https://doi.org/10.1371/"
+class="uri">https://doi.org/10.1371/</a> journal.pone.0123507.<a
+href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>Dunhung Star Chart, <a
+href="https://en.wikipedia.org/wiki/Dunhuang_Star_Chart"
+class="uri">https://en.wikipedia.org/wiki/Dunhuang_Star_Chart</a><a
+href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p>W. Popper, <em>The Cairo Nilometer:
+Studies in Ibn Taghri Birdi’s Chronicles of Egypt</em>: I, no. v. 12.
+University of California Press, 1951.<a href="#fnref3"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4" role="doc-endnote"><p><a
+href="https://www.viewofchina.com/ancient-chinese-maps/"
+class="uri">https://www.viewofchina.com/ancient-chinese-maps/</a><a
+href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5" role="doc-endnote"><p><a
+href="https://en.wikipedia.org/wiki/Musical_notation"
+class="uri">https://en.wikipedia.org/wiki/Musical_notation</a><a
+href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 <!--radix_placeholder_article_footer-->

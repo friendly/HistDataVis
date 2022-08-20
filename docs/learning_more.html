@@ -50,16 +50,17 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { } /* Attribute */
+code span.at { color: #657422; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
+code span.cf { color: #00769e; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -73,9 +74,9 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
+code span.kw { color: #00769e; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
+code span.ot { color: #00769e; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
 code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
@@ -1080,10 +1081,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     margin-top: 1.5em;
   }
 
-  .figure img {
-    width: 100%;
-  }
-
   .figure .caption {
     color: rgba(0, 0, 0, 0.6);
     font-size: 12px;
@@ -1913,6 +1910,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
+        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
+          var fn = $(this).children()[0]
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
           return "<p>" + $('#ref-' + ref).html() + "</p>";
@@ -1927,6 +1930,31 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           placement: 'bottom-start'
         });
       });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
 
       // clear polling timer
       clearInterval(tid);
@@ -2026,6 +2054,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -2048,7 +2078,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
       });
     }
 
@@ -2087,7 +2117,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.15/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2329,196 +2359,562 @@ Chapters
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#chapter-1">Chapter 1</a></li>
-<li><a href="#chapter-2">Chapter 2</a></li>
-<li><a href="#chapter-3">Chapter 3</a></li>
-<li><a href="#chapter-4">Chapter 4</a></li>
-<li><a href="#chapter-5">Chapter 5</a></li>
-<li><a href="#chapter-6">Chapter 6</a></li>
-<li><a href="#chapter-7">Chapter 7</a></li>
-<li><a href="#chapter-8">Chapter 8</a></li>
-<li><a href="#chapter-9">Chapter 9</a></li>
-<li><a href="#chapter-10">Chapter 10</a></li>
-<li><a href="#references">References</a></li>
+<li><a href="#chapter-1" id="toc-chapter-1">Chapter 1</a></li>
+<li><a href="#chapter-2" id="toc-chapter-2">Chapter 2</a></li>
+<li><a href="#chapter-3" id="toc-chapter-3">Chapter 3</a></li>
+<li><a href="#chapter-4" id="toc-chapter-4">Chapter 4</a></li>
+<li><a href="#chapter-5" id="toc-chapter-5">Chapter 5</a></li>
+<li><a href="#chapter-6" id="toc-chapter-6">Chapter 6</a></li>
+<li><a href="#chapter-7" id="toc-chapter-7">Chapter 7</a></li>
+<li><a href="#chapter-8" id="toc-chapter-8">Chapter 8</a></li>
+<li><a href="#chapter-9" id="toc-chapter-9">Chapter 9</a></li>
+<li><a href="#chapter-10" id="toc-chapter-10">Chapter 10</a></li>
+<li><a href="#references" id="toc-references">References</a></li>
 </ul>
 </nav>
 </div>
 <hr />
-<p>This section contains some links and references to further reading and topics that you might wish to explore. They didn’t fit directly in the narrative of a given chapter, but are useful nonetheless.</p>
-<p>This web version contains additional items and references not printed in the book.</p>
+<p>This section contains some links and references to further reading
+and topics that you might wish to explore. They didn’t fit directly in
+the narrative of a given chapter, but are useful nonetheless.</p>
+<p>This web version contains additional items and references not printed
+in the book.</p>
 <h2 class="unnumbered" id="chapter-1">Chapter 1</h2>
 <ul>
-<li>The history of cartography has many sources, but among these, the project of the same name at the University of Wisconsin (<a href="https://geography.wisc.edu/histcart/" class="uri">https://geography.wisc.edu/histcart/</a>) is notable. There are now six volumes, some published online and in print form by the University of Chicago press (<a href="https://www.press.uchicago.edu/books/HOC/index.html" class="uri">https://www.press.uchicago.edu/books/HOC/index.html</a>)</li>
+<li>The history of cartography has many sources, but among these, the
+project of the same name at the University of Wisconsin (<a
+href="https://geography.wisc.edu/histcart/"
+class="uri">https://geography.wisc.edu/histcart/</a>) is notable. There
+are now six volumes, some published online and in print form by the
+University of Chicago press (<a
+href="https://www.press.uchicago.edu/books/HOC/index.html"
+class="uri">https://www.press.uchicago.edu/books/HOC/index.html</a>)</li>
 </ul>
 <h2 class="unnumbered" id="chapter-2">Chapter 2</h2>
 <ul>
-<li><p>This chapter draws on material from <span class="citation" data-cites="Friendly-etal:2010:langren"><a href="#ref-Friendly-etal:2010:langren" role="doc-biblioref">Michael Friendly, Valero-Mora, and Ulargui</a> (<a href="#ref-Friendly-etal:2010:langren" role="doc-biblioref">2010</a>)</span>. The supplementary web page for this paper, <a href="https://datavis.ca/gallery/langren/" class="uri">https://datavis.ca/gallery/langren/</a>, gives the historical sources, including earlier versions of Figure 2.1 contained in various letters, translations of <em>La Verdadera</em> and the text of Van Langren’s cipher.</p></li>
-<li><p>Van Langren’s cipher (Figure 2.5) is still one of the most elusive unsolved problems in cryptography. If you like the history of this topic, you might enjoy the book by Craig Bauer, <em>Unsolved!: …</em> <span class="citation" data-cites="Bauer:2017">(<a href="#ref-Bauer:2017" role="doc-biblioref">Bauer 2017</a>)</span>.</p></li>
-<li><p>A popular history of the problem of longitude by Dava Sobel <span class="citation" data-cites="Sobel:1996">(<a href="#ref-Sobel:1996" role="doc-biblioref">1996</a>)</span>, focuses on the work of the clockmaker John Harrison who, only with considerable difficulty, was finally perceived to have solved the problem to sufficient accuracy to be awarded a prize by the Longitude Commission.</p></li>
-<li><p>The story of the mapping and naming of lunar features did not begin or end with van Langren. Ewen Whitaker’s <em>Mapping and Naming the Moon …</em> <span class="citation" data-cites="Whitaker:2003:mapping">(<a href="#ref-Whitaker:2003:mapping" role="doc-biblioref">2003</a>)</span> gives a comprehensive history and devotes a chapter to van Langren, including other versions of the 1645 lunar map.</p></li>
-<li><p>In the period after van Langren, other early things that could be called graphs were often produced by devices that recorded some phenomenon like temperature or barometric pressure by a pen on moving paper or a drum. Robert Plot’s chart of barometric pressure (Figure 1.4) is one example. <span class="citation" data-cites="HoffGeddes:1962"><a href="#ref-HoffGeddes:1962" role="doc-biblioref">Hoff and Geddes</a> (<a href="#ref-HoffGeddes:1962" role="doc-biblioref">1962</a>)</span> give a detailed history of this early history with many fine illustrations.</p></li>
+<li><p>This chapter draws on material from <span class="citation"
+data-cites="Friendly-etal:2010:langren">Michael Friendly, Valero-Mora,
+and Ulargui (<a href="#ref-Friendly-etal:2010:langren"
+role="doc-biblioref">2010</a>)</span>. The supplementary web page for
+this paper, <a href="https://datavis.ca/gallery/langren/"
+class="uri">https://datavis.ca/gallery/langren/</a>, gives the
+historical sources, including earlier versions of Figure 2.1 contained
+in various letters, translations of <em>La Verdadera</em> and the text
+of Van Langren’s cipher.</p></li>
+<li><p>Van Langren’s cipher (Figure 2.5) is still one of the most
+elusive unsolved problems in cryptography. If you like the history of
+this topic, you might enjoy the book by Craig Bauer, <em>Unsolved!:
+…</em> <span class="citation" data-cites="Bauer:2017">(<a
+href="#ref-Bauer:2017" role="doc-biblioref">Bauer
+2017</a>)</span>.</p></li>
+<li><p>A popular history of the problem of longitude by Dava Sobel <span
+class="citation" data-cites="Sobel:1996">(<a href="#ref-Sobel:1996"
+role="doc-biblioref">1996</a>)</span>, focuses on the work of the
+clockmaker John Harrison who, only with considerable difficulty, was
+finally perceived to have solved the problem to sufficient accuracy to
+be awarded a prize by the Longitude Commission.</p></li>
+<li><p>The story of the mapping and naming of lunar features did not
+begin or end with van Langren. Ewen Whitaker’s <em>Mapping and Naming
+the Moon …</em> <span class="citation"
+data-cites="Whitaker:2003:mapping">(<a href="#ref-Whitaker:2003:mapping"
+role="doc-biblioref">2003</a>)</span> gives a comprehensive history and
+devotes a chapter to van Langren, including other versions of the 1645
+lunar map.</p></li>
+<li><p>In the period after van Langren, other early things that could be
+called graphs were often produced by devices that recorded some
+phenomenon like temperature or barometric pressure by a pen on moving
+paper or a drum. Robert Plot’s chart of barometric pressure (Figure 1.4)
+is one example. <span class="citation" data-cites="HoffGeddes:1962">Hoff
+and Geddes (<a href="#ref-HoffGeddes:1962"
+role="doc-biblioref">1962</a>)</span> give a detailed history of this
+early history with many fine illustrations.</p></li>
 </ul>
 <h2 class="unnumbered" id="chapter-3">Chapter 3</h2>
 <ul>
-<li><p>The wider story of the roles of empirical observation and data in the intellectual development of science in the and is well told by Ian Hacking in <em>The Taming of Chance</em> <span class="citation" data-cites="Hacking:1990">(<a href="#ref-Hacking:1990" role="doc-biblioref">1990</a>)</span>.</p></li>
-<li><p>The story of Guerry’s <em>Moral Statistics of France</em> is told in greater detail in <span class="citation" data-cites="Friendly:2007:guerry"><a href="#ref-Friendly:2007:guerry" role="doc-biblioref">Michael Friendly</a> (<a href="#ref-Friendly:2007:guerry" role="doc-biblioref">2007</a>)</span>. This article also describes his later work and relates his data and questions to modern methods of statistics and graphics. A web supplement, <a href="https://datavis.ca/gallery/guerry" class="uri">https://datavis.ca/gallery/guerry</a>, provides resource material, and Guerry’s data have been made available in the R package <code>Guerry</code>, <a href="https://CRAN.R-project.org/package=Guerry" class="uri">https://CRAN.R-project.org/package=Guerry</a>.</p></li>
-<li><p>Very little of Guerry’s personal life or family history was known until recently. A brief biography is available (in French) in <span class="citation" data-cites="Friendly:2007:guerryvie"><a href="#ref-Friendly:2007:guerryvie" role="doc-biblioref">Michael Friendly</a> (<a href="#ref-Friendly:2007:guerryvie" role="doc-biblioref">2008b</a>)</span> and an English version linked on the <code>datavis.ca</code> web site mentioned above.</p></li>
-<li><p>Along the way, Guerry tabulated so much data that he invented a mechanical calculator, an <em>ordonnateur statistique</em>, to help in this work. The history of this device, perhaps the first special-purpose statistical calculator is described in <span class="citation" data-cites="Friendly:2012:ordonnateur"><a href="#ref-Friendly:2012:ordonnateur" role="doc-biblioref">Michael Friendly and Saint Agathe</a> (<a href="#ref-Friendly:2012:ordonnateur" role="doc-biblioref">2012</a>)</span>.</p></li>
-<li><p>In England, Joseph Fletcher comes closest to Guerry in his pursuit of the relations among moral variables and his use of thematic maps to display such data. <span class="citation" data-cites="CookWainer:2012"><a href="#ref-CookWainer:2012" role="doc-biblioref">R. Cook and Wainer</a> (<a href="#ref-CookWainer:2012" role="doc-biblioref">2012</a>)</span> describe these contributions.</p></li>
-<li><p>The most comprehensive treatment of the early development of thematic mapping is still <span class="citation" data-cites="Robinson:1982"><a href="#ref-Robinson:1982" role="doc-biblioref">Robinson</a> (<a href="#ref-Robinson:1982" role="doc-biblioref">1982</a>)</span>. <span class="citation" data-cites="Palsky:1996"><a href="#ref-Palsky:1996" role="doc-biblioref">Palsky</a> (<a href="#ref-Palsky:1996" role="doc-biblioref">1996</a>)</span> gives a detailed history of quantitative cartography in the 19th century (in French), and <span class="citation" data-cites="FriendlyPalsky:2007"><a href="#ref-FriendlyPalsky:2007" role="doc-biblioref">Michael Friendly and Palsky</a> (<a href="#ref-FriendlyPalsky:2007" role="doc-biblioref">2007</a>)</span> provide a history of thematic maps and diagrams designed to explore the connections between graphic images and scientific questioning. <span class="citation" data-cites="Delaney:2012"><a href="#ref-Delaney:2012" role="doc-biblioref">Delaney</a> (<a href="#ref-Delaney:2012" role="doc-biblioref">2012</a>)</span> provides a richly illustrated overview of some landmark developments in this area.</p></li>
+<li><p>The wider story of the roles of empirical observation and data in
+the intellectual development of science in the and is well told by Ian
+Hacking in <em>The Taming of Chance</em> <span class="citation"
+data-cites="Hacking:1990">(<a href="#ref-Hacking:1990"
+role="doc-biblioref">1990</a>)</span>.</p></li>
+<li><p>The story of Guerry’s <em>Moral Statistics of France</em> is told
+in greater detail in <span class="citation"
+data-cites="Friendly:2007:guerry">Michael Friendly (<a
+href="#ref-Friendly:2007:guerry" role="doc-biblioref">2007</a>)</span>.
+This article also describes his later work and relates his data and
+questions to modern methods of statistics and graphics. A web
+supplement, <a href="https://datavis.ca/gallery/guerry"
+class="uri">https://datavis.ca/gallery/guerry</a>, provides resource
+material, and Guerry’s data have been made available in the R package
+<code>Guerry</code>, <a href="https://CRAN.R-project.org/package=Guerry"
+class="uri">https://CRAN.R-project.org/package=Guerry</a>.</p></li>
+<li><p>Very little of Guerry’s personal life or family history was known
+until recently. A brief biography is available (in French) in <span
+class="citation" data-cites="Friendly:2007:guerryvie">Michael Friendly
+(<a href="#ref-Friendly:2007:guerryvie"
+role="doc-biblioref">2008b</a>)</span> and an English version linked on
+the <code>datavis.ca</code> web site mentioned above.</p></li>
+<li><p>Along the way, Guerry tabulated so much data that he invented a
+mechanical calculator, an <em>ordonnateur statistique</em>, to help in
+this work. The history of this device, perhaps the first special-purpose
+statistical calculator is described in <span class="citation"
+data-cites="Friendly:2012:ordonnateur">Michael Friendly and Saint Agathe
+(<a href="#ref-Friendly:2012:ordonnateur"
+role="doc-biblioref">2012</a>)</span>.</p></li>
+<li><p>In England, Joseph Fletcher comes closest to Guerry in his
+pursuit of the relations among moral variables and his use of thematic
+maps to display such data. <span class="citation"
+data-cites="CookWainer:2012">R. Cook and Wainer (<a
+href="#ref-CookWainer:2012" role="doc-biblioref">2012</a>)</span>
+describe these contributions.</p></li>
+<li><p>The most comprehensive treatment of the early development of
+thematic mapping is still <span class="citation"
+data-cites="Robinson:1982">Robinson (<a href="#ref-Robinson:1982"
+role="doc-biblioref">1982</a>)</span>. <span class="citation"
+data-cites="Palsky:1996">Palsky (<a href="#ref-Palsky:1996"
+role="doc-biblioref">1996</a>)</span> gives a detailed history of
+quantitative cartography in the 19th century (in French), and <span
+class="citation" data-cites="FriendlyPalsky:2007">Michael Friendly and
+Palsky (<a href="#ref-FriendlyPalsky:2007"
+role="doc-biblioref">2007</a>)</span> provide a history of thematic maps
+and diagrams designed to explore the connections between graphic images
+and scientific questioning. <span class="citation"
+data-cites="Delaney:2012">Delaney (<a href="#ref-Delaney:2012"
+role="doc-biblioref">2012</a>)</span> provides a richly illustrated
+overview of some landmark developments in this area.</p></li>
 </ul>
 <h2 class="unnumbered" id="chapter-4">Chapter 4</h2>
 <ul>
-<li><p>Steven Johnson’s <em>The Ghost Map …</em> <span class="citation" data-cites="Johnson:2006">(<a href="#ref-Johnson:2006" role="doc-biblioref">Johnson 2006</a>)</span> is a compelling popular description of the background for the cholera outbreaks in London and the roles that Snow and others played in uncovering evidence and tracing the initial outbreak to the “index case,” Frances Lewis, a five-month-old child residing at 40 Broad Street, adjacent to the pump.</p></li>
-<li><p><em>Disease Maps …</em> by Tom Koch <span class="citation" data-cites="Koch:2011">(<a href="#ref-Koch:2011" role="doc-biblioref">2011</a>)</span> traces a history of the medical uses of cartography to understand the outbreak and transmission of disease.</p></li>
-<li><p>Scott Klein, a data journalist at <a href="https://www.propublica.org/">ProPublica</a>, presents an interesting look at how journalists at the New York <em>Tribune</em> covered an outbreak of cholera in New York City in September, 1849, using a time-series line graph of cholera deaths on its front page. See: <a href="https://www.propublica.org/nerds/item/infographics-in-the-time-of-cholera" class="uri">https://www.propublica.org/nerds/item/infographics-in-the-time-of-cholera</a>.</p></li>
-<li><p>A project initiated by Lynn McDonald, <em>The Collected Works of Florence Nightingale</em>, comprises all her available surviving writing (letters, articles, pamphlets, etc.) in 16 volumes. An online catalog is available at <a href="https://www.uoguelph.ca/~cwfn/index.htm" class="uri">https://www.uoguelph.ca/~cwfn/index.htm</a>.</p></li>
-<li><p>Worldmapper, <a href="https://www.worldmapper.org/" class="uri">https://www.worldmapper.org/</a>, is a project developed by Danny Dorling and others, largely at the University of Sheffield in the U.K. It now has nearly 700 maps in 30 general categories covering food, goods, income, poverty, housing, education, disease, violence, causes of death, and so forth. Their slogan is “mapping your world as you’ve never seen it before.” It is well worth a visit, if not a journey.</p></li>
+<li><p>Steven Johnson’s <em>The Ghost Map …</em> <span class="citation"
+data-cites="Johnson:2006">(<a href="#ref-Johnson:2006"
+role="doc-biblioref">Johnson 2006</a>)</span> is a compelling popular
+description of the background for the cholera outbreaks in London and
+the roles that Snow and others played in uncovering evidence and tracing
+the initial outbreak to the “index case,” Frances Lewis, a
+five-month-old child residing at 40 Broad Street, adjacent to the
+pump.</p></li>
+<li><p><em>Disease Maps …</em> by Tom Koch <span class="citation"
+data-cites="Koch:2011">(<a href="#ref-Koch:2011"
+role="doc-biblioref">2011</a>)</span> traces a history of the medical
+uses of cartography to understand the outbreak and transmission of
+disease.</p></li>
+<li><p>Scott Klein, a data journalist at <a
+href="https://www.propublica.org/">ProPublica</a>, presents an
+interesting look at how journalists at the New York <em>Tribune</em>
+covered an outbreak of cholera in New York City in September, 1849,
+using a time-series line graph of cholera deaths on its front page. See:
+<a
+href="https://www.propublica.org/nerds/item/infographics-in-the-time-of-cholera"
+class="uri">https://www.propublica.org/nerds/item/infographics-in-the-time-of-cholera</a>.</p></li>
+<li><p>A project initiated by Lynn McDonald, <em>The Collected Works of
+Florence Nightingale</em>, comprises all her available surviving writing
+(letters, articles, pamphlets, etc.) in 16 volumes. An online catalog is
+available at <a href="https://www.uoguelph.ca/~cwfn/index.htm"
+class="uri">https://www.uoguelph.ca/~cwfn/index.htm</a>.</p></li>
+<li><p>Worldmapper, <a href="https://www.worldmapper.org/"
+class="uri">https://www.worldmapper.org/</a>, is a project developed by
+Danny Dorling and others, largely at the University of Sheffield in the
+U.K. It now has nearly 700 maps in 30 general categories covering food,
+goods, income, poverty, housing, education, disease, violence, causes of
+death, and so forth. Their slogan is “mapping your world as you’ve never
+seen it before.” It is well worth a visit, if not a journey.</p></li>
 </ul>
 <h2 class="unnumbered" id="chapter-5">Chapter 5</h2>
 <ul>
-<li><p>Unlike most other classics in the history of data visualization, Playfair’s main works—–the <em>Atlas</em> and the <em>Statistical Breviary</em>—– are available in a modern reprinting, edited and introduced by Howard Wainer and Ian Spence and published in 2005 by Cambridge University Press. A modern reader may be interested reading Playfair’s words to see how he faced the challenge of describing his novel charts to his audience around 1800. Equally well, one might be impressed with the quality of the reprinting and the presentation of Playfair’s plates, a number of which are on fold-out pages.</p></li>
-<li><p>The collection of research papers and biographical studies of Playfair by Ian Spence can be found at <a href="https://psych.utoronto.ca/users/spence/Research_WP.html" class="uri">https://psych.utoronto.ca/users/spence/Research_WP.html</a></p></li>
+<li><p>Unlike most other classics in the history of data visualization,
+Playfair’s main works—–the <em>Atlas</em> and the <em>Statistical
+Breviary</em>—– are available in a modern reprinting, edited and
+introduced by Howard Wainer and Ian Spence and published in 2005 by
+Cambridge University Press. A modern reader may be interested reading
+Playfair’s words to see how he faced the challenge of describing his
+novel charts to his audience around 1800. Equally well, one might be
+impressed with the quality of the reprinting and the presentation of
+Playfair’s plates, a number of which are on fold-out pages.</p></li>
+<li><p>The collection of research papers and biographical studies of
+Playfair by Ian Spence can be found at <a
+href="https://psych.utoronto.ca/users/spence/Research_WP.html"
+class="uri">https://psych.utoronto.ca/users/spence/Research_WP.html</a></p></li>
 </ul>
 <h2 class="unnumbered" id="chapter-6">Chapter 6</h2>
 <ul>
-<li><p>Parts of the chapter are based on material presented in <span class="citation" data-cites="FriendlyDenis:05:scat"><a href="#ref-FriendlyDenis:05:scat" role="doc-biblioref">Michael Friendly and Denis</a> (<a href="#ref-FriendlyDenis:05:scat" role="doc-biblioref">2005</a>)</span>.</p></li>
-<li><p>The remarkable capabilities of the ellipse and higher dimensional cousins (ellipsoids) are described in <span class="citation" data-cites="Friendly-etal:ellipses:2013"><a href="#ref-Friendly-etal:ellipses:2013" role="doc-biblioref">Michael Friendly, Monette, and Fox</a> (<a href="#ref-Friendly-etal:ellipses:2013" role="doc-biblioref">2013</a>)</span>. Slides from a related talk can be found at <a href="https://datavis.ca/papers/EllipticalInsights-2x2.pdf" class="uri">https://datavis.ca/papers/EllipticalInsights-2x2.pdf</a>.</p></li>
-<li><p>You can find more examples of spurious correlations on the web page of Tyler Vigan, <a href="https://www.tylervigen.com/spurious-correlations" class="uri">https://www.tylervigen.com/spurious-correlations</a>, and his accompanying book. Most of these result from plotting two different time series, using different scales for each on the <span class="math inline">\(y\)</span>-axis, now usually considered a graphical sin, if not a high crime or misdemeanor.</p></li>
-<li><p>Galton’s classic data on the heights of parents and their offspring, shown in Figures 6.14 - 6.16 were not quite as linear as most people believe. <span class="citation" data-cites="Wachsmuth-etal:03"><a href="#ref-Wachsmuth-etal:03" role="doc-biblioref">Wachsmuth, Wilkinson, and Dallal</a> (<a href="#ref-Wachsmuth-etal:03" role="doc-biblioref">2003</a>)</span> re-analyze this data and find a slightly non-linear relation, explained by Galton’s method of pooling mothers’ and fathers’ heights.</p></li>
+<li><p>Parts of the chapter are based on material presented in <span
+class="citation" data-cites="FriendlyDenis:05:scat">Michael Friendly and
+Denis (<a href="#ref-FriendlyDenis:05:scat"
+role="doc-biblioref">2005</a>)</span>.</p></li>
+<li><p>The remarkable capabilities of the ellipse and higher dimensional
+cousins (ellipsoids) are described in <span class="citation"
+data-cites="Friendly-etal:ellipses:2013">Michael Friendly, Monette, and
+Fox (<a href="#ref-Friendly-etal:ellipses:2013"
+role="doc-biblioref">2013</a>)</span>. Slides from a related talk can be
+found at <a href="https://datavis.ca/papers/EllipticalInsights-2x2.pdf"
+class="uri">https://datavis.ca/papers/EllipticalInsights-2x2.pdf</a>.</p></li>
+<li><p>You can find more examples of spurious correlations on the web
+page of Tyler Vigan, <a
+href="https://www.tylervigen.com/spurious-correlations"
+class="uri">https://www.tylervigen.com/spurious-correlations</a>, and
+his accompanying book. Most of these result from plotting two different
+time series, using different scales for each on the <span
+class="math inline">\(y\)</span>-axis, now usually considered a
+graphical sin, if not a high crime or misdemeanor.</p></li>
+<li><p>Galton’s classic data on the heights of parents and their
+offspring, shown in Figures 6.14 - 6.16 were not quite as linear as most
+people believe. <span class="citation"
+data-cites="Wachsmuth-etal:03">Wachsmuth, Wilkinson, and Dallal (<a
+href="#ref-Wachsmuth-etal:03" role="doc-biblioref">2003</a>)</span>
+re-analyze this data and find a slightly non-linear relation, explained
+by Galton’s method of pooling mothers’ and fathers’ heights.</p></li>
 </ul>
 <h2 class="unnumbered" id="chapter-7">Chapter 7</h2>
 <ul>
-<li><p>This chapter draws heavily on <span class="citation" data-cites="Friendly:2008:golden"><a href="#ref-Friendly:2008:golden" role="doc-biblioref">Michael Friendly</a> (<a href="#ref-Friendly:2008:golden" role="doc-biblioref">2008a</a>)</span>, “The Golden Age of Statistical Graphics.” That paper contains many more figures and greater depth on some of the topics discussed here.</p></li>
-<li><p><span class="citation" data-cites="Friendly:02:Minard"><a href="#ref-Friendly:02:Minard" role="doc-biblioref">Michael Friendly</a> (<a href="#ref-Friendly:02:Minard" role="doc-biblioref">2002</a>)</span> provides a review of Minard’s graphical works. A complete bibliography with many images can be found at <a href="https://datavis.ca/gallery/minbib.html" class="uri">https://datavis.ca/gallery/minbib.html</a>. Most recently, <span class="citation" data-cites="Rendgen:2018"><a href="#ref-Rendgen:2018" role="doc-biblioref">Rendgen</a> (<a href="#ref-Rendgen:2018" role="doc-biblioref">2018</a>)</span>, <em>The Minard System</em>, provides beautiful reproductions of all of Minard’s statistical graphics, some not well-known before.</p></li>
-<li><p>Raymond Andrews has taken this further, with a visual catalog of Minard’s works, with thumbnails, a timeline and classification by content topic. See this at: <a href="https://infowetrust.com/seeking-minard/" class="uri">https://infowetrust.com/seeking-minard/</a></p></li>
-<li><p>Some years ago, one of the authors issued a challenge for modern software designers to take Minard’s data and either reproduce his graph of the fate of Napoleon’s Grand Army, or take this graphic story further. A number of these are collected at <a href="https://www.datavis.ca/gallery/re-minard.php" class="uri">https://www.datavis.ca/gallery/re-minard.php</a>. There is a recent addition, an interactive chart by Norbert Landsteiner, <a href="https://www.masswerk.at/minard/" class="uri">https://www.masswerk.at/minard/</a>, one of the nicest interactive reproductions we have seen.</p></li>
-<li><p>Many of the developments in data-based graphics in this period stemmed from thematic cartography, the use of maps to present quantitative information in a geographical framework. The most complete discussion of the rise of graphical methods in this context in France in the remains Gilles Palsky’s <span class="citation" data-cites="Palsky:1996">(<a href="#ref-Palsky:1996" role="doc-biblioref">1996</a>)</span> book, <em>Des Chiffres et de Cartes</em> … . <span class="citation" data-cites="FriendlyPalsky:2007"><a href="#ref-FriendlyPalsky:2007" role="doc-biblioref">Michael Friendly and Palsky</a> (<a href="#ref-FriendlyPalsky:2007" role="doc-biblioref">2007</a>)</span> give a more extensive overview of the development of the use of maps and statistical diagrams to visualize nature and society.</p></li>
-<li><p>Due to limitations of space, we treat the period from ~ 1900 – 1950 only in a few pages at the end of this chapter. In part this reflects the fact that there were few innovations in graphic methods and techniques during this period <span class="citation" data-cites="Friendly:2006:hbook">(<a href="#ref-Friendly:2006:hbook" role="doc-biblioref">M. Friendly 2007</a>)</span>.</p></li>
-<li><p>One topic that <em>is</em> novel is the Isotype system of pictorial graphics introduced in Vienna by Otto and Marie Neurath between 1925 – 1935. Isotype, the <strong>I</strong>nternational <strong>S</strong>ystem <strong>o</strong>f <strong>T</strong>ypographic <strong>P</strong>icture <strong>E</strong>ducation, was designed to represent social and economic facts pictorially, thus making numbers visually appealing and memorable. Jason Forrest tells me that <span class="citation" data-cites="Burke-etal:2013"><a href="#ref-Burke-etal:2013" role="doc-biblioref">Burke, Kindel, and Walker</a> (<a href="#ref-Burke-etal:2013" role="doc-biblioref">2013</a>)</span> <a href="https://hyphenpress.co.uk/products/books/978-0-907259-47-3">Isotype: design and contexts 1925-1971</a> is the definitive book on the topic. Another good source of information on Neurath’s methods of pictorial statistics is the collection at the University of Reading: <a href="https://www.reading.ac.uk/m/typography/collectionsandarchives/typ-isotype-collection.aspx">Typography &amp; Graphic Communication: Otto and Marie Neurath Isotype Collection</a>.</p></li>
+<li><p>This chapter draws heavily on <span class="citation"
+data-cites="Friendly:2008:golden">Michael Friendly (<a
+href="#ref-Friendly:2008:golden" role="doc-biblioref">2008a</a>)</span>,
+“The Golden Age of Statistical Graphics”. That paper contains many more
+figures and greater depth on some of the topics discussed here.</p></li>
+<li><p><span class="citation" data-cites="Friendly:02:Minard">Michael
+Friendly (<a href="#ref-Friendly:02:Minard"
+role="doc-biblioref">2002</a>)</span> provides a review of Minard’s
+graphical works. A complete bibliography with many images can be found
+at <a href="https://datavis.ca/gallery/minbib.html"
+class="uri">https://datavis.ca/gallery/minbib.html</a>. Most recently,
+<span class="citation" data-cites="Rendgen:2018">Rendgen (<a
+href="#ref-Rendgen:2018" role="doc-biblioref">2018</a>)</span>, <em>The
+Minard System</em>, provides beautiful reproductions of all of Minard’s
+statistical graphics, some not well-known before.</p></li>
+<li><p>Raymond Andrews has taken this further, with a visual catalog of
+Minard’s works, with thumbnails, a timeline and classification by
+content topic. See this at: <a
+href="https://infowetrust.com/seeking-minard/"
+class="uri">https://infowetrust.com/seeking-minard/</a></p></li>
+<li><p>Some years ago, one of the authors issued a challenge for modern
+software designers to take Minard’s data and either reproduce his graph
+of the fate of Napoleon’s Grand Army, or take this graphic story
+further. A number of these are collected at <a
+href="https://www.datavis.ca/gallery/re-minard.php"
+class="uri">https://www.datavis.ca/gallery/re-minard.php</a>. There is a
+recent addition, an interactive chart by Norbert Landsteiner, <a
+href="https://www.masswerk.at/minard/"
+class="uri">https://www.masswerk.at/minard/</a>, one of the nicest
+interactive reproductions we have seen.</p></li>
+<li><p>Many of the developments in data-based graphics in this period
+stemmed from thematic cartography, the use of maps to present
+quantitative information in a geographical framework. The most complete
+discussion of the rise of graphical methods in this context in France in
+the remains Gilles Palsky’s <span class="citation"
+data-cites="Palsky:1996">(<a href="#ref-Palsky:1996"
+role="doc-biblioref">1996</a>)</span> book, <em>Des Chiffres et de
+Cartes</em> … . <span class="citation"
+data-cites="FriendlyPalsky:2007">Michael Friendly and Palsky (<a
+href="#ref-FriendlyPalsky:2007" role="doc-biblioref">2007</a>)</span>
+give a more extensive overview of the development of the use of maps and
+statistical diagrams to visualize nature and society.</p></li>
+<li><p>Due to limitations of space, we treat the period from ~ 1900 –
+1950 only in a few pages at the end of this chapter. In part this
+reflects the fact that there were few innovations in graphic methods and
+techniques during this period <span class="citation"
+data-cites="Friendly:2006:hbook">(<a href="#ref-Friendly:2006:hbook"
+role="doc-biblioref">M. Friendly 2007</a>)</span>.</p></li>
+<li><p>One topic that <em>is</em> novel is the Isotype system of
+pictorial graphics introduced in Vienna by Otto and Marie Neurath
+between 1925 – 1935. Isotype, the <strong>I</strong>nternational
+<strong>S</strong>ystem <strong>o</strong>f <strong>T</strong>ypographic
+<strong>P</strong>icture <strong>E</strong>ducation, was designed to
+represent social and economic facts pictorially, thus making numbers
+visually appealing and memorable. Jason Forrest tells me that <span
+class="citation" data-cites="Burke-etal:2013">Burke, Kindel, and Walker
+(<a href="#ref-Burke-etal:2013" role="doc-biblioref">2013</a>)</span> <a
+href="https://hyphenpress.co.uk/products/books/978-0-907259-47-3">Isotype:
+design and contexts 1925-1971</a> is the definitive book on the topic.
+Another good source of information on Neurath’s methods of pictorial
+statistics is the collection at the University of Reading: <a
+href="https://www.reading.ac.uk/m/typography/collectionsandarchives/typ-isotype-collection.aspx">Typography
+&amp; Graphic Communication: Otto and Marie Neurath Isotype
+Collection</a>.</p></li>
 </ul>
 <h2 class="unnumbered" id="chapter-8">Chapter 8</h2>
 <ul>
-<li><p>The most comprehensive source on the development of thematic cartography is Arthur Robinson’s <em>Early Thematic Mapping in the History of Cartography</em> <span class="citation" data-cites="Robinson:1982">(<a href="#ref-Robinson:1982" role="doc-biblioref">1982</a>)</span>.</p></li>
-<li><p>Some historical connections among scientific discovery, visual explanation and thematic maps and statistical diagrams are described in <span class="citation" data-cites="FriendlyPalsky:2007"><a href="#ref-FriendlyPalsky:2007" role="doc-biblioref">Michael Friendly and Palsky</a> (<a href="#ref-FriendlyPalsky:2007" role="doc-biblioref">2007</a>)</span>.</p></li>
-<li><p>The modern text by <span class="citation" data-cites="Slocum-etal:2005"><a href="#ref-Slocum-etal:2005" role="doc-biblioref">Slocum et al.</a> (<a href="#ref-Slocum-etal:2005" role="doc-biblioref">2008</a>)</span> covers thematic cartography and geographic visualization.</p></li>
-<li><p>Three-dimensional surfaces have long been studied as mathematical objects, described by equations, or <span class="math inline">\((x, y, z)\)</span> data and capable of being rendered realistically with lighting and shadows. See <a href="https://www.scratchapixel.com/lessons/3d-basic-rendering/rendering-3d-scene-overview" class="uri">https://www.scratchapixel.com/lessons/3d-basic-rendering/rendering-3d-scene-overview</a> for a readable introduction to this topic.</p></li>
+<li><p>The most comprehensive source on the development of thematic
+cartography is Arthur Robinson’s <em>Early Thematic Mapping in the
+History of Cartography</em> <span class="citation"
+data-cites="Robinson:1982">(<a href="#ref-Robinson:1982"
+role="doc-biblioref">1982</a>)</span>.</p></li>
+<li><p>Some historical connections among scientific discovery, visual
+explanation and thematic maps and statistical diagrams are described in
+<span class="citation" data-cites="FriendlyPalsky:2007">Michael Friendly
+and Palsky (<a href="#ref-FriendlyPalsky:2007"
+role="doc-biblioref">2007</a>)</span>.</p></li>
+<li><p>The modern text by <span class="citation"
+data-cites="Slocum-etal:2005">Slocum et al. (<a
+href="#ref-Slocum-etal:2005" role="doc-biblioref">2008</a>)</span>
+covers thematic cartography and geographic visualization.</p></li>
+<li><p>Three-dimensional surfaces have long been studied as mathematical
+objects, described by equations, or <span class="math inline">\((x, y,
+z)\)</span> data and capable of being rendered realistically with
+lighting and shadows. See <a
+href="https://www.scratchapixel.com/lessons/3d-basic-rendering/rendering-3d-scene-overview"
+class="uri">https://www.scratchapixel.com/lessons/3d-basic-rendering/rendering-3d-scene-overview</a>
+for a readable introduction to this topic.</p></li>
 </ul>
 <h2 class="unnumbered" id="chapter-9">Chapter 9</h2>
 <ul>
-<li><p>Maria Braun’s <em>Picturing Time</em> <span class="citation" data-cites="Braun:1992">(<a href="#ref-Braun:1992" role="doc-biblioref">1992</a>)</span> is the most comprehensive treatment of the work of E.-J. Marey. It contains over 300 images of his mechanical devices, chronophotographs and cinematic work.</p></li>
-<li><p>The Graphics Video Library of the Statistical Graphics Section of the American Statistical Association, <a href="https://stat-graphics.org/movies/" class="uri">https://stat-graphics.org/movies/</a> captures much of the history of dynamic graphics for data analysis over the past 50 years. it includes Kruskal’s MDS video, Tukey’s PRIM-9 video, and many more that illustrate and explain some of the important early developments in modern data visualization methods.</p></li>
-<li><p><span class="citation" data-cites="FriedmanSteutzel:2002"><a href="#ref-FriedmanSteutzel:2002" role="doc-biblioref">Friedman and Stuetzle</a> (<a href="#ref-FriedmanSteutzel:2002" role="doc-biblioref">2002</a>)</span> give an historical appreciation of John W. Tukey’s work in the development of PRIM-9 and interactive graphics. <span class="citation" data-cites="CookSwayne:2007"><a href="#ref-CookSwayne:2007" role="doc-biblioref">D. Cook and Swayne</a> (<a href="#ref-CookSwayne:2007" role="doc-biblioref">2007</a>)</span> provide some modern examples of interactive and dynamic graphics, using R and GGobi software.</p></li>
-<li><p>The collection of Hans Rosling’s video presentations may be found at <a href="https://www.gapminder.org/videos-2/" class="uri">https://www.gapminder.org/videos-2/</a>. One of the first, introducing the moving bubble chart, was a TED talk titled “The best stats you’ve ever seen,” <a href="https://www.youtube.com/watch?v=hVimVzgtD6w" class="uri">https://www.youtube.com/watch?v=hVimVzgtD6w</a>. These are well worth watching.</p></li>
-<li><p>Our coverage of modern software for data visualization was necessarily limited to early developments. Perhaps the most influential recent development is <em>The Grammar of Graphics</em> by Lee Wilkinson <span class="citation" data-cites="Wilkinson:99">(<a href="#ref-Wilkinson:99" role="doc-biblioref">1999</a>)</span>, a general theory of the syntax and semantics of data graphs and charts. Various implementations of these ideas for different programming languages abound, but the most widely-known is <code>ggplot2</code> for R by Hadley Wickham <span class="citation" data-cites="Wickham:16">(<a href="#ref-Wickham:16" role="doc-biblioref">2016</a>)</span></p></li>
+<li><p>Maria Braun’s <em>Picturing Time</em> <span class="citation"
+data-cites="Braun:1992">(<a href="#ref-Braun:1992"
+role="doc-biblioref">1992</a>)</span> is the most comprehensive
+treatment of the work of E.-J. Marey. It contains over 300 images of his
+mechanical devices, chronophotographs and cinematic work.</p></li>
+<li><p>The Graphics Video Library of the Statistical Graphics Section of
+the American Statistical Association, <a
+href="https://stat-graphics.org/movies/"
+class="uri">https://stat-graphics.org/movies/</a> captures much of the
+history of dynamic graphics for data analysis over the past 50 years. it
+includes Kruskal’s MDS video, Tukey’s PRIM-9 video, and many more that
+illustrate and explain some of the important early developments in
+modern data visualization methods.</p></li>
+<li><p><span class="citation"
+data-cites="FriedmanSteutzel:2002">Friedman and Stuetzle (<a
+href="#ref-FriedmanSteutzel:2002" role="doc-biblioref">2002</a>)</span>
+give an historical appreciation of John W. Tukey’s work in the
+development of PRIM-9 and interactive graphics. <span class="citation"
+data-cites="CookSwayne:2007">D. Cook and Swayne (<a
+href="#ref-CookSwayne:2007" role="doc-biblioref">2007</a>)</span>
+provide some modern examples of interactive and dynamic graphics, using
+R and GGobi software.</p></li>
+<li><p>The collection of Hans Rosling’s video presentations may be found
+at <a href="https://www.gapminder.org/videos-2/"
+class="uri">https://www.gapminder.org/videos-2/</a>. One of the first,
+introducing the moving bubble chart, was a TED talk titled “The best
+stats you’ve ever seen,” <a
+href="https://www.youtube.com/watch?v=hVimVzgtD6w"
+class="uri">https://www.youtube.com/watch?v=hVimVzgtD6w</a>. These are
+well worth watching.</p></li>
+<li><p>Our coverage of modern software for data visualization was
+necessarily limited to early developments. Perhaps the most influential
+recent development is <em>The Grammar of Graphics</em> by Lee Wilkinson
+<span class="citation" data-cites="Wilkinson:99">(<a
+href="#ref-Wilkinson:99" role="doc-biblioref">1999</a>)</span>, a
+general theory of the syntax and semantics of data graphs and charts.
+Various implementations of these ideas for different programming
+languages abound, but the most widely-known is <code>ggplot2</code> for
+R by Hadley Wickham <span class="citation" data-cites="Wickham:16">(<a
+href="#ref-Wickham:16" role="doc-biblioref">2016</a>)</span></p></li>
 </ul>
 <h2 class="unnumbered" id="chapter-10">Chapter 10</h2>
 <ul>
-<li><p>Minard’s graphic of the 1812 campaign has inspired many to try to extend the graphic portrayal of this history. A collection of some of these and further background can be seen at <a href="https://www.datavis.ca/gallery/re-minard.php" class="uri">https://www.datavis.ca/gallery/re-minard.php</a>.</p></li>
-<li><p>Recently, an impressive interactive map and historical narrative of the Russian campaign with many illustrations was developed by the Russian News Agency TASS, <a href="https://1812.tass.ru/" class="uri">https://1812.tass.ru/</a> and was shortlisted for the Kantar Information is Beautiful Awards.</p></li>
-<li><p>The entire collection of the graphic works of C. J. Minard is now available in a lovely volume curated by Sandra Rendgen <span class="citation" data-cites="Rendgen:2018">(<a href="#ref-Rendgen:2018" role="doc-biblioref">2018</a>)</span>, <em>The Minard System</em>.</p></li>
-<li><p>A discussion of W. E. B. Du Bois’ charts at the 1900 Paris Exposition Universelle and a wider selection of these can be found at <a href="https://hyperallergic.com/306559/w-e-b-du-boiss-modernist-data-visualizations-of-black-life/" class="uri">https://hyperallergic.com/306559/w-e-b-du-boiss-modernist-data-visualizations-of-black-life/</a>.</p></li>
-<li><p>A nearly complete collection of W. E. B. Du Bois’ charts has been recreated using modern software by Anthony J. Starks. See <a href="https://speakerdeck.com/ajstarks/recreating-the-dubois-data-portraits" class="uri">https://speakerdeck.com/ajstarks/recreating-the-dubois-data-portraits</a> for an impressive slide show. The data and code is available on <a href="https://github.com/ajstarks/dubois-data-portraits">Github: ajstarks/dubois-data-portraits</a></p></li>
-<li><p>The drafting of Plates 17 and 19 required more than standard graphics software. To learn the full story behind the development of these figures, see <a href="https://infowetrust.com/picturing-the-great-migration/" class="uri">https://infowetrust.com/picturing-the-great-migration/</a>.</p></li>
-<li><p>A related article is Andrews, RJ &amp; Wainer, H. <span class="citation" data-cites="AndrewsWainer:2017">(<a href="#ref-AndrewsWainer:2017" role="doc-biblioref">2017</a>)</span>. The Great Migration: A Graphics Novel Featuring the Contributions of W. E. B. Du Bois and C. J. Minard, <em>Significance</em>, <strong>14</strong>(3), 14–19.</p></li>
+<li><p>Minard’s graphic of the 1812 campaign has inspired many to try to
+extend the graphic portrayal of this history. A collection of some of
+these and further background can be seen at <a
+href="https://www.datavis.ca/gallery/re-minard.php"
+class="uri">https://www.datavis.ca/gallery/re-minard.php</a>.</p></li>
+<li><p>Recently, an impressive interactive map and historical narrative
+of the Russian campaign with many illustrations was developed by the
+Russian News Agency TASS, <a href="https://1812.tass.ru/"
+class="uri">https://1812.tass.ru/</a> and was shortlisted for the Kantar
+Information is Beautiful Awards.</p></li>
+<li><p>The entire collection of the graphic works of C. J. Minard is now
+available in a lovely volume curated by Sandra Rendgen <span
+class="citation" data-cites="Rendgen:2018">(<a href="#ref-Rendgen:2018"
+role="doc-biblioref">2018</a>)</span>, <em>The Minard
+System</em>.</p></li>
+<li><p>A discussion of W. E. B. Du Bois’ charts at the 1900 Paris
+Exposition Universelle and a wider selection of these can be found at <a
+href="https://hyperallergic.com/306559/w-e-b-du-boiss-modernist-data-visualizations-of-black-life/"
+class="uri">https://hyperallergic.com/306559/w-e-b-du-boiss-modernist-data-visualizations-of-black-life/</a>.</p></li>
+<li><p>A nearly complete collection of W. E. B. Du Bois’ charts has been
+recreated using modern software by Anthony J. Starks. See <a
+href="https://speakerdeck.com/ajstarks/recreating-the-dubois-data-portraits"
+class="uri">https://speakerdeck.com/ajstarks/recreating-the-dubois-data-portraits</a>
+for an impressive slide show. The data and code is available on <a
+href="https://github.com/ajstarks/dubois-data-portraits">Github:
+ajstarks/dubois-data-portraits</a></p></li>
+<li><p>The drafting of Plates 17 and 19 required more than standard
+graphics software. To learn the full story behind the development of
+these figures, see <a
+href="https://infowetrust.com/picturing-the-great-migration/"
+class="uri">https://infowetrust.com/picturing-the-great-migration/</a>.</p></li>
+<li><p>A related article is Andrews, RJ &amp; Wainer, H. <span
+class="citation" data-cites="AndrewsWainer:2017">(<a
+href="#ref-AndrewsWainer:2017" role="doc-biblioref">2017</a>)</span>.
+The Great Migration: A Graphics Novel Featuring the Contributions of W.
+E. B. Du Bois and C. J. Minard, <em>Significance</em>,
+<strong>14</strong>(3), 14–19.</p></li>
 </ul>
 <h2 id="references">References</h2>
-<div id="refs" class="references csl-bib-body hanging-indent" style="color:black;" role="doc-bibliography">
-<div id="ref-AndrewsWainer:2017" class="csl-entry" role="doc-biblioentry">
-Andrews, R. J., and Howard Wainer. 2017. <span>“The <span>Great Migration</span>: A Graphics Novel Featuring the Contributions of <span>W. E. B. Du Bois</span> and <span>C. J. Minard</span>.”</span> <em>Significance</em> 14 (3): 14–19.
+<div id="refs" class="references csl-bib-body hanging-indent"
+style="color:black;" role="doc-bibliography">
+<div id="ref-AndrewsWainer:2017" class="csl-entry"
+role="doc-biblioentry">
+Andrews, R. J., and Howard Wainer. 2017. <span>“The <span>Great
+Migration</span>: A Graphics Novel Featuring the Contributions of
+<span>W. E. B. Du Bois</span> and <span>C. J. Minard</span>.”</span>
+<em>Significance</em> 14 (3): 14–19.
 </div>
 <div id="ref-Bauer:2017" class="csl-entry" role="doc-biblioentry">
-Bauer, Craig P. 2017. <em>Unsolved!: The History and Mystery of the World’s Greatest Ciphers from Ancient Egypt to Online Secret Societies</em>. Princeton, NJ: Princeton University Press.
+Bauer, Craig P. 2017. <em>Unsolved!: The History and Mystery of the
+World’s Greatest Ciphers from Ancient Egypt to Online Secret
+Societies</em>. Princeton, NJ: Princeton University Press.
 </div>
 <div id="ref-Braun:1992" class="csl-entry" role="doc-biblioentry">
-Braun, Marta. 1992. <em>Picturing Time: The Work of <span>Etienne-Jules Marey</span> (1830-1904)</em>. Chicago, IL: University of Chicago Press.
+Braun, Marta. 1992. <em>Picturing Time: The Work of <span>Etienne-Jules
+Marey</span> (1830-1904)</em>. Chicago, IL: University of Chicago Press.
 </div>
 <div id="ref-Burke-etal:2013" class="csl-entry" role="doc-biblioentry">
-Burke, Christopher, Eric Kindel, and Sue Walker, eds. 2013. <em>Isotype: Design and Contexts 1925-1971</em>. London: Hyphen Press. <a href="https://hyphenpress.co.uk/products/books/978-0-907259-47-3">https://hyphenpress.co.uk/products/books/978-0-907259-47-3</a>.
+Burke, Christopher, Eric Kindel, and Sue Walker, eds. 2013. <em>Isotype:
+Design and Contexts 1925-1971</em>. London: Hyphen Press. <a
+href="https://hyphenpress.co.uk/products/books/978-0-907259-47-3">https://hyphenpress.co.uk/products/books/978-0-907259-47-3</a>.
 </div>
 <div id="ref-CookSwayne:2007" class="csl-entry" role="doc-biblioentry">
-Cook, Dianne, and Deborah F. Swayne. 2007. <em>Interactive and Dynamic Graphics for Data Analysis : With <span>R</span> and <span>GGobi</span></em>. Use r ! New York: Springer.
+Cook, Dianne, and Deborah F. Swayne. 2007. <em>Interactive and Dynamic
+Graphics for Data Analysis : With <span>R</span> and
+<span>GGobi</span></em>. Use r ! New York: Springer.
 </div>
 <div id="ref-CookWainer:2012" class="csl-entry" role="doc-biblioentry">
-Cook, Robert, and Howard Wainer. 2012. <span>“<span class="nocase">A century and a half of moral statistics in the United Kingdom: Variations on Joseph Fletcher’s thematic maps</span>.”</span> <em>Significance</em> 9 (3): 31–36.
+Cook, Robert, and Howard Wainer. 2012. <span>“<span class="nocase">A
+century and a half of moral statistics in the United Kingdom: Variations
+on Joseph Fletcher’s thematic maps</span>.”</span> <em>Significance</em>
+9 (3): 31–36.
 </div>
 <div id="ref-Delaney:2012" class="csl-entry" role="doc-biblioentry">
-Delaney, John. 2012. <em>First x, Then y, Now z: An Introduction to Landmark Thematic Maps</em>. Darby, PA: Diane Publishing Co.
+Delaney, John. 2012. <em>First x, Then y, Now z: An Introduction to
+Landmark Thematic Maps</em>. Darby, PA: Diane Publishing Co.
 </div>
-<div id="ref-FriedmanSteutzel:2002" class="csl-entry" role="doc-biblioentry">
-Friedman, Jerome H., and Werner Stuetzle. 2002. <span>“<span class="nocase">John W. Tukey’s</span> Work on Interactive Graphics.”</span> <em>The Annals of Statistics</em> 30 (6): 1629–39.
+<div id="ref-FriedmanSteutzel:2002" class="csl-entry"
+role="doc-biblioentry">
+Friedman, Jerome H., and Werner Stuetzle. 2002. <span>“<span
+class="nocase">John W. Tukey’s</span> Work on Interactive
+Graphics.”</span> <em>The Annals of Statistics</em> 30 (6): 1629–39.
 </div>
-<div id="ref-Friendly:2006:hbook" class="csl-entry" role="doc-biblioentry">
-Friendly, M. 2007. <span>“A Brief History of Data Visualization.”</span> In <em>Handbook of Computational Statistics: Data Visualization</em>, edited by C. Chen, Wolfgang Härdle, and Antony Unwin, III:1–34. Heidelberg: Springer-Verlag.
+<div id="ref-Friendly:2006:hbook" class="csl-entry"
+role="doc-biblioentry">
+Friendly, M. 2007. <span>“A Brief History of Data Visualization.”</span>
+In <em>Handbook of Computational Statistics: Data Visualization</em>,
+edited by C. Chen, Wolfgang Härdle, and Antony Unwin, III:1–34.
+Heidelberg: Springer-Verlag.
 </div>
-<div id="ref-Friendly:02:Minard" class="csl-entry" role="doc-biblioentry">
-Friendly, Michael. 2002. <span>“Visions and <span>Re-Visions</span> of <span>Charles Joseph Minard</span>.”</span> <em>Journal of Educational and Behavioral Statistics</em> 27 (1): 31–51.
+<div id="ref-Friendly:02:Minard" class="csl-entry"
+role="doc-biblioentry">
+Friendly, Michael. 2002. <span>“Visions and <span>Re-Visions</span> of
+<span>Charles Joseph Minard</span>.”</span> <em>Journal of Educational
+and Behavioral Statistics</em> 27 (1): 31–51.
 </div>
-<div id="ref-Friendly:2007:guerry" class="csl-entry" role="doc-biblioentry">
-———. 2007. <span>“<span class="nocase">A.-M. Guerry’s Moral Statistics of France</span>: Challenges for Multivariable Spatial Analysis.”</span> <em>Statistical Science</em> 22 (3): 368–99.
+<div id="ref-Friendly:2007:guerry" class="csl-entry"
+role="doc-biblioentry">
+———. 2007. <span>“<span class="nocase">A.-M. Guerry’s Moral Statistics
+of France</span>: Challenges for Multivariable Spatial Analysis.”</span>
+<em>Statistical Science</em> 22 (3): 368–99.
 </div>
-<div id="ref-Friendly:2008:golden" class="csl-entry" role="doc-biblioentry">
-———. 2008a. <span>“The <span>Golden Age</span> of Statistical Graphics.”</span> <em>Statistical Science</em> 23 (4): 502–35.
+<div id="ref-Friendly:2008:golden" class="csl-entry"
+role="doc-biblioentry">
+———. 2008a. <span>“The <span>Golden Age</span> of Statistical
+Graphics.”</span> <em>Statistical Science</em> 23 (4): 502–35.
 </div>
-<div id="ref-Friendly:2007:guerryvie" class="csl-entry" role="doc-biblioentry">
-———. 2008b. <span>“La Vie Et l’oeuvre <span class="nocase">d’André-Michael Guerry</span> (1802-1866).”</span> <em>Mémoires de l’Académie de Touraine</em> 20 (May).
+<div id="ref-Friendly:2007:guerryvie" class="csl-entry"
+role="doc-biblioentry">
+———. 2008b. <span>“La Vie Et l’oeuvre <span
+class="nocase">d’André-Michael Guerry</span> (1802-1866).”</span>
+<em>Mémoires de l’Académie de Touraine</em> 20 (May).
 </div>
-<div id="ref-FriendlyDenis:05:scat" class="csl-entry" role="doc-biblioentry">
-Friendly, Michael, and D. Denis. 2005. <span>“The Early Origins and Development of the Scatterplot.”</span> <em>Journal of the History of the Behavioral Sciences</em> 41 (2): 103–30.
+<div id="ref-FriendlyDenis:05:scat" class="csl-entry"
+role="doc-biblioentry">
+Friendly, Michael, and D. Denis. 2005. <span>“The Early Origins and
+Development of the Scatterplot.”</span> <em>Journal of the History of
+the Behavioral Sciences</em> 41 (2): 103–30.
 </div>
-<div id="ref-Friendly-etal:ellipses:2013" class="csl-entry" role="doc-biblioentry">
-Friendly, Michael, Georges Monette, and John Fox. 2013. <span>“Elliptical Insights: Understanding Statistical Methods Through Elliptical Geometry.”</span> <em>Statistical Science</em> 28 (1): 1–39.
+<div id="ref-Friendly-etal:ellipses:2013" class="csl-entry"
+role="doc-biblioentry">
+Friendly, Michael, Georges Monette, and John Fox. 2013.
+<span>“Elliptical Insights: Understanding Statistical Methods Through
+Elliptical Geometry.”</span> <em>Statistical Science</em> 28 (1): 1–39.
 </div>
-<div id="ref-FriendlyPalsky:2007" class="csl-entry" role="doc-biblioentry">
-Friendly, Michael, and Gilles Palsky. 2007. <span>“Visualizing Nature and Society.”</span> In <em>Maps: Finding Our Place in the World</em>, edited by James R. Ackerman and Robert W. Karrow, 205–51. Chicago, IL: University of Chicago Press.
+<div id="ref-FriendlyPalsky:2007" class="csl-entry"
+role="doc-biblioentry">
+Friendly, Michael, and Gilles Palsky. 2007. <span>“Visualizing Nature
+and Society.”</span> In <em>Maps: Finding Our Place in the World</em>,
+edited by James R. Ackerman and Robert W. Karrow, 205–51. Chicago, IL:
+University of Chicago Press.
 </div>
-<div id="ref-Friendly:2012:ordonnateur" class="csl-entry" role="doc-biblioentry">
-Friendly, Michael, and de Saint Agathe. 2012. <span>“<span class="nocase">André-Michel Guerry’s</span> <em>Ordonnateur Statistique</em>: The First Statistical Calculator?”</span> <em>The American Statistician</em> 66 (3): 195–200.
+<div id="ref-Friendly:2012:ordonnateur" class="csl-entry"
+role="doc-biblioentry">
+Friendly, Michael, and de Saint Agathe. 2012. <span>“<span
+class="nocase">André-Michel Guerry’s</span> <em>Ordonnateur
+Statistique</em>: The First Statistical Calculator?”</span> <em>The
+American Statistician</em> 66 (3): 195–200.
 </div>
-<div id="ref-Friendly-etal:2010:langren" class="csl-entry" role="doc-biblioentry">
-Friendly, Michael, Pedro Valero-Mora, and Joaquı́n Ibáñez Ulargui. 2010. <span>“The First (Known) Statistical Graph: <span class="nocase">Michael Florent van Langren and the <span>‘Secret’</span> of Longitude</span>.”</span> <em>The American Statistician</em> 64 (2): 185–91.
+<div id="ref-Friendly-etal:2010:langren" class="csl-entry"
+role="doc-biblioentry">
+Friendly, Michael, Pedro Valero-Mora, and Joaquı́n Ibáñez Ulargui. 2010.
+<span>“The First (Known) Statistical Graph: <span class="nocase">Michael
+Florent van Langren and the <span>‘Secret’</span> of
+Longitude</span>.”</span> <em>The American Statistician</em> 64 (2):
+185–91.
 </div>
 <div id="ref-Hacking:1990" class="csl-entry" role="doc-biblioentry">
-Hacking, Ian. 1990. <em>The Taming of Chance</em>. Cambridge, UK: Cambridge University Press.
+Hacking, Ian. 1990. <em>The Taming of Chance</em>. Cambridge, UK:
+Cambridge University Press.
 </div>
 <div id="ref-HoffGeddes:1962" class="csl-entry" role="doc-biblioentry">
-Hoff, Hebbel E., and L. A. Geddes. 1962. <span>“The Beginnings of Graphic Recording.”</span> <em>Isis</em> 53: 287–324.
+Hoff, Hebbel E., and L. A. Geddes. 1962. <span>“The Beginnings of
+Graphic Recording.”</span> <em>Isis</em> 53: 287–324.
 </div>
 <div id="ref-Johnson:2006" class="csl-entry" role="doc-biblioentry">
-Johnson, Steven. 2006. <em>The Ghost Map: The Story of <span class="nocase">London’s most</span> Terrifying Epidemic–and How It Changed Science, Cities, and the Modern World</em>. New York: Riverhead Books.
+Johnson, Steven. 2006. <em>The Ghost Map: The Story of <span
+class="nocase">London’s most</span> Terrifying Epidemic–and How It
+Changed Science, Cities, and the Modern World</em>. New York: Riverhead
+Books.
 </div>
 <div id="ref-Koch:2011" class="csl-entry" role="doc-biblioentry">
-Koch, Tom. 2011. <em>Disease Maps: Epidemics on the Ground</em>. Chicago, IL: University of Chicago Press.
+Koch, Tom. 2011. <em>Disease Maps: Epidemics on the Ground</em>.
+Chicago, IL: University of Chicago Press.
 </div>
 <div id="ref-Palsky:1996" class="csl-entry" role="doc-biblioentry">
-Palsky, G. 1996. <em>Des Chiffres Et Des Cartes: Naissance Et d<span>é</span>veloppement de La Cartographie Quantitative Française Au <span>XIX<span class="math inline">\({}^e\)</span></span> Si<span>è</span>cle</em>. Paris: Comit<span>é</span> des Travaux Historiques et Scientifiques (CTHS).
+Palsky, G. 1996. <em>Des Chiffres Et Des Cartes: Naissance Et
+d<span>é</span>veloppement de La Cartographie Quantitative Française Au
+<span>XIX<span class="math inline">\({}^e\)</span></span>
+Si<span>è</span>cle</em>. Paris: Comit<span>é</span> des Travaux
+Historiques et Scientifiques (CTHS).
 </div>
 <div id="ref-Rendgen:2018" class="csl-entry" role="doc-biblioentry">
-Rendgen, Sandra. 2018. <em>The Minard System: The Complete Statistical Graphics of <span>Charles-Joseph Minard</span></em>. New York: Princeton Architectural Press.
+Rendgen, Sandra. 2018. <em>The Minard System: The Complete Statistical
+Graphics of <span>Charles-Joseph Minard</span></em>. New York: Princeton
+Architectural Press.
 </div>
 <div id="ref-Robinson:1982" class="csl-entry" role="doc-biblioentry">
-Robinson, Arthur H. 1982. <em>Early Thematic Mapping in the History of Cartography</em>. Chicago: University of Chicago Press.
+Robinson, Arthur H. 1982. <em>Early Thematic Mapping in the History of
+Cartography</em>. Chicago: University of Chicago Press.
 </div>
 <div id="ref-Slocum-etal:2005" class="csl-entry" role="doc-biblioentry">
-Slocum, Terry A., Robert B. McMaster, Fritz C. Kessler, and Hugh H. Howard. 2008. <em>Thematic Cartography and Geographic Visualization</em>. Geographic Information Science. Pearson/Prentice Hall.
+Slocum, Terry A., Robert B. McMaster, Fritz C. Kessler, and Hugh H.
+Howard. 2008. <em>Thematic Cartography and Geographic
+Visualization</em>. Geographic Information Science. Pearson/Prentice
+Hall.
 </div>
 <div id="ref-Sobel:1996" class="csl-entry" role="doc-biblioentry">
-Sobel, Dava. 1996. <em>Longitude: The True Story of a Lone Genius Who Solved the Greatest Scientific Problem of His Time</em>. New York: Penguin.
+Sobel, Dava. 1996. <em>Longitude: The True Story of a Lone Genius Who
+Solved the Greatest Scientific Problem of His Time</em>. New York:
+Penguin.
 </div>
-<div id="ref-Wachsmuth-etal:03" class="csl-entry" role="doc-biblioentry">
-Wachsmuth, A., L. Wilkinson, and G. E. Dallal. 2003. <span>“Galton’s Bend: A Previously Undiscovered Nonlinearity in <span class="nocase">Galton’s</span> Family Stature Regression Data.”</span> <em>The American Statistician</em> 57 (3): 190–92.
+<div id="ref-Wachsmuth-etal:03" class="csl-entry"
+role="doc-biblioentry">
+Wachsmuth, A., L. Wilkinson, and G. E. Dallal. 2003. <span>“Galton’s
+Bend: A Previously Undiscovered Nonlinearity in <span
+class="nocase">Galton’s</span> Family Stature Regression Data.”</span>
+<em>The American Statistician</em> 57 (3): 190–92.
 </div>
-<div id="ref-Whitaker:2003:mapping" class="csl-entry" role="doc-biblioentry">
-Whitaker, Ewen Adair. 2003. <em>Mapping and Naming the Moon: A History of Lunar Cartography and Nomenclature</em>. Cambridge University Press.
+<div id="ref-Whitaker:2003:mapping" class="csl-entry"
+role="doc-biblioentry">
+Whitaker, Ewen Adair. 2003. <em>Mapping and Naming the Moon: A History
+of Lunar Cartography and Nomenclature</em>. Cambridge University Press.
 </div>
 <div id="ref-Wickham:16" class="csl-entry" role="doc-biblioentry">
-Wickham, Hadley. 2016. <em>Ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>.
+Wickham, Hadley. 2016. <em>Ggplot2: Elegant Graphics for Data
+Analysis</em>. Springer-Verlag New York. <a
+href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>.
 </div>
 <div id="ref-Wilkinson:99" class="csl-entry" role="doc-biblioentry">
-Wilkinson, Leland. 1999. <em>The Grammar of Graphics</em>. New York: Springer.
+Wilkinson, Leland. 1999. <em>The Grammar of Graphics</em>. New York:
+Springer.
 </div>
 </div>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

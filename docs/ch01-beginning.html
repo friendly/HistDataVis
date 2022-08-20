@@ -50,16 +50,17 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { } /* Attribute */
+code span.at { color: #657422; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
+code span.cf { color: #00769e; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -73,9 +74,9 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
+code span.kw { color: #00769e; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
+code span.ot { color: #00769e; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
 code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
@@ -1027,10 +1028,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     margin-top: 1.5em;
   }
 
-  .figure img {
-    width: 100%;
-  }
-
   .figure .caption {
     color: rgba(0, 0, 0, 0.6);
     font-size: 12px;
@@ -1860,6 +1857,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
+        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
+          var fn = $(this).children()[0]
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
           return "<p>" + $('#ref-' + ref).html() + "</p>";
@@ -1874,6 +1877,31 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           placement: 'bottom-start'
         });
       });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
 
       // clear polling timer
       clearInterval(tid);
@@ -1973,6 +2001,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -1995,7 +2025,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
       });
     }
 
@@ -2034,7 +2064,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.15/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2306,14 +2336,23 @@ Chapters
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
-<h1 id="in-the-beginning">In the Beginning… <img src="images/cartoons/ogilby.png" align="right" height="100px" /></h1>
+<h1 id="in-the-beginning">In the Beginning…
+<img src="images/cartoons/ogilby.png" align="right" height="100px" /></h1>
 <blockquote>
-<p><em>If you would understand anything, observe its beginning and its development.</em> <strong>Aristotle, <em>Metaphysics</em></strong></p>
+<p><em>If you would understand anything, observe its beginning and its
+development.</em> <strong>Aristotle, <em>Metaphysics</em></strong></p>
 </blockquote>
 <div class="chapterintro">
 <section id="synopsis" class="unnumbered chapterprelude">
 <h4 class="unnumbered">Synopsis</h4>
-<p>This chapter is an overview of the larger questions and themes that provide a context for the book. We consider the relations among numerical data, evidence for an argument and graphs, and then describe some of the pre-history of the visual representation of numbers and the early rise of visualization itself. The story continues to the rise of empirical thinking in philosophy and science around the 16th Century and the concomitant remarkable development of the visual representation of numbers to communicate quantitative phenomena.</p>
+<p>This chapter is an overview of the larger questions and themes that
+provide a context for the book. We consider the relations among
+numerical data, evidence for an argument and graphs, and then describe
+some of the pre-history of the visual representation of numbers and the
+early rise of visualization itself. The story continues to the rise of
+empirical thinking in philosophy and science around the 16th Century and
+the concomitant remarkable development of the visual representation of
+numbers to communicate quantitative phenomena.</p>
 </section>
 <section id="chapter-contents" class="chaptercontents">
 <h4>Chapter contents</h4>
@@ -2341,7 +2380,17 @@ Chapters
 Figure 1.1: Some of the graphic forms used to represent numbers
 </h3>
 <ol type="a">
-<li><p>A clay cuneiform tablet dated as 3300–3100 BCE, giving an account of yields of barley; (b) quipus, a system of knots tied in ropes used by South American Incas, around 1000 CE; (c) symbols used in Mayan culture, around 500 CE, showing the numbers 0–19; (d) a scheme proposed by John W. Tukey (1977) to tally counts of observations by hand, using dots and lines in groups of 10. Wikimedia Commons / GNU Free Documentation License.<br/> <span class="fig-src"><em>Source:</em> Sources: (a) Britannica.com; (b) L. Leland Locke, The Ancient Quipu, Washington, DC: The American Museum of Natural History, 1923, fig. 1; (c) Neuromancer2K4 / Bryan Derksen / Wikimedia Commons / GNU Free Documentation License; (d) Pinethicket /</span><br/></p>
+<li><p>A clay cuneiform tablet dated as 3300–3100 BCE, giving an account
+of yields of barley; (b) quipus, a system of knots tied in ropes used by
+South American Incas, around 1000 CE; (c) symbols used in Mayan culture,
+around 500 CE, showing the numbers 0–19; (d) a scheme proposed by John
+W. Tukey (1977) to tally counts of observations by hand, using dots and
+lines in groups of 10. Wikimedia Commons / GNU Free Documentation
+License.<br/> <span class="fig-src"><em>Source:</em> Sources: (a)
+Britannica.com; (b) L. Leland Locke, The Ancient Quipu, Washington, DC:
+The American Museum of Natural History, 1923, fig. 1; (c) Neuromancer2K4
+/ Bryan Derksen / Wikimedia Commons / GNU Free Documentation License;
+(d) Pinethicket /</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2354,7 +2403,10 @@ Figure 1.1: Some of the graphic forms used to represent numbers
 <h3 class="figtitle">
 <p>Figure 1.2: Wrestling instructions</p>
 </h3>
-<p>Successive moments of a wrestling match between two people. From a drawing on the east wall of the tomb of Baqt at the Beni Hasan cemetery (ca. 2000 BCE). <br/> <span class="fig-src"><em>Source:</em> Wikimedia Commons.</span><br/></p>
+<p>Successive moments of a wrestling match between two people. From a
+drawing on the east wall of the tomb of Baqt at the Beni Hasan cemetery
+(ca. 2000 BCE). <br/> <span class="fig-src"><em>Source:</em> Wikimedia
+Commons.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2367,7 +2419,10 @@ Figure 1.1: Some of the graphic forms used to represent numbers
 <h3 class="figtitle">
 <p>Figure 1.3: Reconstructions of ancient Greek world maps</p>
 </h3>
-<p>Left: the world according to Anaximander of Miletus; right: a more detailed version due to Hecataeus. <br/> <span class="fig-src"><em>Source:</em> Bibi Saint-Paul / Wikimedia.</span><br/></p>
+<p>Left: the world according to Anaximander of Miletus; right: a more
+detailed version due to Hecataeus. <br/> <span
+class="fig-src"><em>Source:</em> Bibi Saint-Paul /
+Wikimedia.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2380,7 +2435,11 @@ Figure 1.1: Some of the graphic forms used to represent numbers
 <h3 class="figtitle">
 <p>Figure 1.4: Robert Plot’s History of the Weather</p>
 </h3>
-<p>The graph records the daily barometric pressure in Oxford for the year 1684. <br/> <span class="fig-src"><em>Source:</em> Robert Plot, “Observations of the Wind, Weather, and Height of the Mercury in the Barometer, throughout the Year 1684; Taken in the Musaeum Ashmoleanum at Oxford,” Philosophical Transactions, Vol. 15, 930–943. </span><br/></p>
+<p>The graph records the daily barometric pressure in Oxford for the
+year 1684. <br/> <span class="fig-src"><em>Source:</em> Robert Plot,
+“Observations of the Wind, Weather, and Height of the Mercury in the
+Barometer, throughout the Year 1684; Taken in the Musaeum Ashmoleanum at
+Oxford,” Philosophical Transactions, Vol. 15, 930–943. </span><br/></p>
 </td>
 </tr>
 </table>
@@ -2393,7 +2452,12 @@ Figure 1.1: Some of the graphic forms used to represent numbers
 <h3 class="figtitle">
 <p>Figure 1.5: Huygens’s survival graph</p>
 </h3>
-<p>Christiaan Huygens’s 1669 curve showing how many people out of a hundred survive between the ages of infancy and eighty-six. The data are taken from John Graunt’s Natural and Political Observations on the Bills of Mortality, 1662. <br/> <span class="fig-src"><em>Source:</em> Christiaan Huygens, Oeuvres Complètes, Volume 6. La Haye: M. Nijhoff, 1895.</span><br/></p>
+<p>Christiaan Huygens’s 1669 curve showing how many people out of a
+hundred survive between the ages of infancy and eighty-six. The data are
+taken from John Graunt’s Natural and Political Observations on the Bills
+of Mortality, 1662. <br/> <span class="fig-src"><em>Source:</em>
+Christiaan Huygens, Oeuvres Complètes, Volume 6. La Haye: M. Nijhoff,
+1895.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2406,7 +2470,9 @@ Figure 1.1: Some of the graphic forms used to represent numbers
 <h3 class="figtitle">
 <p>Figure 1.6: Chart of biography</p>
 </h3>
-<p>Lifespans of fifty-nine famous people in the six centuries before Christ. <br/> <span class="fig-src"><em>Source:</em> Joseph Priestley, A Chart of Biography, London, 1765. </span><br/></p>
+<p>Lifespans of fifty-nine famous people in the six centuries before
+Christ. <br/> <span class="fig-src"><em>Source:</em> Joseph Priestley, A
+Chart of Biography, London, 1765. </span><br/></p>
 </td>
 </tr>
 </table>
@@ -2419,7 +2485,11 @@ Figure 1.1: Some of the graphic forms used to represent numbers
 <h3 class="figtitle">
 <p>Figure 1.7: Graphical train schedule</p>
 </h3>
-<p>E. J. Marey’s (1878) graphical train schedule, showing all trains between Paris and Lyon each day. <br/> <span class="fig-src"><em>Source:</em> Étienne-Jules Marey, La méthode graphique dans les sciences expérimentales et principalement en physiologie et en médecine. Paris: G. Masson, 1878.</span><br/></p>
+<p>E. J. Marey’s (1878) graphical train schedule, showing all trains
+between Paris and Lyon each day. <br/> <span
+class="fig-src"><em>Source:</em> Étienne-Jules Marey, La méthode
+graphique dans les sciences expérimentales et principalement en
+physiologie et en médecine. Paris: G. Masson, 1878.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2432,13 +2502,16 @@ Figure 1.1: Some of the graphic forms used to represent numbers
 <h3 class="figtitle">
 <p>Plate P.1: Lascaux</p>
 </h3>
-<p>A section of one side of the Chamber of the Bulls from the Lascaux cave. <br/> <span class="fig-src"><em>Source:</em> HistoriaGames</span><br/></p>
+<p>A section of one side of the Chamber of the Bulls from the Lascaux
+cave. <br/> <span class="fig-src"><em>Source:</em>
+HistoriaGames</span><br/></p>
 </td>
 </tr>
 </table></li>
 </ol>
 </div>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

@@ -50,16 +50,17 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { } /* Attribute */
+code span.at { color: #657422; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
+code span.cf { color: #00769e; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -73,9 +74,9 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
+code span.kw { color: #00769e; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
+code span.ot { color: #00769e; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
 code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
@@ -1027,10 +1028,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     margin-top: 1.5em;
   }
 
-  .figure img {
-    width: 100%;
-  }
-
   .figure .caption {
     color: rgba(0, 0, 0, 0.6);
     font-size: 12px;
@@ -1860,6 +1857,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
+        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
+          var fn = $(this).children()[0]
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
           return "<p>" + $('#ref-' + ref).html() + "</p>";
@@ -1874,6 +1877,31 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           placement: 'bottom-start'
         });
       });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
 
       // clear polling timer
       clearInterval(tid);
@@ -1973,6 +2001,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -1995,7 +2025,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
       });
     }
 
@@ -2034,7 +2064,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.15/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2306,11 +2336,23 @@ Chapters
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
-<h1 id="the-origin-and-development-of-the-scatterplot">The Origin and Development of the Scatterplot <img src="images/cartoons/galton3.png" align="right" height="100px" /></h1>
+<h1 id="the-origin-and-development-of-the-scatterplot">The Origin and
+Development of the Scatterplot
+<img src="images/cartoons/galton3.png" align="right" height="100px" /></h1>
 <div class="chapterintro">
 <section id="synopsis" class="unnumbered chapterprelude">
 <h4 class="unnumbered">Synopsis</h4>
-<p>Among all the moderns forms of statistical graphics, the scatterplot may be considered the most versatile, and generally useful invention in the entire history of statistical graphics. It is also notable because William Playfair didn’t invent it. This chapter considers why Playfair was unable to think about such things, and it traces the invention of the scatterplot to the eminent astronomer John F. W. Herschel. Scatterplots achieved great importance in the work of Francis Galton [1822–1911] on the heritability of traits. Galton’s work, visualized through statistical diagrams, became the source of the statistical ideas of correlation and regression and thus most of modern statistical methods.</p>
+<p>Among all the moderns forms of statistical graphics, the scatterplot
+may be considered the most versatile, and generally useful invention in
+the entire history of statistical graphics. It is also notable because
+William Playfair didn’t invent it. This chapter considers why Playfair
+was unable to think about such things, and it traces the invention of
+the scatterplot to the eminent astronomer John F. W. Herschel.
+Scatterplots achieved great importance in the work of Francis Galton
+[1822–1911] on the heritability of traits. Galton’s work, visualized
+through statistical diagrams, became the source of the statistical ideas
+of correlation and regression and thus most of modern statistical
+methods.</p>
 </section>
 <section id="chapter-contents" class="unnumbered chaptercontents">
 <h4 class="unnumbered">Chapter contents</h4>
@@ -2350,7 +2392,10 @@ Chapters
 <h3 class="figtitle">
 Figure 6.1: Modern scatterplot
 </h3>
-A conventional modern scatterplot depicting the relation between salary and years of experience for a hypothetical group of ten workers. <br/> <span class="fig-src"><em>Source:</em> © The Authors.</span><br/> <b>Rcode</b>: <a href='fig-code/06_1-workers.R'> 06_1-workers.R </a>
+A conventional modern scatterplot depicting the relation between salary
+and years of experience for a hypothetical group of ten workers. <br/>
+<span class="fig-src"><em>Source:</em> © The Authors.</span><br/>
+<b>Rcode</b>: <a href='fig-code/06_1-workers.R'> 06_1-workers.R </a>
 </td>
 </tr>
 </table>
@@ -2363,7 +2408,13 @@ A conventional modern scatterplot depicting the relation between salary and year
 <h3 class="figtitle">
 Figure 6.2: A theoretical relation
 </h3>
-<p>Edmund Halley’s 1686 bivariate plot of the theoretical relation between barometric pressure (y) and altitude (x), derived from observational data. <br/> <span class="fig-src"><em>Source:</em> Edmond Halley, “On the height of the mercury in the barometer at different elevations above the surface of the earth, and on the rising and falling of the mercury on the change of weather,” Philosophical Transactions, 16, (1686), 104–115.</span><br/></p>
+<p>Edmund Halley’s 1686 bivariate plot of the theoretical relation
+between barometric pressure (y) and altitude (x), derived from
+observational data. <br/> <span class="fig-src"><em>Source:</em> Edmond
+Halley, “On the height of the mercury in the barometer at different
+elevations above the surface of the earth, and on the rising and falling
+of the mercury on the change of weather,” Philosophical Transactions,
+16, (1686), 104–115.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2376,7 +2427,12 @@ Figure 6.2: A theoretical relation
 <h3 class="figtitle">
 Figure 6.3: Cotes’s diagram
 </h3>
-<p>Roger Cotes’s depiction of four two-dimensional fallible observations which could be combined using a weighted mean at their center of gravity, Z, to give a more precise estimate. <br/> <span class="fig-src"><em>Source:</em> Roger Cotes, Aestimatio Errorum in Mixta Mathesis, per Variationes Planitum Trianguli Plani et Spherici, 1722.</span><br/></p>
+<p>Roger Cotes’s depiction of four two-dimensional fallible observations
+which could be combined using a weighted mean at their center of
+gravity, Z, to give a more precise estimate. <br/> <span
+class="fig-src"><em>Source:</em> Roger Cotes, Aestimatio Errorum in
+Mixta Mathesis, per Variationes Planitum Trianguli Plani et Spherici,
+1722.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2389,7 +2445,12 @@ Figure 6.3: Cotes’s diagram
 <h3 class="figtitle">
 Figure 6.4: Chart of soil temperatures
 </h3>
-<p>J. H. Lambert’s chart of the variation in soil temperatures at various latitudes over time. The horizontal axis represents time within a year using astronomical symbols. <br/> <span class="fig-src"><em>Source:</em> Johann Heinrich Lambert, Pyrometrie; oder, vom maasse des feuers und der wärme mit acht kupfertafeln. Berlin: Haude &amp; Spener, 1779.</span><br/></p>
+<p>J. H. Lambert’s chart of the variation in soil temperatures at
+various latitudes over time. The horizontal axis represents time within
+a year using astronomical symbols. <br/> <span
+class="fig-src"><em>Source:</em> Johann Heinrich Lambert, Pyrometrie;
+oder, vom maasse des feuers und der wärme mit acht kupfertafeln. Berlin:
+Haude &amp; Spener, 1779.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2402,7 +2463,10 @@ Figure 6.4: Chart of soil temperatures
 <h3 class="figtitle">
 Figure 6.5: Plotting the ratio
 </h3>
-Redrawn version of Playfair’s time-series graph, showing the ratio of price of wheat to wages, together with a nonparametric smooth curve. <br/> <span class="fig-src"><em>Source:</em> © The Authors.</span><br/> <b>Rcode</b>: <a href='fig-code/06_5-wheat2.R'> 06_5-wheat2.R </a>
+Redrawn version of Playfair’s time-series graph, showing the ratio of
+price of wheat to wages, together with a nonparametric smooth curve.
+<br/> <span class="fig-src"><em>Source:</em> © The Authors.</span><br/>
+<b>Rcode</b>: <a href='fig-code/06_5-wheat2.R'> 06_5-wheat2.R </a>
 </td>
 </tr>
 </table>
@@ -2415,7 +2479,10 @@ Redrawn version of Playfair’s time-series graph, showing the ratio of price of
 <h3 class="figtitle">
 Figure 6.6: Scatterplot view
 </h3>
-Scatterplot version of Playfair’s data, joining the points in time order, and showing the linear regression of price of wheat on wages. <br/> <span class="fig-src"><em>Source:</em> © The Authors.</span><br/> <b>Rcode</b>: <a href='fig-code/06_6-wheat3.R'> 06_6-wheat3.R </a>
+Scatterplot version of Playfair’s data, joining the points in time
+order, and showing the linear regression of price of wheat on wages.
+<br/> <span class="fig-src"><em>Source:</em> © The Authors.</span><br/>
+<b>Rcode</b>: <a href='fig-code/06_6-wheat3.R'> 06_6-wheat3.R </a>
 </td>
 </tr>
 </table>
@@ -2428,7 +2495,18 @@ Scatterplot version of Playfair’s data, joining the points in time order, and 
 <h3 class="figtitle">
 Figure 6.7: Herschel’s first scatterplot
 </h3>
-<p>Herschel’s graphical method applied to his data on the double star &lt;U+03B3&gt; Virginis. The plot shows observations of position angle separating the twin stars on the vertical axis and time on the horizontal axis. Some observations, considered as more reliable, are shown as double circles. The key feature is the smoothed curve, from which he drew the tangent lines, giving him the angular velocities at evenly spaced distances along the curve. <br/> <span class="fig-src"><em>Source:</em> John F. W. Herschel, “On the investigation of the orbits of revolving double stars: Being a supplement to a paper entitled ‘micrometrical measures of 364 double stars,’” Memoirs of the Royal Astronomical Society, 5, (1833), 171–222.</span><br/></p>
+<p>Herschel’s graphical method applied to his data on the double star
+&lt;U+03B3&gt; Virginis. The plot shows observations of position angle
+separating the twin stars on the vertical axis and time on the
+horizontal axis. Some observations, considered as more reliable, are
+shown as double circles. The key feature is the smoothed curve, from
+which he drew the tangent lines, giving him the angular velocities at
+evenly spaced distances along the curve. <br/> <span
+class="fig-src"><em>Source:</em> John F. W. Herschel, “On the
+investigation of the orbits of revolving double stars: Being a
+supplement to a paper entitled ‘micrometrical measures of 364 double
+stars,’” Memoirs of the Royal Astronomical Society, 5, (1833),
+171–222.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2441,7 +2519,10 @@ Figure 6.7: Herschel’s first scatterplot
 <h3 class="figtitle">
 Figure 6.8: Star measurements
 </h3>
-<p>Observations of a double star involved measuring two quantities to determine the orbit: the position angle of the fainter star and the angular distance between them. <br/> <span class="fig-src"><em>Source:</em> © The Authors.</span><br/></p>
+<p>Observations of a double star involved measuring two quantities to
+determine the orbit: the position angle of the fainter star and the
+angular distance between them. <br/> <span
+class="fig-src"><em>Source:</em> © The Authors.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2454,7 +2535,13 @@ Figure 6.8: Star measurements
 <h3 class="figtitle">
 Figure 6.9: Herschel redone
 </h3>
-Reconstruction of Herschel’s graph of data on the orbits of &lt;U+03B3&gt; Virginis together with his eye-smoothed, interpolated curve (light gray) and a loess smoothed curve (dark gray). Circles around each data point are of area proportional to Herschel’s weight for the observation. <br/> <span class="fig-src"><em>Source:</em> © The Authors.</span><br/> <b>Rcode</b>: <a href='fig-code/06_9-herschel.R'> 06_9-herschel.R </a>
+Reconstruction of Herschel’s graph of data on the orbits of
+&lt;U+03B3&gt; Virginis together with his eye-smoothed, interpolated
+curve (light gray) and a loess smoothed curve (dark gray). Circles
+around each data point are of area proportional to Herschel’s weight for
+the observation. <br/> <span class="fig-src"><em>Source:</em> © The
+Authors.</span><br/> <b>Rcode</b>: <a href='fig-code/06_9-herschel.R'>
+06_9-herschel.R </a>
 </td>
 </tr>
 </table>
@@ -2467,7 +2554,15 @@ Reconstruction of Herschel’s graph of data on the orbits of &lt;U+03B3&gt; Vir
 <h3 class="figtitle">
 Figure 6.10: Ellipse geometry
 </h3>
-<p>Herschel’s geometric construction of the apparent elliptical orbit of Gamma Virginis from the calculations based on Figure 6.7. The principal star is marked “S.” The labeled points around the ellipse show the interpolated observations translated to this space. <br/> <span class="fig-src"><em>Source:</em> John F. W. Herschel, “On the investigation of the orbits of revolving double stars: Being a supplement to a paper entitled ‘micrometrical measures of 364 double stars,”’ Memoirs of the Royal Astronomical Society, 5, (1833), 171–222.</span><br/></p>
+<p>Herschel’s geometric construction of the apparent elliptical orbit of
+Gamma Virginis from the calculations based on Figure 6.7. The principal
+star is marked “S.” The labeled points around the ellipse show the
+interpolated observations translated to this space. <br/> <span
+class="fig-src"><em>Source:</em> John F. W. Herschel, “On the
+investigation of the orbits of revolving double stars: Being a
+supplement to a paper entitled ‘micrometrical measures of 364 double
+stars,”’ Memoirs of the Royal Astronomical Society, 5, (1833),
+171–222.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2480,7 +2575,12 @@ Figure 6.10: Ellipse geometry
 <h3 class="figtitle">
 Figure 6.11: The first correlation diagram
 </h3>
-<p>Galton’s first correlation diagram, showing the relation between head circumference and height, from his undated notebook, “Special Peculiarities.” <br/> <span class="fig-src"><em>Source:</em> Reproduced from Victor L. Hilts, A Guide to Francis Galton’s English Men of Science, Vol. 65, Part 5. Philadelphia, PA: Transactions of the American Philosophical Society, 1975, pp. 1–85, fig. 5.</span><br/></p>
+<p>Galton’s first correlation diagram, showing the relation between head
+circumference and height, from his undated notebook, “Special
+Peculiarities.” <br/> <span class="fig-src"><em>Source:</em> Reproduced
+from Victor L. Hilts, A Guide to Francis Galton’s English Men of
+Science, Vol. 65, Part 5. Philadelphia, PA: Transactions of the American
+Philosophical Society, 1975, pp. 1–85, fig. 5.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2493,7 +2593,11 @@ Figure 6.11: The first correlation diagram
 <h3 class="figtitle">
 Figure 6.12: Sweet pea diagram
 </h3>
-<p>Galton’s semigraphic table of the sweet pea data, represented in classed intervals around the averages for parent and child seeds. The marks in the cells are supposed to represent the number of seeds in each combination. <br/> <span class="fig-src"><em>Source:</em> galton.org.</span><br/></p>
+<p>Galton’s semigraphic table of the sweet pea data, represented in
+classed intervals around the averages for parent and child seeds. The
+marks in the cells are supposed to represent the number of seeds in each
+combination. <br/> <span class="fig-src"><em>Source:</em>
+galton.org.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2506,7 +2610,17 @@ Figure 6.12: Sweet pea diagram
 <h3 class="figtitle">
 Figure 6.13: Visual argument for regression
 </h3>
-Reconstruction of Galton’s argument from the experiment on sweet peas, from his 1877 graph. The plotted points show the data that Galton later reported in his 1889 Natural Inheritance (table 2, p. 226), but jittered horizontally because the sizes of the parent seeds were discrete. The solid line shows the fitted linear relation of means (+), joined by a thicker line. The fact that the fitted line of the means had a slope less than 1.0 implied what Galton later called “regression toward the mean” in filial characteristics. <br/> <span class="fig-src"><em>Source:</em> © The Authors.</span><br/> <b>Rcode</b>: <a href='fig-code/06_13-galton-peas.R'> 06_13-galton-peas.R </a>
+Reconstruction of Galton’s argument from the experiment on sweet peas,
+from his 1877 graph. The plotted points show the data that Galton later
+reported in his 1889 Natural Inheritance (table 2, p. 226), but jittered
+horizontally because the sizes of the parent seeds were discrete. The
+solid line shows the fitted linear relation of means (+), joined by a
+thicker line. The fact that the fitted line of the means had a slope
+less than 1.0 implied what Galton later called “regression toward the
+mean” in filial characteristics. <br/> <span
+class="fig-src"><em>Source:</em> © The Authors.</span><br/>
+<b>Rcode</b>: <a href='fig-code/06_13-galton-peas.R'>
+06_13-galton-peas.R </a>
 </td>
 </tr>
 </table>
@@ -2519,20 +2633,34 @@ Reconstruction of Galton’s argument from the experiment on sweet peas, from hi
 <h3 class="figtitle">
 Figure 6.14: Semigraphic table
 </h3>
-<p>Galton’s Table I on the relationship between heights of parents and their children. Entries in the table are the number of adult children. <br/> <span class="fig-src"><em>Source:</em> Reformatted from Francis Galton, “Regression towards Mediocrity in Hereditary Stature,” Journal of the Anthropological Institute of Great Britain and Ireland, 15 (1886), 246–263, table I.</span><br/></p>
+<p>Galton’s Table I on the relationship between heights of parents and
+their children. Entries in the table are the number of adult children.
+<br/> <span class="fig-src"><em>Source:</em> Reformatted from Francis
+Galton, “Regression towards Mediocrity in Hereditary Stature,” Journal
+of the Anthropological Institute of Great Britain and Ireland, 15
+(1886), 246–263, table I.</span><br/></p>
 </td>
 </tr>
 </table>
 <table class="chap-fig">
 <tr>
 <td width="400">
-<img src='figs-web/06_15-galton-interp2.png' alt='Finding contours: A reconstruction of Galton’s method for finding contours of approximately equal frequency in the relation between heights of parents and their children.' width=400> <img src='figs-web/06_15-galton-interp3.png' alt='Finding contours: A reconstruction of Galton’s method for finding contours of approximately equal frequency in the relation between heights of parents and their children.' width=400>
+<img src='figs-web/06_15-galton-interp2.png' alt='Finding contours: A reconstruction of Galton’s method for finding contours of approximately equal frequency in the relation between heights of parents and their children.' width=400>
+<img src='figs-web/06_15-galton-interp3.png' alt='Finding contours: A reconstruction of Galton’s method for finding contours of approximately equal frequency in the relation between heights of parents and their children.' width=400>
 </td>
 <td class="chap-fig-desc" width="400">
 <h3 class="figtitle">
 Figure 6.15: Finding contours
 </h3>
-A reconstruction of Galton’s method for finding contours of approximately equal frequency in the relation between heights of parents and their children. Top: The original data from his table (Figure 6.14) are shown in a small font (dark); the smoothed values are shown in a large font (light). Bottom: the lines joining the means of y|x and the means of x|y are added, together with the corresponding regression lines. <br/> <span class="fig-src"><em>Source:</em> © The Authors.</span><br/> <b>Rcode</b>: <a href='fig-code/06_15-galton-ex2.R'> 06_15-galton-ex2.R </a>
+A reconstruction of Galton’s method for finding contours of
+approximately equal frequency in the relation between heights of parents
+and their children. Top: The original data from his table (Figure 6.14)
+are shown in a small font (dark); the smoothed values are shown in a
+large font (light). Bottom: the lines joining the means of y|x and the
+means of x|y are added, together with the corresponding regression
+lines. <br/> <span class="fig-src"><em>Source:</em> © The
+Authors.</span><br/> <b>Rcode</b>:
+<a href='fig-code/06_15-galton-ex2.R'> 06_15-galton-ex2.R </a>
 </td>
 </tr>
 </table>
@@ -2545,7 +2673,14 @@ A reconstruction of Galton’s method for finding contours of approximately equa
 <h3 class="figtitle">
 Figure 6.16: Elliptical insight
 </h3>
-<p>Galton’s smoothed correlation diagram for the data on heights of parents and children, showing one ellipse of constant frequency. The geometric relations between the regression lines and the tangent lines and major and minor axes are also shown. <br/> <span class="fig-src"><em>Source:</em> Extracted from Francis Galton, “Regression towards Mediocrity in Hereditary Stature,” Journal of the Anthropological Institute of Great Britain and Ireland, 15 (1886), 246–263, Plate X.</span><br/></p>
+<p>Galton’s smoothed correlation diagram for the data on heights of
+parents and children, showing one ellipse of constant frequency. The
+geometric relations between the regression lines and the tangent lines
+and major and minor axes are also shown. <br/> <span
+class="fig-src"><em>Source:</em> Extracted from Francis Galton,
+“Regression towards Mediocrity in Hereditary Stature,” Journal of the
+Anthropological Institute of Great Britain and Ireland, 15 (1886),
+246–263, Plate X.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2558,20 +2693,32 @@ Figure 6.16: Elliptical insight
 <h3 class="figtitle">
 Figure 6.17: Early HR diagram
 </h3>
-<p>Russell’s plot of absolute magnitude against spectral class. <br/> <span class="fig-src"><em>Source:</em> Ian Spence and Robert F. Garrison, “A Remarkable Scatterplot,” The American Statistician, 47:1 (1993), pp. 12–19, fig. 1. Reprinted by permission of Taylor &amp; Francis Ltd.</span><br/></p>
+<p>Russell’s plot of absolute magnitude against spectral class. <br/>
+<span class="fig-src"><em>Source:</em> Ian Spence and Robert F.
+Garrison, “A Remarkable Scatterplot,” The American Statistician, 47:1
+(1993), pp. 12–19, fig. 1. Reprinted by permission of Taylor &amp;
+Francis Ltd.</span><br/></p>
 </td>
 </tr>
 </table>
 <table class="chap-fig">
 <tr>
 <td width="400">
-<img src='figs-web/06_18a-hertzsprung1.png' alt='Outliers fool least-squares regression: Hertzsprung–Russell diagrams for a collection of stars in the CYG OB1 star cluster.' width=400> <img src='figs-web/06_18b-hertzsprung2.png' alt='Outliers fool least-squares regression: Hertzsprung–Russell diagrams for a collection of stars in the CYG OB1 star cluster.' width=400>
+<img src='figs-web/06_18a-hertzsprung1.png' alt='Outliers fool least-squares regression: Hertzsprung–Russell diagrams for a collection of stars in the CYG OB1 star cluster.' width=400>
+<img src='figs-web/06_18b-hertzsprung2.png' alt='Outliers fool least-squares regression: Hertzsprung–Russell diagrams for a collection of stars in the CYG OB1 star cluster.' width=400>
 </td>
 <td class="chap-fig-desc" width="400">
 <h3 class="figtitle">
 Figure 6.18: Outliers fool least-squares regression
 </h3>
-Hertzsprung–Russell diagrams for a collection of stars in the CYG OB1 star cluster. Top: regression line and data ellipse covering 50% of the points, fit using standard least-squares methods; bottom: regression line and 50% data ellipse using a robust method which is insensitive to the obvious unusual points in the upper left corner. <br/> <span class="fig-src"><em>Source:</em> © The Authors.</span><br/> <b>Rcode</b>: <a href='fig-code/06_18-hertzsprung.R'> 06_18-hertzsprung.R </a>
+Hertzsprung–Russell diagrams for a collection of stars in the CYG OB1
+star cluster. Top: regression line and data ellipse covering 50% of the
+points, fit using standard least-squares methods; bottom: regression
+line and 50% data ellipse using a robust method which is insensitive to
+the obvious unusual points in the upper left corner. <br/> <span
+class="fig-src"><em>Source:</em> © The Authors.</span><br/>
+<b>Rcode</b>: <a href='fig-code/06_18-hertzsprung.R'>
+06_18-hertzsprung.R </a>
 </td>
 </tr>
 </table>
@@ -2584,7 +2731,12 @@ Hertzsprung–Russell diagrams for a collection of stars in the CYG OB1 star clu
 <h3 class="figtitle">
 Figure 6.19: The Phillips curve
 </h3>
-<p>Phillips’s data on wage inflation and unemployment, 1861–1913, with the fitted Phillips curve. Points used in the fitting process are shown by + signs. <br/> <span class="fig-src"><em>Source:</em> A. W. Phillips, “The Relation between Unemployment and the Rate of Change of Money Wage Rates in the United Kingdom, 1861–1957,” Economica, 25:100 (1958), pp. 283–299, fig. 1.</span><br/></p>
+<p>Phillips’s data on wage inflation and unemployment, 1861–1913, with
+the fitted Phillips curve. Points used in the fitting process are shown
+by + signs. <br/> <span class="fig-src"><em>Source:</em> A. W. Phillips,
+“The Relation between Unemployment and the Rate of Change of Money Wage
+Rates in the United Kingdom, 1861–1957,” Economica, 25:100 (1958),
+pp. 283–299, fig. 1.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2597,7 +2749,12 @@ Figure 6.19: The Phillips curve
 <h3 class="figtitle">
 Figure 6.20: Unemployment cycles
 </h3>
-<p>Phillips’s data showing one cycle in wage inflation and unem- ployment, 1893–1904, with the fitted curve from 1861 to 1913. <br/> <span class="fig-src"><em>Source:</em> A. W. Phillips, “The Relation between Unemployment and the Rate of Change of Money Wage Rates in the United Kingdom, 1861–1957,” Economica, 25:100 (1958), pp. 283–299, fig. 6.</span><br/></p>
+<p>Phillips’s data showing one cycle in wage inflation and unem-
+ployment, 1893–1904, with the fitted curve from 1861 to 1913. <br/>
+<span class="fig-src"><em>Source:</em> A. W. Phillips, “The Relation
+between Unemployment and the Rate of Change of Money Wage Rates in the
+United Kingdom, 1861–1957,” Economica, 25:100 (1958), pp. 283–299,
+fig. 6.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2610,7 +2767,13 @@ Figure 6.20: Unemployment cycles
 <h3 class="figtitle">
 Figure 6.21: A spurious correlation
 </h3>
-Chocolate consumption per capita and the number of Nobel prizes per million population in twenty-three countries. <br/> <span class="fig-src"><em>Source:</em> © The Authors. Redrawn from Franz H. Messerli, “Chocolate Consumption, Cognitive Function, and Nobel Laureates,” The New Eng- land Journal of Medicine, 367:16 (2012), pp. 1562–1564, fig. 1.</span><br/> <b>Rcode</b>: <a href='fig-code/06_21-nobel-chocolate.R'> 06_21-nobel-chocolate.R </a>
+Chocolate consumption per capita and the number of Nobel prizes per
+million population in twenty-three countries. <br/> <span
+class="fig-src"><em>Source:</em> © The Authors. Redrawn from Franz H.
+Messerli, “Chocolate Consumption, Cognitive Function, and Nobel
+Laureates,” The New Eng- land Journal of Medicine, 367:16 (2012),
+pp. 1562–1564, fig. 1.</span><br/> <b>Rcode</b>:
+<a href='fig-code/06_21-nobel-chocolate.R'> 06_21-nobel-chocolate.R </a>
 </td>
 </tr>
 </table>
@@ -2623,7 +2786,16 @@ Chocolate consumption per capita and the number of Nobel prizes per million popu
 <h3 class="figtitle">
 Figure 6.22: More spurious correlations
 </h3>
-Correlations between countries’ number of Nobel laureates per 10 million population and other spurious causes: (A) annual per capita wine consumption; (B) number of IKEA stores per 10 million population. Data source: Pierre Maurage, Alexandre Heeren, and Mauro Pesenti, “Does Chocolate Consumption Really Boost Nobel Award Chances? The Peril of Over-Interpreting Correlations in Health Studies,” Journal of Nutrition, 143:6 (2013), pp. 931–933, figs. 1B and 1C.<br/> <span class="fig-src"><em>Source:</em> © The Authors.</span><br/> <b>Rcode</b>: <a href='fig-code/06_22-nobel-wine.R'> 06_22-nobel-wine.R </a>
+Correlations between countries’ number of Nobel laureates per 10 million
+population and other spurious causes: (A) annual per capita wine
+consumption; (B) number of IKEA stores per 10 million population. Data
+source: Pierre Maurage, Alexandre Heeren, and Mauro Pesenti, “Does
+Chocolate Consumption Really Boost Nobel Award Chances? The Peril of
+Over-Interpreting Correlations in Health Studies,” Journal of Nutrition,
+143:6 (2013), pp. 931–933, figs. 1B and 1C.<br/> <span
+class="fig-src"><em>Source:</em> © The Authors.</span><br/>
+<b>Rcode</b>: <a href='fig-code/06_22-nobel-wine.R'> 06_22-nobel-wine.R
+</a>
 </td>
 </tr>
 </table>
@@ -2636,7 +2808,15 @@ Correlations between countries’ number of Nobel laureates per 10 million popul
 <h3 class="figtitle">
 Plate P.9: Polarization of politics
 </h3>
-Ridgeline plot showing the increasing polarization of U.S. House of Representatives and Senate in the Democratic (left, blue) and Republican (right, red) parties from 1963 to 2013. The DW-NOMINATE scores attempt to characterize the main dimensions that distinguish voting patterns of U.S. legislators. The first dimension, plotted here, is interpreted as a liberal-conservative or left-right dimension. <br/> <span class="fig-src"><em>Source:</em> Rpubs.</span><br/> <b>Rcode</b>: <a href='fig-code/06_P9-ridgeline-politics.R'> 06_P9-ridgeline-politics.R </a>
+Ridgeline plot showing the increasing polarization of U.S. House of
+Representatives and Senate in the Democratic (left, blue) and Republican
+(right, red) parties from 1963 to 2013. The DW-NOMINATE scores attempt
+to characterize the main dimensions that distinguish voting patterns of
+U.S. legislators. The first dimension, plotted here, is interpreted as a
+liberal-conservative or left-right dimension. <br/> <span
+class="fig-src"><em>Source:</em> Rpubs.</span><br/> <b>Rcode</b>:
+<a href='fig-code/06_P9-ridgeline-politics.R'>
+06_P9-ridgeline-politics.R </a>
 </td>
 </tr>
 </table>
@@ -2649,12 +2829,17 @@ Ridgeline plot showing the increasing polarization of U.S. House of Representati
 <h3 class="figtitle">
 Plate P.10: Playfair’s time-series chart
 </h3>
-<p>William Playfair’s 1821 time-series graph of prices, wages, and ruling monarch over a 250-year period. <br/> <span class="fig-src"><em>Source:</em> William Playfair, A Letter on our agricultural distresses, their causes and remedies. London: W. Sams, 1821. Image courtesy of Stephen Stigler.</span><br/></p>
+<p>William Playfair’s 1821 time-series graph of prices, wages, and
+ruling monarch over a 250-year period. <br/> <span
+class="fig-src"><em>Source:</em> William Playfair, A Letter on our
+agricultural distresses, their causes and remedies. London: W. Sams,
+1821. Image courtesy of Stephen Stigler.</span><br/></p>
 </td>
 </tr>
 </table>
 </div>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

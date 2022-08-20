@@ -50,16 +50,17 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { } /* Attribute */
+code span.at { color: #657422; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
+code span.cf { color: #00769e; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -73,9 +74,9 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
+code span.kw { color: #00769e; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
+code span.ot { color: #00769e; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
 code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
@@ -1027,10 +1028,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     margin-top: 1.5em;
   }
 
-  .figure img {
-    width: 100%;
-  }
-
   .figure .caption {
     color: rgba(0, 0, 0, 0.6);
     font-size: 12px;
@@ -1860,6 +1857,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
+        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
+          var fn = $(this).children()[0]
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
           return "<p>" + $('#ref-' + ref).html() + "</p>";
@@ -1874,6 +1877,31 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           placement: 'bottom-start'
         });
       });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
 
       // clear polling timer
       clearInterval(tid);
@@ -1973,6 +2001,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -1995,7 +2025,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
       });
     }
 
@@ -2034,7 +2064,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.15/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2276,36 +2306,60 @@ Chapters
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#who-needs-this-book">Who needs this book?</a></li>
-<li><a href="#front-cover">Front cover</a></li>
-<li><a href="#translations">Translations</a></li>
-<li><a href="#datasets">Datasets</a>
+<li><a href="#who-needs-this-book" id="toc-who-needs-this-book">Who
+needs this book?</a></li>
+<li><a href="#front-cover" id="toc-front-cover">Front cover</a></li>
+<li><a href="#translations" id="toc-translations">Translations</a></li>
+<li><a href="#datasets" id="toc-datasets">Datasets</a>
 <ul>
-<li><a href="#rcode">R code for figures</a></li>
+<li><a href="#rcode" id="toc-rcode">R code for figures</a></li>
 </ul></li>
-<li><a href="#errata">Errata</a></li>
-<li><a href="#credits">Credits</a></li>
+<li><a href="#errata" id="toc-errata">Errata</a></li>
+<li><a href="#credits" id="toc-credits">Credits</a></li>
 </ul>
 </nav>
 </div>
-<p>These web pages are meant as a supplement to our book, <a href="https://www.hup.harvard.edu/catalog.php?isbn=9780674975231">A History of Data Visualization and Graphic Communication</a>. The main goals are to:</p>
+<p>These web pages are meant as a supplement to our book, <a
+href="https://www.hup.harvard.edu/catalog.php?isbn=9780674975231">A
+History of Data Visualization and Graphic Communication</a>. The main
+goals are to:</p>
 <ul>
-<li>reproduce here more color figures than could be accommodated in the print edition. The selected figures are shown as thumbnails, but can be enlarged with a click. R code for the figures we reproduced are also provided as links in the figure captions.</li>
-<li>provide links to <a href="related.html">related papers</a> and topics that expand on the themes in our book.</li>
-<li>serve as a forum for comments, errata and other topics that could not be fully covered in this first edition.</li>
+<li>reproduce here more color figures than could be accommodated in the
+print edition. The selected figures are shown as thumbnails, but can be
+enlarged with a click. R code for the figures we reproduced are also
+provided as links in the figure captions.</li>
+<li>provide links to <a href="related.html">related papers</a> and
+topics that expand on the themes in our book.</li>
+<li>serve as a forum for comments, errata and other topics that could
+not be fully covered in this first edition.</li>
 </ul>
 <h2 id="who-needs-this-book">Who needs this book?</h2>
-<p>The book is aimed at an educated, lay audience: in general anyone who must either convey or receive quantitative information, which at one time or another includes all of us. This includes, but is not limited to, graphic designers, statisticians, and people in the media. Typical audiences would be readers of the <em>NY Times</em>, <em>The New Yorker</em>, <em>Scientific American</em>, the <em>New Republic</em>, <em>National Review</em> and related publications in other venues.</p>
-<p>A more specific market segment is the large community of professionals in the history of science, cartography, data journalism, graphic design, and information visualization, visualization software.</p>
+<p>The book is aimed at an educated, lay audience: in general anyone who
+must either convey or receive quantitative information, which at one
+time or another includes all of us. This includes, but is not limited
+to, graphic designers, statisticians, and people in the media. Typical
+audiences would be readers of the <em>NY Times</em>, <em>The New
+Yorker</em>, <em>Scientific American</em>, the <em>New Republic</em>,
+<em>National Review</em> and related publications in other venues.</p>
+<p>A more specific market segment is the large community of
+professionals in the history of science, cartography, data journalism,
+graphic design, and information visualization, visualization
+software.</p>
 <h2 id="front-cover">Front cover</h2>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="figs-web/P_08-playfair1805-inquiry-crop.jpg" width="90%" style="display: block; margin: auto;" /></p>
 </div>
-<p>The design of the front cover is based on William Playfair’s (1805) marvelous <em>Chart of Universal Commercial History</em>. In it, he asks:</p>
+<p>The design of the front cover is based on William Playfair’s (1805)
+marvelous <em>Chart of Universal Commercial History</em>. In it, he
+asks:</p>
 <ul>
-<li>How and when did civilizations rise and fall from 1500 BCE to 1800 AD?</li>
+<li>How and when did civilizations rise and fall from 1500 BCE to 1800
+AD?</li>
 </ul>
-<p>He shows ancient and modern civilizations in the form of small graphs over time, representing some indication of strength of an empire or civilization, in a way that then can be visually compared to ask further questions:</p>
+<p>He shows ancient and modern civilizations in the form of small graphs
+over time, representing some indication of strength of an empire or
+civilization, in a way that then can be visually compared to ask further
+questions:</p>
 <ul>
 <li>Why were some so long-lived?</li>
 <li>When and why did some of them fail?</li>
@@ -2314,66 +2368,129 @@ Chapters
 <ul>
 <li>How to visualize a history and tell its story?</li>
 </ul>
-<p>This chart, like our book, takes a long view of history, with the necessity of some degree of abstraction. These questions also provide a structure for discussing the history of data visualization.</p>
-<p>Playfair’s chart uses what at the time was a brilliant and novel graphic form: using compressed little distributions showing the “relative” strength of each civilization over time in a way thay they could be easily compared. The colored bands reflect:</p>
+<p>This chart, like our book, takes a long view of history, with the
+necessity of some degree of abstraction. These questions also provide a
+structure for discussing the history of data visualization.</p>
+<p>Playfair’s chart uses what at the time was a brilliant and novel
+graphic form: using compressed little distributions showing the
+“relative” strength of each civilization over time in a way thay they
+could be easily compared. The colored bands reflect:</p>
 <ul>
 <li>ancient states (<span style="color:darkpink">pink</span>)</li>
 <li>modern states (<span style="color:darkgreen">green</span>)</li>
 <li>America (<span style="color:darkyellow">yellow</span>)</li>
 </ul>
-<p>This graphic form was recently re-invented and called a “ridgeline” plot because it resembles a set of mountain ridges. This figure appears as Plate 8 in the book and is discussed in <a href="ch05-playfair.html">Chapter 5</a>, “Charts of History”.</p>
+<p>This graphic form was recently re-invented and called a “ridgeline”
+plot because it resembles a set of mountain ridges. This figure appears
+as Plate 8 in the book and is discussed in <a
+href="ch05-playfair.html">Chapter 5</a>, “Charts of History”.</p>
 <h2 id="translations">Translations</h2>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="images/Japanese-cover.jpg" width="10%" style="display: block; margin: auto auto auto 0;" /></p>
 </div>
 <ul>
-<li><p>A <a href="http://www.seidosha.co.jp/book/index.php?id=3626">Japanese translation</a> was recently published by Seidosha.</p></li>
+<li><p>A <a
+href="http://www.seidosha.co.jp/book/index.php?id=3626">Japanese
+translation</a> was recently published by Seidosha.</p></li>
 <li><p>A Chinese translation is in the works.</p></li>
 </ul>
 <h2 id="datasets">Datasets</h2>
-<p>A unique feature of our book is that we try to appreciate the efforts of key thinkers in the history of data visualization by understanding their data and the graphs they produced. In many cases, we can shed some light on their topics and graphical innovations by trying to reproduce their graphs with modern software.</p>
-<p>Toward this end, we created two R packages, used in some of our graphs in the book.</p>
+<p>A unique feature of our book is that we try to appreciate the efforts
+of key thinkers in the history of data visualization by understanding
+their data and the graphs they produced. In many cases, we can shed some
+light on their topics and graphical innovations by trying to reproduce
+their graphs with modern software.</p>
+<p>Toward this end, we created two R packages, used in some of our
+graphs in the book.</p>
 <ul>
-<li><p><a href="https://cran.r-project.org/package=HistData">HistData</a>, a collection of many datasets that are interesting and important in the history of statistics and data visualization. In addition, we use some features from Peter Li’s <a href="https://cran.r-project.org/package=cholera">cholera</a> package for graphs of John Snow’s data on the 1854 cholera outbreak in London.</p></li>
-<li><p><a href="https://cran.r-project.org/package=Guerry">Guerry</a>, datasets and maps related to Guerry’s (1833) <em>La Statistique Morale de la France</em>.</p></li>
+<li><p><a
+href="https://cran.r-project.org/package=HistData">HistData</a>, a
+collection of many datasets that are interesting and important in the
+history of statistics and data visualization. In addition, we use some
+features from Peter Li’s <a
+href="https://cran.r-project.org/package=cholera">cholera</a> package
+for graphs of John Snow’s data on the 1854 cholera outbreak in
+London.</p></li>
+<li><p><a href="https://cran.r-project.org/package=Guerry">Guerry</a>,
+datasets and maps related to Guerry’s (1833) <em>La Statistique Morale
+de la France</em>.</p></li>
 </ul>
 <h3 id="rcode">R code for figures</h3>
-<p>This is a list of the <a href="https://cran.r-project.org/">R code</a> files for our reconstructions of historical graphs. They are also linked in the figure captions on the individual chapter pages.</p>
+<p>This is a list of the <a href="https://cran.r-project.org/">R
+code</a> files for our reconstructions of historical graphs. They are
+also linked in the figure captions on the individual chapter pages.</p>
 <ul>
-<li><a href="fig-code/00_1-mileyears4.R">Figure 00_1: Timeline of milestones events, by continent</a></li>
-<li><a href="fig-code/02_3-graphic-forms.R">Figure 02_3: Graphical inventions</a></li>
-<li><a href="fig-code/03_2-arbuthnot-gg.R">Figure 03_2: Sex ratio. Arbuthnot’s data on the ratio of male to female births</a></li>
-<li><a href="fig-code/03_7-guerrymap.R">Figure 03_7: Reproduction of Guerry’s six maps</a></li>
-<li><a href="fig-code/03_8-guerry-bivar.R">Figure 03_8: Enhanced scatterplot of crimes against persons vs literacy</a></li>
-<li><a href="fig-code/04_10-nightingale-line.R">Figure 04_10: Line graph of Nightingale’s data</a></li>
-<li><a href="fig-code/04_3-cholera-elevation-law.R">Figure 04_3: Farr’s elevation - mortality data as a scatterplot</a></li>
-<li><a href="fig-code/04_4-cholera-mod.R">Figure 04_4: Farr’s Inverse Natural Law of Cholera and Elevation</a></li>
-<li><a href="fig-code/04_6-cholera-water.R">Figure 04_6: Cholera deaths by water supply region</a></li>
-<li><a href="fig-code/04_P3a-cholera-neighborhoods.R">Plate 04_P3a: Snow’s cholera map with pump neighborhoods</a></li>
-<li><a href="fig-code/04_P3b-SnowMap-density.R">Plate 04_P3b: Snow’s cholera map with pump polygons</a></li>
-<li><a href="fig-code/05_5-playfair-east-indies.R">Figure 05_5: Re-creating Playfair’s graph of balance of trade with East Indies</a></li>
-<li><a href="fig-code/06_1-workers.R">Figure 06_1: Modern scatterplot</a></li>
-<li><a href="fig-code/06_13-galton-peas.R">Figure 06_13: Galton’s visual argument for regression</a></li>
-<li><a href="fig-code/06_15-galton-ex2.R">Figure 06_15: Galton’s method for finding contours of equal frequency</a></li>
-<li><a href="fig-code/06_18-hertzsprung.R">Figure 06_18: Hertzsprung-Russel diagrams for stars in the CYG OB1 cluster</a></li>
-<li><a href="fig-code/06_21-nobel-chocolate.R">Figure 06_21: Chocolate consumption and Nobel prizes</a></li>
-<li><a href="fig-code/06_22-nobel-wine.R">Figure 06_22: Wine, IKEA and Nobel prizes</a></li>
-<li><a href="fig-code/06_5-wheat2.R">Figure 06_5: Re-drawn version of Playfair’s graph</a></li>
-<li><a href="fig-code/06_6-wheat3.R">Figure 06_6: Scatterplot version of Playfair’s plot</a></li>
-<li><a href="fig-code/06_9-herschel.R">Figure 06_9: Reconstruction of Herschel’s graph</a></li>
-<li><a href="fig-code/06_P9-ridgeline-politics.R">Plate 06_P9: Ridgeline plot showing increasing polarization of politics</a></li>
-<li><a href="fig-code/07_1-mileyears3.R">Figure 07_1: Milestones timeline</a></li>
-<li><a href="fig-code/09_13-randu1.R">Figure 09_13: Plots of successive pairs of RANDU random numbers</a></li>
+<li><a href="fig-code/00_1-mileyears4.R">Figure 00_1: Timeline of
+milestones events, by continent</a></li>
+<li><a href="fig-code/02_3-graphic-forms.R">Figure 02_3: Graphical
+inventions</a></li>
+<li><a href="fig-code/03_2-arbuthnot-gg.R">Figure 03_2: Sex ratio.
+Arbuthnot’s data on the ratio of male to female births</a></li>
+<li><a href="fig-code/03_7-guerrymap.R">Figure 03_7: Reproduction of
+Guerry’s six maps</a></li>
+<li><a href="fig-code/03_8-guerry-bivar.R">Figure 03_8: Enhanced
+scatterplot of crimes against persons vs literacy</a></li>
+<li><a href="fig-code/04_10-nightingale-line.R">Figure 04_10: Line graph
+of Nightingale’s data</a></li>
+<li><a href="fig-code/04_3-cholera-elevation-law.R">Figure 04_3: Farr’s
+elevation - mortality data as a scatterplot</a></li>
+<li><a href="fig-code/04_4-cholera-mod.R">Figure 04_4: Farr’s Inverse
+Natural Law of Cholera and Elevation</a></li>
+<li><a href="fig-code/04_6-cholera-water.R">Figure 04_6: Cholera deaths
+by water supply region</a></li>
+<li><a href="fig-code/04_P3a-cholera-neighborhoods.R">Plate 04_P3a:
+Snow’s cholera map with pump neighborhoods</a></li>
+<li><a href="fig-code/04_P3b-SnowMap-density.R">Plate 04_P3b: Snow’s
+cholera map with pump polygons</a></li>
+<li><a href="fig-code/05_5-playfair-east-indies.R">Figure 05_5:
+Re-creating Playfair’s graph of balance of trade with East
+Indies</a></li>
+<li><a href="fig-code/06_1-workers.R">Figure 06_1: Modern
+scatterplot</a></li>
+<li><a href="fig-code/06_13-galton-peas.R">Figure 06_13: Galton’s visual
+argument for regression</a></li>
+<li><a href="fig-code/06_15-galton-ex2.R">Figure 06_15: Galton’s method
+for finding contours of equal frequency</a></li>
+<li><a href="fig-code/06_18-hertzsprung.R">Figure 06_18:
+Hertzsprung-Russel diagrams for stars in the CYG OB1 cluster</a></li>
+<li><a href="fig-code/06_21-nobel-chocolate.R">Figure 06_21: Chocolate
+consumption and Nobel prizes</a></li>
+<li><a href="fig-code/06_22-nobel-wine.R">Figure 06_22: Wine, IKEA and
+Nobel prizes</a></li>
+<li><a href="fig-code/06_5-wheat2.R">Figure 06_5: Re-drawn version of
+Playfair’s graph</a></li>
+<li><a href="fig-code/06_6-wheat3.R">Figure 06_6: Scatterplot version of
+Playfair’s plot</a></li>
+<li><a href="fig-code/06_9-herschel.R">Figure 06_9: Reconstruction of
+Herschel’s graph</a></li>
+<li><a href="fig-code/06_P9-ridgeline-politics.R">Plate 06_P9: Ridgeline
+plot showing increasing polarization of politics</a></li>
+<li><a href="fig-code/07_1-mileyears3.R">Figure 07_1: Milestones
+timeline</a></li>
+<li><a href="fig-code/09_13-randu1.R">Figure 09_13: Plots of successive
+pairs of RANDU random numbers</a></li>
 <li><a href="fig-code/09_14-randu2.R">Figure 09_14: RANDU in 3D</a></li>
-<li><a href="fig-code/09_15-diabetes.R">Figure 09_15: Diabetes data from Reaven and Miller</a></li>
+<li><a href="fig-code/09_15-diabetes.R">Figure 09_15: Diabetes data from
+Reaven and Miller</a></li>
 </ul>
 <h2 id="errata">Errata</h2>
-<p>Here is a <a href="pdf/Errata.pdf">list of current errata</a>. If you find other errors in the book, file <a href="https://github.com/friendly/HistDataVis/issues">an issue on GitHub</a>.</p>
+<p>Here is a <a href="pdf/Errata.pdf">list of current errata</a>. If you
+find other errors in the book, file <a
+href="https://github.com/friendly/HistDataVis/issues">an issue on
+GitHub</a>.</p>
 <h2 id="credits">Credits</h2>
-<p>All figures displayed here are authorized for this limited use. In some cases, the figures shown here differ from those printed in the book, but these are credited and available for this use.</p>
-<p>In addition, we use a collection of cartoon images for our chapter pages created by RJ Andrews, <a href="http://infowetrust.com">http://infowetrust.com</a>. We are grateful for permission to use them here.</p>
-<p>We thank Matthew Dubins of <a href="https://www.donorscience.ca">Donor Science Consulting</a> for his help in making this web site possible.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>All figures displayed here are authorized for this limited use. In
+some cases, the figures shown here differ from those printed in the
+book, but these are credited and available for this use.</p>
+<p>In addition, we use a collection of cartoon images for our chapter
+pages created by RJ Andrews, <a
+href="http://infowetrust.com">http://infowetrust.com</a>. We are
+grateful for permission to use them here.</p>
+<p>We thank Matthew Dubins of <a
+href="https://www.donorscience.ca">Donor Science Consulting</a> for his
+help in making this web site possible.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

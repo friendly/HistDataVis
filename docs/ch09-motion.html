@@ -50,16 +50,17 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { } /* Attribute */
+code span.at { color: #657422; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
+code span.cf { color: #00769e; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -73,9 +74,9 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
+code span.kw { color: #00769e; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
+code span.ot { color: #00769e; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
 code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
@@ -1027,10 +1028,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     margin-top: 1.5em;
   }
 
-  .figure img {
-    width: 100%;
-  }
-
   .figure .caption {
     color: rgba(0, 0, 0, 0.6);
     font-size: 12px;
@@ -1860,6 +1857,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
+        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
+          var fn = $(this).children()[0]
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
           return "<p>" + $('#ref-' + ref).html() + "</p>";
@@ -1874,6 +1877,31 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           placement: 'bottom-start'
         });
       });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
 
       // clear polling timer
       clearInterval(tid);
@@ -1973,6 +2001,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -1995,7 +2025,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
       });
     }
 
@@ -2034,7 +2064,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.15/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2306,11 +2336,22 @@ Chapters
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
-<h1 id="visualizing-time-and-space">Visualizing Time and Space <img src="images/cartoons/muybridge.png" align="right" height="100px" /></h1>
+<h1 id="visualizing-time-and-space">Visualizing Time and Space
+<img src="images/cartoons/muybridge.png" align="right" height="100px" /></h1>
 <div class="chapterintro">
 <section id="synopsis" class="unnumbered chapterprelude">
 <h4 class="unnumbered">Synopsis</h4>
-<p>The recent history of data visualization is much harder to characterize because innovations have been so varied, and have occurred at an accelerated pace and have appeared across a wider range of disciplines. Among the many threads that could be traced, two general categories stand out; these have made data graphics far more powerful and accessible than ever before. First, graphical methods have become increasingly dynamic and interactive, capable of showing changes over time by animation and changing the nature of a graph from a static image to one that a viewer can directly manipulate, zoom or query. Second, the escape from flatland has been continued, with a variety of new approaches to understanding data in ever higher dimensions.</p>
+<p>The recent history of data visualization is much harder to
+characterize because innovations have been so varied, and have occurred
+at an accelerated pace and have appeared across a wider range of
+disciplines. Among the many threads that could be traced, two general
+categories stand out; these have made data graphics far more powerful
+and accessible than ever before. First, graphical methods have become
+increasingly dynamic and interactive, capable of showing changes over
+time by animation and changing the nature of a graph from a static image
+to one that a viewer can directly manipulate, zoom or query. Second, the
+escape from flatland has been continued, with a variety of new
+approaches to understanding data in ever higher dimensions.</p>
 </section>
 <section id="chapter-contents" class="unnumbered chaptercontents">
 <h4 class="unnumbered">Chapter contents</h4>
@@ -2357,7 +2398,9 @@ Chapters
 <h3 class="figtitle">
 Figure 9.1: The Horse in Motion
 </h3>
-<p>Photographs of the horse “Sally Gardner”running at a gallop, June 19, 1878. <br/> <span class="fig-src"><em>Source:</em> Library of Congress, Prints and Photographs Division, LC-DIG-ppmsca-06607.</span><br/></p>
+<p>Photographs of the horse “Sally Gardner”running at a gallop, June 19,
+1878. <br/> <span class="fig-src"><em>Source:</em> Library of Congress,
+Prints and Photographs Division, LC-DIG-ppmsca-06607.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2370,7 +2413,10 @@ Figure 9.1: The Horse in Motion
 <h3 class="figtitle">
 Figure 9.2: Seeing motion
 </h3>
-<p>Zoopraxiscope disk showing thirteen images of a kicking horse. The frames at the bottom show the sequence of extension of the hind legs together with the support of the fore legs. <br/> <span class="fig-src"><em>Source:</em> Wikimedia Commons.</span><br/></p>
+<p>Zoopraxiscope disk showing thirteen images of a kicking horse. The
+frames at the bottom show the sequence of extension of the hind legs
+together with the support of the fore legs. <br/> <span
+class="fig-src"><em>Source:</em> Wikimedia Commons.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2383,7 +2429,11 @@ Figure 9.2: Seeing motion
 <h3 class="figtitle">
 Figure 9.3: Recording flight
 </h3>
-<p>A harness, designed to register the trajectory, force and speed of a bird’s wing in flight. <br/> <span class="fig-src"><em>Source:</em> Étienne-Jules Marey, La machine animale, locomotion terestre et aérienne. Paris: Librairie Germer Baillière, 1873, fig. 104.</span><br/></p>
+<p>A harness, designed to register the trajectory, force and speed of a
+bird’s wing in flight. <br/> <span class="fig-src"><em>Source:</em>
+Étienne-Jules Marey, La machine animale, locomotion terestre et
+aérienne. Paris: Librairie Germer Baillière, 1873,
+fig. 104.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2396,7 +2446,10 @@ Figure 9.3: Recording flight
 <h3 class="figtitle">
 Figure 9.4: Photographic gun
 </h3>
-<p>One of Marey’s photographic guns. The cylinder at the top holds the film roll, recording twenty-four images over a two-second period. <br/> <span class="fig-src"><em>Source:</em> Wikimedia Commons.</span><br/></p>
+<p>One of Marey’s photographic guns. The cylinder at the top holds the
+film roll, recording twenty-four images over a two-second period. <br/>
+<span class="fig-src"><em>Source:</em> Wikimedia
+Commons.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2409,7 +2462,9 @@ Figure 9.4: Photographic gun
 <h3 class="figtitle">
 Figure 9.5: Starting a sprint
 </h3>
-<p>Chronophotograph of a runner beginning a sprint. <br/> <span class="fig-src"><em>Source:</em> Étienne-Jules Marey, Flight/WordPress.com.</span><br/></p>
+<p>Chronophotograph of a runner beginning a sprint. <br/> <span
+class="fig-src"><em>Source:</em> Étienne-Jules Marey,
+Flight/WordPress.com.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2422,7 +2477,11 @@ Figure 9.5: Starting a sprint
 <h3 class="figtitle">
 Figure 9.6: Falling cat
 </h3>
-<p>Successive images of a falling cat, captured at twelve frames per second on a chronophotographic device. The sequence starts at the upper left, and is continued at the left of the lower panel. <br/> <span class="fig-src"><em>Source:</em> “Photographs of a Tumbling Cat,” Nature, 51:1308 (1894), pp. 80–81, fig. 1.</span><br/></p>
+<p>Successive images of a falling cat, captured at twelve frames per
+second on a chronophotographic device. The sequence starts at the upper
+left, and is continued at the left of the lower panel. <br/> <span
+class="fig-src"><em>Source:</em> “Photographs of a Tumbling Cat,”
+Nature, 51:1308 (1894), pp. 80–81, fig. 1.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2435,7 +2494,12 @@ Figure 9.6: Falling cat
 <h3 class="figtitle">
 Figure 9.7: Visual proof
 </h3>
-<p>Computer-drawn images of rotation according to the mathematical model, overlaid on photographs of a falling cat. <br/> <span class="fig-src"><em>Source:</em> T. R. Kane and M. P. Sher, “A Dynamical Explanation of the Falling Cat Phenomenon,” International Journal Solids Struc- tures, 5 (1969), pp. 663–670, fig. 6. Reprinted with permission from Elsevier.</span><br/></p>
+<p>Computer-drawn images of rotation according to the mathematical
+model, overlaid on photographs of a falling cat. <br/> <span
+class="fig-src"><em>Source:</em> T. R. Kane and M. P. Sher, “A Dynamical
+Explanation of the Falling Cat Phenomenon,” International Journal Solids
+Struc- tures, 5 (1969), pp. 663–670, fig. 6. Reprinted with permission
+from Elsevier.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2448,7 +2512,10 @@ Figure 9.7: Visual proof
 <h3 class="figtitle">
 Figure 9.8: Parametric apple
 </h3>
-<p>Computer-generated image of an apple using parametric equations for the 3D solid surface. Rendering of the surface uses methods to simulate illumination from a light source in front of the viewer. <br/> <span class="fig-src"><em>Source:</em> © The Authors.</span><br/></p>
+<p>Computer-generated image of an apple using parametric equations for
+the 3D solid surface. Rendering of the surface uses methods to simulate
+illumination from a light source in front of the viewer. <br/> <span
+class="fig-src"><em>Source:</em> © The Authors.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2461,20 +2528,27 @@ Figure 9.8: Parametric apple
 <h3 class="figtitle">
 Figure 9.9: 3D graphics model of a cat
 </h3>
-<p>Left: the form of the cat is defined by a wire frame consisting of points and connecting lines; right: the model of the cat has had fur applied and is then animated, twisting as it falls. <br/> <span class="fig-src"><em>Source:</em> nonecg.com.</span><br/></p>
+<p>Left: the form of the cat is defined by a wire frame consisting of
+points and connecting lines; right: the model of the cat has had fur
+applied and is then animated, twisting as it falls. <br/> <span
+class="fig-src"><em>Source:</em> nonecg.com.</span><br/></p>
 </td>
 </tr>
 </table>
 <table class="chap-fig">
 <tr>
 <td width="400">
-<img src='figs-web/09_10a-displays_05_original.png' alt='Early examples of CRT displays: CRT displays from 1950 to 1965.' width=400> <img src='figs-web/09_10b-displays_05_original.png' alt='Early examples of CRT displays: CRT displays from 1950 to 1965.' width=400>
+<img src='figs-web/09_10a-displays_05_original.png' alt='Early examples of CRT displays: CRT displays from 1950 to 1965.' width=400>
+<img src='figs-web/09_10b-displays_05_original.png' alt='Early examples of CRT displays: CRT displays from 1950 to 1965.' width=400>
 </td>
 <td class="chap-fig-desc" width="400">
 <h3 class="figtitle">
 Figure 9.10: Early examples of CRT displays
 </h3>
-<p>CRT displays from 1950 to 1965. <br/> <span class="fig-src"><em>Source:</em> (top) National Institute of Standards and Technology/Wikimedia Commons; (bottom) Todd Dailey / Wikimedia Commons / CC BY-SA 2.0.</span><br/></p>
+<p>CRT displays from 1950 to 1965. <br/> <span
+class="fig-src"><em>Source:</em> (top) National Institute of Standards
+and Technology/Wikimedia Commons; (bottom) Todd Dailey / Wikimedia
+Commons / CC BY-SA 2.0.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2487,7 +2561,10 @@ Figure 9.10: Early examples of CRT displays
 <h3 class="figtitle">
 Figure 9.11: Dimensions of color similarity
 </h3>
-<p>Ekman’s five-factor solution for the similarities among colors. <br/> <span class="fig-src"><em>Source:</em> Gosta Ekman, “Dimensions of color vision,” Journal of Psychology, 38:2 (1954), pp. 467–474, fig. 3. Reprinted with permission of Taylor &amp; Francis Ltd.</span><br/></p>
+<p>Ekman’s five-factor solution for the similarities among colors. <br/>
+<span class="fig-src"><em>Source:</em> Gosta Ekman, “Dimensions of color
+vision,” Journal of Psychology, 38:2 (1954), pp. 467–474, fig. 3.
+Reprinted with permission of Taylor &amp; Francis Ltd.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2500,7 +2577,13 @@ Figure 9.11: Dimensions of color similarity
 <h3 class="figtitle">
 Figure 9.12: The first statistical movie
 </h3>
-<p>Four frames from the multidimensional scaling movie, the first animation of a statistical algorithm. Left: initial configuration for fourteen colors; right: final configuration, making the order of interpoint distances most closely agree with the order of the similarity judgments. <br/> <span class="fig-src"><em>Source:</em> J. B. Kruskal, Multidimensional Scaling, AT&amp;T Bell Laboratories, 1962.</span><br/></p>
+<p>Four frames from the multidimensional scaling movie, the first
+animation of a statistical algorithm. Left: initial configuration for
+fourteen colors; right: final configuration, making the order of
+interpoint distances most closely agree with the order of the similarity
+judgments. <br/> <span class="fig-src"><em>Source:</em> J. B. Kruskal,
+Multidimensional Scaling, AT&amp;T Bell Laboratories,
+1962.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2513,7 +2596,11 @@ Figure 9.12: The first statistical movie
 <h3 class="figtitle">
 Figure 9.13: RANDU
 </h3>
-Plot of successive pairs of 800 random numbers generated by the RANDU algorithm. Nothing unusual stands out: the points appear to be randomly and uniformly distributed in the unit square. <br/> <span class="fig-src"><em>Source:</em> © The Authors.</span><br/> <b>Rcode</b>: <a href='fig-code/09_13-randu1.R'> 09_13-randu1.R </a>
+Plot of successive pairs of 800 random numbers generated by the RANDU
+algorithm. Nothing unusual stands out: the points appear to be randomly
+and uniformly distributed in the unit square. <br/> <span
+class="fig-src"><em>Source:</em> © The Authors.</span><br/>
+<b>Rcode</b>: <a href='fig-code/09_13-randu1.R'> 09_13-randu1.R </a>
 </td>
 </tr>
 </table>
@@ -2526,7 +2613,14 @@ Plot of successive pairs of 800 random numbers generated by the RANDU algorithm.
 <h3 class="figtitle">
 Figure 9.14: RANDU in 3D
 </h3>
-Three-dimensional plots of successive triples of 400 sets of random numbers generated by RANDU. The left panel shows the positions of the points in a standard unit cube, with axes x[i], x[i+1], x[i+2]. The right figure shows the same plot rotated slightly. The points now appear on 15 parallel planes in 3-space, indicating their systematic (non-random) pattern. <br/> <span class="fig-src"><em>Source:</em> © The Authors.</span><br/> <b>Rcode</b>: <a href='fig-code/09_14-randu2.R'> 09_14-randu2.R </a>
+Three-dimensional plots of successive triples of 400 sets of random
+numbers generated by RANDU. The left panel shows the positions of the
+points in a standard unit cube, with axes x[i], x[i+1], x[i+2]. The
+right figure shows the same plot rotated slightly. The points now appear
+on 15 parallel planes in 3-space, indicating their systematic
+(non-random) pattern. <br/> <span class="fig-src"><em>Source:</em> © The
+Authors.</span><br/> <b>Rcode</b>: <a href='fig-code/09_14-randu2.R'>
+09_14-randu2.R </a>
 </td>
 </tr>
 </table>
@@ -2539,7 +2633,11 @@ Three-dimensional plots of successive triples of 400 sets of random numbers gene
 <h3 class="figtitle">
 Figure 9.15: Diabetes data
 </h3>
-Reproduction of a graph similar to that from Reaven and Miller (1968) on the relationship between glucose and insulin response to being given an oral dose of glucose. <br/> <span class="fig-src"><em>Source:</em> © The Authors.</span><br/> <b>Rcode</b>: <a href='fig-code/09_15-diabetes.R'> 09_15-diabetes.R </a>
+Reproduction of a graph similar to that from Reaven and Miller (1968) on
+the relationship between glucose and insulin response to being given an
+oral dose of glucose. <br/> <span class="fig-src"><em>Source:</em> © The
+Authors.</span><br/> <b>Rcode</b>: <a href='fig-code/09_15-diabetes.R'>
+09_15-diabetes.R </a>
 </td>
 </tr>
 </table>
@@ -2552,7 +2650,13 @@ Reproduction of a graph similar to that from Reaven and Miller (1968) on the rel
 <h3 class="figtitle">
 Figure 9.16: PRIM9 view
 </h3>
-<p>Artist’s rendition of the data from Reaven and Miller (1979) as seen in three dimensions using the PRIM-9 system. Labels have been added by the author, identifying the three groups of patients. <br/> <span class="fig-src"><em>Source:</em> G. M. Reaven and R. G. Miller, “An attempt to define the nature of chemical diabetes using a multidimensional analysis,” Diabetologia, 16 (1979), pp. 17–24, fig. 1. Reprinted by permission from Springer Nature.</span><br/></p>
+<p>Artist’s rendition of the data from Reaven and Miller (1979) as seen
+in three dimensions using the PRIM-9 system. Labels have been added by
+the author, identifying the three groups of patients. <br/> <span
+class="fig-src"><em>Source:</em> G. M. Reaven and R. G. Miller, “An
+attempt to define the nature of chemical diabetes using a
+multidimensional analysis,” Diabetologia, 16 (1979), pp. 17–24, fig. 1.
+Reprinted by permission from Springer Nature.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2565,7 +2669,12 @@ Figure 9.16: PRIM9 view
 <h3 class="figtitle">
 Figure 9.17: DataDesk
 </h3>
-<p>A multiwindow graphics system for the Apple Macintosh, providing dynamic graphics, linked plots and brushing. The plot windows show a scatterplot, a 3D plot that can be rotated around any axis, a histogram, a boxplot and a parallel-coordinates plot. A collection of plot control buttons is shown at the right. <br/> <span class="fig-src"><em>Source:</em> DataDesk / YouTube.</span><br/></p>
+<p>A multiwindow graphics system for the Apple Macintosh, providing
+dynamic graphics, linked plots and brushing. The plot windows show a
+scatterplot, a 3D plot that can be rotated around any axis, a histogram,
+a boxplot and a parallel-coordinates plot. A collection of plot control
+buttons is shown at the right. <br/> <span
+class="fig-src"><em>Source:</em> DataDesk / YouTube.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2578,7 +2687,12 @@ Figure 9.17: DataDesk
 <h3 class="figtitle">
 Figure 9.18: Moving bubble chart
 </h3>
-<p>Three frames of an animated sequence, plotting life expectancy against income per person for 142 nations from 1809 to 2015. Income is plotted on a log scale. The bubble area is proportional to total population and is colored by geographic region in the original. China has been selected to track its position over time. <br/> <span class="fig-src"><em>Source:</em> Gapminder.</span><br/></p>
+<p>Three frames of an animated sequence, plotting life expectancy
+against income per person for 142 nations from 1809 to 2015. Income is
+plotted on a log scale. The bubble area is proportional to total
+population and is colored by geographic region in the original. China
+has been selected to track its position over time. <br/> <span
+class="fig-src"><em>Source:</em> Gapminder.</span><br/></p>
 </td>
 </tr>
 </table>
@@ -2591,12 +2705,17 @@ Figure 9.18: Moving bubble chart
 <h3 class="figtitle">
 Plate P.16: MDS solution
 </h3>
-<p>Re-creation of the MDS solution for Ekman’s color similarities data. This figure represents the final configuration of the points shown in the right-most panel of the MDS movie, Figure 9.12. The dashed circle is at the average distance of the points from the origin. <br/> <span class="fig-src"><em>Source:</em> © The Authors.</span><br/></p>
+<p>Re-creation of the MDS solution for Ekman’s color similarities data.
+This figure represents the final configuration of the points shown in
+the right-most panel of the MDS movie, Figure 9.12. The dashed circle is
+at the average distance of the points from the origin. <br/> <span
+class="fig-src"><em>Source:</em> © The Authors.</span><br/></p>
 </td>
 </tr>
 </table>
 </div>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
